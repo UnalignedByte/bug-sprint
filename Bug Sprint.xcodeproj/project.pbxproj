@@ -122,8 +122,6 @@
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
-			knownRegions = (
-			);
 			mainGroup = B5B1AB331DACCC5100066910;
 			productRefGroup = B5B1AB3D1DACCC5100066910 /* Products */;
 			projectDirPath = "";
@@ -260,7 +258,7 @@
 				DEVELOPMENT_TEAM = X7G47FFC9G;
 				INFOPLIST_FILE = "$(SRCROOT)/Bug Sprint/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.unalignedbyte.Bug-Sprint";
+				PRODUCT_BUNDLE_IDENTIFIER = com.unalignedbyte.bugsprint;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7a4d0075-15db-4009-b18d-7a0667d337f5";
 				PROVISIONING_PROFILE_SPECIFIER = "Any iOS App Development";
@@ -277,7 +275,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Bug Sprint/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.unalignedbyte.Bug-Sprint";
+				PRODUCT_BUNDLE_IDENTIFIER = com.unalignedbyte.bugsprint;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -304,6 +302,7 @@
 				B5B1AB501DACCC5100066910 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
