@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B54474641DAED2430046A19E /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B54474621DAED2430046A19E /* Core.cpp */; };
+		B54474671DAED3250046A19E /* CoreAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = B54474661DAED3250046A19E /* CoreAdapter.mm */; };
+		B58779E41DAD8FC6007A6DBF /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance.cpp */; };
 		B5B1AB401DACCC5100066910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B1AB3F1DACCC5100066910 /* AppDelegate.swift */; };
-		B5B1AB421DACCC5100066910 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B1AB411DACCC5100066910 /* ViewController.swift */; };
+		B5B1AB421DACCC5100066910 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B1AB411DACCC5100066910 /* MainViewController.swift */; };
 		B5B1AB471DACCC5100066910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B1AB461DACCC5100066910 /* Assets.xcassets */; };
 		B5B1AB541DACD19700066910 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B1AB531DACD19700066910 /* Launch Screen.storyboard */; };
 		B5B1AB561DACD1A800066910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B1AB551DACD1A800066910 /* Main.storyboard */; };
@@ -17,13 +20,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B54474621DAED2430046A19E /* Core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Core.cpp; path = Source/Game/Core.cpp; sourceTree = "<group>"; };
+		B54474631DAED2430046A19E /* Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Core.h; path = Source/Game/Core.h; sourceTree = "<group>"; };
+		B54474661DAED3250046A19E /* CoreAdapter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CoreAdapter.mm; path = "Source/iOS Layer/CoreAdapter.mm"; sourceTree = "<group>"; };
+		B54474681DAED4280046A19E /* CoreAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreAdapter.h; path = "Source/iOS Layer/CoreAdapter.h"; sourceTree = "<group>"; };
+		B544746A1DAED6F50046A19E /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		B58779E11DAD8FC5007A6DBF /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Source/iOS Layer/Bridging-Header.h"; sourceTree = "<group>"; };
+		B58779E21DAD8FC6007A6DBF /* Instance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Instance.cpp; path = Source/Game/Instance.cpp; sourceTree = "<group>"; };
+		B58779E31DAD8FC6007A6DBF /* Instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Instance.h; path = Source/Game/Instance.h; sourceTree = "<group>"; };
 		B5B1AB3C1DACCC5100066910 /* Bug Sprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bug Sprint.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5B1AB3F1DACCC5100066910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Source/AppDelegate.swift; sourceTree = "<group>"; };
-		B5B1AB411DACCC5100066910 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Source/ViewController.swift; sourceTree = "<group>"; };
-		B5B1AB461DACCC5100066910 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Bug Sprint/Assets/Assets.xcassets"; sourceTree = "<group>"; };
+		B5B1AB3F1DACCC5100066910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Source/iOS Layer/AppDelegate.swift"; sourceTree = "<group>"; };
+		B5B1AB411DACCC5100066910 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "Source/iOS Layer/MainViewController.swift"; sourceTree = "<group>"; };
+		B5B1AB461DACCC5100066910 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Bug Sprint/Assets/iOS Layer/Assets.xcassets"; sourceTree = "<group>"; };
 		B5B1AB4B1DACCC5100066910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Bug Sprint/Supporting Files/Info.plist"; sourceTree = "<group>"; };
-		B5B1AB531DACD19700066910 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Bug Sprint/Assets/Launch Screen.storyboard"; sourceTree = "<group>"; };
-		B5B1AB551DACD1A800066910 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = "Bug Sprint/Assets/Main.storyboard"; sourceTree = "<group>"; };
+		B5B1AB531DACD19700066910 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Bug Sprint/Assets/iOS Layer/Launch Screen.storyboard"; sourceTree = "<group>"; };
+		B5B1AB551DACD1A800066910 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = "Source/iOS Layer/Main.storyboard"; sourceTree = "<group>"; };
 		B5C7D20C1DAD746D009E66A9 /* Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5C7D2101DAD746D009E66A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = "Bug Sprint/Unit Tests/Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		B5C7D2171DAD81B4009E66A9 /* GoogleTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GoogleTests.mm; path = "External Frameworks/xcode-googletest/GoogleTests.mm"; sourceTree = "<group>"; };
@@ -85,6 +96,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B54474651DAED2F50046A19E /* iOS Layer */ = {
+			isa = PBXGroup;
+			children = (
+				B58779E11DAD8FC5007A6DBF /* Bridging-Header.h */,
+				B5B1AB3F1DACCC5100066910 /* AppDelegate.swift */,
+				B5B1AB551DACD1A800066910 /* Main.storyboard */,
+				B5B1AB411DACCC5100066910 /* MainViewController.swift */,
+				B54474681DAED4280046A19E /* CoreAdapter.h */,
+				B54474661DAED3250046A19E /* CoreAdapter.mm */,
+			);
+			name = "iOS Layer";
+			sourceTree = "<group>";
+		};
+		B54474691DAED6F50046A19E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B544746A1DAED6F50046A19E /* GLKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B58779E01DAD8F2E007A6DBF /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				B54474631DAED2430046A19E /* Core.h */,
+				B54474621DAED2430046A19E /* Core.cpp */,
+				B58779E31DAD8FC6007A6DBF /* Instance.h */,
+				B58779E21DAD8FC6007A6DBF /* Instance.cpp */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
 		B5B1AB331DACCC5100066910 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +137,7 @@
 				B5C7D1ED1DAD73C7009E66A9 /* External Frameworks */,
 				B5C7D20D1DAD746D009E66A9 /* Unit Tests */,
 				B5B1AB3D1DACCC5100066910 /* Products */,
+				B54474691DAED6F50046A19E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,8 +153,8 @@
 		B5B1AB3E1DACCC5100066910 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				B5B1AB3F1DACCC5100066910 /* AppDelegate.swift */,
-				B5B1AB411DACCC5100066910 /* ViewController.swift */,
+				B54474651DAED2F50046A19E /* iOS Layer */,
+				B58779E01DAD8F2E007A6DBF /* Game */,
 			);
 			name = Source;
 			path = "Bug Sprint";
@@ -127,11 +171,18 @@
 		B5B1AB521DACCCC300066910 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				B5B1AB461DACCC5100066910 /* Assets.xcassets */,
-				B5B1AB531DACD19700066910 /* Launch Screen.storyboard */,
-				B5B1AB551DACD1A800066910 /* Main.storyboard */,
+				B5B8487D1DAEE9FD00A3BB79 /* iOS Layer */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		B5B8487D1DAEE9FD00A3BB79 /* iOS Layer */ = {
+			isa = PBXGroup;
+			children = (
+				B5B1AB461DACCC5100066910 /* Assets.xcassets */,
+				B5B1AB531DACD19700066910 /* Launch Screen.storyboard */,
+			);
+			name = "iOS Layer";
 			sourceTree = "<group>";
 		};
 		B5C7D1ED1DAD73C7009E66A9 /* External Frameworks */ = {
@@ -313,6 +364,7 @@
 					B5B1AB3B1DACCC5100066910 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = X7G47FFC9G;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
 					B5C7D20B1DAD746D009E66A9 = {
@@ -364,7 +416,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5B1AB421DACCC5100066910 /* ViewController.swift in Sources */,
+				B54474671DAED3250046A19E /* CoreAdapter.mm in Sources */,
+				B58779E41DAD8FC6007A6DBF /* Instance.cpp in Sources */,
+				B5B1AB421DACCC5100066910 /* MainViewController.swift in Sources */,
+				B54474641DAED2430046A19E /* Core.cpp in Sources */,
 				B5B1AB401DACCC5100066910 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +531,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Rafal Grodzinski (26CJHPNYQM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = X7G47FFC9G;
@@ -485,6 +543,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7a4d0075-15db-4009-b18d-7a0667d337f5";
 				PROVISIONING_PROFILE_SPECIFIER = "Any iOS App Development";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Bug Sprint/Source/iOS Layer/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -493,6 +553,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -502,6 +565,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Bug Sprint/Source/iOS Layer/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
