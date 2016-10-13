@@ -17,6 +17,7 @@
 		B5B1AB561DACD1A800066910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B1AB551DACD1A800066910 /* Main.storyboard */; };
 		B5C7D2181DAD81B4009E66A9 /* GoogleTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5C7D2171DAD81B4009E66A9 /* GoogleTests.mm */; };
 		B5C7D2521DAD8723009E66A9 /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = B5C7D2241DAD86CF009E66A9 /* gtest-all.cc */; };
+		B5DA1A891DAF726D00D948C9 /* VectorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DA1A881DAF726D00D948C9 /* VectorTests.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,9 @@
 		B5C7D24B1DAD86D8009E66A9 /* gtest-tuple.h.pump */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "gtest-tuple.h.pump"; sourceTree = "<group>"; };
 		B5C7D24C1DAD86D8009E66A9 /* gtest-type-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gtest-type-util.h"; sourceTree = "<group>"; };
 		B5C7D24D1DAD86D8009E66A9 /* gtest-type-util.h.pump */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "gtest-type-util.h.pump"; sourceTree = "<group>"; };
+		B5DA1A851DAF6B0F00D948C9 /* Vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Vector.h; path = Source/Utils/Vector.h; sourceTree = "<group>"; };
+		B5DA1A861DAF6B1E00D948C9 /* Vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector.cpp; path = Source/Utils/Vector.cpp; sourceTree = "<group>"; };
+		B5DA1A881DAF726D00D948C9 /* VectorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VectorTests.cpp; path = "Bug Sprint/Unit Tests/Source/VectorTests.cpp"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				B54474651DAED2F50046A19E /* iOS Layer */,
+				B5DA1A841DAF6AC100D948C9 /* Utils */,
 				B58779E01DAD8F2E007A6DBF /* Game */,
 			);
 			name = Source;
@@ -215,6 +220,7 @@
 		B5C7D2191DAD81CD009E66A9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B5DA1A881DAF726D00D948C9 /* VectorTests.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -312,6 +318,15 @@
 				B5C7D23F1DAD86D8009E66A9 /* gtest.h */,
 			);
 			path = custom;
+			sourceTree = "<group>";
+		};
+		B5DA1A841DAF6AC100D948C9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B5DA1A851DAF6B0F00D948C9 /* Vector.h */,
+				B5DA1A861DAF6B1E00D948C9 /* Vector.cpp */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,6 +445,7 @@
 			files = (
 				B5C7D2521DAD8723009E66A9 /* gtest-all.cc in Sources */,
 				B5C7D2181DAD81B4009E66A9 /* GoogleTests.mm in Sources */,
+				B5DA1A891DAF726D00D948C9 /* VectorTests.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

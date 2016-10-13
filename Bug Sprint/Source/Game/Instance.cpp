@@ -7,3 +7,5 @@
 //
 
 #include "Instance.h"
+
+#include "Vector.h"
