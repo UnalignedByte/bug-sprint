@@ -50,3 +50,25 @@ TEST(Vector, Addition)
     ASSERT_EQ(result.m[1], 3.0);
     ASSERT_EQ(result.m[2], 3.0);
 }
+
+
+TEST(Vector, Multiply)
+{
+    Vector<3> vec(2.0);
+
+    Vector<3> result = vec * 4.0;
+    ASSERT_EQ(result.m[0], 8.0);
+    ASSERT_EQ(result.m[1], 8.0);
+    ASSERT_EQ(result.m[2], 8.0);
+}
+
+
+TEST(Vector, Divide)
+{
+    Vector<3> vec(8.0);
+
+    Vector<3> result = vec / 4.0;
+    ASSERT_EQ(result.m[0], 2.0);
+    ASSERT_EQ(result.m[1], 2.0);
+    ASSERT_EQ(result.m[2], 2.0);
+}

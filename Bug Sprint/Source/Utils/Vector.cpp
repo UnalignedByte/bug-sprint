@@ -32,3 +32,25 @@ Vector<SIZE> Vector<SIZE>::operator+(const Vector<SIZE> &rhs)
 
     return result;
 }
+
+
+template<int SIZE>
+Vector<SIZE> Vector<SIZE>::operator*(double rhs)
+{
+    Vector<SIZE> result;
+    for(int i=0; i<SIZE; i++)
+        result.m[i] = m[i] * rhs;
+
+    return result;
+}
+
+
+template<int SIZE>
+Vector<SIZE> Vector<SIZE>::operator/(double rhs)
+{
+    Vector<SIZE> result;
+    for(int i=0; i<SIZE; i++)
+        result.m[i] = m[i] / rhs;
+
+    return result;
+}

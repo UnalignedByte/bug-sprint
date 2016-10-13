@@ -17,6 +17,8 @@ public:
     Vector(double initialValue);
 
     Vector<SIZE> operator+(const Vector<SIZE> &rhs);
+    Vector<SIZE> operator*(double rhs);
+    Vector<SIZE> operator/(double rhs);
 
     double m[SIZE];
 };
