@@ -8,6 +8,8 @@
 
 #include "Vector.h"
 
+#include <cmath>
+
 
 template<int SIZE>
 Vector<SIZE>::Vector() : Vector(0.0)
@@ -24,7 +26,7 @@ Vector<SIZE>::Vector(double initialValue)
 
 
 template<int SIZE>
-Vector<SIZE> Vector<SIZE>::operator+(const Vector<SIZE> &rhs)
+Vector<SIZE> Vector<SIZE>::operator+(const Vector<SIZE> &rhs) const
 {
     Vector<SIZE> result;
     for(int i=0; i<SIZE; i++)
@@ -35,7 +37,7 @@ Vector<SIZE> Vector<SIZE>::operator+(const Vector<SIZE> &rhs)
 
 
 template<int SIZE>
-Vector<SIZE> Vector<SIZE>::operator*(double rhs)
+Vector<SIZE> Vector<SIZE>::operator*(double rhs) const
 {
     Vector<SIZE> result;
     for(int i=0; i<SIZE; i++)
@@ -46,11 +48,59 @@ Vector<SIZE> Vector<SIZE>::operator*(double rhs)
 
 
 template<int SIZE>
-Vector<SIZE> Vector<SIZE>::operator/(double rhs)
+Vector<SIZE> Vector<SIZE>::operator/(double rhs) const
 {
     Vector<SIZE> result;
     for(int i=0; i<SIZE; i++)
         result.m[i] = m[i] / rhs;
+
+    return result;
+}
+
+
+template<int SIZE>
+double Vector<SIZE>::length() const
+{
+    double sum = 0;
+    for(int i=0; i<SIZE; i++)
+        sum += m[i] * m[i];
+
+    return sqrt(sum);
+}
+
+
+template<int SIZE>
+Vector<SIZE> Vector<SIZE>::normalized() const
+{
+    Vector<SIZE> result;
+
+    double vecLength = length();
+    for(int i=0; i<SIZE; i++)
+        result.m[i] = m[i]/vecLength;
+
+    return result;
+}
+
+
+template<int SIZE>
+double Vector<SIZE>::dot(const Vector<SIZE> &rhs) const
+{
+    double sum = 0.0;
+    for(int i=0; i<SIZE; i++)
+        sum += m[i] * rhs.m[i];
+
+    return sum;
+}
+
+
+template<int SIZE>
+Vector<3> Vector<SIZE>::cross(const Vector<3> &rhs) const
+{
+    Vector<3> result;
+
+    result.m[0] = m[1] * rhs.m[2] - m[2] * rhs.m[1]; // y1 * z2 - z1 * y2
+    result.m[1] = m[2] * rhs.m[0] - m[0] * rhs.m[2]; // z1 * x2 - x1 * z2
+    result.m[2] = m[0] * rhs.m[1] - m[1] * rhs.m[0]; // x1 * y2 - y1 * x2
 
     return result;
 }

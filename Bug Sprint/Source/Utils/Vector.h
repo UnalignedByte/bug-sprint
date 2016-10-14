@@ -16,10 +16,16 @@ public:
     Vector();
     Vector(double initialValue);
 
-    Vector<SIZE> operator+(const Vector<SIZE> &rhs);
-    Vector<SIZE> operator*(double rhs);
-    Vector<SIZE> operator/(double rhs);
+    Vector<SIZE> operator+(const Vector<SIZE> &rhs) const;
+    Vector<SIZE> operator*(double rhs) const;
+    Vector<SIZE> operator/(double rhs) const;
 
+    double length() const;
+    Vector<SIZE> normalized() const;
+    double dot(const Vector<SIZE> &rhs) const;
+    Vector<3> cross(const Vector<3> &rhs) const;
+
+    // MARK: - Data
     double m[SIZE];
 };
 
