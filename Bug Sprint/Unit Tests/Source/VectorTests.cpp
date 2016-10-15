@@ -69,6 +69,18 @@ TEST(Vector, Addition)
 }
 
 
+TEST(Vector, Subtraction)
+{
+    Vector<3> first{2.0, 4.0, 6.0};
+    Vector<3> second{1.0, 6.0, 4.0};
+
+    Vector<3> result = first - second;
+    ASSERT_DOUBLE_EQ(result.m[0], 1.0);
+    ASSERT_DOUBLE_EQ(result.m[1], -2.0);
+    ASSERT_DOUBLE_EQ(result.m[2], 2.0);
+}
+
+
 TEST(Vector, Multiply)
 {
     Vector<3> vec(2.0);

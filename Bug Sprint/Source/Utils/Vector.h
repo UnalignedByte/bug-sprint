@@ -20,6 +20,7 @@ public:
     Vector(std::initializer_list<double>);
 
     Vector<SIZE> operator+(const Vector<SIZE> &rhs) const;
+    Vector<SIZE> operator-(const Vector<SIZE> &rhs) const;
     Vector<SIZE> operator*(double rhs) const;
     Vector<SIZE> operator/(double rhs) const;
 

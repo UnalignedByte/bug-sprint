@@ -62,6 +62,16 @@ Vector<SIZE> Vector<SIZE>::operator+(const Vector<SIZE> &rhs) const
 
 
 template<int SIZE>
+Vector<SIZE> Vector<SIZE>::operator-(const Vector<SIZE> &rhs) const
+{
+    Vector<SIZE> result;
+    for(int i=0; i<SIZE; i++)
+        result.m[i] = m[i] - rhs.m[i];
+
+    return result;
+}
+
+template<int SIZE>
 Vector<SIZE> Vector<SIZE>::operator*(double rhs) const
 {
     Vector<SIZE> result;
