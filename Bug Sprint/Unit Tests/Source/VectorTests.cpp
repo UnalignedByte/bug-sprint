@@ -10,33 +10,50 @@
 #include "Vector.h"
 
 
-TEST(Vector, CreateV3)
+TEST(Vector, CreateDefault)
 {
     Vector<3> v3;
     ASSERT_DOUBLE_EQ(v3.m[0], 0.0);
     ASSERT_DOUBLE_EQ(v3.m[1], 0.0);
     ASSERT_DOUBLE_EQ(v3.m[2], 0.0);
 
+    Vector<5> v5;
+    ASSERT_DOUBLE_EQ(v5.m[0], 0.0);
+    ASSERT_DOUBLE_EQ(v5.m[1], 0.0);
+    ASSERT_DOUBLE_EQ(v5.m[2], 0.0);
+    ASSERT_DOUBLE_EQ(v5.m[3], 0.0);
+    ASSERT_DOUBLE_EQ(v5.m[4], 0.0);
+
+    ASSERT_THROW(Vector<0> v, std::string);
+}
+
+
+TEST(Vector, CreateInitial)
+{
     Vector<3> v3Initial(1.0);
     ASSERT_DOUBLE_EQ(v3Initial.m[0], 1.0);
     ASSERT_DOUBLE_EQ(v3Initial.m[1], 1.0);
     ASSERT_DOUBLE_EQ(v3Initial.m[2], 1.0);
-}
-
-
-TEST(Vector, CreateV4)
-{
-    Vector<4> v4;
-    ASSERT_DOUBLE_EQ(v4.m[0], 0.0);
-    ASSERT_DOUBLE_EQ(v4.m[1], 0.0);
-    ASSERT_DOUBLE_EQ(v4.m[2], 0.0);
-    ASSERT_DOUBLE_EQ(v4.m[3], 0.0);
 
     Vector<4> v4Initial(1.0);
     ASSERT_DOUBLE_EQ(v4Initial.m[0], 1.0);
     ASSERT_DOUBLE_EQ(v4Initial.m[1], 1.0);
     ASSERT_DOUBLE_EQ(v4Initial.m[2], 1.0);
     ASSERT_DOUBLE_EQ(v4Initial.m[3], 1.0);
+
+    ASSERT_THROW(Vector<0> v(5.0), std::string);
+}
+
+
+TEST(Vector, CreateInitializerList)
+{
+    Vector<3> v3 {1.0, 2.0, 3.0};
+    ASSERT_DOUBLE_EQ(v3.m[0], 1.0);
+    ASSERT_DOUBLE_EQ(v3.m[1], 2.0);
+    ASSERT_DOUBLE_EQ(v3.m[2], 3.0);
+
+    ASSERT_THROW(Vector<3> v({1.0, 2.0}), std::string);
+    ASSERT_THROW(Vector<0> v({1.0, 2.0, 3.0}), std::string);
 }
 
 
@@ -115,6 +132,7 @@ TEST(Vector, Dot)
 
 TEST(Vector, Cross)
 {
+    // Valid vector
     Vector<3> first;
     first.m[0] = 1.0;
     first.m[1] = 3.0;
@@ -129,4 +147,8 @@ TEST(Vector, Cross)
     ASSERT_DOUBLE_EQ(result.m[0], 4.0);
     ASSERT_DOUBLE_EQ(result.m[1], -16.0);
     ASSERT_DOUBLE_EQ(result.m[2], -11.0);
+
+    // Invalid vector
+    Vector<2> third;
+    ASSERT_THROW(third.cross(second), std::string);
 }

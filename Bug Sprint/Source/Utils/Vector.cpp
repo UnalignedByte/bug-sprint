@@ -9,19 +9,44 @@
 #include "Vector.h"
 
 #include <cmath>
+#include <string>
+
+using namespace std;
 
 
 template<int SIZE>
 Vector<SIZE>::Vector() : Vector(0.0)
 {
+    if(SIZE <= 0)
+        throw string("Invalid vector size");
 }
 
 
 template<int SIZE>
 Vector<SIZE>::Vector(double initialValue)
 {
+    if(SIZE <= 0)
+        throw string("Invalid vector size");
+
     for(int i=0; i<SIZE; i++)
         m[i] = initialValue;
+}
+
+
+template<int SIZE>
+Vector<SIZE>::Vector(initializer_list<double> values)
+{
+    if(SIZE <= 0)
+        throw string("Invalid vector size");
+
+    if(values.size() != SIZE)
+        throw string("Invalid initializer list");
+
+    int i = 0;
+    for(auto value = values.begin(); value != values.end(); value++) {
+        m[i] = *value;
+        i++;
+    }
 }
 
 
@@ -96,6 +121,9 @@ double Vector<SIZE>::dot(const Vector<SIZE> &rhs) const
 template<int SIZE>
 Vector<3> Vector<SIZE>::cross(const Vector<3> &rhs) const
 {
+    if(SIZE != 3)
+        throw string("Invalid vector size");
+
     Vector<3> result;
 
     result.m[0] = m[1] * rhs.m[2] - m[2] * rhs.m[1]; // y1 * z2 - z1 * y2

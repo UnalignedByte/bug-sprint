@@ -9,12 +9,15 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include <initializer_list>
+
 template<int SIZE = 3>
 class Vector
 {
 public:
     Vector();
     Vector(double initialValue);
+    Vector(std::initializer_list<double>);
 
     Vector<SIZE> operator+(const Vector<SIZE> &rhs) const;
     Vector<SIZE> operator*(double rhs) const;
