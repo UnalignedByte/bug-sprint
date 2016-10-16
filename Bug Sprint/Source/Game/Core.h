@@ -9,6 +9,9 @@
 #ifndef CORE_H
 #define CORE_H
 
+#include "Color.h"
+
+
 class Core
 {
 public:
@@ -16,6 +19,9 @@ public:
 
     void update(double timeInterval);
     void draw();
+
+private:
+    Color clearColor{0.1, 0.0, 0.0, 1.0};
 };
 
 #endif
