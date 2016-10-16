@@ -51,7 +51,37 @@ Matrix<SIZE>::Matrix(initializer_list<Vector<SIZE>> values)
 
 
 template<int SIZE>
-Vector<SIZE> &Matrix<SIZE>::operator[](int index) const
+Matrix<SIZE> Matrix<SIZE>::operator*(double rhs) const
+{
+    Matrix<SIZE> result;
+
+    for(int i=0; i<SIZE; i++)
+        result[i] = data[i] * rhs;
+
+    return result;
+}
+
+
+template<int SIZE>
+Matrix<SIZE> Matrix<SIZE>::operator*(const Matrix<SIZE> &rhs) const
+{
+    Matrix<SIZE> result;
+
+    for(int y=0; y<SIZE; y++)
+        for(int x=0; x<SIZE; x++) {
+            double sum = 0.0;
+            for(int i=0; i<SIZE; i++) {
+                sum += data[y][i] * rhs[i][x];
+            }
+            result[y][x] = sum;
+        }
+
+    return result;
+}
+
+
+template<int SIZE>
+const Vector<SIZE> &Matrix<SIZE>::operator[](int index) const
 {
     if(index < 0 || index >= SIZE)
         throw string("Index out of bounds");

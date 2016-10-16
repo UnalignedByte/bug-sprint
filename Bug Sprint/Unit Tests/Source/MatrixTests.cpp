@@ -60,3 +60,40 @@ TEST(Matrix, CreateInitializerList)
     ASSERT_THROW(Matrix<2> m({1.0, 2.0, 3.0}), std::string);
     ASSERT_THROW(Matrix<2> m({{1.0, 2.0}, 3.0, 2.0}), std::string);
 }
+
+
+TEST(Matrix, MultiplyByScalar)
+{
+    Matrix<2> m{{1.0, 2.0}, {3.0, 4.0}};
+    Matrix<2> result = m * 3.0;
+
+    ASSERT_DOUBLE_EQ(result[0][0], 3.0);
+    ASSERT_DOUBLE_EQ(result[0][1], 6.0);
+    ASSERT_DOUBLE_EQ(result[1][0], 9.0);
+    ASSERT_DOUBLE_EQ(result[1][1], 12.0);
+}
+
+
+TEST(Matrix, MultiplyByMatrix)
+{
+    Matrix<3> first{{1.0, -5.0,  3.0},
+                    {0.0, -2.0,  6.0},
+                    {7.0,  2.0, -4.0}};
+    Matrix<3> second{{-8.0, 6.0,  1.0},
+                     { 7.0, 0.0, -3.0},
+                     { 2.0, 4.0,  5.0}};
+
+    Matrix<3> result = first * second;
+
+    ASSERT_DOUBLE_EQ(result[0][0], -37.0);
+    ASSERT_DOUBLE_EQ(result[0][1], 18.0);
+    ASSERT_DOUBLE_EQ(result[0][2], 31.0);
+
+    ASSERT_DOUBLE_EQ(result[1][0], -2.0);
+    ASSERT_DOUBLE_EQ(result[1][1], 24.0);
+    ASSERT_DOUBLE_EQ(result[1][2], 36.0);
+
+    ASSERT_DOUBLE_EQ(result[2][0], -50.0);
+    ASSERT_DOUBLE_EQ(result[2][1], 26.0);
+    ASSERT_DOUBLE_EQ(result[2][2], -19.0);
+}

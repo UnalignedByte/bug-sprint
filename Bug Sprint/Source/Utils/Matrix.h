@@ -22,7 +22,10 @@ public:
     Matrix(double initialValue);
     Matrix(std::initializer_list<Vector<SIZE>> values);
 
-    Vector<SIZE> &operator[](int index) const;
+    Matrix<SIZE> operator*(double rhs) const;
+    Matrix<SIZE> operator*(const Matrix<SIZE> &rhs) const;
+
+    const Vector<SIZE> &operator[](int index) const;
     Vector<SIZE> &operator[](int index);
 
 private:

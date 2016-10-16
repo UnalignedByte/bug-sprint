@@ -11,7 +11,8 @@
 
 #include <initializer_list>
 
-template<int SIZE = 3>
+
+template<int SIZE>
 class Vector
 {
 public:
@@ -23,6 +24,7 @@ public:
     Vector<SIZE> operator-(const Vector<SIZE> &rhs) const;
     Vector<SIZE> operator*(double rhs) const;
     Vector<SIZE> operator/(double rhs) const;
+
     const double &operator[](int index) const;
     double &operator[](int index);
 
