@@ -37,6 +37,9 @@ private:
     double data[SIZE];
 };
 
+using Vector3 = Vector<3>;
+using Vector4 = Vector<4>;
+
 #include "Vector.cpp"
 
 #endif

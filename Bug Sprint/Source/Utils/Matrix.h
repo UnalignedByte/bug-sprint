@@ -32,6 +32,9 @@ private:
     Vector<SIZE> data[SIZE];
 };
 
+using Matrix3 = Matrix<3>;
+using Matrix4 = Matrix<4>;
+
 #include "Matrix.cpp"
 
 #endif

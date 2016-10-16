@@ -38,4 +38,3 @@ class MainViewController: GLKViewController
         self.core.draw()
     }
 }
-
