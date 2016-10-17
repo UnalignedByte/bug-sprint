@@ -30,6 +30,12 @@ ShaderProgram::ShaderProgram(const string &vertexShaderFileName, const string &f
 }
 
 
+ShaderProgram::~ShaderProgram()
+{
+    glDeleteProgram(programId);
+}
+
+
 void ShaderProgram::use()
 {
     glUseProgram(programId);

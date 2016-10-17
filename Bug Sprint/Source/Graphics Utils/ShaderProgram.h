@@ -17,6 +17,7 @@ class ShaderProgram
 {
 public:
     ShaderProgram(const std::string &vertexShaderFileName, const std::string &fragmentShaderFileName);
+    ~ShaderProgram();
     void use();
 
 private:

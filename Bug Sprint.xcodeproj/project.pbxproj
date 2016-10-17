@@ -14,6 +14,14 @@
 		B50C611F1DB52DF9005147FA /* broken_fragment.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B50C611E1DB52DF9005147FA /* broken_fragment.fsh */; };
 		B50C61221DB5348F005147FA /* fragment.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B50C61201DB5348F005147FA /* fragment.fsh */; };
 		B50C61231DB5348F005147FA /* vertex.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B50C61211DB5348F005147FA /* vertex.vsh */; };
+		B50C61271DB538DB005147FA /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61251DB538DB005147FA /* Model.cpp */; };
+		B50C61291DB54794005147FA /* ModelTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61281DB54794005147FA /* ModelTests.cpp */; };
+		B50C612A1DB547AD005147FA /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61251DB538DB005147FA /* Model.cpp */; };
+		B50C612C1DB54807005147FA /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = B50C612B1DB54807005147FA /* box.obj */; };
+		B50C612D1DB563F0005147FA /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = B50C612B1DB54807005147FA /* box.obj */; };
+		B50C61321DB5679D005147FA /* default.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B50C61311DB5679D005147FA /* default.vsh */; };
+		B50C61341DB567B2005147FA /* default.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B50C61331DB567B2005147FA /* default.fsh */; };
+		B50C61361DB58539005147FA /* monkey.obj in Resources */ = {isa = PBXBuildFile; fileRef = B50C61351DB58539005147FA /* monkey.obj */; };
 		B53370EC1DB4170000275631 /* ColorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53370EB1DB4170000275631 /* ColorTests.cpp */; };
 		B53370EF1DB4178300275631 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53370ED1DB4178300275631 /* Color.cpp */; };
 		B53370F01DB4178300275631 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53370ED1DB4178300275631 /* Color.cpp */; };
@@ -46,6 +54,13 @@
 		B50C611E1DB52DF9005147FA /* broken_fragment.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = broken_fragment.fsh; path = "Bug Sprint/Unit Tests/Assets/broken_fragment.fsh"; sourceTree = SOURCE_ROOT; };
 		B50C61201DB5348F005147FA /* fragment.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = fragment.fsh; path = "Bug Sprint/Unit Tests/Assets/fragment.fsh"; sourceTree = SOURCE_ROOT; };
 		B50C61211DB5348F005147FA /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = vertex.vsh; path = "Bug Sprint/Unit Tests/Assets/vertex.vsh"; sourceTree = SOURCE_ROOT; };
+		B50C61251DB538DB005147FA /* Model.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Model.cpp; path = "Source/Graphics Utils/Model.cpp"; sourceTree = "<group>"; };
+		B50C61261DB538DB005147FA /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model.h; path = "Source/Graphics Utils/Model.h"; sourceTree = "<group>"; };
+		B50C61281DB54794005147FA /* ModelTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ModelTests.cpp; path = "Bug Sprint/Unit Tests/Source/ModelTests.cpp"; sourceTree = SOURCE_ROOT; };
+		B50C612B1DB54807005147FA /* box.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = box.obj; path = "Bug Sprint/Unit Tests/Assets/box.obj"; sourceTree = SOURCE_ROOT; };
+		B50C61311DB5679D005147FA /* default.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = default.vsh; path = Source/Shaders/default.vsh; sourceTree = "<group>"; };
+		B50C61331DB567B2005147FA /* default.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = default.fsh; path = Source/Shaders/default.fsh; sourceTree = "<group>"; };
+		B50C61351DB58539005147FA /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monkey.obj; path = "Bug Sprint/Unit Tests/Assets/monkey.obj"; sourceTree = SOURCE_ROOT; };
 		B53370EB1DB4170000275631 /* ColorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ColorTests.cpp; path = "Bug Sprint/Unit Tests/Source/ColorTests.cpp"; sourceTree = SOURCE_ROOT; };
 		B53370ED1DB4178300275631 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Color.cpp; path = "Source/Graphics Utils/Color.cpp"; sourceTree = "<group>"; };
 		B53370EE1DB4178300275631 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Color.h; path = "Source/Graphics Utils/Color.h"; sourceTree = "<group>"; };
@@ -147,6 +162,8 @@
 				B50C61201DB5348F005147FA /* fragment.fsh */,
 				B50C611C1DB52DE8005147FA /* broken_vertex.vsh */,
 				B50C611E1DB52DF9005147FA /* broken_fragment.fsh */,
+				B50C612B1DB54807005147FA /* box.obj */,
+				B50C61351DB58539005147FA /* monkey.obj */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -158,8 +175,19 @@
 				B53370ED1DB4178300275631 /* Color.cpp */,
 				B53370F51DB41C7B00275631 /* ShaderProgram.h */,
 				B53370F41DB41C7B00275631 /* ShaderProgram.cpp */,
+				B50C61261DB538DB005147FA /* Model.h */,
+				B50C61251DB538DB005147FA /* Model.cpp */,
 			);
 			name = "Graphics Utils";
+			sourceTree = "<group>";
+		};
+		B50C61301DB56784005147FA /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				B50C61311DB5679D005147FA /* default.vsh */,
+				B50C61331DB567B2005147FA /* default.fsh */,
+			);
+			name = Shaders;
 			sourceTree = "<group>";
 		};
 		B54474651DAED2F50046A19E /* iOS Layer */ = {
@@ -226,6 +254,7 @@
 				B5DA1A841DAF6AC100D948C9 /* Utils */,
 				B50C61241DB5379A005147FA /* Graphics Utils */,
 				B58779E01DAD8F2E007A6DBF /* Game */,
+				B50C61301DB56784005147FA /* Shaders */,
 			);
 			name = Source;
 			path = "Bug Sprint";
@@ -292,6 +321,7 @@
 				B53370EB1DB4170000275631 /* ColorTests.cpp */,
 				B53370FA1DB4C60900275631 /* FileTests.cpp */,
 				B53370F11DB41BA500275631 /* ShaderProgramTests.cpp */,
+				B50C61281DB54794005147FA /* ModelTests.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -487,8 +517,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5B1AB561DACD1A800066910 /* Main.storyboard in Resources */,
+				B50C612D1DB563F0005147FA /* box.obj in Resources */,
 				B5B1AB541DACD19700066910 /* Launch Screen.storyboard in Resources */,
 				B5B1AB471DACCC5100066910 /* Assets.xcassets in Resources */,
+				B50C61321DB5679D005147FA /* default.vsh in Resources */,
+				B50C61341DB567B2005147FA /* default.fsh in Resources */,
+				B50C61361DB58539005147FA /* monkey.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +533,7 @@
 				B50C611D1DB52DE8005147FA /* broken_vertex.vsh in Resources */,
 				B50C611B1DB52619005147FA /* test.txt in Resources */,
 				B50C611F1DB52DF9005147FA /* broken_fragment.fsh in Resources */,
+				B50C612C1DB54807005147FA /* box.obj in Resources */,
 				B50C61231DB5348F005147FA /* vertex.vsh in Resources */,
 				B50C61221DB5348F005147FA /* fragment.fsh in Resources */,
 			);
@@ -518,6 +553,7 @@
 				B58779E41DAD8FC6007A6DBF /* Instance.cpp in Sources */,
 				B5B1AB421DACCC5100066910 /* MainViewController.swift in Sources */,
 				B53370F61DB41C7B00275631 /* ShaderProgram.cpp in Sources */,
+				B50C61271DB538DB005147FA /* Model.cpp in Sources */,
 				B54474641DAED2430046A19E /* Core.cpp in Sources */,
 				B5B1AB401DACCC5100066910 /* AppDelegate.swift in Sources */,
 			);
@@ -528,6 +564,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5C7D2521DAD8723009E66A9 /* gtest-all.cc in Sources */,
+				B50C612A1DB547AD005147FA /* Model.cpp in Sources */,
 				B53370F01DB4178300275631 /* Color.cpp in Sources */,
 				B53370FB1DB4C60900275631 /* FileTests.cpp in Sources */,
 				B53370F71DB41C7B00275631 /* ShaderProgram.cpp in Sources */,
@@ -538,6 +575,7 @@
 				B53370F31DB41BA500275631 /* ShaderProgramTests.cpp in Sources */,
 				B550B1CE1DB25E37006EAEFD /* MatrixTests.cpp in Sources */,
 				B53370FF1DB4C6A500275631 /* File.cpp in Sources */,
+				B50C61291DB54794005147FA /* ModelTests.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
