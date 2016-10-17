@@ -10,6 +10,7 @@
 #define VECTOR_H
 
 #include <initializer_list>
+#include <OpenGLES/ES3/gl.h>
 
 
 template<int SIZE>
@@ -17,24 +18,24 @@ class Vector
 {
 public:
     Vector();
-    Vector(double initialValue);
-    Vector(std::initializer_list<double> values);
+    Vector(GLfloat initialValue);
+    Vector(std::initializer_list<GLfloat> values);
 
     Vector<SIZE> operator+(const Vector<SIZE> &rhs) const;
     Vector<SIZE> operator-(const Vector<SIZE> &rhs) const;
-    Vector<SIZE> operator*(double rhs) const;
-    Vector<SIZE> operator/(double rhs) const;
+    Vector<SIZE> operator*(GLfloat rhs) const;
+    Vector<SIZE> operator/(GLfloat rhs) const;
 
-    const double &operator[](int index) const;
-    double &operator[](int index);
+    const GLfloat &operator[](int index) const;
+    GLfloat &operator[](int index);
 
-    double length() const;
+    GLfloat length() const;
     Vector<SIZE> normalized() const;
-    double dot(const Vector<SIZE> &rhs) const;
+    GLfloat dot(const Vector<SIZE> &rhs) const;
     Vector<3> cross(const Vector<3> &rhs) const;
 
 private:
-    double data[SIZE];
+    GLfloat data[SIZE];
 };
 
 using Vector3 = Vector<3>;

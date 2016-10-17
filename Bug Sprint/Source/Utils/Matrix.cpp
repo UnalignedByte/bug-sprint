@@ -23,7 +23,7 @@ Matrix<SIZE>::Matrix()
 
 
 template<int SIZE>
-Matrix<SIZE>::Matrix(double initialValue)
+Matrix<SIZE>::Matrix(GLfloat initialValue)
 {
     if(SIZE <= 0)
         throw string("Invalid size");
@@ -51,7 +51,7 @@ Matrix<SIZE>::Matrix(initializer_list<Vector<SIZE>> values)
 
 
 template<int SIZE>
-Matrix<SIZE> Matrix<SIZE>::operator*(double rhs) const
+Matrix<SIZE> Matrix<SIZE>::operator*(GLfloat rhs) const
 {
     Matrix<SIZE> result;
 
@@ -69,7 +69,7 @@ Matrix<SIZE> Matrix<SIZE>::operator*(const Matrix<SIZE> &rhs) const
 
     for(int y=0; y<SIZE; y++)
         for(int x=0; x<SIZE; x++) {
-            double sum = 0.0;
+            GLfloat sum = 0.0;
             for(int i=0; i<SIZE; i++) {
                 sum += data[y][i] * rhs[i][x];
             }

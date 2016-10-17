@@ -23,7 +23,7 @@ Vector<SIZE>::Vector() : Vector(0.0)
 
 
 template<int SIZE>
-Vector<SIZE>::Vector(double initialValue)
+Vector<SIZE>::Vector(GLfloat initialValue)
 {
     if(SIZE <= 0)
         throw string("Invalid size");
@@ -34,7 +34,7 @@ Vector<SIZE>::Vector(double initialValue)
 
 
 template<int SIZE>
-Vector<SIZE>::Vector(initializer_list<double> values)
+Vector<SIZE>::Vector(initializer_list<GLfloat> values)
 {
     if(SIZE <= 0)
         throw string("Invalid size");
@@ -72,7 +72,7 @@ Vector<SIZE> Vector<SIZE>::operator-(const Vector<SIZE> &rhs) const
 }
 
 template<int SIZE>
-Vector<SIZE> Vector<SIZE>::operator*(double rhs) const
+Vector<SIZE> Vector<SIZE>::operator*(GLfloat rhs) const
 {
     Vector<SIZE> result;
     for(int i=0; i<SIZE; i++)
@@ -83,7 +83,7 @@ Vector<SIZE> Vector<SIZE>::operator*(double rhs) const
 
 
 template<int SIZE>
-Vector<SIZE> Vector<SIZE>::operator/(double rhs) const
+Vector<SIZE> Vector<SIZE>::operator/(GLfloat rhs) const
 {
     Vector<SIZE> result;
     for(int i=0; i<SIZE; i++)
@@ -94,7 +94,7 @@ Vector<SIZE> Vector<SIZE>::operator/(double rhs) const
 
 
 template<int SIZE>
-const double &Vector<SIZE>::operator[](int index) const
+const GLfloat &Vector<SIZE>::operator[](int index) const
 {
     if(index < 0 || index >= SIZE)
         throw string("Index out of bounds");
@@ -104,7 +104,7 @@ const double &Vector<SIZE>::operator[](int index) const
 
 
 template<int SIZE>
-double &Vector<SIZE>::operator[](int index)
+GLfloat &Vector<SIZE>::operator[](int index)
 {
     if(index < 0 || index >= SIZE)
         throw string("Index out of bounds");
@@ -114,9 +114,9 @@ double &Vector<SIZE>::operator[](int index)
 
 
 template<int SIZE>
-double Vector<SIZE>::length() const
+GLfloat Vector<SIZE>::length() const
 {
-    double sum = 0;
+    GLfloat sum = 0;
     for(int i=0; i<SIZE; i++)
         sum += data[i] * data[i];
 
@@ -129,7 +129,7 @@ Vector<SIZE> Vector<SIZE>::normalized() const
 {
     Vector<SIZE> result;
 
-    double vecLength = length();
+    GLfloat vecLength = length();
     for(int i=0; i<SIZE; i++)
         result[i] = data[i]/vecLength;
 
@@ -138,9 +138,9 @@ Vector<SIZE> Vector<SIZE>::normalized() const
 
 
 template<int SIZE>
-double Vector<SIZE>::dot(const Vector<SIZE> &rhs) const
+GLfloat Vector<SIZE>::dot(const Vector<SIZE> &rhs) const
 {
-    double sum = 0.0;
+    GLfloat sum = 0.0;
     for(int i=0; i<SIZE; i++)
         sum += data[i] * rhs[i];
 

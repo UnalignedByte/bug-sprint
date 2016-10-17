@@ -9,20 +9,20 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include "Vector.h"
-
 #include <initializer_list>
+#include <OpenGLES/ES3/gl.h>
 
+#include "Vector.h"
 
 template<int SIZE>
 class Matrix
 {
 public:
     Matrix();
-    Matrix(double initialValue);
+    Matrix(GLfloat initialValue);
     Matrix(std::initializer_list<Vector<SIZE>> values);
 
-    Matrix<SIZE> operator*(double rhs) const;
+    Matrix<SIZE> operator*(GLfloat rhs) const;
     Matrix<SIZE> operator*(const Matrix<SIZE> &rhs) const;
 
     const Vector<SIZE> &operator[](int index) const;
