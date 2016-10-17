@@ -6,8 +6,8 @@
 //  Copyright © 2016 UnalignedByte. All rights reserved.
 //
 
-#ifndef SHADER_H
-#define SHADER_H
+#ifndef SHADER_PROGRAM_H
+#define SHADER_PROGRAM_H
 
 #include <string>
 #include <OpenGLES/ES3/gl.h>

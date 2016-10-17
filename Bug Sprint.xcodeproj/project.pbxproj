@@ -47,11 +47,11 @@
 		B50C61201DB5348F005147FA /* fragment.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = fragment.fsh; path = "Bug Sprint/Unit Tests/Assets/fragment.fsh"; sourceTree = SOURCE_ROOT; };
 		B50C61211DB5348F005147FA /* vertex.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = vertex.vsh; path = "Bug Sprint/Unit Tests/Assets/vertex.vsh"; sourceTree = SOURCE_ROOT; };
 		B53370EB1DB4170000275631 /* ColorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ColorTests.cpp; path = "Bug Sprint/Unit Tests/Source/ColorTests.cpp"; sourceTree = SOURCE_ROOT; };
-		B53370ED1DB4178300275631 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Color.cpp; path = Source/Utils/Color.cpp; sourceTree = "<group>"; };
-		B53370EE1DB4178300275631 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Color.h; path = Source/Utils/Color.h; sourceTree = "<group>"; };
+		B53370ED1DB4178300275631 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Color.cpp; path = "Source/Graphics Utils/Color.cpp"; sourceTree = "<group>"; };
+		B53370EE1DB4178300275631 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Color.h; path = "Source/Graphics Utils/Color.h"; sourceTree = "<group>"; };
 		B53370F11DB41BA500275631 /* ShaderProgramTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgramTests.cpp; path = "Bug Sprint/Unit Tests/Source/ShaderProgramTests.cpp"; sourceTree = SOURCE_ROOT; };
-		B53370F41DB41C7B00275631 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = Source/Utils/ShaderProgram.cpp; sourceTree = "<group>"; };
-		B53370F51DB41C7B00275631 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = Source/Utils/ShaderProgram.h; sourceTree = "<group>"; };
+		B53370F41DB41C7B00275631 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShaderProgram.cpp; path = "Source/Graphics Utils/ShaderProgram.cpp"; sourceTree = "<group>"; };
+		B53370F51DB41C7B00275631 /* ShaderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShaderProgram.h; path = "Source/Graphics Utils/ShaderProgram.h"; sourceTree = "<group>"; };
 		B53370F81DB4212300275631 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		B53370FA1DB4C60900275631 /* FileTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FileTests.cpp; path = "Bug Sprint/Unit Tests/Source/FileTests.cpp"; sourceTree = SOURCE_ROOT; };
 		B53370FC1DB4C6A500275631 /* File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = File.cpp; path = Source/Utils/File.cpp; sourceTree = "<group>"; };
@@ -151,6 +151,17 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
+		B50C61241DB5379A005147FA /* Graphics Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B53370EE1DB4178300275631 /* Color.h */,
+				B53370ED1DB4178300275631 /* Color.cpp */,
+				B53370F51DB41C7B00275631 /* ShaderProgram.h */,
+				B53370F41DB41C7B00275631 /* ShaderProgram.cpp */,
+			);
+			name = "Graphics Utils";
+			sourceTree = "<group>";
+		};
 		B54474651DAED2F50046A19E /* iOS Layer */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +224,7 @@
 			children = (
 				B54474651DAED2F50046A19E /* iOS Layer */,
 				B5DA1A841DAF6AC100D948C9 /* Utils */,
+				B50C61241DB5379A005147FA /* Graphics Utils */,
 				B58779E01DAD8F2E007A6DBF /* Game */,
 			);
 			name = Source;
@@ -386,12 +398,8 @@
 				B5DA1A861DAF6B1E00D948C9 /* Vector.cpp */,
 				B550B1D01DB25EB8006EAEFD /* Matrix.h */,
 				B550B1CF1DB25EB8006EAEFD /* Matrix.cpp */,
-				B53370EE1DB4178300275631 /* Color.h */,
-				B53370ED1DB4178300275631 /* Color.cpp */,
 				B53370FD1DB4C6A500275631 /* File.h */,
 				B53370FC1DB4C6A500275631 /* File.cpp */,
-				B53370F51DB41C7B00275631 /* ShaderProgram.h */,
-				B53370F41DB41C7B00275631 /* ShaderProgram.cpp */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
