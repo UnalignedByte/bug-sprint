@@ -19,6 +19,10 @@ Matrix<SIZE>::Matrix()
 {
     if(SIZE <= 0)
         throw string("Invalid size");
+
+    // Reset to identity
+    for(int i=0; i<SIZE; i++)
+        data[i][i] = 1.0;
 }
 
 
@@ -97,4 +101,16 @@ Vector<SIZE> &Matrix<SIZE>::operator[](int index)
         throw string("Index out of bounds");
 
     return data[index];
+}
+
+
+template<int SIZE>
+Matrix<4> Matrix<SIZE>::translation(GLfloat x, GLfloat y, GLfloat z)
+{
+    Matrix<4> matrix;
+    matrix[3][0] = x;
+    matrix[3][1] = y;
+    matrix[3][2] = z;
+
+    return matrix;
 }

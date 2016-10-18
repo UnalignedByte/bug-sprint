@@ -28,6 +28,8 @@ public:
     const Vector<SIZE> &operator[](int index) const;
     Vector<SIZE> &operator[](int index);
 
+    static Matrix<4> translation(GLfloat x, GLfloat y, GLfloat z);
+
 private:
     Vector<SIZE> data[SIZE];
 };

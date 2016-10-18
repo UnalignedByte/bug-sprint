@@ -14,10 +14,10 @@
 TEST(Matrix, CreateDefault)
 {
     Matrix<2> m;
-    ASSERT_DOUBLE_EQ(m[0][0], 0.0);
+    ASSERT_DOUBLE_EQ(m[0][0], 1.0);
     ASSERT_DOUBLE_EQ(m[0][1], 0.0);
     ASSERT_DOUBLE_EQ(m[1][0], 0.0);
-    ASSERT_DOUBLE_EQ(m[1][1], 0.0);
+    ASSERT_DOUBLE_EQ(m[1][1], 1.0);
 
     ASSERT_THROW(Matrix<0> m, std::string);
 }
@@ -96,4 +96,29 @@ TEST(Matrix, MultiplyByMatrix)
     ASSERT_DOUBLE_EQ(result[2][0], -50.0);
     ASSERT_DOUBLE_EQ(result[2][1], 26.0);
     ASSERT_DOUBLE_EQ(result[2][2], -19.0);
+}
+
+
+TEST(Matrix, Translation)
+{
+    Matrix4 t = Matrix4::translation(3.0, 4.0, 1.5);
+    ASSERT_FLOAT_EQ(t[0][0], 1.0);
+    ASSERT_FLOAT_EQ(t[0][1], 0.0);
+    ASSERT_FLOAT_EQ(t[0][2], 0.0);
+    ASSERT_FLOAT_EQ(t[0][3], 0.0);
+
+    ASSERT_FLOAT_EQ(t[1][0], 0.0);
+    ASSERT_FLOAT_EQ(t[1][1], 1.0);
+    ASSERT_FLOAT_EQ(t[1][2], 0.0);
+    ASSERT_FLOAT_EQ(t[1][3], 0.0);
+
+    ASSERT_FLOAT_EQ(t[2][0], 0.0);
+    ASSERT_FLOAT_EQ(t[2][1], 0.0);
+    ASSERT_FLOAT_EQ(t[2][2], 1.0);
+    ASSERT_FLOAT_EQ(t[2][3], 0.0);
+
+    ASSERT_FLOAT_EQ(t[3][0], 3.0);
+    ASSERT_FLOAT_EQ(t[3][1], 4.0);
+    ASSERT_FLOAT_EQ(t[3][2], 1.5);
+    ASSERT_FLOAT_EQ(t[3][3], 1.0);
 }
