@@ -10,6 +10,7 @@
 
 #include <sstream>
 #include <vector>
+#include <iostream>
 
 #include "Matrix.h"
 
@@ -93,7 +94,11 @@ void Model::update()
     static GLfloat angle = 0.0;
     Matrix4 modelMatrix = Matrix4::yRotation(angle);
     angle += 2.0;
-    modelMatrix = modelMatrix * Matrix4::translation(0.0, 0.0, -2.0);
+    static GLfloat a = 0.0;
+    a += 0.05;
+    GLfloat z = sin(a);
+    std::cout << "z is " << z << std::endl;
+    modelMatrix = modelMatrix * Matrix4::translation(0.0, 0.0, 1.0);
     glUniformMatrix4fv(modelMatrixId, 1, GL_FALSE, modelMatrix.getData());
 }
 

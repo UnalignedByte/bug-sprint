@@ -176,21 +176,15 @@ template<int SIZE>
 Matrix<4> Matrix<SIZE>::perspectiveProjection(GLfloat fov, GLfloat aspect, GLfloat near, GLfloat far)
 {
     Matrix<4> matrix;
-    GLfloat top = near * tan(M_PI/180.0 * fov/2.0);
-    GLfloat bottom = -top;
-    GLfloat right = top * aspect;
-    GLfloat left = -right;
 
-    matrix[0][0] = (2 * near)/(right - left);
-    matrix[0][2] = (right + left)/(right - left);
+    // Perspective projection tutorial: http://ogldev.atspace.co.uk/www/tutorial12/tutorial12.html
 
-    matrix[1][1] = (2 * near)/(top - bottom);
-    matrix[1][2] = (top + bottom)/(top - bottom);
-
-    matrix[2][2] = -(far + near)/(far - near);
-    matrix[2][3] = -(2 * far * near)/(far - near);
-
-    matrix[3][2] = -1.0;
+    GLfloat tanHalf = tan(M_PI/180.0 * fov/2.0);
+    matrix[0][0] = 1.0 / (tanHalf * aspect); // X scaling
+    matrix[1][1] = 1.0 / tanHalf; // Y scaling
+    matrix[2][2] = (-near - far) / (near - far); // Near clipping
+    matrix[2][3] = 1.0;
+    matrix[3][2] = (2.0 * far * near) / (near - far); // Far clipping
 
     return matrix;
 }
