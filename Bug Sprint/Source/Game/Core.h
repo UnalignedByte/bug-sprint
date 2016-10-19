@@ -10,9 +10,12 @@
 #define CORE_H
 
 #include <memory>
+#include <vector>
+
 #include "Color.h"
 #include "ShaderProgram.h"
-#include "Model.h"
+#include "Instance.h"
+#include "Camera.h"
 
 
 class Core
@@ -24,9 +27,11 @@ public:
     void draw();
 
 private:
-    std::shared_ptr<ShaderProgram> prg;
-    std::shared_ptr<Model> box;
     Color clearColor{0.1, 0.0, 0.0, 1.0};
+
+    std::shared_ptr<ShaderProgram> shader;
+    std::shared_ptr<Camera> camera;
+    std::vector<Instance> instances;
 };
 
 #endif

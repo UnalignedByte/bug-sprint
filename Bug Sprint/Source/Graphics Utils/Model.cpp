@@ -83,29 +83,18 @@ void Model::loadObj(const std::string &fileString)
 }
 
 
-void Model::update()
-{
-    GLfloat ratio = 568.0/320.0;
-    GLint projectionMatrixId = glGetUniformLocation(shaderProgram->getId(), "projectionMatrix");
-    Matrix4 projectionMatrix = Matrix4::perspectiveProjection(60.0, ratio, 0.1, 100.0);
-    glUniformMatrix4fv(projectionMatrixId, 1, GL_FALSE, projectionMatrix.getData());
-
-    GLint modelMatrixId = glGetUniformLocation(shaderProgram->getId(), "modelMatrix");
-    static GLfloat angle = 0.0;
-    Matrix4 modelMatrix = Matrix4::yRotation(angle);
-    angle += 2.0;
-    static GLfloat a = 0.0;
-    a += 0.05;
-    GLfloat z = sin(a);
-    std::cout << "z is " << z << std::endl;
-    modelMatrix = modelMatrix * Matrix4::translation(0.0, 0.0, 1.0);
-    glUniformMatrix4fv(modelMatrixId, 1, GL_FALSE, modelMatrix.getData());
-}
-
-
-void Model::draw()
+void Model::draw(Matrix4 &model, Matrix4 &view, Matrix4 &projection)
 {
     shaderProgram->use();
+
+    GLint modelMatrixId = glGetUniformLocation(shaderProgram->getId(), "modelMatrix");
+    glUniformMatrix4fv(modelMatrixId, 1, GL_FALSE, model.getData());
+
+    GLint viewMatrixId = glGetUniformLocation(shaderProgram->getId(), "viewMatrix");
+    glUniformMatrix4fv(viewMatrixId, 1, GL_FALSE, view.getData());
+
+    GLint projectionMatrixId = glGetUniformLocation(shaderProgram->getId(), "projectionMatrix");
+    glUniformMatrix4fv(projectionMatrixId, 1, GL_FALSE, projection.getData());
 
     glBindVertexArray(vertexArrayId);
     glDrawElements(GL_TRIANGLES, GLsizei(indices.size()), GL_UNSIGNED_SHORT, &indices[0]);

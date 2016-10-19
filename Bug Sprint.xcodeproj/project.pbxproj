@@ -22,6 +22,7 @@
 		B50C61321DB5679D005147FA /* default.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B50C61311DB5679D005147FA /* default.vsh */; };
 		B50C61341DB567B2005147FA /* default.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B50C61331DB567B2005147FA /* default.fsh */; };
 		B50C61361DB58539005147FA /* monkey.obj in Resources */ = {isa = PBXBuildFile; fileRef = B50C61351DB58539005147FA /* monkey.obj */; };
+		B50C61391DB818F3005147FA /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61371DB818F3005147FA /* Camera.cpp */; };
 		B53370EC1DB4170000275631 /* ColorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53370EB1DB4170000275631 /* ColorTests.cpp */; };
 		B53370EF1DB4178300275631 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53370ED1DB4178300275631 /* Color.cpp */; };
 		B53370F01DB4178300275631 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53370ED1DB4178300275631 /* Color.cpp */; };
@@ -61,6 +62,8 @@
 		B50C61311DB5679D005147FA /* default.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = default.vsh; path = Source/Shaders/default.vsh; sourceTree = "<group>"; };
 		B50C61331DB567B2005147FA /* default.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = default.fsh; path = Source/Shaders/default.fsh; sourceTree = "<group>"; };
 		B50C61351DB58539005147FA /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monkey.obj; path = "Bug Sprint/Unit Tests/Assets/monkey.obj"; sourceTree = SOURCE_ROOT; };
+		B50C61371DB818F3005147FA /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = Source/Game/Camera.cpp; sourceTree = "<group>"; };
+		B50C61381DB818F3005147FA /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Source/Game/Camera.h; sourceTree = "<group>"; };
 		B53370EB1DB4170000275631 /* ColorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ColorTests.cpp; path = "Bug Sprint/Unit Tests/Source/ColorTests.cpp"; sourceTree = SOURCE_ROOT; };
 		B53370ED1DB4178300275631 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Color.cpp; path = "Source/Graphics Utils/Color.cpp"; sourceTree = "<group>"; };
 		B53370EE1DB4178300275631 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Color.h; path = "Source/Graphics Utils/Color.h"; sourceTree = "<group>"; };
@@ -221,6 +224,8 @@
 				B54474621DAED2430046A19E /* Core.cpp */,
 				B58779E31DAD8FC6007A6DBF /* Instance.h */,
 				B58779E21DAD8FC6007A6DBF /* Instance.cpp */,
+				B50C61381DB818F3005147FA /* Camera.h */,
+				B50C61371DB818F3005147FA /* Camera.cpp */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -550,6 +555,7 @@
 				B53370FE1DB4C6A500275631 /* File.cpp in Sources */,
 				B53370EF1DB4178300275631 /* Color.cpp in Sources */,
 				B50C61161DB51D0B005147FA /* SystemUtils.mm in Sources */,
+				B50C61391DB818F3005147FA /* Camera.cpp in Sources */,
 				B58779E41DAD8FC6007A6DBF /* Instance.cpp in Sources */,
 				B5B1AB421DACCC5100066910 /* MainViewController.swift in Sources */,
 				B53370F61DB41C7B00275631 /* ShaderProgram.cpp in Sources */,

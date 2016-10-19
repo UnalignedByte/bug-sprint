@@ -14,10 +14,8 @@
 #include <vector>
 #include <OpenGLES/ES3/gl.h>
 #include "File.h"
-#include "Color.h"
 #include "ShaderProgram.h"
-#include "Vector.h"
-#include "Color.h"
+#include "Matrix.h"
 
 
 class Model
@@ -25,8 +23,8 @@ class Model
 public:
     Model(const std::string &fileName, std::shared_ptr<ShaderProgram> shaderProgram);
     ~Model();
-    void update();
-    void draw();
+
+    void draw(Matrix4 &model, Matrix4 &view, Matrix4 &projection);
 
 private:
     GLuint vertexArrayId;

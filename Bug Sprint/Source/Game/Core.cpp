@@ -17,8 +17,10 @@ Core::Core(double width, double height)
 {
     glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
 
-    prg = make_shared<ShaderProgram>("default.vsh", "default.fsh");
-    box = make_shared<Model>("monkey.obj", prg);
+    shader = make_shared<ShaderProgram>("default.vsh", "default.fsh");
+    camera = make_shared<Camera>(width, height);
+
+    instances.push_back(Instance("monkey.obj", shader));
 
     glViewport(0, 0, width, height);
     glEnable(GL_DEPTH_TEST);
@@ -27,7 +29,15 @@ Core::Core(double width, double height)
 
 void Core::update(double timeInterval)
 {
-    box->update();
+    for(Instance &instance: instances) {
+        instance.rotation[1] = instance.rotation[1] + 2.0;
+        instance.translation[2] = 1.0;
+        instance.translation[0] = sin(instance.rotation[1] / 100.0) * 2.0;
+
+        instance.setViewMatrix(camera->getCameraViewMatrix());
+        instance.setProjectionMatrix(camera->getCameraProjectionMatrix());
+        instance.update(timeInterval);
+    }
 }
 
 
@@ -36,7 +46,8 @@ void Core::draw()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glDisable(GL_CULL_FACE);
 
-    box->draw();
+    for(auto instance: instances)
+        instance.draw();
 
     glFlush();
 }
