@@ -36,6 +36,12 @@ ShaderProgram::~ShaderProgram()
 }
 
 
+GLuint ShaderProgram::getId()
+{
+    return programId;
+}
+
+
 void ShaderProgram::use()
 {
     glUseProgram(programId);

@@ -11,6 +11,8 @@
 #include <sstream>
 #include <vector>
 
+#include "Matrix.h"
+
 using namespace std;
 
 
@@ -77,6 +79,22 @@ void Model::loadObj(const std::string &fileString)
     glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, color));
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+}
+
+
+void Model::update()
+{
+    GLfloat ratio = 568.0/320.0;
+    GLint projectionMatrixId = glGetUniformLocation(shaderProgram->getId(), "projectionMatrix");
+    Matrix4 projectionMatrix = Matrix4::perspectiveProjection(60.0, ratio, 0.1, 100.0);
+    glUniformMatrix4fv(projectionMatrixId, 1, GL_FALSE, projectionMatrix.getData());
+
+    GLint modelMatrixId = glGetUniformLocation(shaderProgram->getId(), "modelMatrix");
+    static GLfloat angle = 0.0;
+    Matrix4 modelMatrix = Matrix4::yRotation(angle);
+    angle += 2.0;
+    modelMatrix = modelMatrix * Matrix4::translation(0.0, 0.0, -2.0);
+    glUniformMatrix4fv(modelMatrixId, 1, GL_FALSE, modelMatrix.getData());
 }
 
 

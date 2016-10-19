@@ -25,6 +25,7 @@ class Model
 public:
     Model(const std::string &fileName, std::shared_ptr<ShaderProgram> shaderProgram);
     ~Model();
+    void update();
     void draw();
 
 private:

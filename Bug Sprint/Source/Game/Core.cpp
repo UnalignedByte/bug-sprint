@@ -27,6 +27,7 @@ Core::Core(double width, double height)
 
 void Core::update(double timeInterval)
 {
+    box->update();
 }
 
 

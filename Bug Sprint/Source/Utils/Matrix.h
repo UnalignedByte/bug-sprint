@@ -28,9 +28,16 @@ public:
     const Vector<SIZE> &operator[](int index) const;
     Vector<SIZE> &operator[](int index);
 
+    GLfloat *getData();
+
     static Matrix<4> translation(GLfloat x, GLfloat y, GLfloat z);
+    static Matrix<4> xRotation(GLfloat angle);
+    static Matrix<4> yRotation(GLfloat angle);
+    static Matrix<4> zRotation(GLfloat angle);
+    static Matrix<4> perspectiveProjection(GLfloat fov, GLfloat aspect, GLfloat near, GLfloat far);
 
 private:
+    GLfloat rawData[SIZE];
     Vector<SIZE> data[SIZE];
 };
 

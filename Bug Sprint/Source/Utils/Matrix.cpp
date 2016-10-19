@@ -105,12 +105,92 @@ Vector<SIZE> &Matrix<SIZE>::operator[](int index)
 
 
 template<int SIZE>
+GLfloat *Matrix<SIZE>::getData()
+{
+    for(int y=0; y<SIZE; y++)
+        for(int x=0; x<SIZE; x++) {
+            rawData[y*SIZE + x] = data[y][x];
+        }
+
+    return rawData;
+}
+
+
+template<int SIZE>
 Matrix<4> Matrix<SIZE>::translation(GLfloat x, GLfloat y, GLfloat z)
 {
     Matrix<4> matrix;
     matrix[3][0] = x;
     matrix[3][1] = y;
     matrix[3][2] = z;
+
+    return matrix;
+}
+
+
+template<int SIZE>
+Matrix<4> Matrix<SIZE>::xRotation(GLfloat angle)
+{
+    GLfloat angleInRadians = (M_PI * angle)/180.0;
+
+    Matrix<4> matrix;
+    matrix[1][1] = cos(angleInRadians);
+    matrix[1][2] = sin(angleInRadians);
+    matrix[2][1] = -sin(angleInRadians);
+    matrix[2][2] = cos(angleInRadians);
+
+    return matrix;
+}
+
+template<int SIZE>
+Matrix<4> Matrix<SIZE>::yRotation(GLfloat angle)
+{
+    GLfloat angleInRadians = (M_PI * angle)/180.0;
+
+    Matrix<4> matrix;
+    matrix[0][0] = cos(angleInRadians);
+    matrix[0][2] = -sin(angleInRadians);
+    matrix[2][0] = sin(angleInRadians);
+    matrix[2][2] = cos(angleInRadians);
+
+    return matrix;
+}
+
+
+template<int SIZE>
+Matrix<4> Matrix<SIZE>::zRotation(GLfloat angle)
+{
+    GLfloat angleInRadians = (M_PI * angle)/180.0;
+
+    Matrix<4> matrix;
+    matrix[0][0] = cos(angleInRadians);
+    matrix[0][1] = sin(angleInRadians);
+    matrix[1][0] = -sin(angleInRadians);
+    matrix[1][1] = cos(angleInRadians);
+
+    return matrix;
+}
+
+
+template<int SIZE>
+Matrix<4> Matrix<SIZE>::perspectiveProjection(GLfloat fov, GLfloat aspect, GLfloat near, GLfloat far)
+{
+    Matrix<4> matrix;
+    GLfloat top = near * tan(M_PI/180.0 * fov/2.0);
+    GLfloat bottom = -top;
+    GLfloat right = top * aspect;
+    GLfloat left = -right;
+
+    matrix[0][0] = (2 * near)/(right - left);
+    matrix[0][2] = (right + left)/(right - left);
+
+    matrix[1][1] = (2 * near)/(top - bottom);
+    matrix[1][2] = (top + bottom)/(top - bottom);
+
+    matrix[2][2] = -(far + near)/(far - near);
+    matrix[2][3] = -(2 * far * near)/(far - near);
+
+    matrix[3][2] = -1.0;
 
     return matrix;
 }
