@@ -47,6 +47,16 @@
 		B5DA1A891DAF726D00D948C9 /* VectorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DA1A881DAF726D00D948C9 /* VectorTests.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B5880F9D1DB8D6CE0063AEDA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5B1AB341DACCC5100066910 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5B1AB3B1DACCC5100066910;
+			remoteInfo = "Bug Sprint";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		B50C61141DB51D0B005147FA /* SystemUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SystemUtils.mm; path = "Source/iOS Layer/SystemUtils.mm"; sourceTree = "<group>"; };
 		B50C61151DB51D0B005147FA /* SystemUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SystemUtils.h; path = "Source/iOS Layer/SystemUtils.h"; sourceTree = "<group>"; };
@@ -470,6 +480,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B5880F9E1DB8D6CE0063AEDA /* PBXTargetDependency */,
 			);
 			name = "Unit Tests";
 			productName = UnitTests;
@@ -495,6 +506,7 @@
 					B5C7D20B1DAD746D009E66A9 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Manual;
+						TestTargetID = B5B1AB3B1DACCC5100066910;
 					};
 				};
 			};
@@ -586,6 +598,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B5880F9E1DB8D6CE0063AEDA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5B1AB3B1DACCC5100066910 /* Bug Sprint */;
+			targetProxy = B5880F9D1DB8D6CE0063AEDA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B5B1AB4C1DACCC5100066910 /* Debug */ = {
@@ -725,6 +745,7 @@
 		B5C7D2121DAD746D009E66A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/External\\ Frameworks/googletest-1.8.0/**";
@@ -732,12 +753,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unalignedbyte.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bug Sprint.app/Bug Sprint";
 			};
 			name = Debug;
 		};
 		B5C7D2131DAD746D009E66A9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/External\\ Frameworks/googletest-1.8.0/**";
@@ -745,6 +768,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unalignedbyte.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bug Sprint.app/Bug Sprint";
 			};
 			name = Release;
 		};

@@ -70,7 +70,7 @@ GLuint ShaderProgram::loadShader(GLuint type, const std::string &sourceString)
             string infoString = string(infoBuffer);
             delete[] infoBuffer;
 
-            throw new string("Error compiling shader:\n" + infoString);
+            throw string("Error compiling shader:\n" + infoString);
         }
     }
 
