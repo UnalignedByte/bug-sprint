@@ -22,6 +22,7 @@ class Instance
 {
 public:
     Vector3 translation;
+    Vector3 scale;
     Vector3 rotation;
 
 public:

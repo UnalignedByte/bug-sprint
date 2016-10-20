@@ -129,6 +129,18 @@ Matrix<4> Matrix<SIZE>::translation(GLfloat x, GLfloat y, GLfloat z)
 
 
 template<int SIZE>
+Matrix<4> Matrix<SIZE>::scale(GLfloat x, GLfloat y, GLfloat z)
+{
+    Matrix<4> matrix;
+    matrix[0][0] = x;
+    matrix[1][1] = y;
+    matrix[2][2] = z;
+
+    return matrix;
+}
+
+
+template<int SIZE>
 Matrix<4> Matrix<SIZE>::xRotation(GLfloat angle)
 {
     GLfloat angleInRadians = (M_PI * angle)/180.0;

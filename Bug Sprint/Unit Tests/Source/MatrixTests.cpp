@@ -122,3 +122,28 @@ TEST(Matrix, Translation)
     ASSERT_FLOAT_EQ(t[3][2], 1.5);
     ASSERT_FLOAT_EQ(t[3][3], 1.0);
 }
+
+
+TEST(Matrix, Scale)
+{
+    Matrix4 t = Matrix4::scale(2.0, 3.0, 4.0);
+    ASSERT_FLOAT_EQ(t[0][0], 2.0);
+    ASSERT_FLOAT_EQ(t[0][1], 0.0);
+    ASSERT_FLOAT_EQ(t[0][2], 0.0);
+    ASSERT_FLOAT_EQ(t[0][3], 0.0);
+
+    ASSERT_FLOAT_EQ(t[1][0], 0.0);
+    ASSERT_FLOAT_EQ(t[1][1], 3.0);
+    ASSERT_FLOAT_EQ(t[1][2], 0.0);
+    ASSERT_FLOAT_EQ(t[1][3], 0.0);
+
+    ASSERT_FLOAT_EQ(t[2][0], 0.0);
+    ASSERT_FLOAT_EQ(t[2][1], 0.0);
+    ASSERT_FLOAT_EQ(t[2][2], 4.0);
+    ASSERT_FLOAT_EQ(t[2][3], 0.0);
+
+    ASSERT_FLOAT_EQ(t[3][0], 0.0);
+    ASSERT_FLOAT_EQ(t[3][1], 0.0);
+    ASSERT_FLOAT_EQ(t[3][2], 0.0);
+    ASSERT_FLOAT_EQ(t[3][3], 1.0);
+}

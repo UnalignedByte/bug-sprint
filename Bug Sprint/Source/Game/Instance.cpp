@@ -40,6 +40,7 @@ void Instance::update(double timeInterval)
     modelMatrix = modelMatrix * Matrix4::zRotation(rotation[2]);
     modelMatrix = modelMatrix * Matrix4::yRotation(rotation[1]);
     modelMatrix = modelMatrix * Matrix4::xRotation(rotation[0]);
+    modelMatrix = modelMatrix * Matrix4::scale(scale[0], scale[1], scale[2]);
     modelMatrix = modelMatrix * Matrix4::translation(translation[0], translation[1], translation[2]);
 }
 
