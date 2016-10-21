@@ -26,7 +26,7 @@ Core::Core(double width, double height)
     shader = make_shared<ShaderProgram>("default.vsh", "default.fsh");
     camera = make_shared<Camera>(width, height, shader);
 
-    instances.push_back(Drawable("monkey.obj", shader));
+    instances.push_back(make_shared<Drawable>("monkey.obj", shader));
 
     glViewport(0, 0, width, height);
     glEnable(GL_DEPTH_TEST);
@@ -37,12 +37,12 @@ void Core::update(double timeInterval)
 {
     camera->update(timeInterval);
 
-    for(Instance &instance: instances) {
-        instance.rotation[1] = instance.rotation[1] + 2.0;
-        instance.translation[2] = 1.0;
-        instance.translation[0] = sin(instance.rotation[1] / 100.0) * 2.0;
+    for(auto instance : instances) {
+        instance->rotation[1] = instance->rotation[1] + 2.0;
+        instance->translation[2] = 1.0;
+        instance->translation[0] = sin(instance->rotation[1] / 100.0) * 2.0;
 
-        instance.update(timeInterval);
+        instance->update(timeInterval);
     }
 }
 
@@ -53,7 +53,7 @@ void Core::draw()
     glDisable(GL_CULL_FACE);
 
     for(auto instance: instances)
-        instance.draw();
+        instance->draw();
 
     glFlush();
 }

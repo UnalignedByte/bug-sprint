@@ -21,9 +21,9 @@
 class Instance
 {
 public:
-    Vector3 translation;
-    Vector3 scale;
-    Vector3 rotation;
+    Vector3 translation {0.0, 0.0, 0.0};
+    Vector3 scale {1.0, 1.0, 1.0};
+    Vector3 rotation {0.0, 0.0, 0.0};
 
 public:
     Instance();

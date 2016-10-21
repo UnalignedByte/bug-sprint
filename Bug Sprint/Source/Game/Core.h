@@ -31,7 +31,7 @@ private:
 
     std::shared_ptr<ShaderProgram> shader;
     std::shared_ptr<Camera> camera;
-    std::vector<Instance> instances;
+    std::vector<std::shared_ptr<Instance>> instances;
 };
 
 #endif
