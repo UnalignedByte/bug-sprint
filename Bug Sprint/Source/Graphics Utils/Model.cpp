@@ -10,14 +10,15 @@
 
 #include <sstream>
 #include <vector>
-#include <iostream>
 
-#include "Matrix.h"
+#include "File.h"
+#include "ShaderProgram.h"
+
 
 using namespace std;
 
 
-Model::Model(const string &fileName, shared_ptr<ShaderProgram> shaderProgram) : shaderProgram(shaderProgram)
+Model::Model(const string &fileName)
 {
     File modelFile(fileName);
     loadObj(modelFile.getString());
@@ -83,18 +84,12 @@ void Model::loadObj(const std::string &fileString)
 }
 
 
-void Model::draw(Matrix4 &model, Matrix4 &view, Matrix4 &projection)
+void Model::draw(shared_ptr<ShaderProgram> shaderProgram, Matrix4 &modelMatrix)
 {
     shaderProgram->use();
 
     GLint modelMatrixId = glGetUniformLocation(shaderProgram->getId(), "modelMatrix");
-    glUniformMatrix4fv(modelMatrixId, 1, GL_FALSE, model.getData());
-
-    GLint viewMatrixId = glGetUniformLocation(shaderProgram->getId(), "viewMatrix");
-    glUniformMatrix4fv(viewMatrixId, 1, GL_FALSE, view.getData());
-
-    GLint projectionMatrixId = glGetUniformLocation(shaderProgram->getId(), "projectionMatrix");
-    glUniformMatrix4fv(projectionMatrixId, 1, GL_FALSE, projection.getData());
+    glUniformMatrix4fv(modelMatrixId, 1, GL_FALSE, modelMatrix.getData());
 
     glBindVertexArray(vertexArrayId);
     glDrawElements(GL_TRIANGLES, GLsizei(indices.size()), GL_UNSIGNED_SHORT, &indices[0]);

@@ -27,20 +27,12 @@ public:
 
 public:
     Instance();
-    Instance(const std::string &fileName, std::shared_ptr<ShaderProgram> shaderProgram);
 
     virtual void update(double timeInterval);
     virtual void draw();
 
-    virtual void setViewMatrix(const Matrix4 &viewMatrix);
-    virtual void setProjectionMatrix(const Matrix4 &projectionMatrix);
-
-private:
+protected:
     Matrix4 modelMatrix;
-    Matrix4 viewMatrix;
-    Matrix4 projectionMatrix;
-
-    std::shared_ptr<Model> model;
 };
 
 #endif

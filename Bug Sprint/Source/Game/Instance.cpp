@@ -16,24 +16,6 @@ Instance::Instance()
 }
 
 
-Instance::Instance(const string &fileName, shared_ptr<ShaderProgram> shaderProgram)
-{
-    model = make_shared<Model>(fileName, shaderProgram);
-}
-
-
-void Instance::setViewMatrix(const Matrix4 &viewMatrix)
-{
-    this->viewMatrix = viewMatrix;
-}
-
-
-void Instance::setProjectionMatrix(const Matrix4 &projectionMatrix)
-{
-    this->projectionMatrix = projectionMatrix;
-}
-
-
 void Instance::update(double timeInterval)
 {
     modelMatrix = Matrix4();
@@ -47,5 +29,4 @@ void Instance::update(double timeInterval)
 
 void Instance::draw()
 {
-    model->draw(modelMatrix, viewMatrix, projectionMatrix);
 }

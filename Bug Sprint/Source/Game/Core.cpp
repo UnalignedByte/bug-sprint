@@ -10,6 +10,12 @@
 
 #include <OpenGLES/ES3/gl.h>
 
+#include "Color.h"
+#include "ShaderProgram.h"
+#include "Instance.h"
+#include "Drawable.h"
+#include "Camera.h"
+
 using namespace std;
 
 
@@ -18,9 +24,9 @@ Core::Core(double width, double height)
     glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
 
     shader = make_shared<ShaderProgram>("default.vsh", "default.fsh");
-    camera = make_shared<Camera>(width, height);
+    camera = make_shared<Camera>(width, height, shader);
 
-    instances.push_back(Instance("monkey.obj", shader));
+    instances.push_back(Drawable("monkey.obj", shader));
 
     glViewport(0, 0, width, height);
     glEnable(GL_DEPTH_TEST);
@@ -29,13 +35,13 @@ Core::Core(double width, double height)
 
 void Core::update(double timeInterval)
 {
+    camera->update(timeInterval);
+
     for(Instance &instance: instances) {
         instance.rotation[1] = instance.rotation[1] + 2.0;
         instance.translation[2] = 1.0;
         instance.translation[0] = sin(instance.rotation[1] / 100.0) * 2.0;
 
-        instance.setViewMatrix(camera->getCameraViewMatrix());
-        instance.setProjectionMatrix(camera->getCameraProjectionMatrix());
         instance.update(timeInterval);
     }
 }

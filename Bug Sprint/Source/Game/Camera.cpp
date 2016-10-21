@@ -8,7 +8,13 @@
 
 #include "Camera.h"
 
-Camera::Camera(GLfloat viewWidth, GLfloat viewHeight) : viewWidth(viewWidth), viewHeight(viewHeight)
+#include "ShaderProgram.h"
+
+using namespace std;
+
+
+Camera::Camera(GLfloat viewWidth, GLfloat viewHeight, shared_ptr<ShaderProgram> shaderProgram) :
+    viewWidth(viewWidth), viewHeight(viewHeight), shaderProgram(shaderProgram)
 {
 }
 
@@ -22,4 +28,16 @@ Matrix4 Camera::getCameraViewMatrix() const
 Matrix4 Camera::getCameraProjectionMatrix() const
 {
     return Matrix4::perspectiveProjection(fov, viewWidth/viewHeight, zNear, zFar);
+}
+
+
+void Camera::update(double timeInterval)
+{
+    shaderProgram->use();
+
+    GLint viewMatrixId = glGetUniformLocation(shaderProgram->getId(), "viewMatrix");
+    glUniformMatrix4fv(viewMatrixId, 1, GL_FALSE, getCameraViewMatrix().getData());
+
+    GLint projectionMatrixId = glGetUniformLocation(shaderProgram->getId(), "projectionMatrix");
+    glUniformMatrix4fv(projectionMatrixId, 1, GL_FALSE, getCameraProjectionMatrix().getData());
 }

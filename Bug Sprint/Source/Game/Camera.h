@@ -11,20 +11,26 @@
 
 #include "Instance.h"
 
+#include <memory>
 #include <OpenGLES/ES3/gl.h>
 
+#include "ShaderProgram.h"
 #include "Matrix.h"
 
 
 class Camera: public Instance
 {
 public:
-    Camera(GLfloat viewWidth, GLfloat viewHeight);
+    Camera(GLfloat viewWidth, GLfloat viewHeight, std::shared_ptr<ShaderProgram> shaderProgram);
 
     Matrix4 getCameraViewMatrix() const;
     Matrix4 getCameraProjectionMatrix() const;
 
-private:
+    void update(double timeInterval) override;
+
+protected:
+    std::shared_ptr<ShaderProgram> shaderProgram;
+
     GLfloat viewWidth;
     GLfloat viewHeight;
     GLfloat fov = 60.0;

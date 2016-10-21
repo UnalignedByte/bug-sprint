@@ -15,6 +15,5 @@
 
 TEST(Model, Load)
 {
-    //std::shared_ptr<ShaderProgram> s(new ShaderProgram("vertex.vsh", "fragment.fsh"));
-    ASSERT_NO_THROW(Model m("box.obj", nullptr));
+    ASSERT_NO_THROW(Model m("box.obj"));
 }

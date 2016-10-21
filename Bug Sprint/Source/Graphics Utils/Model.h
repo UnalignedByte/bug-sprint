@@ -13,7 +13,7 @@
 #include <string>
 #include <vector>
 #include <OpenGLES/ES3/gl.h>
-#include "File.h"
+
 #include "ShaderProgram.h"
 #include "Matrix.h"
 
@@ -21,23 +21,23 @@
 class Model
 {
 public:
-    Model(const std::string &fileName, std::shared_ptr<ShaderProgram> shaderProgram);
+    Model(const std::string &fileName);
     ~Model();
 
-    void draw(Matrix4 &model, Matrix4 &view, Matrix4 &projection);
+    void draw(std::shared_ptr<ShaderProgram> shaderProgram, Matrix4 &modelMatrix);
 
-private:
-    GLuint vertexArrayId;
-
-    std::shared_ptr<ShaderProgram> shaderProgram;
-    std::vector<GLushort> indices;
-    void loadObj(const std::string &fileString);
-
-public:
+protected:
     typedef struct {
         GLfloat position[3];
         GLfloat color[4];
     } Vertex;
+
+protected:
+    GLuint vertexArrayId;
+    std::vector<GLushort> indices;
+
+protected:
+    void loadObj(const std::string &fileString);
 };
 
 #endif

@@ -23,6 +23,10 @@
 		B50C61341DB567B2005147FA /* default.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B50C61331DB567B2005147FA /* default.fsh */; };
 		B50C61361DB58539005147FA /* monkey.obj in Resources */ = {isa = PBXBuildFile; fileRef = B50C61351DB58539005147FA /* monkey.obj */; };
 		B50C61391DB818F3005147FA /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61371DB818F3005147FA /* Camera.cpp */; };
+		B51D15AB1DBA2C2F0093E6AC /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */; };
+		B51D15AC1DBA2C2F0093E6AC /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */; };
+		B51D15AD1DBA37B20093E6AC /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance.cpp */; };
+		B51D15AE1DBA37B80093E6AC /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61371DB818F3005147FA /* Camera.cpp */; };
 		B53370EC1DB4170000275631 /* ColorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53370EB1DB4170000275631 /* ColorTests.cpp */; };
 		B53370EF1DB4178300275631 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53370ED1DB4178300275631 /* Color.cpp */; };
 		B53370F01DB4178300275631 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53370ED1DB4178300275631 /* Color.cpp */; };
@@ -37,6 +41,9 @@
 		B54474671DAED3250046A19E /* CoreAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = B54474661DAED3250046A19E /* CoreAdapter.mm */; };
 		B550B1CE1DB25E37006EAEFD /* MatrixTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B550B1CD1DB25E37006EAEFD /* MatrixTests.cpp */; };
 		B58779E41DAD8FC6007A6DBF /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance.cpp */; };
+		B5880FA91DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
+		B5880FAA1DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
+		B5880FAC1DB939A90063AEDA /* InstanceTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FAB1DB939A90063AEDA /* InstanceTests.cpp */; };
 		B5B1AB401DACCC5100066910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B1AB3F1DACCC5100066910 /* AppDelegate.swift */; };
 		B5B1AB421DACCC5100066910 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B1AB411DACCC5100066910 /* MainViewController.swift */; };
 		B5B1AB471DACCC5100066910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B1AB461DACCC5100066910 /* Assets.xcassets */; };
@@ -74,6 +81,8 @@
 		B50C61351DB58539005147FA /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monkey.obj; path = "Bug Sprint/Unit Tests/Assets/monkey.obj"; sourceTree = SOURCE_ROOT; };
 		B50C61371DB818F3005147FA /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = Source/Game/Camera.cpp; sourceTree = "<group>"; };
 		B50C61381DB818F3005147FA /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Source/Game/Camera.h; sourceTree = "<group>"; };
+		B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Drawable.cpp; path = Source/Game/Drawable.cpp; sourceTree = "<group>"; };
+		B51D15AA1DBA2C2F0093E6AC /* Drawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Drawable.h; path = Source/Game/Drawable.h; sourceTree = "<group>"; };
 		B53370EB1DB4170000275631 /* ColorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ColorTests.cpp; path = "Bug Sprint/Unit Tests/Source/ColorTests.cpp"; sourceTree = SOURCE_ROOT; };
 		B53370ED1DB4178300275631 /* Color.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Color.cpp; path = "Source/Graphics Utils/Color.cpp"; sourceTree = "<group>"; };
 		B53370EE1DB4178300275631 /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Color.h; path = "Source/Graphics Utils/Color.h"; sourceTree = "<group>"; };
@@ -95,6 +104,9 @@
 		B58779E11DAD8FC5007A6DBF /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Source/iOS Layer/Bridging-Header.h"; sourceTree = "<group>"; };
 		B58779E21DAD8FC6007A6DBF /* Instance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Instance.cpp; path = Source/Game/Instance.cpp; sourceTree = "<group>"; };
 		B58779E31DAD8FC6007A6DBF /* Instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Instance.h; path = Source/Game/Instance.h; sourceTree = "<group>"; };
+		B5880FA71DB939840063AEDA /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Light.cpp; path = Source/Game/Light.cpp; sourceTree = "<group>"; };
+		B5880FA81DB939840063AEDA /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Light.h; path = Source/Game/Light.h; sourceTree = "<group>"; };
+		B5880FAB1DB939A90063AEDA /* InstanceTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InstanceTests.cpp; path = "Bug Sprint/Unit Tests/Source/InstanceTests.cpp"; sourceTree = SOURCE_ROOT; };
 		B5B1AB3C1DACCC5100066910 /* Bug Sprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bug Sprint.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B1AB3F1DACCC5100066910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Source/iOS Layer/AppDelegate.swift"; sourceTree = "<group>"; };
 		B5B1AB411DACCC5100066910 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "Source/iOS Layer/MainViewController.swift"; sourceTree = "<group>"; };
@@ -234,8 +246,12 @@
 				B54474621DAED2430046A19E /* Core.cpp */,
 				B58779E31DAD8FC6007A6DBF /* Instance.h */,
 				B58779E21DAD8FC6007A6DBF /* Instance.cpp */,
+				B51D15AA1DBA2C2F0093E6AC /* Drawable.h */,
+				B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */,
 				B50C61381DB818F3005147FA /* Camera.h */,
 				B50C61371DB818F3005147FA /* Camera.cpp */,
+				B5880FA81DB939840063AEDA /* Light.h */,
+				B5880FA71DB939840063AEDA /* Light.cpp */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -337,6 +353,7 @@
 				B53370FA1DB4C60900275631 /* FileTests.cpp */,
 				B53370F11DB41BA500275631 /* ShaderProgramTests.cpp */,
 				B50C61281DB54794005147FA /* ModelTests.cpp */,
+				B5880FAB1DB939A90063AEDA /* InstanceTests.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -569,6 +586,8 @@
 				B50C61161DB51D0B005147FA /* SystemUtils.mm in Sources */,
 				B50C61391DB818F3005147FA /* Camera.cpp in Sources */,
 				B58779E41DAD8FC6007A6DBF /* Instance.cpp in Sources */,
+				B51D15AB1DBA2C2F0093E6AC /* Drawable.cpp in Sources */,
+				B5880FA91DB939840063AEDA /* Light.cpp in Sources */,
 				B5B1AB421DACCC5100066910 /* MainViewController.swift in Sources */,
 				B53370F61DB41C7B00275631 /* ShaderProgram.cpp in Sources */,
 				B50C61271DB538DB005147FA /* Model.cpp in Sources */,
@@ -581,8 +600,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5880FAA1DB939840063AEDA /* Light.cpp in Sources */,
 				B5C7D2521DAD8723009E66A9 /* gtest-all.cc in Sources */,
+				B51D15AD1DBA37B20093E6AC /* Instance.cpp in Sources */,
 				B50C612A1DB547AD005147FA /* Model.cpp in Sources */,
+				B51D15AE1DBA37B80093E6AC /* Camera.cpp in Sources */,
 				B53370F01DB4178300275631 /* Color.cpp in Sources */,
 				B53370FB1DB4C60900275631 /* FileTests.cpp in Sources */,
 				B53370F71DB41C7B00275631 /* ShaderProgram.cpp in Sources */,
@@ -593,7 +615,9 @@
 				B53370F31DB41BA500275631 /* ShaderProgramTests.cpp in Sources */,
 				B550B1CE1DB25E37006EAEFD /* MatrixTests.cpp in Sources */,
 				B53370FF1DB4C6A500275631 /* File.cpp in Sources */,
+				B5880FAC1DB939A90063AEDA /* InstanceTests.cpp in Sources */,
 				B50C61291DB54794005147FA /* ModelTests.cpp in Sources */,
+				B51D15AC1DBA2C2F0093E6AC /* Drawable.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

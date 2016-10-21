@@ -12,10 +12,10 @@
 #include <memory>
 #include <vector>
 
-#include "Color.h"
 #include "ShaderProgram.h"
 #include "Instance.h"
 #include "Camera.h"
+#include "Color.h"
 
 
 class Core
