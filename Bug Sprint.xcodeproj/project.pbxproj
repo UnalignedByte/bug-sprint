@@ -18,10 +18,8 @@
 		B50C61291DB54794005147FA /* ModelTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61281DB54794005147FA /* ModelTests.cpp */; };
 		B50C612A1DB547AD005147FA /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61251DB538DB005147FA /* Model.cpp */; };
 		B50C612C1DB54807005147FA /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = B50C612B1DB54807005147FA /* box.obj */; };
-		B50C612D1DB563F0005147FA /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = B50C612B1DB54807005147FA /* box.obj */; };
 		B50C61321DB5679D005147FA /* default.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B50C61311DB5679D005147FA /* default.vsh */; };
 		B50C61341DB567B2005147FA /* default.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B50C61331DB567B2005147FA /* default.fsh */; };
-		B50C61361DB58539005147FA /* monkey.obj in Resources */ = {isa = PBXBuildFile; fileRef = B50C61351DB58539005147FA /* monkey.obj */; };
 		B50C61391DB818F3005147FA /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61371DB818F3005147FA /* Camera.cpp */; };
 		B51D15AB1DBA2C2F0093E6AC /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */; };
 		B51D15AC1DBA2C2F0093E6AC /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */; };
@@ -40,6 +38,7 @@
 		B54474641DAED2430046A19E /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B54474621DAED2430046A19E /* Core.cpp */; };
 		B54474671DAED3250046A19E /* CoreAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = B54474661DAED3250046A19E /* CoreAdapter.mm */; };
 		B550B1CE1DB25E37006EAEFD /* MatrixTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B550B1CD1DB25E37006EAEFD /* MatrixTests.cpp */; };
+		B5629DCA1DBB892600AEEA03 /* monkey.obj in Resources */ = {isa = PBXBuildFile; fileRef = B5629DC91DBB892600AEEA03 /* monkey.obj */; };
 		B58779E41DAD8FC6007A6DBF /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance.cpp */; };
 		B5880FA91DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
 		B5880FAA1DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
@@ -78,7 +77,6 @@
 		B50C612B1DB54807005147FA /* box.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = box.obj; path = "Bug Sprint/Unit Tests/Assets/box.obj"; sourceTree = SOURCE_ROOT; };
 		B50C61311DB5679D005147FA /* default.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = default.vsh; path = Source/Shaders/default.vsh; sourceTree = "<group>"; };
 		B50C61331DB567B2005147FA /* default.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = default.fsh; path = Source/Shaders/default.fsh; sourceTree = "<group>"; };
-		B50C61351DB58539005147FA /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monkey.obj; path = "Bug Sprint/Unit Tests/Assets/monkey.obj"; sourceTree = SOURCE_ROOT; };
 		B50C61371DB818F3005147FA /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = Source/Game/Camera.cpp; sourceTree = "<group>"; };
 		B50C61381DB818F3005147FA /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = Source/Game/Camera.h; sourceTree = "<group>"; };
 		B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Drawable.cpp; path = Source/Game/Drawable.cpp; sourceTree = "<group>"; };
@@ -101,6 +99,7 @@
 		B550B1CD1DB25E37006EAEFD /* MatrixTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MatrixTests.cpp; path = "Bug Sprint/Unit Tests/Source/MatrixTests.cpp"; sourceTree = SOURCE_ROOT; };
 		B550B1CF1DB25EB8006EAEFD /* Matrix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Matrix.cpp; path = Source/Utils/Matrix.cpp; sourceTree = "<group>"; };
 		B550B1D01DB25EB8006EAEFD /* Matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Matrix.h; path = Source/Utils/Matrix.h; sourceTree = "<group>"; };
+		B5629DC91DBB892600AEEA03 /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monkey.obj; path = "Bug Sprint/Assets/Game/monkey.obj"; sourceTree = "<group>"; };
 		B58779E11DAD8FC5007A6DBF /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Source/iOS Layer/Bridging-Header.h"; sourceTree = "<group>"; };
 		B58779E21DAD8FC6007A6DBF /* Instance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Instance.cpp; path = Source/Game/Instance.cpp; sourceTree = "<group>"; };
 		B58779E31DAD8FC6007A6DBF /* Instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Instance.h; path = Source/Game/Instance.h; sourceTree = "<group>"; };
@@ -188,7 +187,6 @@
 				B50C611C1DB52DE8005147FA /* broken_vertex.vsh */,
 				B50C611E1DB52DF9005147FA /* broken_fragment.fsh */,
 				B50C612B1DB54807005147FA /* box.obj */,
-				B50C61351DB58539005147FA /* monkey.obj */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -237,6 +235,14 @@
 				B544746A1DAED6F50046A19E /* GLKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B5629DC81DBB891300AEEA03 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				B5629DC91DBB892600AEEA03 /* monkey.obj */,
+			);
+			name = Game;
 			sourceTree = "<group>";
 		};
 		B58779E01DAD8F2E007A6DBF /* Game */ = {
@@ -303,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				B5B8487D1DAEE9FD00A3BB79 /* iOS Layer */,
+				B5629DC81DBB891300AEEA03 /* Game */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -516,7 +523,7 @@
 				TargetAttributes = {
 					B5B1AB3B1DACCC5100066910 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = Q3CXQ33KL8;
+						DevelopmentTeam = X7G47FFC9G;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
@@ -551,12 +558,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5B1AB561DACD1A800066910 /* Main.storyboard in Resources */,
-				B50C612D1DB563F0005147FA /* box.obj in Resources */,
 				B5B1AB541DACD19700066910 /* Launch Screen.storyboard in Resources */,
 				B5B1AB471DACCC5100066910 /* Assets.xcassets in Resources */,
 				B50C61321DB5679D005147FA /* default.vsh in Resources */,
+				B5629DCA1DBB892600AEEA03 /* monkey.obj in Resources */,
 				B50C61341DB567B2005147FA /* default.fsh in Resources */,
-				B50C61361DB58539005147FA /* monkey.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,13 +738,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Rafal Grodzinski (26CJHPNYQM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Q3CXQ33KL8;
+				DEVELOPMENT_TEAM = X7G47FFC9G;
 				INFOPLIST_FILE = "$(SRCROOT)/Bug Sprint/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unalignedbyte.bugsprint;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8a75a51d-ecda-4cc2-8b99-db44f6164f4e";
-				PROVISIONING_PROFILE_SPECIFIER = "Any App Development";
+				PROVISIONING_PROFILE = "7a4d0075-15db-4009-b18d-7a0667d337f5";
+				PROVISIONING_PROFILE_SPECIFIER = "Any iOS App Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Bug Sprint/Source/iOS Layer/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;

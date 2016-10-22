@@ -12,8 +12,12 @@
 #include "Model.h"
 #include "ShaderProgram.h"
 
+using namespace std;
+
 
 TEST(Model, Load)
 {
-    ASSERT_NO_THROW(Model m("box.obj"));
+    std::shared_ptr<Model> m;
+    ASSERT_NO_THROW(m = make_shared<Model>("box.obj"));
+    ASSERT_EQ(m->getTrianglesCount(), 12);
 }

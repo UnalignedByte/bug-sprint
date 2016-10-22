@@ -25,6 +25,7 @@ Core::Core(double width, double height)
 
     shader = make_shared<ShaderProgram>("default.vsh", "default.fsh");
     camera = make_shared<Camera>(width, height, shader);
+    light = make_shared<Light>(shader);
 
     instances.push_back(make_shared<Drawable>("monkey.obj", shader));
 
@@ -36,11 +37,14 @@ Core::Core(double width, double height)
 void Core::update(double timeInterval)
 {
     camera->update(timeInterval);
+    light->update(timeInterval);
 
     for(auto instance : instances) {
         instance->rotation[1] = instance->rotation[1] + 2.0;
-        instance->translation[2] = 1.0;
-        instance->translation[0] = sin(instance->rotation[1] / 100.0) * 2.0;
+        instance->translation[2] = 2.0;
+        static GLfloat x=0.0;
+        instance->translation[0] = sin(x / 100.0) * 2.0;
+        x += 2.0;
 
         instance->update(timeInterval);
     }

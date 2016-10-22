@@ -24,17 +24,13 @@ public:
     Model(const std::string &fileName);
     ~Model();
 
+    GLsizei getTrianglesCount() const;
+
     void draw(std::shared_ptr<ShaderProgram> shaderProgram, Matrix4 &modelMatrix);
 
 protected:
-    typedef struct {
-        GLfloat position[3];
-        GLfloat color[4];
-    } Vertex;
-
-protected:
     GLuint vertexArrayId;
-    std::vector<GLushort> indices;
+    GLsizei trianglesCount;
 
 protected:
     void loadObj(const std::string &fileString);

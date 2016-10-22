@@ -15,6 +15,7 @@
 #include "ShaderProgram.h"
 #include "Instance.h"
 #include "Camera.h"
+#include "Light.h"
 #include "Color.h"
 
 
@@ -27,10 +28,11 @@ public:
     void draw();
 
 private:
-    Color clearColor{0.1, 0.0, 0.0, 1.0};
+    Color clearColor{0.0, 0.0, 0.2, 1.0};
 
     std::shared_ptr<ShaderProgram> shader;
     std::shared_ptr<Camera> camera;
+    std::shared_ptr<Light> light;
     std::vector<std::shared_ptr<Instance>> instances;
 };
 

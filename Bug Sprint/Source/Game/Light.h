@@ -11,9 +11,24 @@
 
 #include "Instance.h"
 
+#include <memory>
+#include <OpenGLES/ES3/gl.h>
+
+#include "ShaderProgram.h"
+#include "Vector.h"
+
+
 class Light: public Instance
 {
 public:
+    Light(std::shared_ptr<ShaderProgram> shaderProgram);
+
+    Vector3 getLightDirection() const;
+
+    void update(double timeInterval) override;
+
+protected:
+    std::shared_ptr<ShaderProgram> shaderProgram;
 };
 
 #endif
