@@ -14,6 +14,7 @@
 
 #include "Vector.h"
 
+
 template<int SIZE>
 class Matrix
 {

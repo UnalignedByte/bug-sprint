@@ -20,7 +20,7 @@
 class Drawable: public Instance
 {
 public:
-    Drawable(const string &modelFileName, shared_ptr<ShaderProgram> shaderProgram);
+    Drawable(const std::string &modelFileName, std::shared_ptr<ShaderProgram> shaderProgram);
 
     void draw() override;
 

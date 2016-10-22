@@ -10,6 +10,8 @@
 
 #include "Matrix.h"
 
+using namespace std;
+
 
 TEST(Matrix, CreateDefault)
 {
@@ -19,7 +21,7 @@ TEST(Matrix, CreateDefault)
     ASSERT_DOUBLE_EQ(m[1][0], 0.0);
     ASSERT_DOUBLE_EQ(m[1][1], 1.0);
 
-    ASSERT_THROW(Matrix<0> m, std::string);
+    ASSERT_THROW(Matrix<0> m, string);
 }
 
 
@@ -44,7 +46,7 @@ TEST(Matrix, CreateInitial)
     ASSERT_DOUBLE_EQ(m3[2][1], 2.0);
     ASSERT_DOUBLE_EQ(m3[2][2], 2.0);
 
-    ASSERT_THROW(Matrix<0> m(6.0), std::string);
+    ASSERT_THROW(Matrix<0> m(6.0), string);
 }
 
 
@@ -56,9 +58,9 @@ TEST(Matrix, CreateInitializerList)
     ASSERT_DOUBLE_EQ(m[1][0], 3.0);
     ASSERT_DOUBLE_EQ(m[1][1], 4.0);
 
-    ASSERT_THROW(Matrix<0> m, std::string);
-    ASSERT_THROW(Matrix<2> m({1.0, 2.0, 3.0}), std::string);
-    ASSERT_THROW(Matrix<2> m({{1.0, 2.0}, 3.0, 2.0}), std::string);
+    ASSERT_THROW(Matrix<0> m, string);
+    ASSERT_THROW(Matrix<2> m({1.0, 2.0, 3.0}), string);
+    ASSERT_THROW(Matrix<2> m({{1.0, 2.0}, 3.0, 2.0}), string);
 }
 
 

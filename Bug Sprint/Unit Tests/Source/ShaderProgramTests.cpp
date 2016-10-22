@@ -10,11 +10,13 @@
 
 #include "ShaderProgram.h"
 
+using namespace std;
+
 
 TEST(ShaderProgram, LoadInvalid)
 {
-    ASSERT_THROW(ShaderProgram sp("wrong_file", "wrong_file"), std::string);
-    ASSERT_THROW(ShaderProgram sp("broken_vertex.vsh", "broken_fragment.fsh"), std::string);
+    ASSERT_THROW(ShaderProgram sp("wrong_file", "wrong_file"), string);
+    ASSERT_THROW(ShaderProgram sp("broken_vertex.vsh", "broken_fragment.fsh"), string);
 }
 
 

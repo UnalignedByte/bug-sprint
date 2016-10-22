@@ -7,17 +7,26 @@
 //
 
 #include <gtest/gtest.h>
+
 #include <memory>
 
-#include "Light.h"
 #include "ShaderProgram.h"
+#include "Instance.h"
+#include "Drawable.h"
+#include "Camera.h"
+#include "Light.h"
+
+using namespace std;
 
 
-TEST(Light, Create)
+TEST(Instance, Create)
 {
-    /*std::shared_ptr<Light> light;
+    shared_ptr<ShaderProgram> shaderProgram;
 
-    std::shared_ptr<ShaderProgram> shaderProgram = std::make_shared<ShaderProgram>("vertex.vsh", "fragment.fsh");
+    ASSERT_NO_THROW(shaderProgram = make_shared<ShaderProgram>("vertex.vsh", "fragment.fsh"));
 
-    ASSERT_NO_THROW(light = std::make_shared<Light>());*/
+    ASSERT_NO_THROW(Instance instance);
+    ASSERT_NO_THROW(Drawable drawable("box.obj", shaderProgram));
+    ASSERT_NO_THROW(Camera camera(200, 100, shaderProgram));
+    ASSERT_NO_THROW(Light light(shaderProgram));
 }

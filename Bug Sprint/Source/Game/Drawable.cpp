@@ -10,6 +10,8 @@
 
 #include "Model.h"
 
+using namespace std;
+
 
 Drawable::Drawable(const string &modelFileName, shared_ptr<ShaderProgram> shaderProgram) :
     shaderProgram(shaderProgram), model(modelFileName)

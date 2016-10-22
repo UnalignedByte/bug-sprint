@@ -11,14 +11,12 @@
 #include <string>
 #include <cmath>
 
-using namespace std;
-
 
 template<int SIZE>
 Matrix<SIZE>::Matrix()
 {
     if(SIZE <= 0)
-        throw string("Invalid size");
+        throw std::string("Invalid size");
 
     // Reset to identity
     for(int i=0; i<SIZE; i++)
@@ -30,7 +28,7 @@ template<int SIZE>
 Matrix<SIZE>::Matrix(GLfloat initialValue)
 {
     if(SIZE <= 0)
-        throw string("Invalid size");
+        throw std::string("Invalid size");
 
     for(int i=0; i<SIZE; i++)
         data[i] = Vector<SIZE>(initialValue);
@@ -38,13 +36,13 @@ Matrix<SIZE>::Matrix(GLfloat initialValue)
 
 
 template<int SIZE>
-Matrix<SIZE>::Matrix(initializer_list<Vector<SIZE>> values)
+Matrix<SIZE>::Matrix(std::initializer_list<Vector<SIZE>> values)
 {
     if(SIZE <= 0)
-        throw string("Invalid size");
+        throw std::string("Invalid size");
 
     if(values.size() != SIZE)
-        throw string("Invalid initializer list");
+        throw std::string("Invalid initializer list");
 
     int i=0;
     for(auto value = values.begin(); value != values.end(); value++) {
@@ -88,7 +86,7 @@ template<int SIZE>
 const Vector<SIZE> &Matrix<SIZE>::operator[](int index) const
 {
     if(index < 0 || index >= SIZE)
-        throw string("Index out of bounds");
+        throw std::string("Index out of bounds");
 
     return data[index];
 }
@@ -98,7 +96,7 @@ template<int SIZE>
 Vector<SIZE> &Matrix<SIZE>::operator[](int index)
 {
     if(index < 0 || index >= SIZE)
-        throw string("Index out of bounds");
+        throw std::string("Index out of bounds");
 
     return data[index];
 }

@@ -11,14 +11,12 @@
 #include <string>
 #include <cmath>
 
-using namespace std;
-
 
 template<int SIZE>
 Vector<SIZE>::Vector() : Vector(0.0)
 {
     if(SIZE <= 0)
-        throw string("Invalid size");
+        throw std::string("Invalid size");
 }
 
 
@@ -26,7 +24,7 @@ template<int SIZE>
 Vector<SIZE>::Vector(GLfloat initialValue)
 {
     if(SIZE <= 0)
-        throw string("Invalid size");
+        throw std::string("Invalid size");
 
     for(int i=0; i<SIZE; i++)
         data[i] = initialValue;
@@ -34,13 +32,13 @@ Vector<SIZE>::Vector(GLfloat initialValue)
 
 
 template<int SIZE>
-Vector<SIZE>::Vector(initializer_list<GLfloat> values)
+Vector<SIZE>::Vector(std::initializer_list<GLfloat> values)
 {
     if(SIZE <= 0)
-        throw string("Invalid size");
+        throw std::string("Invalid size");
 
     if(values.size() != SIZE)
-        throw string("Invalid initializer list");
+        throw std::string("Invalid initializer list");
 
     int i = 0;
     for(auto value = values.begin(); value != values.end(); value++) {
@@ -97,7 +95,7 @@ template<int SIZE>
 const GLfloat &Vector<SIZE>::operator[](int index) const
 {
     if(index < 0 || index >= SIZE)
-        throw string("Index out of bounds");
+        throw std::string("Index out of bounds");
 
     return data[index];
 }
@@ -107,7 +105,7 @@ template<int SIZE>
 GLfloat &Vector<SIZE>::operator[](int index)
 {
     if(index < 0 || index >= SIZE)
-        throw string("Index out of bounds");
+        throw std::string("Index out of bounds");
 
     return data[index];
 }
@@ -152,7 +150,7 @@ template<int SIZE>
 Vector<3> Vector<SIZE>::cross(const Vector<3> &rhs) const
 {
     if(SIZE != 3)
-        throw string("Invalid size");
+        throw std::string("Invalid size");
 
     Vector<3> result;
 

@@ -10,13 +10,15 @@
 
 #include "File.h"
 
+using namespace std;
+
 
 TEST(File, Open)
 {
     File file("test.txt");
     ASSERT_NE(file.getFilePath(), "");
 
-    ASSERT_THROW(File file("wrong.txt"), std::string);
+    ASSERT_THROW(File file("wrong.txt"), string);
 }
 
 

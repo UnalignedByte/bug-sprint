@@ -10,6 +10,8 @@
 
 #include "Color.h"
 
+using namespace std;
+
 
 TEST(Color, Create)
 {
@@ -24,5 +26,5 @@ TEST(Color, Create)
     ASSERT_DOUBLE_EQ(c2[1], 0.5);
     ASSERT_DOUBLE_EQ(c2[2], 0.0);
     ASSERT_DOUBLE_EQ(c2[3], 1.0);
-    ASSERT_THROW(c2[4], std::string);
+    ASSERT_THROW(c2[4], string);
 }

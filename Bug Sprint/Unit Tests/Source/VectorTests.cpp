@@ -10,6 +10,8 @@
 
 #include "Vector.h"
 
+using namespace std;
+
 
 TEST(Vector, CreateDefault)
 {
@@ -25,7 +27,7 @@ TEST(Vector, CreateDefault)
     ASSERT_DOUBLE_EQ(v5[3], 0.0);
     ASSERT_DOUBLE_EQ(v5[4], 0.0);
 
-    ASSERT_THROW(Vector<0> v, std::string);
+    ASSERT_THROW(Vector<0> v, string);
 }
 
 
@@ -42,7 +44,7 @@ TEST(Vector, CreateInitial)
     ASSERT_DOUBLE_EQ(v4Initial[2], 1.0);
     ASSERT_DOUBLE_EQ(v4Initial[3], 1.0);
 
-    ASSERT_THROW(Vector<0> v(5.0), std::string);
+    ASSERT_THROW(Vector<0> v(5.0), string);
 }
 
 
@@ -53,9 +55,9 @@ TEST(Vector, CreateInitializerList)
     ASSERT_DOUBLE_EQ(v3[1], 2.0);
     ASSERT_DOUBLE_EQ(v3[2], 3.0);
 
-    ASSERT_THROW(Vector<3> v({1.0}), std::string);
-    ASSERT_THROW(Vector<3> v({1.0, 2.0}), std::string);
-    ASSERT_THROW(Vector<0> v({1.0, 2.0, 3.0}), std::string);
+    ASSERT_THROW(Vector<3> v({1.0}), string);
+    ASSERT_THROW(Vector<3> v({1.0, 2.0}), string);
+    ASSERT_THROW(Vector<0> v({1.0, 2.0, 3.0}), string);
 }
 
 
@@ -164,5 +166,5 @@ TEST(Vector, Cross)
 
     // Invalid vector
     Vector<2> third;
-    ASSERT_THROW(third.cross(second), std::string);
+    ASSERT_THROW(third.cross(second), string);
 }
