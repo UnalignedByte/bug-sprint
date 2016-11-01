@@ -1,0 +1,22 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.unalignedbyte.bugsprint">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Bug Sprint"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+
+        <activity android:name="android.app.NativeActivity"
+            android:label="Bug Sprint"
+            android:screenOrientation="landscape">
+            <meta-data android:name="android.app.lib_name"
+                android:value="bug-sprint"/>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

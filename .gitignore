@@ -1,2 +1,16 @@
+# macOS Specific
 .DS_Store
-**/xcuserdata/
+
+# iOS Specific
+xcuserdata/
+
+# Android Specific
+.gradle/
+build/
+.externalNativeBuild/
+
+*.iml
+.idea/
+
+local.properties
+
