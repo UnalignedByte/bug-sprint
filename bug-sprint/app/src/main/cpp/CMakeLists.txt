@@ -13,7 +13,7 @@ include_directories(
 )
 
 add_library(bug-sprint SHARED
-    "${SRC}/Android Layer/Main.cpp"
+    "${SRC}/Android Layer/main.cpp"
     "${SRC}/Graphics Utils/Color.cpp"
 )
 
