@@ -13,7 +13,7 @@ include_directories(
 )
 
 add_library(bug-sprint SHARED
-    "${SRC}/Android Layer/main.cpp"
+    "${SRC}/Android Layer/Main.cpp"
     "${SRC}/Graphics Utils/Color.cpp"
 )
 
@@ -26,5 +26,5 @@ target_link_libraries(bug-sprint
     app-glue
     log
     EGL
-    GLESv3
+    GLESv2
 )

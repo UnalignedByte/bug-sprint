@@ -12,8 +12,8 @@ EGLContext eglContext;
 EGLSurface eglSurface;
 
 void processAppCommands(android_app *app, int cmd);
-void setup();
-void setupEGL();
+void setup(android_app *app);
+void setupEGL(android_app *app);
 void executeLoop();
 
 
@@ -44,7 +44,7 @@ void processAppCommands(android_app *app, int cmd)
 {
     switch(cmd) {
         case APP_CMD_INIT_WINDOW:
-            setup();
+            setup(app);
             break;
         default:
             break;
@@ -52,35 +52,44 @@ void processAppCommands(android_app *app, int cmd)
 }
 
 
-void setup()
+void setup(android_app *app)
 {
     if (!isSetup) {
-        setupEGL();
+        setupEGL(app);
 
         isSetup = true;
     }
 }
 
 
-void setupEGL()
+void setupEGL(android_app *app)
 {
-    EGLConfig  config;
-    int configsCount;
-
-    EGLint attributes[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT_KHR,
-        EGL_RED_SIZE, 5, EGL_GREEN_SIZE, 6, EGL_BLUE_SIZE, 5,
+    EGLint attributes[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+        EGL_RED_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_BLUE_SIZE, 8,
         EGL_DEPTH_SIZE, 1,
         EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
         EGL_NONE};
 
+    EGLint contextAttributes[] = {EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE};
+
     eglDisplay = eglGetDisplay(EGL_DEFAULT_DISPLAY);
     eglInitialize(eglDisplay, NULL, NULL);
-    eglChooseConfig(eglDisplay, attributes, &config, 1, &configsCount);
-    eglContext = eglCreateContext(eglDisplay, config, EGL_NO_CONTEXT, NULL);
 
+    int configsCount;
+    EGLConfig  config;
+    eglChooseConfig(eglDisplay, attributes, &config, 1, &configsCount);
+
+    eglSurface = eglCreateWindowSurface(eglDisplay, config, app->window, NULL);
+    eglContext = eglCreateContext(eglDisplay, config, NULL, contextAttributes);
     eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext);
 
-    glClearColor(0.0, 0.2, 0.1, 1.0);
+    EGLint width;
+    EGLint  height;
+    eglQuerySurface(eglDisplay, eglSurface, EGL_WIDTH, &width);
+    eglQuerySurface(eglDisplay, eglSurface, EGL_HEIGHT, &height);
+
+    glViewport(0, 0, width, height);
+    glClearColor(0.0, 0.0, 0.2, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     glFlush();
     eglSwapBuffers(eglDisplay, eglSurface);
