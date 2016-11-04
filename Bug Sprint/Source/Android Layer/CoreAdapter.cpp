@@ -4,6 +4,8 @@
 
 #include "CoreAdapter.h"
 
+#include <android/log.h>
+#include <stdlib.h>
 #include <time.h>
 
 using namespace std;
@@ -64,4 +66,10 @@ void CoreAdapter::draw()
 
 void CoreAdapter::handleException(string exception)
 {
+#pragma clang diagnostics push
+#pragma clang diagnostic ignored "-Wformat-security"
+    __android_log_print(ANDROID_LOG_ERROR, "App", exception.c_str());
+#pragma clang diagnostics pop
+
+    abort();
 }
