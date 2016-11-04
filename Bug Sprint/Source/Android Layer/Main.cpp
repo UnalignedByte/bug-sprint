@@ -5,6 +5,7 @@
 #include <EGL/eglext.h>
 
 #include "CoreAdapter.h"
+#include "SystemUtils.h"
 
 
 bool isSetup = false;
@@ -16,6 +17,7 @@ EGLSurface eglSurface;
 
 void processAppCommands(android_app *app, int cmd);
 void setup(android_app *app);
+void setupSystemUtils(android_app *app);
 void setupEGL(android_app *app);
 void setupCoreAdapter();
 
@@ -60,6 +62,7 @@ void setup(android_app *app)
 {
     if (!isSetup) {
         setupEGL(app);
+        setupSystemUtils(app);
         setupCoreAdapter();
 
         isSetup = true;
@@ -69,13 +72,13 @@ void setup(android_app *app)
 
 void setupEGL(android_app *app)
 {
-    EGLint attributes[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
+    EGLint attributes[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT_KHR,
         EGL_RED_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_BLUE_SIZE, 8,
         EGL_DEPTH_SIZE, 1,
         EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
         EGL_NONE};
 
-    EGLint contextAttributes[] = {EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE};
+    EGLint contextAttributes[] = {EGL_CONTEXT_CLIENT_VERSION, 3, EGL_NONE};
 
     eglDisplay = eglGetDisplay(EGL_DEFAULT_DISPLAY);
     eglInitialize(eglDisplay, NULL, NULL);
@@ -87,6 +90,12 @@ void setupEGL(android_app *app)
     eglSurface = eglCreateWindowSurface(eglDisplay, config, app->window, NULL);
     eglContext = eglCreateContext(eglDisplay, config, NULL, contextAttributes);
     eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext);
+}
+
+
+void setupSystemUtils(android_app *app)
+{
+    SystemUtils::app = app;
 }
 
 

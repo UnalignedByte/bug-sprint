@@ -9,13 +9,28 @@ add_library(app-glue STATIC
 )
 
 include_directories(
+    "${SRC}/Android Layer"
+    "${SRC}/Utils"
     "${SRC}/Graphics Utils"
+    "${SRC}/Game"
 )
 
 add_library(bug-sprint SHARED
     "${SRC}/Android Layer/Main.cpp"
     "${SRC}/Android Layer/CoreAdapter.cpp"
+    "${SRC}/Android Layer/SystemUtils.cpp"
+
+    "${SRC}/Utils/File.cpp"
+
     "${SRC}/Graphics Utils/Color.cpp"
+    "${SRC}/Graphics Utils/Model.cpp"
+    "${SRC}/Graphics Utils/ShaderProgram.cpp"
+
+    "${SRC}/Game/Core.cpp"
+    "${SRC}/Game/Instance.cpp"
+    "${SRC}/Game/Drawable.cpp"
+    "${SRC}/Game/Camera.cpp"
+    "${SRC}/Game/Light.cpp"
 )
 
 target_include_directories(bug-sprint PRIVATE
@@ -27,5 +42,5 @@ target_link_libraries(bug-sprint
     app-glue
     log
     EGL
-    GLESv2
+    GLESv3
 )

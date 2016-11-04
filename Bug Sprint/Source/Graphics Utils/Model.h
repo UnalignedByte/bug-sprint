@@ -12,7 +12,7 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include <OpenGLES/ES3/gl.h>
+#include "OpenGLES.h"
 
 #include "ShaderProgram.h"
 #include "Matrix.h"

@@ -10,7 +10,7 @@
 #define SHADER_PROGRAM_H
 
 #include <string>
-#include <OpenGLES/ES3/gl.h>
+#include "OpenGLES.h"
 
 
 class ShaderProgram

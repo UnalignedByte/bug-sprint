@@ -12,7 +12,7 @@
 #include "Instance.h"
 
 #include <memory>
-#include <OpenGLES/ES3/gl.h>
+#include "OpenGLES.h"
 
 #include "ShaderProgram.h"
 #include "Vector.h"

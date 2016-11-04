@@ -10,7 +10,7 @@
 #define MATRIX_H
 
 #include <initializer_list>
-#include <OpenGLES/ES3/gl.h>
+#include "OpenGLES.h"
 
 #include "Vector.h"
 

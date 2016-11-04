@@ -8,7 +8,7 @@
 
 #include "Core.h"
 
-#include <OpenGLES/ES3/gl.h>
+#include "OpenGLES.h"
 
 #include "Color.h"
 #include "ShaderProgram.h"
@@ -22,12 +22,12 @@ using namespace std;
 Core::Core(double width, double height)
 {
     glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
-
+/*
     shader = make_shared<ShaderProgram>("default.vsh", "default.fsh");
     camera = make_shared<Camera>(width, height, shader);
     light = make_shared<Light>(shader);
 
-    instances.push_back(make_shared<Drawable>("monkey.obj", shader));
+    instances.push_back(make_shared<Drawable>("monkey.obj", shader));*/
 
     glViewport(0, 0, width, height);
     glEnable(GL_DEPTH_TEST);
@@ -35,7 +35,7 @@ Core::Core(double width, double height)
 
 
 void Core::update(double timeInterval)
-{
+{/*
     camera->update(timeInterval);
     light->update(timeInterval);
 
@@ -47,7 +47,7 @@ void Core::update(double timeInterval)
         x += 2.0;
 
         instance->update(timeInterval);
-    }
+    }*/
 }
 
 
