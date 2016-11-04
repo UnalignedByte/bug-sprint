@@ -14,6 +14,7 @@ include_directories(
 
 add_library(bug-sprint SHARED
     "${SRC}/Android Layer/Main.cpp"
+    "${SRC}/Android Layer/CoreAdapter.cpp"
     "${SRC}/Graphics Utils/Color.cpp"
 )
 

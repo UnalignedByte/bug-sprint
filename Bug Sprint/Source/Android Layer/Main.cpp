@@ -4,8 +4,11 @@
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 
+#include "CoreAdapter.h"
+
 
 bool isSetup = false;
+CoreAdapter *coreAdapter = nullptr;
 
 EGLDisplay eglDisplay;
 EGLContext eglContext;
@@ -14,7 +17,7 @@ EGLSurface eglSurface;
 void processAppCommands(android_app *app, int cmd);
 void setup(android_app *app);
 void setupEGL(android_app *app);
-void executeLoop();
+void setupCoreAdapter();
 
 
 void android_main(android_app *app)
@@ -35,7 +38,8 @@ void android_main(android_app *app)
                 return;
         }
 
-        executeLoop();
+        if(isSetup)
+            coreAdapter->executeLoop();
     }
 }
 
@@ -56,6 +60,7 @@ void setup(android_app *app)
 {
     if (!isSetup) {
         setupEGL(app);
+        setupCoreAdapter();
 
         isSetup = true;
     }
@@ -82,22 +87,15 @@ void setupEGL(android_app *app)
     eglSurface = eglCreateWindowSurface(eglDisplay, config, app->window, NULL);
     eglContext = eglCreateContext(eglDisplay, config, NULL, contextAttributes);
     eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext);
+}
 
+
+void setupCoreAdapter()
+{
     EGLint width;
     EGLint  height;
     eglQuerySurface(eglDisplay, eglSurface, EGL_WIDTH, &width);
     eglQuerySurface(eglDisplay, eglSurface, EGL_HEIGHT, &height);
 
-    glViewport(0, 0, width, height);
-    glClearColor(0.0, 0.0, 0.2, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glFlush();
-    eglSwapBuffers(eglDisplay, eglSurface);
-}
-
-
-void executeLoop()
-{
-    if(!isSetup)
-        return;
+    coreAdapter = new CoreAdapter(width, height);
 }
