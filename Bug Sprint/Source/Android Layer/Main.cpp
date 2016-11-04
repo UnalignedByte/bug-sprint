@@ -40,8 +40,10 @@ void android_main(android_app *app)
                 return;
         }
 
-        if(isSetup)
+        if(isSetup) {
             coreAdapter->executeLoop();
+            eglSwapBuffers(eglDisplay, eglSurface);
+        }
     }
 }
 
