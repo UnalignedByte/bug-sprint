@@ -44,7 +44,7 @@ class MainViewController: GLKViewController
         if let touch = touches.first {
             let touchLocation = touch.location(in: self.view)
 
-            self.core.touchDownAt(x: Int(touchLocation.x), y: Int(touchLocation.y))
+            self.core.touchDownAt(x: Int(touchLocation.x), y: Int(self.view.frame.size.height - touchLocation.y))
         }
     }
 
@@ -54,7 +54,7 @@ class MainViewController: GLKViewController
         if let touch = touches.first {
             let touchLocation = touch.location(in: self.view)
 
-            self.core.touchUpAt(x: Int(touchLocation.x), y: Int(touchLocation.y))
+            self.core.touchUpAt(x: Int(touchLocation.x), y: Int(self.view.frame.size.height - touchLocation.y))
         }
     }
 
@@ -64,7 +64,7 @@ class MainViewController: GLKViewController
         if let touch = touches.first {
             let touchLocation = touch.location(in: self.view)
 
-            self.core.touchMoveAt(x: Int(touchLocation.x), y: Int(touchLocation.y))
+            self.core.touchMoveAt(x: Int(touchLocation.x), y: Int(self.view.frame.size.height - touchLocation.y))
         }
     }
 

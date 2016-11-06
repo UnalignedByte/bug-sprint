@@ -50,7 +50,7 @@ void CoreAdapter::touchDown(int x, int y)
     currentInput.state = Input::StateDown;
 
     double xPos = double(x) / double(width);
-    double yPos = double(y) / double(height);
+    double yPos = (double(height) - double(y)) / double(height);
     currentInput.downX = currentInput.x = xPos;
     currentInput.downY = currentInput.y = yPos;
 }
@@ -61,7 +61,7 @@ void CoreAdapter::touchUp(int x, int y)
     currentInput.state = Input::StateUp;
 
     double xPos = double(x) / double(width);
-    double yPos = double(y) / double(height);
+    double yPos = (double(height) - double(y)) / double(height);
     currentInput.x = xPos;
     currentInput.y = yPos;
 }
@@ -72,7 +72,7 @@ void CoreAdapter::touchMove(int x, int y)
     currentInput.state = Input::StateMoved;
 
     double xPos = double(x) / double(width);
-    double yPos = double(y) / double(height);
+    double yPos = (double(height) - double(y)) / double(height);
     currentInput.x = xPos;
     currentInput.y = yPos;
 }

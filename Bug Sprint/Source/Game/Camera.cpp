@@ -21,7 +21,25 @@ Camera::Camera(GLfloat viewWidth, GLfloat viewHeight, shared_ptr<ShaderProgram> 
 
 Matrix4 Camera::getCameraViewMatrix() const
 {
-    return Matrix4();
+    Matrix4 viewMatrix;
+    viewMatrix = viewMatrix * Matrix4::translation(-translation[0], -translation[1], -translation[2]);
+
+    Vector3 direction = target - translation;
+    direction = direction.normalized();
+
+    Vector3 right = direction.cross(Vector3{0.0, 1.0, 0.0});
+    right = right.normalized();
+
+    Vector3 up = right.cross(direction);
+
+    Matrix4 lookAtMatrix{{right[0], up[0], direction[0], 0.0},
+                         {right[1], up[1], direction[1], 0.0},
+                         {right[2], up[2], direction[2], 0.0},
+                         {0.0,      0.0,   0.0,          1.0}};
+
+    viewMatrix = viewMatrix * lookAtMatrix;
+
+    return viewMatrix;
 }
 
 

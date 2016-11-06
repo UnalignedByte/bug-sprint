@@ -21,6 +21,9 @@
 class Camera: public Instance
 {
 public:
+    Vector3 target;
+
+public:
     Camera(GLfloat viewWidth, GLfloat viewHeight, std::shared_ptr<ShaderProgram> shaderProgram);
 
     Matrix4 getCameraViewMatrix() const;
