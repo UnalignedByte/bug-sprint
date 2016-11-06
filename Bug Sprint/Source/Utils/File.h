@@ -21,8 +21,8 @@ public:
     const std::string &getString();
 
 private:
-    std::string fileString;
     std::string filePath;
+    std::string stringData;
 
     void load();
 };

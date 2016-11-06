@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.4.1)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=gnu++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=gnu++14")
 
 set(SRC "../../../../../Bug Sprint/Source")
 
@@ -21,6 +21,7 @@ add_library(bug-sprint SHARED
     "${SRC}/Android Layer/SystemUtils.cpp"
 
     "${SRC}/Utils/File.cpp"
+    "${SRC}/Utils/FileBuffer.cpp"
 
     "${SRC}/Graphics Utils/Color.cpp"
     "${SRC}/Graphics Utils/Model.cpp"

@@ -10,6 +10,8 @@
 
 #include <fstream>
 #include <sstream>
+#include <memory>
+#include "FileBuffer.h"
 #include "SystemUtils.h"
 
 using namespace std;
@@ -33,23 +35,21 @@ const std::string &File::getString()
 {
     load();
 
-    return fileString;
+    return stringData;
 }
 
 
 void File::load()
 {
-    if(!fileString.empty())
+    if(!stringData.empty())
         return;
 
-    ifstream file;
-    file.open(filePath);
-    if(!file.good())
+    FileBuffer fileBuffer = SystemUtils::bufferForFileName(filePath);
+    istream fileStream(&fileBuffer);
+    if(!fileStream.good())
         throw string("Could not open file " + filePath);
 
-    stringstream fileBuffer;
-    fileBuffer << file.rdbuf();
-    fileString = fileBuffer.str();
-
-    file.close();
+    stringstream stringStream;
+    stringStream << fileStream.rdbuf();
+    stringData = stringStream.str();
 }

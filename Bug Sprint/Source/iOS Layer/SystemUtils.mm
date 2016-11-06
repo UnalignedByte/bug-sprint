@@ -26,3 +26,14 @@ string SystemUtils::pathForFileName(const string &fileName)
 
     return "";
 }
+
+
+FileBuffer SystemUtils::bufferForFileName(const std::string &fileName)
+{
+    NSString *fileNameString = [NSString stringWithUTF8String:fileName.c_str()];
+
+    NSData *fileData = [NSData dataWithContentsOfFile:fileNameString];
+    FileBuffer fileBuffer(const_cast<void *>(fileData.bytes), fileData.length);
+
+    return fileBuffer;
+}

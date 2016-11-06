@@ -39,6 +39,8 @@
 		B54474671DAED3250046A19E /* CoreAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = B54474661DAED3250046A19E /* CoreAdapter.mm */; };
 		B550B1CE1DB25E37006EAEFD /* MatrixTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B550B1CD1DB25E37006EAEFD /* MatrixTests.cpp */; };
 		B5629DCA1DBB892600AEEA03 /* monkey.obj in Resources */ = {isa = PBXBuildFile; fileRef = B5629DC91DBB892600AEEA03 /* monkey.obj */; };
+		B57035FC1DCF4B4D00B46354 /* FileBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57035FA1DCF4B4D00B46354 /* FileBuffer.cpp */; };
+		B57035FE1DCF4E2A00B46354 /* FileBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57035FA1DCF4B4D00B46354 /* FileBuffer.cpp */; };
 		B58779E41DAD8FC6007A6DBF /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance.cpp */; };
 		B5880FA91DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
 		B5880FAA1DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
@@ -100,6 +102,9 @@
 		B550B1CF1DB25EB8006EAEFD /* Matrix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Matrix.cpp; path = Source/Utils/Matrix.cpp; sourceTree = "<group>"; };
 		B550B1D01DB25EB8006EAEFD /* Matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Matrix.h; path = Source/Utils/Matrix.h; sourceTree = "<group>"; };
 		B5629DC91DBB892600AEEA03 /* monkey.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monkey.obj; path = "Bug Sprint/Assets/Game/monkey.obj"; sourceTree = "<group>"; };
+		B57035FA1DCF4B4D00B46354 /* FileBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FileBuffer.cpp; path = Source/Utils/FileBuffer.cpp; sourceTree = "<group>"; };
+		B57035FB1DCF4B4D00B46354 /* FileBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileBuffer.h; path = Source/Utils/FileBuffer.h; sourceTree = "<group>"; };
+		B57035FD1DCF4BCE00B46354 /* OpenGLES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OpenGLES.h; path = "Source/iOS Layer/OpenGLES.h"; sourceTree = "<group>"; };
 		B58779E11DAD8FC5007A6DBF /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Source/iOS Layer/Bridging-Header.h"; sourceTree = "<group>"; };
 		B58779E21DAD8FC6007A6DBF /* Instance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Instance.cpp; path = Source/Game/Instance.cpp; sourceTree = "<group>"; };
 		B58779E31DAD8FC6007A6DBF /* Instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Instance.h; path = Source/Game/Instance.h; sourceTree = "<group>"; };
@@ -224,6 +229,7 @@
 				B54474661DAED3250046A19E /* CoreAdapter.mm */,
 				B50C61151DB51D0B005147FA /* SystemUtils.h */,
 				B50C61141DB51D0B005147FA /* SystemUtils.mm */,
+				B57035FD1DCF4BCE00B46354 /* OpenGLES.h */,
 			);
 			name = "iOS Layer";
 			sourceTree = "<group>";
@@ -469,6 +475,8 @@
 				B550B1CF1DB25EB8006EAEFD /* Matrix.cpp */,
 				B53370FD1DB4C6A500275631 /* File.h */,
 				B53370FC1DB4C6A500275631 /* File.cpp */,
+				B57035FB1DCF4B4D00B46354 /* FileBuffer.h */,
+				B57035FA1DCF4B4D00B46354 /* FileBuffer.cpp */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -589,6 +597,7 @@
 				B54474671DAED3250046A19E /* CoreAdapter.mm in Sources */,
 				B53370FE1DB4C6A500275631 /* File.cpp in Sources */,
 				B53370EF1DB4178300275631 /* Color.cpp in Sources */,
+				B57035FC1DCF4B4D00B46354 /* FileBuffer.cpp in Sources */,
 				B50C61161DB51D0B005147FA /* SystemUtils.mm in Sources */,
 				B50C61391DB818F3005147FA /* Camera.cpp in Sources */,
 				B58779E41DAD8FC6007A6DBF /* Instance.cpp in Sources */,
@@ -616,6 +625,7 @@
 				B53370F71DB41C7B00275631 /* ShaderProgram.cpp in Sources */,
 				B5C7D2181DAD81B4009E66A9 /* GoogleTests.mm in Sources */,
 				B53370EC1DB4170000275631 /* ColorTests.cpp in Sources */,
+				B57035FE1DCF4E2A00B46354 /* FileBuffer.cpp in Sources */,
 				B50C61171DB51D0B005147FA /* SystemUtils.mm in Sources */,
 				B5DA1A891DAF726D00D948C9 /* VectorTests.cpp in Sources */,
 				B53370F31DB41BA500275631 /* ShaderProgramTests.cpp in Sources */,
