@@ -23,11 +23,11 @@ Core::Core(double width, double height)
 {
     glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
 
-    shader = make_shared<ShaderProgram>("default.vsh", "default.fsh");
+    shader = make_shared<ShaderProgram>("Shaders/default.vsh", "Shaders/default.fsh");
     camera = make_shared<Camera>(width, height, shader);
     light = make_shared<Light>(shader);
 
-    instances.push_back(make_shared<Drawable>("monkey.obj", shader));
+    instances.push_back(make_shared<Drawable>("Game/monkey.obj", shader));
 
     glViewport(0, 0, width, height);
     glEnable(GL_DEPTH_TEST);
