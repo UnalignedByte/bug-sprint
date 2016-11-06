@@ -95,6 +95,7 @@
 		B54474661DAED3250046A19E /* CoreAdapter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CoreAdapter.mm; path = "Source/iOS Layer/CoreAdapter.mm"; sourceTree = "<group>"; };
 		B54474681DAED4280046A19E /* CoreAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreAdapter.h; path = "Source/iOS Layer/CoreAdapter.h"; sourceTree = "<group>"; };
 		B544746A1DAED6F50046A19E /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		B54FCE7B1DCFB19000EDE7FA /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Types.h; path = Source/Utils/Types.h; sourceTree = "<group>"; };
 		B550B1CD1DB25E37006EAEFD /* MatrixTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MatrixTests.cpp; path = "Bug Sprint/Unit Tests/Source/MatrixTests.cpp"; sourceTree = SOURCE_ROOT; };
 		B550B1CF1DB25EB8006EAEFD /* Matrix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Matrix.cpp; path = Source/Utils/Matrix.cpp; sourceTree = "<group>"; };
 		B550B1D01DB25EB8006EAEFD /* Matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Matrix.h; path = Source/Utils/Matrix.h; sourceTree = "<group>"; };
@@ -458,6 +459,7 @@
 				B53370FC1DB4C6A500275631 /* File.cpp */,
 				B57035FB1DCF4B4D00B46354 /* FileBuffer.h */,
 				B57035FA1DCF4B4D00B46354 /* FileBuffer.cpp */,
+				B54FCE7B1DCFB19000EDE7FA /* Types.h */,
 			);
 			name = Utils;
 			sourceTree = "<group>";

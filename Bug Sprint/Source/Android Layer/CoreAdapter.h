@@ -8,6 +8,7 @@
 #include <string>
 
 #include "Core.h"
+#include "Types.h"
 
 
 class CoreAdapter
@@ -18,8 +19,18 @@ public:
 
     void executeLoop();
 
+    void touchDown(int x, int y);
+    void touchUp(int x, int y);
+    void touchMove(int x, int y);
+    void touchCancel();
+
 private:
     Core *core;
+
+    int width;
+    int height;
+    Input currentInput;
+
     double previousTime = 0.0;
 
     void update(double timeInterval);

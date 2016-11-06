@@ -19,6 +19,8 @@ EGLContext eglContext;
 EGLSurface eglSurface;
 
 void processAppCommands(android_app *app, int cmd);
+int processInput(android_app *app, AInputEvent *inputEvent);
+void processTouchInput(AInputEvent *inputEvent);
 void setup(android_app *app);
 void setupSystemUtils(android_app *app);
 void setupEGL(android_app *app);
@@ -30,6 +32,7 @@ void android_main(android_app *app)
     app_dummy();
 
     app->onAppCmd = processAppCommands;
+    app->onInputEvent = processInput;
 
     int events;
     android_poll_source *source;
@@ -60,6 +63,22 @@ void processAppCommands(android_app *app, int cmd)
         default:
             break;
     }
+}
+
+
+int processInput(android_app *app, AInputEvent *inputEvent)
+{
+    switch(AInputEvent_getType(inputEvent)) {
+        case AINPUT_EVENT_TYPE_MOTION:
+            switch(AInputEvent_getSource(inputEvent)) {
+                case AINPUT_SOURCE_TOUCHSCREEN:
+                    processTouchInput(inputEvent);
+                    break;
+            }
+            break;
+    }
+
+    return 0;
 }
 
 
@@ -137,4 +156,27 @@ void setupCoreAdapter()
     eglQuerySurface(eglDisplay, eglSurface, EGL_HEIGHT, &height);
 
     coreAdapter = new CoreAdapter(width, height);
+}
+
+
+void processTouchInput(AInputEvent *inputEvent)
+{
+    int x = AMotionEvent_getX(inputEvent, 0);
+    int y = AMotionEvent_getY(inputEvent, 0);
+
+    switch(AMotionEvent_getAction(inputEvent)) {
+        case AMOTION_EVENT_ACTION_DOWN:
+            coreAdapter->touchDown(x, y);
+            break;
+        case AMOTION_EVENT_ACTION_UP:
+            coreAdapter->touchUp(x, y);
+            break;
+        case AMOTION_EVENT_ACTION_MOVE:
+            coreAdapter->touchMove(x, y);
+            break;
+        case AMOTION_EVENT_ACTION_CANCEL:
+            coreAdapter->touchCancel();
+            break;
+        default:break;
+    }
 }

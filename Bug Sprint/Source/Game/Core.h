@@ -17,6 +17,7 @@
 #include "Camera.h"
 #include "Light.h"
 #include "Color.h"
+#include "Types.h"
 
 
 class Core
@@ -24,7 +25,7 @@ class Core
 public:
     Core(double width, double height);
 
-    void update(double timeInterval);
+    void update(double timeInterval, Input input);
     void draw();
 
 private:

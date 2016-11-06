@@ -34,7 +34,7 @@ Core::Core(double width, double height)
 }
 
 
-void Core::update(double timeInterval)
+void Core::update(double timeInterval, Input input)
 {
     camera->update(timeInterval);
     light->update(timeInterval);

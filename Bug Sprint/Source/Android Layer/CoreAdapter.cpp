@@ -11,7 +11,8 @@
 using namespace std;
 
 
-CoreAdapter::CoreAdapter(int width, int height)
+CoreAdapter::CoreAdapter(int width, int height) :
+    width(width), height(height)
 {
     try {
         core = new Core(width, height);
@@ -44,10 +45,49 @@ void CoreAdapter::executeLoop()
 }
 
 
+void CoreAdapter::touchDown(int x, int y)
+{
+    currentInput.state = Input::StateDown;
+
+    double xPos = double(x) / double(width);
+    double yPos = double(y) / double(height);
+    currentInput.downX = currentInput.x = xPos;
+    currentInput.downY = currentInput.y = yPos;
+}
+
+
+void CoreAdapter::touchUp(int x, int y)
+{
+    currentInput.state = Input::StateUp;
+
+    double xPos = double(x) / double(width);
+    double yPos = double(y) / double(height);
+    currentInput.x = xPos;
+    currentInput.y = yPos;
+}
+
+
+void CoreAdapter::touchMove(int x, int y)
+{
+    currentInput.state = Input::StateMoved;
+
+    double xPos = double(x) / double(width);
+    double yPos = double(y) / double(height);
+    currentInput.x = xPos;
+    currentInput.y = yPos;
+}
+
+
+void CoreAdapter::touchCancel()
+{
+    currentInput.state = Input::StateCanceled;
+}
+
+
 void CoreAdapter::update(double timeInterval)
 {
     try {
-        core->update(timeInterval);
+        core->update(timeInterval, currentInput);
     } catch(string exception) {
         handleException(exception);
     }

@@ -37,4 +37,40 @@ class MainViewController: GLKViewController
     {
         self.core.draw()
     }
+
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        if let touch = touches.first {
+            let touchLocation = touch.location(in: self.view)
+
+            self.core.touchDownAt(x: Int(touchLocation.x), y: Int(touchLocation.y))
+        }
+    }
+
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        if let touch = touches.first {
+            let touchLocation = touch.location(in: self.view)
+
+            self.core.touchUpAt(x: Int(touchLocation.x), y: Int(touchLocation.y))
+        }
+    }
+
+
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        if let touch = touches.first {
+            let touchLocation = touch.location(in: self.view)
+
+            self.core.touchMoveAt(x: Int(touchLocation.x), y: Int(touchLocation.y))
+        }
+    }
+
+
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        self.core.touchCancel()
+    }
 }
