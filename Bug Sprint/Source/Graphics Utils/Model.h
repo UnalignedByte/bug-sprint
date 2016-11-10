@@ -25,12 +25,15 @@ public:
     ~Model();
 
     GLsizei getTrianglesCount() const;
+    bool getHasTexCoords() const;
 
     void draw(std::shared_ptr<ShaderProgram> shaderProgram, Matrix4 &modelMatrix);
 
 protected:
     GLuint vertexArrayId;
+
     GLsizei trianglesCount;
+    bool hasTexCoords;
 
 protected:
     void loadObj(const std::string &fileString);

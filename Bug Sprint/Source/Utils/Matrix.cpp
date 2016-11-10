@@ -190,7 +190,7 @@ Matrix<4> Matrix<SIZE>::perspectiveProjection(GLfloat fov, GLfloat aspect, GLflo
     // Perspective projection tutorial: http://ogldev.atspace.co.uk/www/tutorial12/tutorial12.html
 
     GLfloat tanHalf = tan(M_PI/180.0 * fov/2.0);
-    matrix[0][0] = 1.0 / (tanHalf * aspect); // X scaling
+    matrix[0][0] = -1.0 / (tanHalf * aspect); // X scaling
     matrix[1][1] = 1.0 / tanHalf; // Y scaling
     matrix[2][2] = (-near - far) / (near - far); // Near clipping
     matrix[2][3] = 1.0;

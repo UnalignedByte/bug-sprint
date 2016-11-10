@@ -21,14 +21,11 @@
 class Light: public Instance
 {
 public:
-    Light(std::shared_ptr<ShaderProgram> shaderProgram);
+    Light();
 
     Vector3 getLightDirection() const;
 
-    void update(double timeInterval) override;
-
-protected:
-    std::shared_ptr<ShaderProgram> shaderProgram;
+    void update(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
 };
 
 #endif

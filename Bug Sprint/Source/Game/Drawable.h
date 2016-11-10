@@ -15,18 +15,21 @@
 #include <memory>
 
 #include "Model.h"
+#include "Texture.h"
 
 
 class Drawable: public Instance
 {
 public:
     Drawable(const std::string &modelFileName, std::shared_ptr<ShaderProgram> shaderProgram);
+    Drawable(const std::string &modelFileName, const std::string &textureFileName, std::shared_ptr<ShaderProgram> shaderProgram);
 
     void draw() override;
 
 protected:
     std::shared_ptr<ShaderProgram> shaderProgram;
     Model model;
+    Texture texture;
 };
 
 #endif

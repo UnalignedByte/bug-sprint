@@ -11,8 +11,7 @@
 using namespace std;
 
 
-Light::Light(shared_ptr<ShaderProgram> shaderProgram) :
- shaderProgram(shaderProgram)
+Light::Light()
 {
 }
 
@@ -23,7 +22,7 @@ Vector3 Light::getLightDirection() const
 }
 
 
-void Light::update(double timeInterval)
+void Light::update(double timeInterval, shared_ptr<ShaderProgram> shaderProgram)
 {
     shaderProgram->use();
 

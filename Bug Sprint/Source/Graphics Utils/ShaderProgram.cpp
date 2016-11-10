@@ -100,7 +100,7 @@ GLuint ShaderProgram::loadProgram(GLuint vertexShaderId, GLuint fragmentShaderId
             string infoString = string(infoBuffer);
             delete[] infoBuffer;
 
-            throw new string("Error linking program:\n" + infoString);
+            throw string("Error linking program:\n" + infoString);
         }
     }
 

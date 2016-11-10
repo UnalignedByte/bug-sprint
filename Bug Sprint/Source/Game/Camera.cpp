@@ -13,8 +13,8 @@
 using namespace std;
 
 
-Camera::Camera(GLfloat viewWidth, GLfloat viewHeight, shared_ptr<ShaderProgram> shaderProgram) :
-    viewWidth(viewWidth), viewHeight(viewHeight), shaderProgram(shaderProgram)
+Camera::Camera(GLfloat viewWidth, GLfloat viewHeight) :
+    viewWidth(viewWidth), viewHeight(viewHeight)
 {
 }
 
@@ -49,7 +49,7 @@ Matrix4 Camera::getCameraProjectionMatrix() const
 }
 
 
-void Camera::update(double timeInterval)
+void Camera::update(double timeInterval, shared_ptr<ShaderProgram> shaderProgram)
 {
     shaderProgram->use();
 

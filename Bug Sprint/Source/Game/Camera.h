@@ -24,16 +24,14 @@ public:
     Vector3 target;
 
 public:
-    Camera(GLfloat viewWidth, GLfloat viewHeight, std::shared_ptr<ShaderProgram> shaderProgram);
+    Camera(GLfloat viewWidth, GLfloat viewHeight);
 
     Matrix4 getCameraViewMatrix() const;
     Matrix4 getCameraProjectionMatrix() const;
 
-    void update(double timeInterval) override;
+    void update(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
 
 protected:
-    std::shared_ptr<ShaderProgram> shaderProgram;
-
     GLfloat viewWidth;
     GLfloat viewHeight;
     GLfloat fov = 60.0;

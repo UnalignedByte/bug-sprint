@@ -36,6 +36,8 @@
 		B54474641DAED2430046A19E /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B54474621DAED2430046A19E /* Core.cpp */; };
 		B54474671DAED3250046A19E /* CoreAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = B54474661DAED3250046A19E /* CoreAdapter.mm */; };
 		B550B1CE1DB25E37006EAEFD /* MatrixTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B550B1CD1DB25E37006EAEFD /* MatrixTests.cpp */; };
+		B56C8C2D1DD0F0E500C1138A /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56C8C2B1DD0F0E500C1138A /* Texture.cpp */; };
+		B56C8C301DD0F4FE00C1138A /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56C8C2E1DD0F4FE00C1138A /* Image.cpp */; };
 		B57035FC1DCF4B4D00B46354 /* FileBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57035FA1DCF4B4D00B46354 /* FileBuffer.cpp */; };
 		B57035FE1DCF4E2A00B46354 /* FileBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57035FA1DCF4B4D00B46354 /* FileBuffer.cpp */; };
 		B58779E41DAD8FC6007A6DBF /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance.cpp */; };
@@ -99,6 +101,10 @@
 		B550B1CD1DB25E37006EAEFD /* MatrixTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MatrixTests.cpp; path = "Bug Sprint/Unit Tests/Source/MatrixTests.cpp"; sourceTree = SOURCE_ROOT; };
 		B550B1CF1DB25EB8006EAEFD /* Matrix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Matrix.cpp; path = Source/Utils/Matrix.cpp; sourceTree = "<group>"; };
 		B550B1D01DB25EB8006EAEFD /* Matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Matrix.h; path = Source/Utils/Matrix.h; sourceTree = "<group>"; };
+		B56C8C2B1DD0F0E500C1138A /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = "Source/Graphics Utils/Texture.cpp"; sourceTree = "<group>"; };
+		B56C8C2C1DD0F0E500C1138A /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = "Source/Graphics Utils/Texture.h"; sourceTree = "<group>"; };
+		B56C8C2E1DD0F4FE00C1138A /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Image.cpp; path = "Source/Graphics Utils/Image.cpp"; sourceTree = "<group>"; };
+		B56C8C2F1DD0F4FE00C1138A /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Image.h; path = "Source/Graphics Utils/Image.h"; sourceTree = "<group>"; };
 		B57035FA1DCF4B4D00B46354 /* FileBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FileBuffer.cpp; path = Source/Utils/FileBuffer.cpp; sourceTree = "<group>"; };
 		B57035FB1DCF4B4D00B46354 /* FileBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileBuffer.h; path = Source/Utils/FileBuffer.h; sourceTree = "<group>"; };
 		B57035FD1DCF4BCE00B46354 /* OpenGLES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OpenGLES.h; path = "Source/iOS Layer/OpenGLES.h"; sourceTree = "<group>"; };
@@ -204,6 +210,10 @@
 				B53370F41DB41C7B00275631 /* ShaderProgram.cpp */,
 				B50C61261DB538DB005147FA /* Model.h */,
 				B50C61251DB538DB005147FA /* Model.cpp */,
+				B56C8C2C1DD0F0E500C1138A /* Texture.h */,
+				B56C8C2B1DD0F0E500C1138A /* Texture.cpp */,
+				B56C8C2F1DD0F4FE00C1138A /* Image.h */,
+				B56C8C2E1DD0F4FE00C1138A /* Image.cpp */,
 			);
 			name = "Graphics Utils";
 			sourceTree = "<group>";
@@ -576,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B56C8C2D1DD0F0E500C1138A /* Texture.cpp in Sources */,
 				B54474671DAED3250046A19E /* CoreAdapter.mm in Sources */,
 				B53370FE1DB4C6A500275631 /* File.cpp in Sources */,
 				B53370EF1DB4178300275631 /* Color.cpp in Sources */,
@@ -588,6 +599,7 @@
 				B5B1AB421DACCC5100066910 /* MainViewController.swift in Sources */,
 				B53370F61DB41C7B00275631 /* ShaderProgram.cpp in Sources */,
 				B50C61271DB538DB005147FA /* Model.cpp in Sources */,
+				B56C8C301DD0F4FE00C1138A /* Image.cpp in Sources */,
 				B54474641DAED2430046A19E /* Core.cpp in Sources */,
 				B5B1AB401DACCC5100066910 /* AppDelegate.swift in Sources */,
 			);

@@ -32,8 +32,11 @@ private:
     Color clearColor{0.0, 0.0, 0.2, 1.0};
 
     std::shared_ptr<ShaderProgram> shader;
+    std::shared_ptr<ShaderProgram> texturedShader;
+
     std::shared_ptr<Camera> camera;
     std::shared_ptr<Light> light;
+    
     std::vector<std::shared_ptr<Instance>> instances;
 };
 
