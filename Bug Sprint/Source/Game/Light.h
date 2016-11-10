@@ -25,7 +25,7 @@ public:
 
     Vector3 getLightDirection() const;
 
-    void update(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
+    void updateLight(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
 };
 
 #endif

@@ -22,7 +22,7 @@ Vector3 Light::getLightDirection() const
 }
 
 
-void Light::update(double timeInterval, shared_ptr<ShaderProgram> shaderProgram)
+void Light::updateLight(double timeInterval, shared_ptr<ShaderProgram> shaderProgram)
 {
     shaderProgram->use();
 

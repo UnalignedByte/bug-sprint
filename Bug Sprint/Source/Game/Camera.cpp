@@ -49,7 +49,7 @@ Matrix4 Camera::getCameraProjectionMatrix() const
 }
 
 
-void Camera::update(double timeInterval, shared_ptr<ShaderProgram> shaderProgram)
+void Camera::updateCamera(double timeInterval, shared_ptr<ShaderProgram> shaderProgram)
 {
     shaderProgram->use();
 

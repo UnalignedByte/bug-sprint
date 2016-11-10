@@ -33,6 +33,7 @@ private:
 
     std::shared_ptr<ShaderProgram> shader;
     std::shared_ptr<ShaderProgram> texturedShader;
+    std::shared_ptr<ShaderProgram> skyboxShader;
 
     std::shared_ptr<Camera> camera;
     std::shared_ptr<Light> light;

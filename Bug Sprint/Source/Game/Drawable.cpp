@@ -25,6 +25,17 @@ Drawable::Drawable(const string &modelFileName, const string &textureFileName, s
 }
 
 
+Drawable::Drawable(const std::string &modelFileName,
+                   const std::string &rightTextureFileName, const std::string &leftTextureFileName,
+                   const std::string &topTextureFileName, const std::string &bottomTextureFileName,
+                   const std::string &frontTextureFileName, const std::string backTextureFileName,
+                   std::shared_ptr<ShaderProgram> shaderProgram) :
+    shaderProgram(shaderProgram), model(modelFileName),
+    texture(rightTextureFileName, leftTextureFileName, topTextureFileName, bottomTextureFileName, frontTextureFileName, backTextureFileName)
+{
+}
+
+
 void Drawable::draw()
 {
     shaderProgram->use();

@@ -26,6 +26,8 @@ Core::Core(double width, double height)
 
     shader = make_shared<ShaderProgram>("Shaders/default.vsh", "Shaders/default.fsh");
     texturedShader = make_shared<ShaderProgram>("Shaders/textured.vsh", "Shaders/textured.fsh");
+    skyboxShader = make_shared<ShaderProgram>("Shaders/skybox.vsh", "Shaders/skybox.fsh");
+
     camera = make_shared<Camera>(width, height);
     light = make_shared<Light>();
 
@@ -37,8 +39,15 @@ Core::Core(double width, double height)
     instances[1]->translation[0] = 2.0;
     instances[1]->translation[2] = 4.0;
 
+    instances.push_back(make_shared<Drawable>("Game/box.obj", "Game/skybox_right.png", "Game/skybox_left.png",
+                                              "Game/skybox_top.png", "Game/skybox_bottom.png",
+                                              "Game/skybox_front.png", "Game/skybox_back.png",
+                                              skyboxShader));
+    instances[2]->scale = 5.0;
+
     glViewport(0, 0, width, height);
     glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LEQUAL);
 }
 
 
@@ -55,11 +64,12 @@ void Core::update(double timeInterval, Input input)
 
     camera->target = Vector3{0.0, 0.0, 4.0};
 
-    camera->update(timeInterval, shader);
-    camera->update(timeInterval, texturedShader);
+    camera->updateCamera(timeInterval, shader);
+    camera->updateCamera(timeInterval, texturedShader);
+    camera->updateCamera(timeInterval, skyboxShader);
 
-    light->update(timeInterval, shader);
-    light->update(timeInterval, texturedShader);
+    light->updateLight(timeInterval, shader);
+    light->updateLight(timeInterval, texturedShader);
 
     for(auto instance : instances) {
         instance->rotation[1] = instance->rotation[1] + 2.0;

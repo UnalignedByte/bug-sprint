@@ -23,6 +23,11 @@ class Drawable: public Instance
 public:
     Drawable(const std::string &modelFileName, std::shared_ptr<ShaderProgram> shaderProgram);
     Drawable(const std::string &modelFileName, const std::string &textureFileName, std::shared_ptr<ShaderProgram> shaderProgram);
+    Drawable(const std::string &modelFileName,
+             const std::string &rightTextureFileName, const std::string &leftTextureFileName,
+             const std::string &topTextureFileName, const std::string &bottomTextureFileName,
+             const std::string &frontTextureFileName, const std::string backTextureFileName,
+             std::shared_ptr<ShaderProgram> shaderProgram);
 
     void draw() override;
 
