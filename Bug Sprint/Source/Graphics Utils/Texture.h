@@ -10,6 +10,7 @@
 #define TEXTURE_H
 
 #include <string>
+#include <memory>
 #include "OpenGLES.h"
 #include "ShaderProgram.h"
 

@@ -61,3 +61,11 @@ FileBuffer SystemUtils::bufferForFileName(const std::string &fileName)
 
     return fileBuffer;
 }
+
+
+ImageData SystemUtils::imageDataForFileName(const std::string &fileName)
+{
+    ImageData imageData;
+
+    return imageData;
+}
