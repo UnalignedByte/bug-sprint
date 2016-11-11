@@ -17,7 +17,7 @@ Image::Image(const std::string &fileName)
 {
     ImageData imageData = SystemUtils::imageDataForFileName(fileName);
     if(imageData.rgbaImageData == nullptr)
-        throw string("Could not find image " + fileName);
+        throw string("Could not load image " + fileName);
 
     width = imageData.width;
     height = imageData.height;

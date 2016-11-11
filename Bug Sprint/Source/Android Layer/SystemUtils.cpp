@@ -4,6 +4,8 @@
 
 #include "SystemUtils.h"
 
+#include <android/bitmap.h>
+
 using namespace std;
 
 
@@ -65,7 +67,53 @@ FileBuffer SystemUtils::bufferForFileName(const std::string &fileName)
 
 ImageData SystemUtils::imageDataForFileName(const std::string &fileName)
 {
+    if(app == nullptr)
+        throw string("SystemUtils is not initialized");
+
     ImageData imageData;
+
+    JNIEnv *env;
+    app->activity->vm->AttachCurrentThread(&env, NULL);
+
+    // activity.getApplication()
+    jclass nativeActivityClass = env->GetObjectClass(app->activity->clazz);
+    jmethodID getApplicationId = env->GetMethodID(nativeActivityClass, "getApplication", "()Landroid/app/Application;");
+    jobject applicationObj = env->CallObjectMethod(app->activity->clazz, getApplicationId);
+
+    // application.getAssets()
+    jclass applicationClass = env->FindClass("android/app/Application");
+    jmethodID getAssetsId = env->GetMethodID(applicationClass, "getAssets", "()Landroid/content/res/AssetManager;");
+    jobject assetsManagerObj = env->CallObjectMethod(applicationObj, getAssetsId);
+
+    // assetsManager.open()
+    jclass assetsManagerClass = env->FindClass("android/content/res/AssetManager");
+    jmethodID openId = env->GetMethodID(assetsManagerClass, "open", "(Ljava/lang/String;)Ljava/io/InputStream;");
+    jstring fileNameStringObj = env->NewStringUTF(fileName.c_str());
+    jobject inputStreamObj = env->CallObjectMethod(assetsManagerObj, openId, fileNameStringObj);
+
+    // BitmapFactory.decodeStream()
+    jclass bitmapFactoryClass = env->FindClass("android/graphics/BitmapFactory");
+    jmethodID decodeStreamId = env->GetStaticMethodID(bitmapFactoryClass, "decodeStream",
+                                                    "(Ljava/io/InputStream;)Landroid/graphics/Bitmap;");
+    jobject bitmapObj = env->CallStaticObjectMethod(bitmapFactoryClass, decodeStreamId, inputStreamObj);
+
+    AndroidBitmapInfo bitmapInfo;
+    AndroidBitmap_getInfo(env, bitmapObj, &bitmapInfo);
+    if(bitmapInfo.format != ANDROID_BITMAP_FORMAT_RGBA_8888)
+        return imageData;
+
+    imageData.width = bitmapInfo.width;
+    imageData.height = bitmapInfo.height;
+
+    // Copy image data
+    void *bitmapData;
+    AndroidBitmap_lockPixels(env, bitmapObj, &bitmapData);
+
+    int bytesCount = imageData.width * imageData.height * 4;
+    imageData.rgbaImageData = (unsigned char *)calloc(bytesCount, sizeof(unsigned char));
+    memcpy(imageData.rgbaImageData, bitmapData, bytesCount * sizeof(unsigned char));
+
+    AndroidBitmap_unlockPixels(env, bitmapObj);
 
     return imageData;
 }

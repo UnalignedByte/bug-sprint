@@ -43,6 +43,7 @@ target_include_directories(bug-sprint PRIVATE
 target_link_libraries(bug-sprint
     android
     app-glue
+    jnigraphics
     log
     EGL
     GLESv3
