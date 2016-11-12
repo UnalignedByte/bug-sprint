@@ -1,5 +1,7 @@
 #version 300 es
 
+precision highp float;
+
 struct Light {
     vec3 direction;
     vec3 color;
@@ -13,17 +15,14 @@ struct Material {
 };
 
 
-layout(location = 0) in vec3 position;
-layout(location = 1) in vec3 normal;
-
-uniform mat4 modelMatrix;
-uniform mat4 viewMatrix;
-uniform mat4 projectionMatrix;
+in vec3 fPosition;
+in vec3 fCameraPosition;
+in vec3 fNormal;
 
 uniform Light light;
 uniform Material material;
 
-out vec3 fColor;
+out vec4 outColor;
 
 
 void main(void)
@@ -34,22 +33,17 @@ void main(void)
     color += material.ambientIntensity * material.color * light.color;
 
     // Diffuse
-    vec3 transformedNormal = mat3(modelMatrix) * normal;
-    float diffuseIntensity = dot(transformedNormal, -light.direction) * material.diffuseIntensity;
+    float diffuseIntensity = dot(fNormal, -light.direction) * material.diffuseIntensity;
     diffuseIntensity = clamp(diffuseIntensity, 0.0, 1.0);
     color += diffuseIntensity * material.color * light.color;
 
     // Specular
-    vec3 transformedPosition = (viewMatrix * modelMatrix * vec4(position, 1.0)).xyz;
-    vec3 cameraDirection = normalize(viewMatrix[3].xyz - transformedPosition);
-    vec3 lightDirectionReflected = normalize(reflect(light.direction, transformedNormal));
+    vec3 cameraDirection = normalize(fCameraPosition - fPosition);
+    vec3 lightDirectionReflected = normalize(reflect(light.direction, fNormal));
     float specularIntensity = dot(cameraDirection, lightDirectionReflected);
     if(specularIntensity > 0.0) {
         color += pow(specularIntensity, material.specularIntensity) * light.color;
     }
 
-    fColor = color;
-
-    // Position
-    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
+    outColor = vec4(color, 1.0);
 }

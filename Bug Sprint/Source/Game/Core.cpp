@@ -24,20 +24,25 @@ Core::Core(double width, double height)
 {
     glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
 
-    shader = make_shared<ShaderProgram>("Shaders/default.vsh", "Shaders/default.fsh");
+    defaultShader = make_shared<ShaderProgram>("Shaders/default.vsh", "Shaders/default.fsh");
+    defaultPerFragmentShader = make_shared<ShaderProgram>("Shaders/defaultPerFragment.vsh", "Shaders/defaultPerFragment.fsh");
     texturedShader = make_shared<ShaderProgram>("Shaders/textured.vsh", "Shaders/textured.fsh");
     skyboxShader = make_shared<ShaderProgram>("Shaders/skybox.vsh", "Shaders/skybox.fsh");
 
     camera = make_shared<Camera>(width, height);
     light = make_shared<Light>();
 
-    instances.push_back(make_shared<Drawable>("Game/monkey_smooth.obj", shader));
-    instances[0]->translation[0] = -2.0;
+    instances.push_back(make_shared<Drawable>("Game/monkey_smooth.obj", defaultShader));
+    instances[0]->translation[0] = -3.0;
     instances[0]->translation[2] = 4.0;
 
-    instances.push_back(make_shared<Drawable>("Game/box.obj", "Game/box.jpg", texturedShader));
-    instances[1]->translation[0] = 2.0;
+    instances.push_back(make_shared<Drawable>("Game/monkey_smooth.obj", defaultPerFragmentShader));
+    instances[1]->translation[0] = 0.0;
     instances[1]->translation[2] = 4.0;
+
+    instances.push_back(make_shared<Drawable>("Game/box.obj", "Game/box.jpg", texturedShader));
+    instances[2]->translation[0] = 3.0;
+    instances[2]->translation[2] = 4.0;
 
     instances.push_back(make_shared<Drawable>("Game/box.obj", "Game/skybox_right.png", "Game/skybox_left.png",
                                               "Game/skybox_top.png", "Game/skybox_bottom.png",
@@ -63,11 +68,13 @@ void Core::update(double timeInterval, Input input)
 
     camera->target = Vector3{0.0, 0.0, 4.0};
 
-    camera->updateCamera(timeInterval, shader);
+    camera->updateCamera(timeInterval, defaultShader);
+    camera->updateCamera(timeInterval, defaultPerFragmentShader);
     camera->updateCamera(timeInterval, texturedShader);
     camera->updateCamera(timeInterval, skyboxShader);
 
-    light->updateLight(timeInterval, shader);
+    light->updateLight(timeInterval, defaultShader);
+    light->updateLight(timeInterval, defaultPerFragmentShader);
     light->updateLight(timeInterval, texturedShader);
 
     for(auto instance : instances) {

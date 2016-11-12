@@ -31,7 +31,8 @@ public:
 private:
     Color clearColor{0.0, 0.0, 0.2, 1.0};
 
-    std::shared_ptr<ShaderProgram> shader;
+    std::shared_ptr<ShaderProgram> defaultShader;
+    std::shared_ptr<ShaderProgram> defaultPerFragmentShader;
     std::shared_ptr<ShaderProgram> texturedShader;
     std::shared_ptr<ShaderProgram> skyboxShader;
 
