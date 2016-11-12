@@ -71,7 +71,7 @@ void Core::update(double timeInterval, Input input)
     light->updateLight(timeInterval, texturedShader);
 
     for(auto instance : instances) {
-        instance->rotation[1] = instance->rotation[1] + 1.0;
+        instance->rotation[1] = instance->rotation[1] + 45.0 * timeInterval;
 
         instance->update(timeInterval);
     }
@@ -81,7 +81,6 @@ void Core::update(double timeInterval, Input input)
 void Core::draw()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glDisable(GL_CULL_FACE);
 
     for(auto instance: instances)
         instance->draw();

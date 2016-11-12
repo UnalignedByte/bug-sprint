@@ -45,10 +45,10 @@ protected:
     GLsizei trianglesCount;
     bool hasTexCoords;
 
-    Color color = {1.0, 1.0, 1.0, 1.0};
+    Color color = {0.5, 0.5, 0.5, 1.0};
     GLfloat ambientIntensity = 0.2;
-    GLfloat diffuseIntensity = 1.0;
-    GLfloat specularIntensity = 0.0;
+    GLfloat diffuseIntensity = 0.8;
+    GLfloat specularIntensity = 10.0;
 
 protected:
     void loadObj(const std::string &fileString);

@@ -25,19 +25,33 @@ uniform Light light;
 uniform Material material;
 
 out vec3 fColor;
+out vec3 fSpecularColor;
 out vec2 fTexCoord;
 
 
 void main(void)
 {
-    // Calculate light intensity
+    vec3 color = vec3(0.0);
+    
+    // Ambient
+    color += material.ambientIntensity * material.color * light.color;
+
+    // Diffuse
     mat3 normalModelMatrix = mat3(modelMatrix[0].xyz, modelMatrix[1].xyz, modelMatrix[2].xyz);
     vec3 transformedNormal = normalModelMatrix * normal;
     float diffuseIntensity = dot(transformedNormal, -light.direction) * material.diffuseIntensity;
     diffuseIntensity = clamp(diffuseIntensity, 0.0, 1.0);
+    color += diffuseIntensity * material.color * light.color;
+
+    // Specular
+    vec3 cameraDirection = normalize(viewMatrix[3].xyz - modelMatrix[3].xyz);
+    vec3 lightDirectionReflected = normalize(reflect(light.direction, transformedNormal));
+    float specularIntensity = dot(cameraDirection, lightDirectionReflected);
+    fSpecularColor = pow(specularIntensity, material.specularIntensity) * light.color;
+    fSpecularColor = clamp(fSpecularColor, 0.0, 1.0);
 
     // Color
-    fColor = (material.ambientIntensity + diffuseIntensity) * material.color * light.color;
+    fColor = color;
 
     // Texture
     fTexCoord = texCoord;
