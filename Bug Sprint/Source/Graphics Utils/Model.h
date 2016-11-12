@@ -16,6 +16,7 @@
 
 #include "ShaderProgram.h"
 #include "Matrix.h"
+#include "Color.h"
 
 
 class Model
@@ -27,6 +28,15 @@ public:
     GLsizei getTrianglesCount() const;
     bool getHasTexCoords() const;
 
+    Color getColor() const;
+    void setColor(const Color &color);
+    GLfloat getAmbientIntensity() const;
+    void setAmbientIntensity(GLfloat intensity);
+    GLfloat getDiffuseIntensity() const;
+    void setDiffuseIntensity(GLfloat intensity);
+    GLfloat getSpecularIntensity() const;
+    void setSpecularIntensity(GLfloat intensity);
+
     void draw(std::shared_ptr<ShaderProgram> shaderProgram, Matrix4 &modelMatrix);
 
 protected:
@@ -34,6 +44,11 @@ protected:
 
     GLsizei trianglesCount;
     bool hasTexCoords;
+
+    Color color = {1.0, 1.0, 1.0, 1.0};
+    GLfloat ambientIntensity = 0.2;
+    GLfloat diffuseIntensity = 1.0;
+    GLfloat specularIntensity = 0.0;
 
 protected:
     void loadObj(const std::string &fileString);

@@ -16,6 +16,7 @@
 
 #include "ShaderProgram.h"
 #include "Vector.h"
+#include "Color.h"
 
 
 class Light: public Instance
@@ -23,9 +24,17 @@ class Light: public Instance
 public:
     Light();
 
-    Vector3 getLightDirection() const;
+
+    Vector3 getDirection() const;
+    void setDirection(const Vector3 &direction);
+    Color getColor() const;
+    void setColor(const Color &color);
 
     void updateLight(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
+
+protected:
+    Vector3 direction = {0.0, 0.0, 1.0};
+    Color color = {1.0, 1.0, 1.0, 1.0};
 };
 
 #endif

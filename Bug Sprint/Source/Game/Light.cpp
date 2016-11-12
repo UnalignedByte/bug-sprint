@@ -11,14 +11,38 @@
 using namespace std;
 
 
+struct LightUniform {
+    GLfloat direction[3];
+    GLfloat color[3];
+};
+
+
 Light::Light()
 {
 }
 
 
-Vector3 Light::getLightDirection() const
+Vector3 Light::getDirection() const
 {
-    return Vector3({0.0, 0.0, -1.0});
+    return direction;
+}
+
+
+void Light::setDirection(const Vector3 &direction)
+{
+    this->direction = direction.normalized();
+}
+
+
+Color Light::getColor() const
+{
+    return color;
+}
+
+
+void Light::setColor(const Color &color)
+{
+    this->color = color;
 }
 
 
@@ -26,9 +50,9 @@ void Light::updateLight(double timeInterval, shared_ptr<ShaderProgram> shaderPro
 {
     shaderProgram->use();
 
-    Vector3 lightDirection = getLightDirection();
+    GLint lightDirectionId = glGetUniformLocation(shaderProgram->getId(), "light.direction");
+    glUniform3f(lightDirectionId, direction[0], direction[1], direction[2]);
 
-    GLint lightDirectionId = glGetUniformLocation(shaderProgram->getId(), "lightDirection");
-    glUniform3f(lightDirectionId, lightDirection[0], lightDirection[1], lightDirection[2]);
-    
+    GLint lightColorId = glGetUniformLocation(shaderProgram->getId(), "light.color");
+    glUniform3f(lightColorId, color[0], color[1], color[2]);
 }

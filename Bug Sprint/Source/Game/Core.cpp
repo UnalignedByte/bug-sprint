@@ -31,7 +31,7 @@ Core::Core(double width, double height)
     camera = make_shared<Camera>(width, height);
     light = make_shared<Light>();
 
-    instances.push_back(make_shared<Drawable>("Game/monkey.obj", shader));
+    instances.push_back(make_shared<Drawable>("Game/monkey_smooth.obj", shader));
     instances[0]->translation[0] = -2.0;
     instances[0]->translation[2] = 4.0;
 
@@ -43,7 +43,6 @@ Core::Core(double width, double height)
                                               "Game/skybox_top.png", "Game/skybox_bottom.png",
                                               "Game/skybox_front.png", "Game/skybox_back.png",
                                               skyboxShader));
-    instances[2]->scale = 5.0;
 
     glViewport(0, 0, width, height);
     glEnable(GL_DEPTH_TEST);
@@ -72,8 +71,7 @@ void Core::update(double timeInterval, Input input)
     light->updateLight(timeInterval, texturedShader);
 
     for(auto instance : instances) {
-        instance->rotation[1] = instance->rotation[1] + 2.0;
-        instance->translation[2] = 4.0;
+        instance->rotation[1] = instance->rotation[1] + 1.0;
 
         instance->update(timeInterval);
     }

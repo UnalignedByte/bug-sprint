@@ -19,12 +19,19 @@
 using namespace std;
 
 
-typedef struct {
+struct Vertex {
     GLfloat position[3];
     GLfloat normal[3];
-    GLfloat color[4];
     GLfloat texCoord[2];
-} Vertex;
+};
+
+
+struct MaterialUniform {
+    GLfloat color[3];
+    GLfloat ambientIntensity;
+    GLfloat diffuseIntensity;
+    GLfloat specularIntensity;
+};
 
 
 Model::Model(const string &fileName)
@@ -52,10 +59,72 @@ bool Model::getHasTexCoords() const
 }
 
 
+Color Model::getColor() const
+{
+    return color;
+}
+
+
+void Model::setColor(const Color &color)
+{
+    this->color = color;
+}
+
+
+GLfloat Model::getAmbientIntensity() const
+{
+    return ambientIntensity;
+}
+
+
+void Model::setAmbientIntensity(GLfloat intensity)
+{
+    ambientIntensity = intensity;
+}
+
+
+GLfloat Model::getDiffuseIntensity() const
+{
+    return diffuseIntensity;
+}
+
+
+void Model::setDiffuseIntensity(GLfloat intensity)
+{
+    diffuseIntensity = intensity;
+}
+
+
+GLfloat Model::getSpecularIntensity() const
+{
+    return specularIntensity;
+}
+
+
+void Model::setSpecularIntensity(GLfloat intensity)
+{
+    specularIntensity = intensity;
+}
+
+
 void Model::draw(shared_ptr<ShaderProgram> shaderProgram, Matrix4 &modelMatrix)
 {
+    shaderProgram->use();
+
     GLint modelMatrixId = glGetUniformLocation(shaderProgram->getId(), "modelMatrix");
     glUniformMatrix4fv(modelMatrixId, 1, GL_FALSE, modelMatrix.getData());
+
+    GLint materialColorId = glGetUniformLocation(shaderProgram->getId(), "material.color");
+    glUniform3f(materialColorId, color[0], color[1], color[2]);
+
+    GLint ambientIntensityId = glGetUniformLocation(shaderProgram->getId(), "material.ambientIntensity");
+    glUniform1f(ambientIntensityId, ambientIntensity);
+
+    GLint diffuseIntensityId = glGetUniformLocation(shaderProgram->getId(), "material.diffuseIntensity");
+    glUniform1f(diffuseIntensityId, diffuseIntensity);
+
+    GLint specularIntensityId = glGetUniformLocation(shaderProgram->getId(), "material.specularIntensity");
+    glUniform1f(specularIntensityId, specularIntensity);
 
     glBindVertexArray(vertexArrayId);
     glDrawArrays(GL_TRIANGLES, 0, trianglesCount * 3);
@@ -158,7 +227,6 @@ void Model::loadObj(const std::string &fileString)
             Vertex modelVertex0{
                 {vertex0[0], vertex0[1], vertex0[2]},
                 {normal0[0], normal0[1], normal0[2]},
-                {1.0, 1.0, 1.0, 1.0},
                 {u0, v0}};
             modelData.push_back(modelVertex0);
 
@@ -178,7 +246,6 @@ void Model::loadObj(const std::string &fileString)
             Vertex modelVertex1{
                 {vertex1[0], vertex1[1], vertex1[2]},
                 {normal1[0], normal1[1], normal1[2]},
-                {1.0, 1.0, 1.0, 1.0},
                 {u1, v1}};
             modelData.push_back(modelVertex1);
 
@@ -198,7 +265,6 @@ void Model::loadObj(const std::string &fileString)
             Vertex modelVertex2{
                 {vertex2[0], vertex2[1], vertex2[2]},
                 {normal2[0], normal2[1], normal2[2]},
-                {1.0, 1.0, 1.0, 1.0},
                 {u2, v2}};
             modelData.push_back(modelVertex2);
 
@@ -219,13 +285,10 @@ void Model::loadObj(const std::string &fileString)
 
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, normal));
-    
-    glEnableVertexAttribArray(2);
-    glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, color));
 
     if(hasTexCoords) {
-        glEnableVertexAttribArray(3);
-        glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, texCoord));
+        glEnableVertexAttribArray(2);
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, texCoord));
     }
     
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);

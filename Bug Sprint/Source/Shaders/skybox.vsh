@@ -1,13 +1,27 @@
 #version 300 es
 
+struct Light {
+    vec3 direction;
+    vec3 color;
+};
+
+struct Material {
+    vec3 color;
+    float ambientIntensity;
+    float diffuseIntensity;
+    float specularIntensity;
+};
+
+
 layout(location = 0) in vec3 position;
 layout(location = 1) in vec3 normal;
-layout(location = 2) in vec4 color;
 layout(location = 3) in vec2 texCoord;
 
 uniform mat4 modelMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 projectionMatrix;
+
+uniform Material material;
 
 out vec3 fTexCoord;
 

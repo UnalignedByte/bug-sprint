@@ -81,6 +81,8 @@ void Texture::use(shared_ptr<ShaderProgram> shaderProgram) const
     if(textureId == 0)
         return;
 
+    shaderProgram->use();
+
     if(type == Type2D) {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, textureId);
