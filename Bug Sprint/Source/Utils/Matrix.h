@@ -36,7 +36,9 @@ public:
     static Matrix<4> xRotation(GLfloat angle);
     static Matrix<4> yRotation(GLfloat angle);
     static Matrix<4> zRotation(GLfloat angle);
+    static Matrix<4> ortographicProjection(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat near, GLfloat far);
     static Matrix<4> perspectiveProjection(GLfloat fov, GLfloat aspect, GLfloat near, GLfloat far);
+    static Matrix<4> lookAt(Vector3 eye, Vector3 target);
 
 private:
     GLfloat rawData[SIZE];

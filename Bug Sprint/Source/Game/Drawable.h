@@ -29,12 +29,18 @@ public:
              const std::string &frontTextureFileName, const std::string backTextureFileName,
              std::shared_ptr<ShaderProgram> shaderProgram);
 
+    std::shared_ptr<ShaderProgram> getShader() const;
+    bool getShouldCastShadow() const;
+    void setShouldCastShadow(bool shouldCastShadow);
+
     void draw() override;
+    void drawShadow(std::shared_ptr<ShaderProgram> shaderProgram);
 
 protected:
     std::shared_ptr<ShaderProgram> shaderProgram;
     Model model;
     Texture texture;
+    bool shouldCastShadow = true;
 };
 
 #endif

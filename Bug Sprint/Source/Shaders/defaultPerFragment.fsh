@@ -16,9 +16,9 @@ struct Material {
 
 
 in vec3 fPosition;
-in vec3 fCameraPosition;
 in vec3 fNormal;
 
+uniform vec3 eyePosition;
 uniform Light light;
 uniform Material material;
 
@@ -38,7 +38,7 @@ void main(void)
     color += diffuseIntensity * material.color * light.color;
 
     // Specular
-    vec3 cameraDirection = normalize(fCameraPosition - fPosition);
+    vec3 cameraDirection = normalize(eyePosition - fPosition);
     vec3 lightDirectionReflected = normalize(reflect(light.direction, fNormal));
     float specularIntensity = dot(cameraDirection, lightDirectionReflected);
     if(specularIntensity > 0.0) {

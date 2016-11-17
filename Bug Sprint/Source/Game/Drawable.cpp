@@ -36,9 +36,37 @@ Drawable::Drawable(const std::string &modelFileName,
 }
 
 
+shared_ptr<ShaderProgram> Drawable::getShader() const
+{
+    return shaderProgram;
+}
+
+
+bool Drawable::getShouldCastShadow() const
+{
+    return shouldCastShadow;
+}
+
+
+void Drawable::setShouldCastShadow(bool shouldCastShadow)
+{
+    this->shouldCastShadow = shouldCastShadow;
+}
+
+
 void Drawable::draw()
 {
     shaderProgram->use();
     texture.use(shaderProgram);
+    model.draw(shaderProgram, modelMatrix);
+}
+
+
+void Drawable::drawShadow(shared_ptr<ShaderProgram> shaderProgram)
+{
+    if(!shouldCastShadow)
+        return;
+    
+    shaderProgram->use();
     model.draw(shaderProgram, modelMatrix);
 }

@@ -22,19 +22,26 @@
 class Light: public Instance
 {
 public:
-    Light();
+    Vector3 target = {0.0, 0.0, 1.0};
 
+public:
+    Light(GLfloat viewWidth, GLfloat viewHeight);
 
-    Vector3 getDirection() const;
-    void setDirection(const Vector3 &direction);
     Color getColor() const;
     void setColor(const Color &color);
+    Vector3 getDirection() const;
 
     void updateLight(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
+    void updateShadow(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
 
 protected:
-    Vector3 direction = {0.0, 0.0, 1.0};
     Color color = {1.0, 1.0, 1.0, 1.0};
+
+    GLfloat viewWidth;
+    GLfloat viewHeight;
+    GLfloat fov = 60.0;
+    GLfloat zNear = 0.01;
+    GLfloat zFar = 100.0;
 };
 
 #endif

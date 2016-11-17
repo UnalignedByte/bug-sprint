@@ -26,9 +26,6 @@ public:
 public:
     Camera(GLfloat viewWidth, GLfloat viewHeight);
 
-    Matrix4 getCameraViewMatrix() const;
-    Matrix4 getCameraProjectionMatrix() const;
-
     void updateCamera(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
 
 protected:

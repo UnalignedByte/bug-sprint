@@ -12,12 +12,14 @@
 #include <memory>
 #include <vector>
 
+#include "OpenGLES.h"
 #include "ShaderProgram.h"
 #include "Instance.h"
 #include "Camera.h"
 #include "Light.h"
 #include "Color.h"
 #include "Types.h"
+#include "ShadowPass.h"
 
 
 class Core
@@ -26,20 +28,26 @@ public:
     Core(double width, double height);
 
     void update(double timeInterval, Input input);
+    void updateInput(double timeInterval, Input input);
+    void updateState(double timeInterval);
     void draw();
+    void shadowPass();
+    void renderPass();
 
-private:
+protected:
     Color clearColor{0.0, 0.0, 0.2, 1.0};
-
-    std::shared_ptr<ShaderProgram> defaultShader;
-    std::shared_ptr<ShaderProgram> defaultPerFragmentShader;
-    std::shared_ptr<ShaderProgram> texturedShader;
-    std::shared_ptr<ShaderProgram> skyboxShader;
+    GLint width;
+    GLint height;
 
     std::shared_ptr<Camera> camera;
     std::shared_ptr<Light> light;
+    std::shared_ptr<ShadowPass> shadow;
     
     std::vector<std::shared_ptr<Instance>> instances;
+    std::vector<std::shared_ptr<ShaderProgram>> updateCameraShaders;
+    std::vector<std::shared_ptr<ShaderProgram>> updateLightShaders;
+    std::vector<std::shared_ptr<ShaderProgram>> updateShadowShaders;
+    std::vector<std::shared_ptr<ShaderProgram>> shadedShaders;
 };
 
 #endif

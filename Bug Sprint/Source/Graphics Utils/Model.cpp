@@ -112,7 +112,8 @@ void Model::draw(shared_ptr<ShaderProgram> shaderProgram, Matrix4 &modelMatrix)
     shaderProgram->use();
 
     GLint modelMatrixId = glGetUniformLocation(shaderProgram->getId(), "modelMatrix");
-    glUniformMatrix4fv(modelMatrixId, 1, GL_FALSE, modelMatrix.getData());
+    Matrix4 modelMatrixCopy = modelMatrix;
+    glUniformMatrix4fv(modelMatrixId, 1, GL_FALSE, modelMatrixCopy.getData());
 
     GLint materialColorId = glGetUniformLocation(shaderProgram->getId(), "material.color");
     glUniform3f(materialColorId, color[0], color[1], color[2]);

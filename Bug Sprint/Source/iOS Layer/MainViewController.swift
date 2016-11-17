@@ -23,7 +23,10 @@ class MainViewController: GLKViewController
         self.glkView.context = EAGLContext(api: .openGLES3)
         EAGLContext.setCurrent(self.glkView.context)
 
-        self.core = CoreAdapter(size: self.view.frame.size)
+        var size = self.view.frame.size
+        size.width *= UIScreen.main.scale
+        size.height *= UIScreen.main.scale
+        self.core = CoreAdapter(size: size)
     }
 
 

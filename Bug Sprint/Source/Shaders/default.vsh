@@ -19,6 +19,7 @@ layout(location = 1) in vec3 normal;
 uniform mat4 modelMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 projectionMatrix;
+uniform vec3 eyePosition;
 
 uniform Light light;
 uniform Material material;
@@ -41,7 +42,7 @@ void main(void)
 
     // Specular
     vec3 transformedPosition = (viewMatrix * modelMatrix * vec4(position, 1.0)).xyz;
-    vec3 cameraDirection = normalize(viewMatrix[3].xyz - transformedPosition);
+    vec3 cameraDirection = normalize(eyePosition - transformedPosition);
     vec3 lightDirectionReflected = normalize(reflect(light.direction, transformedNormal));
     float specularIntensity = dot(cameraDirection, lightDirectionReflected);
     if(specularIntensity > 0.0) {

@@ -20,6 +20,7 @@ layout(location = 2) in vec2 texCoord;
 uniform mat4 modelMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 projectionMatrix;
+uniform vec3 eyePosition;
 
 uniform Light light;
 uniform Material material;
@@ -44,7 +45,8 @@ void main(void)
     color += diffuseIntensity * material.color * light.color;
 
     // Specular
-    vec3 cameraDirection = normalize(viewMatrix[3].xyz - modelMatrix[3].xyz);
+    vec3 transformedPosition = (viewMatrix * modelMatrix * vec4(position, 1.0)).xyz;
+    vec3 cameraDirection = normalize(eyePosition - transformedPosition);
     vec3 lightDirectionReflected = normalize(reflect(light.direction, transformedNormal));
     float specularIntensity = dot(cameraDirection, lightDirectionReflected);
     fSpecularColor = pow(specularIntensity, material.specularIntensity) * light.color;

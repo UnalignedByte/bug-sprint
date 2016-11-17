@@ -183,6 +183,21 @@ Matrix<4> Matrix<SIZE>::zRotation(GLfloat angle)
 
 
 template<int SIZE>
+Matrix<4> Matrix<SIZE>::ortographicProjection(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat near, GLfloat far)
+{
+    Matrix<4> matrix;
+
+    matrix[0][0] = 2.0 / (right - left);
+    matrix[1][1] = 2.0 / (top - bottom);
+    matrix[2][2] = 2.0 / (far - near);
+    matrix[0][3] = -(right + left) / (right - left);
+    matrix[1][3] = -(top + bottom) / (top - bottom);
+    matrix[2][3] = (far + near) / (far - near);
+
+    return matrix;
+}
+
+template<int SIZE>
 Matrix<4> Matrix<SIZE>::perspectiveProjection(GLfloat fov, GLfloat aspect, GLfloat near, GLfloat far)
 {
     Matrix<4> matrix;
@@ -197,4 +212,29 @@ Matrix<4> Matrix<SIZE>::perspectiveProjection(GLfloat fov, GLfloat aspect, GLflo
     matrix[3][2] = (2.0 * far * near) / (near - far); // Far clipping
 
     return matrix;
+}
+
+
+template<int SIZE>
+Matrix<4> Matrix<SIZE>::lookAt(Vector3 eye, Vector3 target)
+{
+    Matrix4 viewMatrix;
+    viewMatrix = viewMatrix * Matrix4::translation(-eye[0], -eye[1], -eye[2]);
+
+    Vector3 direction = target - eye;
+    direction = direction.normalized();
+
+    Vector3 right = direction.cross(Vector3{0.0, 1.0, 0.0});
+    right = right.normalized();
+
+    Vector3 up = right.cross(direction);
+
+    Matrix4 lookAtMatrix{{right[0], up[0], direction[0], 0.0},
+                         {right[1], up[1], direction[1], 0.0},
+                         {right[2], up[2], direction[2], 0.0},
+                         {0.0,      0.0,   0.0,          1.0}};
+
+    viewMatrix = viewMatrix * lookAtMatrix;
+
+    return viewMatrix;
 }
