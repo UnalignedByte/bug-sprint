@@ -41,7 +41,7 @@ public:
     static Matrix<4> lookAt(Vector3 eye, Vector3 target);
 
 private:
-    GLfloat rawData[SIZE];
+    GLfloat rawData[SIZE*SIZE];
     Vector<SIZE> data[SIZE];
 };
 
