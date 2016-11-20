@@ -44,6 +44,7 @@
 		B5880FA91DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
 		B5880FAA1DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
 		B5880FAC1DB939A90063AEDA /* InstanceTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FAB1DB939A90063AEDA /* InstanceTests.cpp */; };
+		B5A7DB931DE1C6EB003C1B7D /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5A7DB911DE1C6EB003C1B7D /* Sprite.cpp */; };
 		B5B1AB401DACCC5100066910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B1AB3F1DACCC5100066910 /* AppDelegate.swift */; };
 		B5B1AB421DACCC5100066910 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B1AB411DACCC5100066910 /* MainViewController.swift */; };
 		B5B1AB471DACCC5100066910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B1AB461DACCC5100066910 /* Assets.xcassets */; };
@@ -115,6 +116,8 @@
 		B5880FA71DB939840063AEDA /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Light.cpp; path = Source/Game/Light.cpp; sourceTree = "<group>"; };
 		B5880FA81DB939840063AEDA /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Light.h; path = Source/Game/Light.h; sourceTree = "<group>"; };
 		B5880FAB1DB939A90063AEDA /* InstanceTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InstanceTests.cpp; path = "Bug Sprint/Unit Tests/Source/InstanceTests.cpp"; sourceTree = SOURCE_ROOT; };
+		B5A7DB911DE1C6EB003C1B7D /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sprite.cpp; path = "Source/Graphics Utils/2D/Sprite.cpp"; sourceTree = "<group>"; };
+		B5A7DB921DE1C6EB003C1B7D /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprite.h; path = "Source/Graphics Utils/2D/Sprite.h"; sourceTree = "<group>"; };
 		B5B1AB3C1DACCC5100066910 /* Bug Sprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bug Sprint.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B1AB3F1DACCC5100066910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Source/iOS Layer/AppDelegate.swift"; sourceTree = "<group>"; };
 		B5B1AB411DACCC5100066910 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "Source/iOS Layer/MainViewController.swift"; sourceTree = "<group>"; };
@@ -207,6 +210,7 @@
 		B50C61241DB5379A005147FA /* Graphics Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B5A7DB901DE1C6DD003C1B7D /* 2D */,
 				B53370EE1DB4178300275631 /* Color.h */,
 				B53370ED1DB4178300275631 /* Color.cpp */,
 				B53370F51DB41C7B00275631 /* ShaderProgram.h */,
@@ -263,6 +267,15 @@
 				B5880FA71DB939840063AEDA /* Light.cpp */,
 			);
 			name = Game;
+			sourceTree = "<group>";
+		};
+		B5A7DB901DE1C6DD003C1B7D /* 2D */ = {
+			isa = PBXGroup;
+			children = (
+				B5A7DB921DE1C6EB003C1B7D /* Sprite.h */,
+				B5A7DB911DE1C6EB003C1B7D /* Sprite.cpp */,
+			);
+			name = 2D;
 			sourceTree = "<group>";
 		};
 		B5B1AB331DACCC5100066910 = {
@@ -599,6 +612,7 @@
 				B57035FC1DCF4B4D00B46354 /* FileBuffer.cpp in Sources */,
 				B50C61161DB51D0B005147FA /* SystemUtils.mm in Sources */,
 				B50C61391DB818F3005147FA /* Camera.cpp in Sources */,
+				B5A7DB931DE1C6EB003C1B7D /* Sprite.cpp in Sources */,
 				B58779E41DAD8FC6007A6DBF /* Instance.cpp in Sources */,
 				B51D15AB1DBA2C2F0093E6AC /* Drawable.cpp in Sources */,
 				B5880FA91DB939840063AEDA /* Light.cpp in Sources */,

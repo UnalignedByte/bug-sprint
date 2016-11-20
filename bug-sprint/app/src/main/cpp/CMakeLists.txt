@@ -12,6 +12,7 @@ include_directories(
     "${SRC}/Android Layer"
     "${SRC}/Utils"
     "${SRC}/Graphics Utils"
+    "${SRC}/Graphics Utils/2D"
     "${SRC}/Game"
 )
 
@@ -29,6 +30,7 @@ add_library(bug-sprint SHARED
     "${SRC}/Graphics Utils/Image.cpp"
     "${SRC}/Graphics Utils/Texture.cpp"
     "${SRC}/Graphics Utils/ShadowPass.cpp"
+    "${SRC}/Graphics Utils/2D/Sprite.cpp"
 
     "${SRC}/Game/Core.cpp"
     "${SRC}/Game/Instance.cpp"

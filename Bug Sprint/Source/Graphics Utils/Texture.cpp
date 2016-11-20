@@ -23,6 +23,8 @@ Texture::Texture(const string &fileName)
     Image image(fileName);
     textureId = loadTexture(image.getWidth(), image.getHeight(), image.getData());
     type = Type2D;
+    width = image.getWidth();
+    height = image.getHeight();
 }
 
 
@@ -39,8 +41,8 @@ Texture::Texture(const string &rightFileName, const string &leftFileName,
     Image frontImage(frontFileName);
     Image backImage(backFileName);
 
-    GLint width = rightImage.getWidth();
-    GLint height = rightImage.getHeight();
+    width = rightImage.getWidth();
+    height = rightImage.getHeight();
 
     if(leftImage.getWidth() != width || leftImage.getHeight() != height ||
        topImage.getWidth() != width || topImage.getHeight() != height ||
@@ -73,6 +75,18 @@ GLuint Texture::getId() const
 Texture::Type Texture::getType() const
 {
     return type;
+}
+
+
+GLint Texture::getWidth() const
+{
+    return width;
+}
+
+
+GLint  Texture::getHeight() const
+{
+    return height;
 }
 
 

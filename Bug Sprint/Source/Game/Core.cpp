@@ -16,6 +16,7 @@
 #include "Drawable.h"
 #include "Camera.h"
 #include "Texture.h"
+#include "Sprite.h"
 
 using namespace std;
 
@@ -29,12 +30,15 @@ Core::Core(double width, double height) :
     shared_ptr<ShaderProgram> skyboxShader = make_shared<ShaderProgram>("Shaders/skybox.vsh", "Shaders/skybox.fsh");
     shared_ptr<ShaderProgram> defaultShadedPerFragmentShader = make_shared<ShaderProgram>("Shaders/defaultShadedPerFragment.vsh", "Shaders/defaultShadedPerFragment.fsh");
     shared_ptr<ShaderProgram> shadowShader = make_shared<ShaderProgram>("Shaders/shadow.vsh", "Shaders/shadow.fsh");
+    shared_ptr<ShaderProgram> spriteShader = make_shared<ShaderProgram>("Shaders/sprite.vsh", "Shaders/sprite.fsh");
 
     updateCameraShaders.push_back(defaultShader);
     updateCameraShaders.push_back(defaultPerFragmentShader);
     updateCameraShaders.push_back(texturedShader);
     updateCameraShaders.push_back(skyboxShader);
     updateCameraShaders.push_back(defaultShadedPerFragmentShader);
+
+    updateSpriteCameraShaders.push_back(spriteShader);
 
     updateLightShaders.push_back(defaultShader);
     updateLightShaders.push_back(defaultPerFragmentShader);
@@ -47,7 +51,8 @@ Core::Core(double width, double height) :
 
     shadedShaders.push_back(defaultShadedPerFragmentShader);
 
-    camera = make_shared<Camera>(width, height);
+    camera = make_shared<Camera>(width, height, 10.0, 60.0);
+    spriteCamera = make_shared<Camera>(width, height, 2.0);
     light = make_shared<Light>(width, height);
     shadow = make_shared<ShadowPass>(1024, 1024, shadowShader);
 
@@ -71,6 +76,8 @@ Core::Core(double width, double height) :
                                               "Game/skybox_front.png", "Game/skybox_back.png",
                                               skyboxShader));
     dynamic_pointer_cast<Drawable>(instances.back())->setShouldCastShadow(false);
+
+    spriteInstances.push_back(make_shared<Sprite>("Game/mario.png", spriteShader));
 }
 
 
@@ -116,8 +123,13 @@ void Core::updateState(double timeInterval)
     for(auto shader : updateShadowShaders)
         light->updateShadow(timeInterval, shader);
 
+    for(auto shader : updateSpriteCameraShaders)
+        spriteCamera->updateCamera(timeInterval, shader);
 
     for(auto instance : instances)
+        instance->update(timeInterval);
+
+    for(auto instance : spriteInstances)
         instance->update(timeInterval);
 }
 
@@ -163,5 +175,12 @@ void Core::renderPass()
         } else {
             instance->draw();
         }
+    }
+
+    // Draw Sprites
+    glDisable(GL_DEPTH_TEST);
+
+    for(auto instance : spriteInstances) {
+        instance->draw();
     }
 }

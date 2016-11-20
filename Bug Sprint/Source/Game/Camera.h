@@ -21,19 +21,34 @@
 class Camera: public Instance
 {
 public:
+    enum Type {
+        TypeOrtographic,
+        TypePerspective
+    };
+
+public:
     Vector3 target;
 
 public:
-    Camera(GLfloat viewWidth, GLfloat viewHeight);
+    Camera(GLfloat width, GLfloat height, GLfloat depth, GLfloat fieldOfView = -1.0);
+
+    Type getType() const;
+    GLfloat getWidth() const;
+    GLfloat getHeight() const;
+    GLfloat getDepth() const;
+    GLfloat getFieldOfView() const;
 
     void updateCamera(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
 
 protected:
-    GLfloat viewWidth;
-    GLfloat viewHeight;
-    GLfloat fov = 60.0;
+    Type type;
+
+    GLfloat width;
+    GLfloat height;
+    GLfloat aspectRatio;
     GLfloat zNear = 0.01;
-    GLfloat zFar = 100.0;
+    GLfloat zFar;
+    GLfloat fieldOfView;
 };
 
 #endif

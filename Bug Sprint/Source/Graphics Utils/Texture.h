@@ -33,12 +33,16 @@ public:
 
     GLuint getId() const;
     Type getType() const;
+    GLint getWidth() const;
+    GLint getHeight() const;
     
     void use(std::shared_ptr<ShaderProgram> shaderProgram) const;
 
 protected:
     GLuint textureId = 0;
     Type type;
+    GLint width;
+    GLint height;
 
     GLuint loadTexture(GLint width, GLint height, GLubyte *data);
     GLuint loadCubeTexture(GLint width, GLint height,

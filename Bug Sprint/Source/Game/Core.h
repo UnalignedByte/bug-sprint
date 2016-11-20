@@ -40,14 +40,18 @@ protected:
     GLint height;
 
     std::shared_ptr<Camera> camera;
+    std::shared_ptr<Camera> spriteCamera;
     std::shared_ptr<Light> light;
     std::shared_ptr<ShadowPass> shadow;
     
     std::vector<std::shared_ptr<Instance>> instances;
+    std::vector<std::shared_ptr<Instance>> spriteInstances;
+
     std::vector<std::shared_ptr<ShaderProgram>> updateCameraShaders;
     std::vector<std::shared_ptr<ShaderProgram>> updateLightShaders;
     std::vector<std::shared_ptr<ShaderProgram>> updateShadowShaders;
     std::vector<std::shared_ptr<ShaderProgram>> shadedShaders;
+    std::vector<std::shared_ptr<ShaderProgram>> updateSpriteCameraShaders;
 };
 
 #endif
