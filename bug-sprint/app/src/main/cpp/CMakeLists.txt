@@ -31,6 +31,7 @@ add_library(bug-sprint SHARED
     "${SRC}/Graphics Utils/Texture.cpp"
     "${SRC}/Graphics Utils/ShadowPass.cpp"
     "${SRC}/Graphics Utils/2D/Sprite.cpp"
+    "${SRC}/Graphics Utils/2D/Label.cpp"
 
     "${SRC}/Game/Core.cpp"
     "${SRC}/Game/Instance.cpp"

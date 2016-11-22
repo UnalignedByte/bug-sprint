@@ -60,6 +60,16 @@ Texture::Texture(const string &rightFileName, const string &leftFileName,
 }
 
 
+Texture::Texture(const std::string &text, const std::string &fontName, int fontSize)
+{
+    Image image(text, fontName, fontSize);
+    textureId = loadTexture(image.getWidth(), image.getHeight(), image.getData());
+    type = Type2D;
+    width = image.getWidth();
+    height = image.getHeight();
+}
+
+
 Texture::~Texture()
 {
     glDeleteTextures(1, &textureId);

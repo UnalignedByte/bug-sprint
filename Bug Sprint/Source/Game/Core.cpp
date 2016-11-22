@@ -17,6 +17,7 @@
 #include "Camera.h"
 #include "Texture.h"
 #include "Sprite.h"
+#include "Label.h"
 
 using namespace std;
 
@@ -78,6 +79,8 @@ Core::Core(double width, double height) :
     dynamic_pointer_cast<Drawable>(instances.back())->setShouldCastShadow(false);
 
     spriteInstances.push_back(make_shared<Sprite>("Game/mario.png", spriteShader));
+    spriteInstances.push_back(make_shared<Label>("Hello World!", "Helvetica", 40.0, spriteShader));
+    spriteInstances.push_back(make_shared<Sprite>("Game/goose.jpg", spriteShader));
 }
 
 
@@ -109,6 +112,11 @@ void Core::updateInput(double timeInterval, Input input)
     //light->translation = {camera->translation[0], camera->translation[1], 8.0};
     light->translation = {6.0, 2.0, 0.0};
     light->target = camera->target;
+
+    auto inst = spriteInstances.back();
+    static double elapsed;
+    elapsed += timeInterval;
+    inst->translation[0] = width*0.5 * sin(elapsed / 2.0);
 }
 
 

@@ -29,6 +29,7 @@ public:
     Texture(const std::string &rightFileName, const std::string &leftFileName,
             const std::string &topFileName, const std::string &bottomFileName,
             const std::string &frontFileName, const std::string backFileName);
+    Texture(const std::string &text, const std::string &fontName, int fontSize);
     virtual ~Texture();
 
     GLuint getId() const;

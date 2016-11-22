@@ -18,6 +18,7 @@ class Image
 {
 public:
     Image(const std::string &fileName);
+    Image(const std::string &text, const std::string &fontName, int fontSize);
 
     GLint getWidth() const;
     GLint getHeight() const;

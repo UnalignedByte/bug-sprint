@@ -25,6 +25,18 @@ Image::Image(const std::string &fileName)
 }
 
 
+Image::Image(const std::string &text, const std::string &fontName, int fontSize)
+{
+    ImageData imageData = SystemUtils::imageDataForText(text, fontName, fontSize);
+    if(imageData.rgbaImageData == nullptr)
+        throw string("Could not render text" + text);
+
+    width = imageData.width;
+    height = imageData.height;
+    rgbaData = unique_ptr<GLubyte>(imageData.rgbaImageData);
+}
+
+
 GLint Image::getWidth() const
 {
     return width;
