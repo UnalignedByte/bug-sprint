@@ -13,6 +13,7 @@
 #include <memory>
 #include "OpenGLES.h"
 #include "ShaderProgram.h"
+#include "Color.h"
 
 
 class Texture
@@ -29,7 +30,7 @@ public:
     Texture(const std::string &rightFileName, const std::string &leftFileName,
             const std::string &topFileName, const std::string &bottomFileName,
             const std::string &frontFileName, const std::string backFileName);
-    Texture(const std::string &text, const std::string &fontName, int fontSize);
+    Texture(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor);
     virtual ~Texture();
 
     GLuint getId() const;

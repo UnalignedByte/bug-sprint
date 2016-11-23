@@ -12,8 +12,8 @@ out vec4 outColor;
 void main()
 {
     vec4 color = texture(spriteSampler, fTexCoord);
-    if(color.a < 0.1)
-        discard;
+    //if(color.a < 0.1)
+    //    discard;
 
     outColor= color;
 }

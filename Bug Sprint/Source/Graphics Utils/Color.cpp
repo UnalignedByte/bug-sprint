@@ -14,12 +14,14 @@
 using namespace std;
 
 
-Color::Color() : data{0.0, 0.0, 0.0, 1.0}
+Color::Color() :
+    data{0.0, 0.0, 0.0, 1.0}
 {
 }
 
 
-Color::Color(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) : data{red, green, blue, alpha}
+Color::Color(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) :
+    data{red, green, blue, alpha}
 {
 }
 

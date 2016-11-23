@@ -79,7 +79,7 @@ Core::Core(double width, double height) :
     dynamic_pointer_cast<Drawable>(instances.back())->setShouldCastShadow(false);
 
     spriteInstances.push_back(make_shared<Sprite>("Game/mario.png", spriteShader));
-    spriteInstances.push_back(make_shared<Label>("Hello World!", "Helvetica", 40.0, spriteShader));
+    spriteInstances.push_back(make_shared<Label>("Hello World!", "Fonts/BunakenUnderwater.ttf", 20.0, Color(1.0, 1.0, 0.0, 1.0), spriteShader));
     spriteInstances.push_back(make_shared<Sprite>("Game/goose.jpg", spriteShader));
 }
 

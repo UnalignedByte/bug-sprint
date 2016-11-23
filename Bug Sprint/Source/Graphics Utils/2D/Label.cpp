@@ -1,8 +1,10 @@
 //
-// Created by Rafal Grodzinski on 18/11/2016.
+// Created by Rafal Grodzinski on 20/11/2016.
 //
 
-#include "Sprite.h"
+#include "Label.h"
+
+#include "SystemUtils.h"
 
 using namespace std;
 
@@ -13,8 +15,8 @@ struct Vertex {
 };
 
 
-Sprite::Sprite(const std::string &spriteFileName,  shared_ptr<ShaderProgram> shaderProgram) :
-    shaderProgram(shaderProgram), texture(spriteFileName), width(texture.getWidth()), height(texture.getHeight())
+Label::Label(const std::string &text, const std::string &fontFileName, int fontSize, const Color &fontColor, std::shared_ptr<ShaderProgram> shaderProgram) :
+    shaderProgram(shaderProgram), texture(text, fontFileName, fontSize, fontColor), width(texture.getWidth()), height(texture.getHeight())
 {
     Vertex vertices[6] = {{{-width/2.0f, -height/2.0f}, {0.0f, 1.0f}},
                           {{width/2.0f, height/2.0f}, {1.0f, 0.0f}},
@@ -41,29 +43,26 @@ Sprite::Sprite(const std::string &spriteFileName,  shared_ptr<ShaderProgram> sha
 }
 
 
-shared_ptr<ShaderProgram> Sprite::getShader() const
+shared_ptr<ShaderProgram> Label::getShader() const
 {
     return shaderProgram;
 }
 
 
-GLint Sprite::getWidth() const
+GLint Label::getWidth() const
 {
     return width;
 }
 
 
-GLint Sprite::getHeight() const
+GLint Label::getHeight() const
 {
     return height;
 }
 
 
-void Sprite::draw()
+void Label::draw()
 {
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-
     shaderProgram->use();
     texture.use(shaderProgram);
 
@@ -73,4 +72,3 @@ void Sprite::draw()
     glBindVertexArray(vertexArrayId);
     glDrawArrays(GL_TRIANGLES, 0, 2 * 3);
 }
-

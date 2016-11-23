@@ -25,9 +25,9 @@ Image::Image(const std::string &fileName)
 }
 
 
-Image::Image(const std::string &text, const std::string &fontName, int fontSize)
+Image::Image(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor)
 {
-    ImageData imageData = SystemUtils::imageDataForText(text, fontName, fontSize);
+    ImageData imageData = SystemUtils::imageDataForText(text, fontFileName, fontSize, fontColor[0], fontColor[1], fontColor[2]);
     if(imageData.rgbaImageData == nullptr)
         throw string("Could not render text" + text);
 

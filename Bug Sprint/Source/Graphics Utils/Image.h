@@ -12,13 +12,14 @@
 #include <string>
 #include <memory>
 #include "OpenGLES.h"
+#include "Color.h"
 
 
 class Image
 {
 public:
     Image(const std::string &fileName);
-    Image(const std::string &text, const std::string &fontName, int fontSize);
+    Image(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor);
 
     GLint getWidth() const;
     GLint getHeight() const;

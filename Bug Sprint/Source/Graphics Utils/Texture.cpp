@@ -60,9 +60,9 @@ Texture::Texture(const string &rightFileName, const string &leftFileName,
 }
 
 
-Texture::Texture(const std::string &text, const std::string &fontName, int fontSize)
+Texture::Texture(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor)
 {
-    Image image(text, fontName, fontSize);
+    Image image(text, fontFileName, fontSize, fontColor);
     textureId = loadTexture(image.getWidth(), image.getHeight(), image.getData());
     type = Type2D;
     width = image.getWidth();

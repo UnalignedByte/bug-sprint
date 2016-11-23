@@ -3,7 +3,6 @@
 //
 
 #include "SystemUtils.h"
-
 #include <android/bitmap.h>
 
 using namespace std;
@@ -16,32 +15,6 @@ string SystemUtils::pathForFileName(const std::string &fileName)
 {
     if(app == nullptr)
         throw string("SystemUtils is not initialized");
-
-    /*JNIEnv *env;
-    app->activity->vm->AttachCurrentThread(&env, NULL);
-
-    jclass nativeActivityClass = env->FindClass("android/app/NativeActivity");
-    jmethodID getExternalFilesDirId = env->GetMethodID(nativeActivityClass, "getExternalFilesDir",
-        "(Ljava/lang/String;)Ljava/io/File;");
-    jobject externalFilesDirObj = env->CallObjectMethod(app->activity->clazz, getExternalFilesDirId, nullptr);
-
-    jclass fileClass = env->FindClass("java/io/File");
-    jmethodID getPathId = env->GetMethodID(fileClass, "getPath", "()Ljava/lang/String;");
-    jstring pathStringObj = (jstring)env->CallObjectMethod(externalFilesDirObj, getPathId);
-
-    const char *cFilePath = env->GetStringUTFChars(pathStringObj, nullptr);
-    string filePath = string(cFilePath);
-
-    env->ReleaseStringUTFChars(pathStringObj, cFilePath);
-    env->DeleteLocalRef(pathStringObj);
-
-    app->activity->vm->DetachCurrentThread();
-
-    if(filePath.length() > 0) {
-        filePath = filePath + "/" + fileName;
-
-        return filePath;
-    }*/
 
     return fileName;
 }
@@ -75,23 +48,15 @@ ImageData SystemUtils::imageDataForFileName(const std::string &fileName)
     JNIEnv *env;
     app->activity->vm->AttachCurrentThread(&env, NULL);
 
-    // activity.getApplication()
-    jclass nativeActivityClass = env->GetObjectClass(app->activity->clazz);
-    jmethodID getApplicationId = env->GetMethodID(nativeActivityClass, "getApplication", "()Landroid/app/Application;");
-    jobject applicationObj = env->CallObjectMethod(app->activity->clazz, getApplicationId);
+    jobject assetsManagerObj = getAssetsManager();
 
-    // application.getAssets()
-    jclass applicationClass = env->FindClass("android/app/Application");
-    jmethodID getAssetsId = env->GetMethodID(applicationClass, "getAssets", "()Landroid/content/res/AssetManager;");
-    jobject assetsManagerObj = env->CallObjectMethod(applicationObj, getAssetsId);
-
-    // assetsManager.open()
+    // inputStreamObj = assetsManagerObj.open(fileNameStringObj);
     jclass assetsManagerClass = env->FindClass("android/content/res/AssetManager");
     jmethodID openId = env->GetMethodID(assetsManagerClass, "open", "(Ljava/lang/String;)Ljava/io/InputStream;");
     jstring fileNameStringObj = env->NewStringUTF(fileName.c_str());
     jobject inputStreamObj = env->CallObjectMethod(assetsManagerObj, openId, fileNameStringObj);
 
-    // BitmapFactory.decodeStream()
+    // bitmapObj = BitmapFactory.decodeStream(inputStreamObj)
     jclass bitmapFactoryClass = env->FindClass("android/graphics/BitmapFactory");
     jmethodID decodeStreamId = env->GetStaticMethodID(bitmapFactoryClass, "decodeStream",
                                                     "(Ljava/io/InputStream;)Landroid/graphics/Bitmap;");
@@ -109,7 +74,7 @@ ImageData SystemUtils::imageDataForFileName(const std::string &fileName)
     void *bitmapData;
     AndroidBitmap_lockPixels(env, bitmapObj, &bitmapData);
 
-    int bytesCount = imageData.width * imageData.height * 4;
+    size_t bytesCount = size_t(imageData.width * imageData.height * 4);
     imageData.rgbaImageData = (unsigned char *)calloc(bytesCount, sizeof(unsigned char));
     memcpy(imageData.rgbaImageData, bitmapData, bytesCount * sizeof(unsigned char));
 
@@ -119,7 +84,8 @@ ImageData SystemUtils::imageDataForFileName(const std::string &fileName)
 }
 
 
-ImageData SystemUtils::imageDataForText(const std::string text, const std::string font, int fontSize)
+ImageData SystemUtils::imageDataForText(const std::string &text, const std::string &fontFileName,
+    float fontSize, float red, float green, float blue)
 {
     if(app == nullptr)
         throw string("SystemUtils is not initialized");
@@ -129,31 +95,53 @@ ImageData SystemUtils::imageDataForText(const std::string text, const std::strin
     JNIEnv *env;
     app->activity->vm->AttachCurrentThread(&env, NULL);
 
-    // Create Paint
+    // paintObj = new Paint()
     jclass paintClass = env->FindClass("android/graphics/Paint");
-    jmethodID paintConstructor = env->GetMethodID(paintClass, "<init>", "()V");
-    jobject paintObj = env->NewObject(paintClass, paintConstructor);
+    jmethodID paintConstructor = env->GetMethodID(paintClass, "<init>", "(I)V");
+    jobject paintObj = env->NewObject(paintClass, paintConstructor, 1);
 
+    // paintObj.setTextSize(fontSize)
     jmethodID setTextSizeMethod = env->GetMethodID(paintClass, "setTextSize", "(F)V");
-    env->CallVoidMethod(paintObj, setTextSizeMethod, (float)fontSize);
+    env->CallVoidMethod(paintObj, setTextSizeMethod, fontSize * getScale());
 
+    // paintObj.setColor(color)
     jmethodID setColorMethod = env->GetMethodID(paintClass, "setColor", "(I)V");
-    env->CallVoidMethod(paintObj, setColorMethod, 0xffffffff);
+    uint32_t color = 0;
+    color |= 255 << 24; // Alpha
+    color |= int(red * 255) << 16; // Red
+    color |= int(green * 255) << 8; //Green
+    color |= int(blue * 255); // Blue
+    env->CallVoidMethod(paintObj, setColorMethod, color);
 
+    // typefaceObj = Typeface.createFromAssets(assetsManagerObj, fontFileNameStringObj)
+    jclass typefaceClass = env->FindClass("android/graphics/Typeface");
+    jmethodID createFromAssetMethod = env->GetStaticMethodID(typefaceClass, "createFromAsset",
+                                                             "(Landroid/content/res/AssetManager;Ljava/lang/String;)Landroid/graphics/Typeface;");
+    jobject assetsManagerObj = getAssetsManager();
+    jstring fontFileNameStringObj = env->NewStringUTF(fontFileName.c_str());
+    jobject typefaceObj = env->CallStaticObjectMethod(typefaceClass, createFromAssetMethod, assetsManagerObj, fontFileNameStringObj);
+
+    // paintObj.setTypeface(typefaceObj)
+    jmethodID setTypefaceMethod = env->GetMethodID(paintClass, "setTypeface", "(Landroid/graphics/Typeface;)Landroid/graphics/Typeface;");
+    env->CallObjectMethod(paintObj, setTypefaceMethod, typefaceObj);
+
+    // textWidth = paintObj.meassureText(textStringObj)
     jmethodID meassureTextMethod = env->GetMethodID(paintClass, "measureText", "(Ljava/lang/String;)F");
     jstring textStringObj = env->NewStringUTF(text.c_str());
     float textWidth = env->CallFloatMethod(paintObj, meassureTextMethod, textStringObj);
 
+    // textAscent = paintObj.ascent()
     jmethodID ascentMethod = env->GetMethodID(paintClass, "ascent", "()F");
     float textAscent = env->CallFloatMethod(paintObj, ascentMethod);
 
+    // textDescent = paintObj.descent()
     jmethodID descentMethod = env->GetMethodID(paintClass, "descent", "()F");
     float textDescent = env->CallFloatMethod(paintObj, descentMethod);
 
-    imageData.width = textWidth;
-    imageData.height = -textAscent + textDescent;
+    imageData.width = int(textWidth);
+    imageData.height = int(-textAscent + textDescent);
 
-    // Create Bitmap
+    // bitmapObj = Bitmap.createBitmap(imageData.width, imageData.height, ARGB_8888)
     jclass bitmapClass = env->FindClass("android/graphics/Bitmap");
     jmethodID createBitmapMethod = env->GetStaticMethodID(bitmapClass, "createBitmap", "(IILandroid/graphics/Bitmap$Config;)Landroid/graphics/Bitmap;");
 
@@ -164,12 +152,12 @@ ImageData SystemUtils::imageDataForText(const std::string text, const std::strin
 
     jobject bitmapObj = env->CallStaticObjectMethod(bitmapClass, createBitmapMethod, imageData.width, imageData.height, argba8888FieldObj);
 
-    // Create Canvas
+    // canvasObj = new Canvas(bitmapObj)
     jclass canvasClass = env->FindClass("android/graphics/Canvas");
     jmethodID canvasConstructor = env->GetMethodID(canvasClass, "<init>", "(Landroid/graphics/Bitmap;)V");
     jobject canvasObj = env->NewObject(canvasClass, canvasConstructor, bitmapObj);
 
-    // Paint Text
+    // canvasObj.drawText(textStringObj, -textAscent, paintObj)
     jmethodID drawTextMethod = env->GetMethodID(canvasClass, "drawText", "(Ljava/lang/String;FFLandroid/graphics/Paint;)V");
     env->CallVoidMethod(canvasObj, drawTextMethod, textStringObj, 0.0, -textAscent, paintObj);
 
@@ -177,11 +165,83 @@ ImageData SystemUtils::imageDataForText(const std::string text, const std::strin
     void *bitmapData;
     AndroidBitmap_lockPixels(env, bitmapObj, &bitmapData);
 
-    int bytesCount = imageData.width * imageData.height * 4;
+    size_t bytesCount = size_t(imageData.width * imageData.height * 4);
     imageData.rgbaImageData = (unsigned char *)calloc(bytesCount, sizeof(unsigned char));
     memcpy(imageData.rgbaImageData, bitmapData, bytesCount * sizeof(unsigned char));
 
     AndroidBitmap_unlockPixels(env, bitmapObj);
 
     return imageData;
+}
+
+
+float SystemUtils::getScale()
+{
+    if(app == nullptr)
+        throw string("SystemUtils is not initialized");
+
+    static float density = 0.0;
+    if(density > 0.0)
+        return density;
+
+    JNIEnv *env;
+    app->activity->vm->AttachCurrentThread(&env, nullptr);
+
+    jobject resourcesObj = getResources();
+
+    // resourcesObj.getDisplayMetrics()
+    jclass resourcesClass = env->FindClass("android/content/res/Resources");
+    jmethodID getDisplayMetricsMethod = env->GetMethodID(resourcesClass, "getDisplayMetrics", "()Landroid/util/DisplayMetrics;");
+    jobject displayMetricsObj = env->CallObjectMethod(resourcesObj, getDisplayMetricsMethod);
+
+    // displayMetricsObj.density
+    jclass displayMetricsClass = env->FindClass("android/util/DisplayMetrics");
+    jfieldID densityField = env->GetFieldID(displayMetricsClass, "density", "F");
+    density = env->GetFloatField(displayMetricsObj, densityField);
+
+    return density;
+}
+
+
+jobject SystemUtils::getAssetsManager()
+{
+    if(app == nullptr)
+        throw string("SystemUtils is not initialized");
+
+    JNIEnv *env;
+    app->activity->vm->AttachCurrentThread(&env, nullptr);
+
+    // activity.getApplication()
+    jclass nativeActivityClass = env->GetObjectClass(app->activity->clazz);
+    jmethodID getApplicationId = env->GetMethodID(nativeActivityClass, "getApplication", "()Landroid/app/Application;");
+    jobject applicationObj = env->CallObjectMethod(app->activity->clazz, getApplicationId);
+
+    // applicationObj.getAssets()
+    jclass applicationClass = env->FindClass("android/app/Application");
+    jmethodID getAssetsId = env->GetMethodID(applicationClass, "getAssets", "()Landroid/content/res/AssetManager;");
+    jobject assetsManagerObj = env->CallObjectMethod(applicationObj, getAssetsId);
+
+    return assetsManagerObj;
+}
+
+
+jobject SystemUtils::getResources()
+{
+    if(app == nullptr)
+        throw string("SystemUtils is not initialized");
+
+    JNIEnv *env;
+    app->activity->vm->AttachCurrentThread(&env, nullptr);
+
+    // activity.getApplication()
+    jclass nativeActivityClass = env->GetObjectClass(app->activity->clazz);
+    jmethodID getApplicationId = env->GetMethodID(nativeActivityClass, "getApplication", "()Landroid/app/Application;");
+    jobject applicationObj = env->CallObjectMethod(app->activity->clazz, getApplicationId);
+
+    // applicationObj.getResources()
+    jclass applicationClass = env->FindClass("android/app/Application");
+    jmethodID getResourcesMethod = env->GetMethodID(applicationClass, "getResources", "()Landroid/content/res/Resources;");
+    jobject resourcesObj = env->CallObjectMethod(applicationObj, getResourcesMethod);
+
+    return resourcesObj;
 }
