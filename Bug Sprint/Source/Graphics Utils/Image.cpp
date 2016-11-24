@@ -29,7 +29,7 @@ Image::Image(const std::string &text, const std::string &fontFileName, GLfloat f
 {
     ImageData imageData = SystemUtils::imageDataForText(text, fontFileName, fontSize, fontColor[0], fontColor[1], fontColor[2]);
     if(imageData.rgbaImageData == nullptr)
-        throw string("Could not render text" + text);
+        throw string("Could not render text \"" + text + "\"");
 
     width = imageData.width;
     height = imageData.height;
