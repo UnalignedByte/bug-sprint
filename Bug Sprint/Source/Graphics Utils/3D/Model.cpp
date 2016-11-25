@@ -11,7 +11,6 @@
 #include <sstream>
 #include <vector>
 #include <cstdio>
-
 #include "File.h"
 #include "ShaderProgram.h"
 
@@ -23,14 +22,6 @@ struct Vertex {
     GLfloat position[3];
     GLfloat normal[3];
     GLfloat texCoord[2];
-};
-
-
-struct MaterialUniform {
-    GLfloat color[3];
-    GLfloat ambientIntensity;
-    GLfloat diffuseIntensity;
-    GLfloat specularIntensity;
 };
 
 

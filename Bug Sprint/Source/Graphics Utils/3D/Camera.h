@@ -12,10 +12,8 @@
 #include "Instance.h"
 
 #include <memory>
-#include "OpenGLES.h"
-
 #include "ShaderProgram.h"
-#include "Matrix.h"
+#include "Vector.h"
 
 
 class Camera: public Instance
@@ -27,9 +25,6 @@ public:
     };
 
 public:
-    Vector3 target;
-
-public:
     Camera(GLfloat width, GLfloat height, GLfloat depth, GLfloat fieldOfView = -1.0);
 
     Type getType() const;
@@ -37,6 +32,8 @@ public:
     GLfloat getHeight() const;
     GLfloat getDepth() const;
     GLfloat getFieldOfView() const;
+    Vector3 getTarget() const;
+    void setTarget(const Vector3 &target);
 
     void updateCamera(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
 
@@ -46,9 +43,11 @@ protected:
     GLfloat width;
     GLfloat height;
     GLfloat aspectRatio;
-    GLfloat zNear = 0.01;
+    GLfloat zNear{0.01};
     GLfloat zFar;
     GLfloat fieldOfView;
+
+    Vector3 target;
 };
 
 #endif

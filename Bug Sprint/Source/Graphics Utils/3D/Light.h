@@ -12,8 +12,6 @@
 #include "Instance.h"
 
 #include <memory>
-#include "OpenGLES.h"
-
 #include "ShaderProgram.h"
 #include "Vector.h"
 #include "Color.h"
@@ -22,26 +20,27 @@
 class Light: public Instance
 {
 public:
-    Vector3 target = {0.0, 0.0, 1.0};
-
-public:
     Light(GLfloat viewWidth, GLfloat viewHeight);
 
     Color getColor() const;
     void setColor(const Color &color);
     Vector3 getDirection() const;
+    Vector3 getTarget() const;
+    void setTarget(const Vector3 &target);
 
     void updateLight(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
     void updateShadow(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
 
 protected:
-    Color color = {1.0, 1.0, 1.0, 1.0};
+    Color color{1.0, 1.0, 1.0, 1.0};
 
     GLfloat viewWidth;
     GLfloat viewHeight;
-    GLfloat fov = 60.0;
-    GLfloat zNear = 0.01;
-    GLfloat zFar = 100.0;
+    GLfloat fov{60.0};
+    GLfloat zNear{0.01};
+    GLfloat zFar{100.0};
+
+    Vector3 target{0.0, 0.0, 1.0};
 };
 
 #endif

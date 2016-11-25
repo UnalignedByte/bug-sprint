@@ -57,19 +57,19 @@ Core::Core(double width, double height) :
     shadow = make_shared<ShadowPass>(1024, 1024, shadowShader);
 
     instances.push_back(make_shared<Drawable>("Game/monkey_smooth.obj", defaultShadedPerFragmentShader));
-    instances[0]->translation[0] = -3.0;
-    instances[0]->translation[2] = 4.0;
+    instances[0]->position[0] = -3.0;
+    instances[0]->position[2] = 4.0;
 
     instances.push_back(make_shared<Drawable>("Game/monkey.obj", defaultPerFragmentShader));
-    instances[1]->translation[0] = 0.0;
-    instances[1]->translation[2] = 4.0;
+    instances[1]->position[0] = 0.0;
+    instances[1]->position[2] = 4.0;
 
     instances.push_back(make_shared<Drawable>("Game/box.obj", "Game/box.jpg", texturedShader));
-    instances[2]->translation[0] = 3.0;
-    instances[2]->translation[2] = 4.0;
+    instances[2]->position[0] = 3.0;
+    instances[2]->position[2] = 4.0;
 
     instances.push_back(make_shared<Drawable>("Game/plane.obj", defaultShadedPerFragmentShader));
-    instances[3]->translation[1] = -1.0;
+    instances[3]->position[1] = -1.0;
 
     instances.push_back(make_shared<Drawable>("Game/box.obj", "Game/skybox_right.png", "Game/skybox_left.png",
                                               "Game/skybox_top.png", "Game/skybox_bottom.png",
@@ -94,11 +94,11 @@ void Core::updateInput(double timeInterval, Input input)
 {
     static Vector3 cameraStartPos;
     if(input.state == Input::StateDown) {
-        cameraStartPos = camera->translation;
+        cameraStartPos = camera->position;
     } else if(input.state == Input::StateMoved) {
-        camera->translation[0] = cameraStartPos[0] + (input.x - input.downX) * 3.0;
-        camera->translation[1] = cameraStartPos[1] + (input.y - input.downY) * 3.0;
-        camera->translation[2] = 0.0;
+        camera->position[0] = cameraStartPos[0] + (input.x - input.downX) * 3.0;
+        camera->position[1] = cameraStartPos[1] + (input.y - input.downY) * 3.0;
+        camera->position[2] = 0.0;
     }
 
     instances[0]->rotation[1] = instances[0]->rotation[1] + 45.0 * timeInterval;
@@ -106,11 +106,11 @@ void Core::updateInput(double timeInterval, Input input)
     instances[2]->rotation[0] = instances[2]->rotation[0] + 45.0 * timeInterval;
     instances[2]->rotation[2] = instances[2]->rotation[2] + 30.0 * timeInterval;
 
-    camera->target = Vector3{0.0, 0.0, 4.0};
+    camera->setTarget(Vector3{0.0, 0.0, 4.0});
 
-    //light->translation = {camera->translation[0], camera->translation[1], 8.0};
-    light->translation = {6.0, 2.0, 0.0};
-    light->target = camera->target;
+    //light->position = {camera->position[0], camera->position[1], 8.0};
+    light->position = {6.0, 2.0, 0.0};
+    light->setTarget(camera->getTarget());
 
     auto inst = instances2D.back();
     static double elapsed;
@@ -167,13 +167,13 @@ void Core::renderPass()
 {
     glViewport(0, 0, width, height);
     glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    // Draw 3D
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
 
     glCullFace(GL_BACK);
-
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     for(auto instance : instances) {
         if(shared_ptr<Drawable> drawable = dynamic_pointer_cast<Drawable>(instance)) {
@@ -184,7 +184,10 @@ void Core::renderPass()
         }
     }
 
-    // Draw Sprites
+    // Draw 2D
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
     glDisable(GL_DEPTH_TEST);
 
     for(auto instance : instances2D) {

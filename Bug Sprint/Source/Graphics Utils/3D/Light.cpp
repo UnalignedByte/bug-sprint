@@ -31,7 +31,19 @@ void Light::setColor(const Color &color)
 
 Vector3 Light::getDirection() const
 {
-    return (target - translation).normalized();
+    return (target - position).normalized();
+}
+
+
+Vector3 Light::getTarget() const
+{
+    return target;
+}
+
+
+void Light::setTarget(const Vector3 &target)
+{
+    this->target = target;
 }
 
 
@@ -53,7 +65,7 @@ void Light::updateShadow(double timeInterval, std::shared_ptr<ShaderProgram> sha
     shaderProgram->use();
 
     GLint lightViewMatrixId = glGetUniformLocation(shaderProgram->getId(), "lightViewMatrix");
-    Matrix4 lightViewMatrix = Matrix4::lookAt(translation, target);
+    Matrix4 lightViewMatrix = Matrix4::lookAt(position, target);
     glUniformMatrix4fv(lightViewMatrixId, 1, GL_FALSE, lightViewMatrix.getData());
 
     GLint lightProjectionMatrixId = glGetUniformLocation(shaderProgram->getId(), "lightProjectionMatrix");

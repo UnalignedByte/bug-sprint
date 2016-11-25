@@ -54,9 +54,16 @@ void Drawable::setShouldCastShadow(bool shouldCastShadow)
 }
 
 
+GLsizei Drawable::getTrianglesCount() const
+{
+    return model.getTrianglesCount();
+}
+
+
 void Drawable::draw()
 {
     shaderProgram->use();
+
     texture.use(shaderProgram);
     model.draw(shaderProgram, modelMatrix);
 }
@@ -66,7 +73,7 @@ void Drawable::drawShadow(shared_ptr<ShaderProgram> shaderProgram)
 {
     if(!shouldCastShadow)
         return;
-    
+
     shaderProgram->use();
     model.draw(shaderProgram, modelMatrix);
 }

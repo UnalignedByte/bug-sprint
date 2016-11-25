@@ -9,30 +9,26 @@
 #ifndef INSTANCE_H
 #define INSTANCE_H
 
-#include <string>
-#include <memory>
-
+#include "OpenGLES.h"
 #include "Vector.h"
 #include "Matrix.h"
-#include "Model.h"
-#include "ShaderProgram.h"
 
 
 class Instance
 {
 public:
-    Vector3 translation {0.0, 0.0, 0.0};
-    Vector3 scale {1.0, 1.0, 1.0};
-    Vector3 rotation {0.0, 0.0, 0.0};
+    Vector3 position{0.0, 0.0, 0.0};
+    Vector3 scale{1.0, 1.0, 1.0};
+    Vector3 rotation{0.0, 0.0, 0.0};
 
 public:
-    Instance();
-
     virtual void update(double timeInterval);
     virtual void draw();
+    virtual GLsizei getTrianglesCount() const;
 
 protected:
     Matrix4 modelMatrix;
+    GLsizei trianglesCount{0};
 };
 
 #endif

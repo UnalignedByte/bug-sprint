@@ -79,9 +79,6 @@ GLint Sprite::getHeight() const
 
 void Sprite::draw()
 {
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-
     shaderProgram->use();
     texture.use(shaderProgram);
 
@@ -90,7 +87,5 @@ void Sprite::draw()
 
     glBindVertexArray(vertexArrayId);
     glDrawArrays(GL_TRIANGLES, 0, 2 * 3);
-
-    glDisable(GL_BLEND);
 }
 

@@ -28,7 +28,7 @@ public:
 
 protected:
     Matrix4 modelMatrix;
-    GLsizei trianglesCount;
+    GLsizei trianglesCount{0};
 };
 
 #endif

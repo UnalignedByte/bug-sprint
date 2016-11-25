@@ -13,9 +13,9 @@
 
 #include <string>
 #include <memory>
-
 #include "Model.h"
 #include "Texture.h"
+#include "ShaderProgram.h"
 
 
 class Drawable: public Instance
@@ -32,6 +32,7 @@ public:
     std::shared_ptr<ShaderProgram> getShader() const;
     bool getShouldCastShadow() const;
     void setShouldCastShadow(bool shouldCastShadow);
+    GLsizei getTrianglesCount() const override;
 
     void draw() override;
     void drawShadow(std::shared_ptr<ShaderProgram> shaderProgram);
@@ -40,7 +41,7 @@ protected:
     std::shared_ptr<ShaderProgram> shaderProgram;
     Model model;
     Texture texture;
-    bool shouldCastShadow = true;
+    bool shouldCastShadow{true};
 };
 
 #endif
