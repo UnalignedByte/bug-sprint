@@ -16,12 +16,30 @@ struct Vertex {
 Sprite::Sprite(const std::string &spriteFileName,  shared_ptr<ShaderProgram> shaderProgram) :
     shaderProgram(shaderProgram), texture(spriteFileName), width(texture.getWidth()), height(texture.getHeight())
 {
-    Vertex vertices[6] = {{{-width/2.0f, -height/2.0f}, {0.0f, 1.0f}},
-                          {{width/2.0f, height/2.0f}, {1.0f, 0.0f}},
-                          {{-width/2.0f, height/2.0f}, {0.0f, 0.0f}},
-                          {{-width/2.0f, -height/2.0f}, {0.0f, 1.0f}},
-                          {{width/2.0f, -height/2.0f}, {1.0f, 1.0f}},
-                          {{width/2.0f, height/2.0f}, {1.0f, 0.0f}}};
+    setupVertexArray();
+}
+
+
+Sprite::Sprite(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor, std::shared_ptr<ShaderProgram> shaderProgram) :
+    shaderProgram(shaderProgram), texture(text, fontFileName, fontSize, fontColor), width(texture.getWidth()), height(texture.getHeight())
+{
+    setupVertexArray();
+}
+
+
+void Sprite::setupVertexArray()
+{
+    GLfloat halfWidth = width/2.0;
+    GLfloat halfHeight = height/2.0;
+
+    Vertex vertices[6] = {{{-halfWidth, -halfHeight}, {0.0f, 1.0f}},
+                          {{+halfWidth, +halfHeight}, {1.0f, 0.0f}},
+                          {{-halfWidth, +halfHeight}, {0.0f, 0.0f}},
+                          {{-halfWidth, -halfHeight}, {0.0f, 1.0f}},
+                          {{+halfWidth, -halfHeight}, {1.0f, 1.0f}},
+                          {{+halfWidth, +halfHeight}, {1.0f, 0.0f}}};
+
+    trianglesCount = sizeof(vertices)/sizeof(Vertex);
 
     glGenVertexArrays(1, &vertexArrayId);
     glBindVertexArray(vertexArrayId);
@@ -72,5 +90,7 @@ void Sprite::draw()
 
     glBindVertexArray(vertexArrayId);
     glDrawArrays(GL_TRIANGLES, 0, 2 * 3);
+
+    glDisable(GL_BLEND);
 }
 

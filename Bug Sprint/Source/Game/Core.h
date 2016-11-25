@@ -15,6 +15,7 @@
 #include "OpenGLES.h"
 #include "ShaderProgram.h"
 #include "Instance.h"
+#include "Instance2D.h"
 #include "Camera.h"
 #include "Light.h"
 #include "Color.h"
@@ -45,7 +46,7 @@ protected:
     std::shared_ptr<ShadowPass> shadow;
     
     std::vector<std::shared_ptr<Instance>> instances;
-    std::vector<std::shared_ptr<Instance>> spriteInstances;
+    std::vector<std::shared_ptr<Instance2D>> instances2D;
 
     std::vector<std::shared_ptr<ShaderProgram>> updateCameraShaders;
     std::vector<std::shared_ptr<ShaderProgram>> updateLightShaders;

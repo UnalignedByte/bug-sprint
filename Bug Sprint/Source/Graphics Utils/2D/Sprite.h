@@ -5,21 +5,23 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
-#include "Instance.h"
+#include "Instance2D.h"
 
 #include <memory>
 #include "ShaderProgram.h"
 #include "Texture.h"
+#include "Color.h"
 
 
-class Sprite: public Instance
+class Sprite: public Instance2D
 {
 public:
-    Sprite(const std::string &spriteFileName,  std::shared_ptr<ShaderProgram> shaderProgram);
+    Sprite(const std::string &imageFileName,  std::shared_ptr<ShaderProgram> shaderProgram);
+    Sprite(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor, std::shared_ptr<ShaderProgram> shaderProgram);
 
-    std::shared_ptr<ShaderProgram> getShader() const;
-    GLint getWidth() const;
-    GLint getHeight() const;
+    virtual std::shared_ptr<ShaderProgram> getShader() const;
+    virtual GLint getWidth() const;
+    virtual GLint getHeight() const;
 
     void draw() override;
 
@@ -30,6 +32,9 @@ protected:
 
     GLint width;
     GLint height;
+
+protected:
+    void setupVertexArray();
 };
 
 #endif
