@@ -10,8 +10,9 @@
 #include "CoreAdapter.h"
 #include "SystemUtils.h"
 
-
 bool isSetup = false;
+static bool isEglSetUp = false;
+
 CoreAdapter *coreAdapter = nullptr;
 
 EGLDisplay eglDisplay;
@@ -21,9 +22,14 @@ EGLSurface eglSurface;
 void processAppCommands(android_app *app, int cmd);
 int processInput(android_app *app, AInputEvent *inputEvent);
 void processTouchInput(AInputEvent *inputEvent);
+
 void setup(android_app *app);
-void setupSystemUtils(android_app *app);
+void shutdown(android_app *app);
+
 void setupEGL(android_app *app);
+void shutdownEGL(android_app *app);
+
+void setupSystemUtils(android_app *app);
 void setupCoreAdapter();
 
 
@@ -60,6 +66,12 @@ void processAppCommands(android_app *app, int cmd)
         case APP_CMD_INIT_WINDOW:
             setup(app);
             break;
+        case APP_CMD_TERM_WINDOW:
+            shutdownEGL(app);
+            break;
+        case APP_CMD_DESTROY:
+            shutdown(app);
+            break;
         default:
             break;
     }
@@ -84,18 +96,28 @@ int processInput(android_app *app, AInputEvent *inputEvent)
 
 void setup(android_app *app)
 {
-    if (!isSetup) {
-        setupEGL(app);
-        setupSystemUtils(app);
-        setupCoreAdapter();
+    setupEGL(app);
+    setupSystemUtils(app);
+    setupCoreAdapter();
 
-        isSetup = true;
-    }
+    isSetup = true;
+}
+
+
+void shutdown(android_app *app)
+{
+    if(!isSetup)
+        return;
+
+    shutdownEGL(app);
 }
 
 
 void setupEGL(android_app *app)
 {
+    if(isEglSetUp)
+        return;
+
     EGLint attributes[] = {EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT_KHR,
         EGL_RED_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_BLUE_SIZE, 8,
         EGL_DEPTH_SIZE, 1,
@@ -139,6 +161,26 @@ void setupEGL(android_app *app)
         __android_log_print(ANDROID_LOG_ERROR, "App", "Could not initialize EGL Context");
         abort();
     }
+
+    isEglSetUp = true;
+}
+
+
+void shutdownEGL(android_app *app)
+{
+    if(!isEglSetUp)
+        return;
+
+    eglMakeCurrent(eglDisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
+    eglDestroyContext(eglDisplay, eglContext);
+    eglDestroySurface(eglDisplay, eglSurface);
+    eglTerminate(eglDisplay);
+
+    eglDisplay = EGL_NO_DISPLAY;
+    eglContext = EGL_NO_CONTEXT;
+    eglSurface = EGL_NO_SURFACE;
+
+    isEglSetUp = false;
 }
 
 

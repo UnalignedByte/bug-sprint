@@ -13,6 +13,7 @@ include_directories(
     "${SRC}/Utils"
     "${SRC}/Graphics Utils"
     "${SRC}/Graphics Utils/2D"
+    "${SRC}/Graphics Utils/3D"
     "${SRC}/Game"
 )
 
@@ -25,19 +26,21 @@ add_library(bug-sprint SHARED
     "${SRC}/Utils/FileBuffer.cpp"
 
     "${SRC}/Graphics Utils/Color.cpp"
-    "${SRC}/Graphics Utils/Model.cpp"
     "${SRC}/Graphics Utils/ShaderProgram.cpp"
     "${SRC}/Graphics Utils/Image.cpp"
     "${SRC}/Graphics Utils/Texture.cpp"
     "${SRC}/Graphics Utils/ShadowPass.cpp"
+
+    "${SRC}/Graphics Utils/3D/Instance.cpp"
+    "${SRC}/Graphics Utils/3D/Drawable.cpp"
+    "${SRC}/Graphics Utils/3D/Model.cpp"
+    "${SRC}/Graphics Utils/3D/Camera.cpp"
+    "${SRC}/Graphics Utils/3D/Light.cpp"
+
+    "${SRC}/Graphics Utils/2D/Instance2D.cpp"
     "${SRC}/Graphics Utils/2D/Sprite.cpp"
-    "${SRC}/Graphics Utils/2D/Label.cpp"
 
     "${SRC}/Game/Core.cpp"
-    "${SRC}/Game/Instance.cpp"
-    "${SRC}/Game/Drawable.cpp"
-    "${SRC}/Game/Camera.cpp"
-    "${SRC}/Game/Light.cpp"
 )
 
 target_include_directories(bug-sprint PRIVATE
