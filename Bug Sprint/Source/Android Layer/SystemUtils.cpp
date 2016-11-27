@@ -40,7 +40,7 @@ FileBuffer SystemUtils::bufferForFileName(const std::string &fileName)
 }
 
 
-ImageData SystemUtils::imageDataForFileName(const std::string &fileName)
+SystemUtils::ImageData SystemUtils::imageDataForFileName(const std::string &fileName)
 {
     if(app == nullptr)
         throw string("SystemUtils is not initialized");
@@ -86,7 +86,7 @@ ImageData SystemUtils::imageDataForFileName(const std::string &fileName)
 }
 
 
-ImageData SystemUtils::imageDataForText(const std::string &text, const std::string &fontFileName,
+SystemUtils::ImageData SystemUtils::imageDataForText(const std::string &text, const std::string &fontFileName,
     float fontSize, float red, float green, float blue)
 {
     if(app == nullptr)
@@ -205,7 +205,7 @@ float SystemUtils::getScale()
 }
 
 
-Point SystemUtils::sizeForViewSize(int width, int height)
+SystemUtils::Point SystemUtils::sizeForViewSize(int width, int height)
 {
     if(viewWidth <= 0 || viewHeight <= 0)
         throw string("SystemUtils is not initialized");
@@ -218,7 +218,7 @@ Point SystemUtils::sizeForViewSize(int width, int height)
 }
 
 
-Point SystemUtils::positionForViewPosition(int x, int y)
+SystemUtils::Point SystemUtils::positionForViewPosition(int x, int y)
 {
     if(viewHeight <= 0 || viewHeight <= 0)
         throw string("SystemUtils is not initialized");

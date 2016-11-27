@@ -16,6 +16,9 @@ CoreAdapter::CoreAdapter(int viewWidth, int viewHeight) :
     viewWidth(viewWidth), viewHeight(viewHeight)
 {
     try {
+        SystemUtils::viewWidth = viewWidth;
+        SystemUtils::viewHeight = viewHeight;
+
         core = new Core(viewWidth, viewHeight);
     } catch(string exception) {
         handleException(exception);
@@ -50,7 +53,7 @@ void CoreAdapter::touchDown(int x, int y)
 {
     currentInput.state = Input::StateDown;
 
-    Point pos = SystemUtils::positionForViewPosition(x, viewHeight - y);
+    SystemUtils::Point pos = SystemUtils::positionForViewPosition(x, viewHeight - y);
     currentInput.downX = currentInput.x = pos.x;
     currentInput.downY = currentInput.y = pos.y;
 }
@@ -60,7 +63,7 @@ void CoreAdapter::touchUp(int x, int y)
 {
     currentInput.state = Input::StateUp;
 
-    Point pos = SystemUtils::positionForViewPosition(x, viewHeight - y);
+    SystemUtils::Point pos = SystemUtils::positionForViewPosition(x, viewHeight - y);
     currentInput.x = pos.x;
     currentInput.y = pos.y;
 }
@@ -70,7 +73,7 @@ void CoreAdapter::touchMove(int x, int y)
 {
     currentInput.state = Input::StateMoved;
 
-    Point pos = SystemUtils::positionForViewPosition(x, viewHeight - y);
+    SystemUtils::Point pos = SystemUtils::positionForViewPosition(x, viewHeight - y);
     currentInput.x = pos.x;
     currentInput.y = pos.y;
 }

@@ -15,7 +15,7 @@ using namespace std;
 
 Image::Image(const std::string &fileName)
 {
-    ImageData imageData = SystemUtils::imageDataForFileName(fileName);
+    SystemUtils::ImageData imageData = SystemUtils::imageDataForFileName(fileName);
     if(imageData.rgbaImageData == nullptr)
         throw string("Could not load image " + fileName);
 
@@ -27,7 +27,7 @@ Image::Image(const std::string &fileName)
 
 Image::Image(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor)
 {
-    ImageData imageData = SystemUtils::imageDataForText(text, fontFileName, fontSize, fontColor[0], fontColor[1], fontColor[2]);
+    SystemUtils::ImageData imageData = SystemUtils::imageDataForText(text, fontFileName, fontSize, fontColor[0], fontColor[1], fontColor[2]);
     if(imageData.rgbaImageData == nullptr)
         throw string("Could not render text \"" + text + "\"");
 

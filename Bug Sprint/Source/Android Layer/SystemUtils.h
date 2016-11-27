@@ -10,23 +10,22 @@
 #include "FileBuffer.h"
 
 
-struct ImageData
-{
-    unsigned char *rgbaImageData = nullptr;
-    int width = 0;
-    int height = 0;
-};
-
-
-struct Point
-{
-    float x;
-    float y;
-};
-
-
 class SystemUtils
 {
+public:
+    struct ImageData
+    {
+        unsigned char *rgbaImageData = nullptr;
+        int width = 0;
+        int height = 0;
+    };
+
+    struct Point
+    {
+        float x;
+        float y;
+    };
+
 public:
     static android_app *app;
     static int viewWidth;

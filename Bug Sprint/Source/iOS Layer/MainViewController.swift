@@ -26,7 +26,7 @@ class MainViewController: GLKViewController
         var size = self.view.frame.size
         size.width *= UIScreen.main.scale
         size.height *= UIScreen.main.scale
-        self.core = CoreAdapter(size: size)
+        self.core = CoreAdapter(viewSize: size)
     }
 
 

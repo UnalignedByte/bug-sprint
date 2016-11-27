@@ -18,7 +18,7 @@ struct Vertex {
 Sprite::Sprite(const std::string &spriteFileName,  shared_ptr<ShaderProgram> shaderProgram) :
     shaderProgram(shaderProgram), texture(spriteFileName)
 {
-    Point size = SystemUtils::sizeForViewSize(texture.getWidth(), texture.getHeight());
+    SystemUtils::Point size = SystemUtils::sizeForViewSize(texture.getWidth(), texture.getHeight());
     width = size.x;
     height = size.y;
 
@@ -29,7 +29,7 @@ Sprite::Sprite(const std::string &spriteFileName,  shared_ptr<ShaderProgram> sha
 Sprite::Sprite(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor, std::shared_ptr<ShaderProgram> shaderProgram) :
     shaderProgram(shaderProgram), texture(text, fontFileName, fontSize, fontColor)
 {
-    Point size = SystemUtils::sizeForViewSize(texture.getWidth(), texture.getHeight());
+    SystemUtils::Point size = SystemUtils::sizeForViewSize(texture.getWidth(), texture.getHeight());
     width = size.x;
     height = size.y;
 

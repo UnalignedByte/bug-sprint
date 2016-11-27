@@ -11,7 +11,7 @@
 
 @interface CoreAdapter: NSObject
 
-- (instancetype)initWithSize:(CGSize)size;
+- (instancetype)initWithViewSize:(CGSize)size;
 
 - (void)update:(NSTimeInterval)timeInterval;
 - (void)draw;

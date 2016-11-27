@@ -12,6 +12,7 @@
 
 #import "Core.h"
 #import "Types.h"
+#import "SystemUtils.h"
 
 using namespace std;
 
@@ -19,9 +20,6 @@ using namespace std;
 @interface CoreAdapter()
 
 @property (nonatomic, assign) Core *core;
-
-@property (nonatomic, assign) NSInteger width;
-@property (nonatomic, assign) NSInteger height;
 @property (nonatomic, assign) Input *currentInput;
 
 @end
@@ -29,17 +27,18 @@ using namespace std;
 
 @implementation CoreAdapter
 
-- (instancetype)initWithSize:(CGSize)size
+- (instancetype)initWithViewSize:(CGSize)viewSize
 {
     self = [super init];
     if(self == nil) return nil;
 
     try {
-        self.width = size.width;
-        self.height = size.height;
         self.currentInput = new Input;
 
-        self.core = new Core(double(size.width), double(size.height));
+        SystemUtils::viewWidth = int(viewSize.width);
+        SystemUtils::viewHeight = int(viewSize.height);
+
+        self.core = new Core(int(viewSize.width), int(viewSize.height));
     } catch(string exception) {
         [self handleExceptionMessage:exception];
     }
@@ -79,10 +78,9 @@ using namespace std;
 {
     self.currentInput->state = Input::StateDown;
 
-    double xPos = double(x) / double(self.width);
-    double yPos = double(y) / double(self.height);
-    self.currentInput->downX = self.currentInput->x = xPos;
-    self.currentInput->downY = self.currentInput->y = yPos;
+    SystemUtils::Point pos = SystemUtils::positionForViewPosition(int(x), int(y));
+    self.currentInput->downX = self.currentInput->x = pos.x;
+    self.currentInput->downY = self.currentInput->y = pos.y;
 }
 
 
@@ -90,10 +88,9 @@ using namespace std;
 {
     self.currentInput->state = Input::StateUp;
 
-    double xPos = double(x) / double(self.width);
-    double yPos = double(y) / double(self.height);
-    self.currentInput->x = xPos;
-    self.currentInput->y = yPos;
+    SystemUtils::Point pos = SystemUtils::positionForViewPosition(int(x), int(y));
+    self.currentInput->x = pos.x;
+    self.currentInput->y = pos.y;
 }
 
 
@@ -101,10 +98,9 @@ using namespace std;
 {
     self.currentInput->state = Input::StateMoved;
 
-    double xPos = double(x) / double(self.width);
-    double yPos = double(y) / double(self.height);
-    self.currentInput->x = xPos;
-    self.currentInput->y = yPos;
+    SystemUtils::Point pos = SystemUtils::positionForViewPosition(int(x), int(y));
+    self.currentInput->x = pos.x;
+    self.currentInput->y = pos.y;
 }
 
 

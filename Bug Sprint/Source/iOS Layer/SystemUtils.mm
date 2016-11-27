@@ -14,6 +14,10 @@
 using namespace std;
 
 
+int SystemUtils::viewWidth{-1};
+int SystemUtils::viewHeight{-1};
+
+
 string SystemUtils::pathForFileName(const string &fileName)
 {
     NSString *fileNameString = [NSString stringWithUTF8String:fileName.c_str()];
@@ -40,7 +44,7 @@ FileBuffer SystemUtils::bufferForFileName(const std::string &fileName)
 }
 
 
-ImageData SystemUtils::imageDataForFileName(const string &fileName)
+SystemUtils::ImageData SystemUtils::imageDataForFileName(const string &fileName)
 {
     ImageData imageData;
 
@@ -67,7 +71,7 @@ ImageData SystemUtils::imageDataForFileName(const string &fileName)
 }
 
 
-ImageData SystemUtils::imageDataForText(const std::string &text, const std::string &fontFileName, float fontSize, float red, float green, float blue)
+SystemUtils::ImageData SystemUtils::imageDataForText(const std::string &text, const std::string &fontFileName, float fontSize, float red, float green, float blue)
 {
     ImageData imageData;
 
@@ -112,6 +116,35 @@ ImageData SystemUtils::imageDataForText(const std::string &text, const std::stri
 float SystemUtils::getScale()
 {
     return [UIScreen mainScreen].scale;
+}
+
+
+SystemUtils::Point SystemUtils::sizeForViewSize(int width, int height)
+{
+    if(viewWidth <= 0 || viewHeight <= 0)
+        throw string("SystemUtils is not initialized");
+
+    Point size;
+    size.x = float(2 * width)/float(viewHeight);
+    size.y = float(2 * height)/float(viewHeight);
+
+    return size;
+}
+
+
+SystemUtils::Point SystemUtils::positionForViewPosition(int x, int y)
+{
+    if(viewHeight <= 0 || viewHeight <= 0)
+        throw string("SystemUtils is not initialized");
+
+    x *= getScale();
+    y *= getScale();
+
+    Point pos;
+    pos.x = (2.0 * double(x - viewWidth/2.0)) / double(viewHeight);
+    pos.y = (2.0 * double(y - viewHeight/2.0) / (double(viewHeight)));
+
+    return pos;
 }
 
 

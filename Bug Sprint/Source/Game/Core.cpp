@@ -25,7 +25,7 @@ using namespace std;
 Core::Core(int viewWidth, int viewHeight) :
     viewWidth(viewWidth), viewHeight(viewHeight)
 {
-    Point size = SystemUtils::sizeForViewSize(viewWidth, viewHeight);
+    SystemUtils::Point size = SystemUtils::sizeForViewSize(viewWidth, viewHeight);
     width = size.x;
     height = size.y;
 
