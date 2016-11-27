@@ -4,6 +4,8 @@
 
 #include "Sprite.h"
 
+#include "SystemUtils.h"
+
 using namespace std;
 
 
@@ -14,15 +16,23 @@ struct Vertex {
 
 
 Sprite::Sprite(const std::string &spriteFileName,  shared_ptr<ShaderProgram> shaderProgram) :
-    shaderProgram(shaderProgram), texture(spriteFileName), width(texture.getWidth()), height(texture.getHeight())
+    shaderProgram(shaderProgram), texture(spriteFileName)
 {
+    Point size = SystemUtils::sizeForViewSize(texture.getWidth(), texture.getHeight());
+    width = size.x;
+    height = size.y;
+
     setupVertexArray();
 }
 
 
 Sprite::Sprite(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor, std::shared_ptr<ShaderProgram> shaderProgram) :
-    shaderProgram(shaderProgram), texture(text, fontFileName, fontSize, fontColor), width(texture.getWidth()), height(texture.getHeight())
+    shaderProgram(shaderProgram), texture(text, fontFileName, fontSize, fontColor)
 {
+    Point size = SystemUtils::sizeForViewSize(texture.getWidth(), texture.getHeight());
+    width = size.x;
+    height = size.y;
+
     setupVertexArray();
 }
 
@@ -65,13 +75,13 @@ shared_ptr<ShaderProgram> Sprite::getShader() const
 }
 
 
-GLint Sprite::getWidth() const
+GLfloat Sprite::getWidth() const
 {
     return width;
 }
 
 
-GLint Sprite::getHeight() const
+GLfloat Sprite::getHeight() const
 {
     return height;
 }

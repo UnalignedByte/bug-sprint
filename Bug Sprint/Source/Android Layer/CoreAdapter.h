@@ -14,7 +14,7 @@
 class CoreAdapter
 {
 public:
-    CoreAdapter(int width, int height);
+    CoreAdapter(int viewWidth, int viewHeight);
     virtual ~CoreAdapter();
 
     void executeLoop();
@@ -27,8 +27,8 @@ public:
 private:
     Core *core;
 
-    int width;
-    int height;
+    int viewWidth;
+    int viewHeight;
     Input currentInput;
 
     double previousTime = 0.0;

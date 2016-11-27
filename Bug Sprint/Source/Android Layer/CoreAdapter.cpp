@@ -7,15 +7,16 @@
 #include <android/log.h>
 #include <stdlib.h>
 #include <time.h>
+#include "SystemUtils.h"
 
 using namespace std;
 
 
-CoreAdapter::CoreAdapter(int width, int height) :
-    width(width), height(height)
+CoreAdapter::CoreAdapter(int viewWidth, int viewHeight) :
+    viewWidth(viewWidth), viewHeight(viewHeight)
 {
     try {
-        core = new Core(width, height);
+        core = new Core(viewWidth, viewHeight);
     } catch(string exception) {
         handleException(exception);
     }
@@ -49,10 +50,9 @@ void CoreAdapter::touchDown(int x, int y)
 {
     currentInput.state = Input::StateDown;
 
-    double xPos = double(x) / double(width);
-    double yPos = (double(height) - double(y)) / double(height);
-    currentInput.downX = currentInput.x = xPos;
-    currentInput.downY = currentInput.y = yPos;
+    Point pos = SystemUtils::positionForViewPosition(x, viewHeight - y);
+    currentInput.downX = currentInput.x = pos.x;
+    currentInput.downY = currentInput.y = pos.y;
 }
 
 
@@ -60,10 +60,9 @@ void CoreAdapter::touchUp(int x, int y)
 {
     currentInput.state = Input::StateUp;
 
-    double xPos = double(x) / double(width);
-    double yPos = (double(height) - double(y)) / double(height);
-    currentInput.x = xPos;
-    currentInput.y = yPos;
+    Point pos = SystemUtils::positionForViewPosition(x, viewHeight - y);
+    currentInput.x = pos.x;
+    currentInput.y = pos.y;
 }
 
 
@@ -71,10 +70,9 @@ void CoreAdapter::touchMove(int x, int y)
 {
     currentInput.state = Input::StateMoved;
 
-    double xPos = double(x) / double(width);
-    double yPos = (double(height) - double(y)) / double(height);
-    currentInput.x = xPos;
-    currentInput.y = yPos;
+    Point pos = SystemUtils::positionForViewPosition(x, viewHeight - y);
+    currentInput.x = pos.x;
+    currentInput.y = pos.y;
 }
 
 

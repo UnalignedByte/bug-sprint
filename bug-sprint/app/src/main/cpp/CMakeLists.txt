@@ -39,6 +39,7 @@ add_library(bug-sprint SHARED
 
     "${SRC}/Graphics Utils/2D/Instance2D.cpp"
     "${SRC}/Graphics Utils/2D/Sprite.cpp"
+    "${SRC}/Graphics Utils/2D/Button.cpp"
 
     "${SRC}/Game/Core.cpp"
 )

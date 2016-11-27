@@ -14,10 +14,10 @@ struct Input
         StateCanceled
     };
 
-    double x = 0.0;
-    double y = 0.0;
-    double downX = 0.0;
-    double downY = 0.0;
+    float x = 0.0;
+    float y = 0.0;
+    float downX = 0.0;
+    float downY = 0.0;
 
     State state = StateCanceled;
 };

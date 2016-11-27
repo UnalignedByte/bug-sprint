@@ -21,12 +21,13 @@
 #include "Color.h"
 #include "Types.h"
 #include "ShadowPass.h"
+#include "Button.h"
 
 
 class Core
 {
 public:
-    Core(double width, double height);
+    Core(int viewWidth, int viewHeight);
 
     void update(double timeInterval, Input input);
     void updateInput(double timeInterval, Input input);
@@ -37,13 +38,17 @@ public:
 
 protected:
     Color clearColor{0.0, 0.0, 0.2, 1.0};
-    GLint width;
-    GLint height;
+    GLint viewWidth;
+    GLint viewHeight;
+    GLfloat width;
+    GLfloat height;
+
 
     std::shared_ptr<Camera> camera;
     std::shared_ptr<Camera> spriteCamera;
     std::shared_ptr<Light> light;
     std::shared_ptr<ShadowPass> shadow;
+    std::shared_ptr<Button> buttonOne;
     
     std::vector<std::shared_ptr<Instance>> instances;
     std::vector<std::shared_ptr<Instance2D>> instances2D;

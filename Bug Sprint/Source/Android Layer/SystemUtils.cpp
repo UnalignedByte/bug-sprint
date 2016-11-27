@@ -8,7 +8,9 @@
 using namespace std;
 
 
-android_app *SystemUtils::app = nullptr;
+android_app *SystemUtils::app{nullptr};
+int SystemUtils::viewWidth{-1};
+int SystemUtils::viewHeight{-1};
 
 
 string SystemUtils::pathForFileName(const std::string &fileName)
@@ -200,6 +202,32 @@ float SystemUtils::getScale()
     density = env->GetFloatField(displayMetricsObj, densityField);
 
     return density;
+}
+
+
+Point SystemUtils::sizeForViewSize(int width, int height)
+{
+    if(viewWidth <= 0 || viewHeight <= 0)
+        throw string("SystemUtils is not initialized");
+
+    Point size;
+    size.x = float(2 * width)/float(viewHeight);
+    size.y = float(2 * height)/float(viewHeight);
+
+    return size;
+}
+
+
+Point SystemUtils::positionForViewPosition(int x, int y)
+{
+    if(viewHeight <= 0 || viewHeight <= 0)
+        throw string("SystemUtils is not initialized");
+
+    Point pos;
+    pos.x = (2.0 * double(x - viewWidth/2.0)) / double(viewHeight);
+    pos.y = (2.0 * double(y - viewHeight/2.0) / (double(viewHeight)));
+
+    return pos;
 }
 
 

@@ -20,8 +20,8 @@ public:
     Sprite(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor, std::shared_ptr<ShaderProgram> shaderProgram);
 
     virtual std::shared_ptr<ShaderProgram> getShader() const;
-    virtual GLint getWidth() const;
-    virtual GLint getHeight() const;
+    virtual GLfloat getWidth() const;
+    virtual GLfloat getHeight() const;
 
     void draw() override;
 
@@ -30,8 +30,8 @@ protected:
     Texture texture;
     GLuint vertexArrayId;
 
-    GLint width;
-    GLint height;
+    GLfloat width;
+    GLfloat height;
 
 protected:
     void setupVertexArray();

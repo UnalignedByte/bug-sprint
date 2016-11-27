@@ -17,10 +17,20 @@ struct ImageData
     int height = 0;
 };
 
+
+struct Point
+{
+    float x;
+    float y;
+};
+
+
 class SystemUtils
 {
 public:
     static android_app *app;
+    static int viewWidth;
+    static int viewHeight;
 
 public:
     static std::string pathForFileName(const std::string &fileName);
@@ -29,6 +39,8 @@ public:
     static ImageData imageDataForText(const std::string &text, const std::string &fontFileName,
         float fontSize, float red, float green, float blue);
     static float getScale();
+    static Point sizeForViewSize(int width, int height);
+    static Point positionForViewPosition(int x, int y);
 
 private:
     static jobject getAssetsManager();

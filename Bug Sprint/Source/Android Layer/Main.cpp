@@ -186,14 +186,21 @@ void shutdownEGL(android_app *app)
 
 void setupSystemUtils(android_app *app)
 {
+    EGLint width;
+    EGLint height;
+    eglQuerySurface(eglDisplay, eglSurface, EGL_WIDTH, &width);
+    eglQuerySurface(eglDisplay, eglSurface, EGL_HEIGHT, &height);
+
     SystemUtils::app = app;
+    SystemUtils::viewWidth = width;
+    SystemUtils::viewHeight = height;
 }
 
 
 void setupCoreAdapter()
 {
     EGLint width;
-    EGLint  height;
+    EGLint height;
     eglQuerySurface(eglDisplay, eglSurface, EGL_WIDTH, &width);
     eglQuerySurface(eglDisplay, eglSurface, EGL_HEIGHT, &height);
 

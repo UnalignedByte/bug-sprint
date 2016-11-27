@@ -17,13 +17,18 @@
 #include "Camera.h"
 #include "Texture.h"
 #include "Sprite.h"
+#include "SystemUtils.h"
 
 using namespace std;
 
 
-Core::Core(double width, double height) :
-    width(width), height(height)
+Core::Core(int viewWidth, int viewHeight) :
+    viewWidth(viewWidth), viewHeight(viewHeight)
 {
+    Point size = SystemUtils::sizeForViewSize(viewWidth, viewHeight);
+    width = size.x;
+    height = size.y;
+
     shared_ptr<ShaderProgram> defaultShader = make_shared<ShaderProgram>("Shaders/default.vsh", "Shaders/default.fsh");
     shared_ptr<ShaderProgram> defaultPerFragmentShader = make_shared<ShaderProgram>("Shaders/defaultPerFragment.vsh", "Shaders/defaultPerFragment.fsh");
     shared_ptr<ShaderProgram> texturedShader = make_shared<ShaderProgram>("Shaders/textured.vsh", "Shaders/textured.fsh");
@@ -80,6 +85,11 @@ Core::Core(double width, double height) :
     instances2D.push_back(make_shared<Sprite>("Game/mario.png", spriteShader));
     instances2D.push_back(make_shared<Sprite>("Hello World!", "Fonts/BunakenUnderwater.ttf", 20.0, Color(1.0, 1.0, 0.0, 1.0), spriteShader));
     instances2D.push_back(make_shared<Sprite>("Game/goose.jpg", spriteShader));
+
+    buttonOne = make_shared<Button>(spriteShader, "Game/button_up.png", "Game/button_down.png");
+    buttonOne->position[0] = width/2.0 - buttonOne->getWidth()/2.0;
+    buttonOne->position[1] = -height/2.0 + buttonOne->getHeight()/2.0;
+    instances2D.push_back(buttonOne);
 }
 
 
@@ -101,6 +111,8 @@ void Core::updateInput(double timeInterval, Input input)
         camera->position[2] = 0.0;
     }
 
+    buttonOne->updateInput(timeInterval, input);
+
     instances[0]->rotation[1] = instances[0]->rotation[1] + 45.0 * timeInterval;
     instances[1]->rotation[1] = instances[1]->rotation[1] + 45.0 * timeInterval;
     instances[2]->rotation[0] = instances[2]->rotation[0] + 45.0 * timeInterval;
@@ -112,10 +124,10 @@ void Core::updateInput(double timeInterval, Input input)
     light->position = {6.0, 2.0, 0.0};
     light->setTarget(camera->getTarget());
 
-    auto inst = instances2D.back();
+    /*auto inst = instances2D.back();
     static double elapsed;
     elapsed += timeInterval;
-    inst->position[0] = width*0.5 * sin(elapsed / 2.0);
+    inst->position[0] = width*0.5 * sin(elapsed / 2.0);*/
 }
 
 
@@ -165,7 +177,7 @@ void Core::shadowPass()
 
 void Core::renderPass()
 {
-    glViewport(0, 0, width, height);
+    glViewport(0, 0, viewWidth, viewHeight);
     glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
