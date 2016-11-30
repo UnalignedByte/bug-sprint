@@ -19,7 +19,7 @@ class Instance2D
 public:
     Vector2 position{0.0, 0.0};
     Vector2 scale{1.0, 1.0};
-    GLfloat rotation;
+    GLfloat rotation{0};
 
 public:
     virtual void update(double timeInterval);
