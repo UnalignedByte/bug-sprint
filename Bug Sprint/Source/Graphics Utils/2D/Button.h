@@ -9,6 +9,7 @@
 
 #include <string>
 #include <memory>
+#include <functional>
 #include "Color.h"
 #include "ShaderProgram.h"
 #include "Sprite.h"
@@ -17,6 +18,16 @@
 
 class Button: public Instance2D
 {
+public:
+    enum State {
+        StateUp,
+        StateDown,
+        StateInactive
+    };
+
+public:
+    std::function<void()> pressedCallback{nullptr};
+
 public:
     Button(std::shared_ptr<ShaderProgram> shaderProgram, const std::string &upImageFileName,
            const std::string &downImageFileName = "", const std::string &inactiveImageFileName = "");
@@ -27,19 +38,15 @@ public:
     virtual std::shared_ptr<ShaderProgram> getShader() const;
     virtual GLfloat getWidth() const;
     virtual GLfloat getHeight() const;
+    virtual GLfloat getRange() const;
+    void setRange(GLfloat range);
     GLsizei getTrianglesCount() const override;
     virtual void setIsInactive(bool isInactive);
+    State getState() const;
 
     virtual void updateInput(double timeinterval, const Input &input);
     void update(double timeInterval) override;
     void draw() override;
-
-protected:
-    enum State {
-        StateUp,
-        StateDown,
-        StateInactive
-    };
 
 protected:
     std::shared_ptr<ShaderProgram> shaderProgram;
@@ -50,6 +57,8 @@ protected:
 
     GLfloat width;
     GLfloat height;
+
+    GLfloat range{-1};
 
     State state{StateUp};
 };

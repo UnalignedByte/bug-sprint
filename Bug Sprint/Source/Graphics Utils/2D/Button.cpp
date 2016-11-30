@@ -63,6 +63,18 @@ GLfloat Button::getHeight() const
 }
 
 
+GLfloat Button::getRange() const
+{
+    return range;
+}
+
+
+void Button::setRange(GLfloat range)
+{
+    this->range = range;
+}
+
+
 GLsizei Button::getTrianglesCount() const
 {
     GLsizei count = upSprite->getTrianglesCount();
@@ -80,6 +92,12 @@ void Button::setIsInactive(bool isInactive)
 }
 
 
+Button::State Button::getState() const
+{
+    return state;
+}
+
+
 void Button::updateInput(double timeInterval, const Input &input)
 {
     if(state == StateInactive)
@@ -90,8 +108,22 @@ void Button::updateInput(double timeInterval, const Input &input)
     GLfloat top = position[1] + height/2.0;
     GLfloat bottom = position[1] - height/2.0;
 
-    bool isInside = input.x >= left && input.x <= right && input.y >= bottom && input.y <= top;
-    if((input.state == Input::StateDown || input.state == Input::StateMoved) && isInside) {
+    bool isInside;
+    if(range > 0.0) {
+        GLfloat distanceSquared = (input.x - position[0]) * (input.x - position[0]) +
+                                  (input.y - position[1]) * (input.y - position[1]);
+
+        isInside = range*range >= distanceSquared;
+    } else {
+        isInside = input.x >= left && input.x <= right && input.y >= bottom && input.y <= top;
+    }
+
+    // Is touch up inside?
+    if(state == StateDown && input.state == Input::StateUp && isInside && pressedCallback != nullptr)
+        pressedCallback();
+
+    if((state == StateUp && input.state == Input::StateDown && isInside) ||
+       (state == StateDown && input.state != Input::StateUp && isInside)) {
         state = StateDown;
     } else {
         state = StateUp;

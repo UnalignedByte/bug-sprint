@@ -89,6 +89,10 @@ Core::Core(int viewWidth, int viewHeight) :
     buttonOne = make_shared<Button>(spriteShader, "Game/button_up.png", "Game/button_down.png");
     buttonOne->position[0] = width/2.0 - buttonOne->getWidth()/2.0;
     buttonOne->position[1] = -height/2.0 + buttonOne->getHeight()/2.0;
+    buttonOne->pressedCallback = [](){
+        printf("Hello World!\n");
+    };
+
     instances2D.push_back(buttonOne);
 }
 
