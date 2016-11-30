@@ -64,6 +64,40 @@ TEST(Matrix, CreateInitializerList)
 }
 
 
+TEST(Matrix, RuleOfFive)
+{
+    Matrix<2> m2{{1.0, 2.0}, {3.0, 4.0}};
+
+    // Copy constructor
+    Matrix<2> copy0(m2);
+    ASSERT_EQ(copy0[0][0], 1.0);
+    ASSERT_EQ(copy0[0][1], 2.0);
+    ASSERT_EQ(copy0[1][0], 3.0);
+    ASSERT_EQ(copy0[1][1], 4.0);
+
+    // Copy assignment
+    Matrix<2> copy1 = m2;
+    ASSERT_EQ(copy1[0][0], 1.0);
+    ASSERT_EQ(copy1[0][1], 2.0);
+    ASSERT_EQ(copy1[1][0], 3.0);
+    ASSERT_EQ(copy1[1][1], 4.0);
+
+    // Move constructor
+    Matrix<2> move0(std::move(m2));
+    ASSERT_EQ(move0[0][0], 1.0);
+    ASSERT_EQ(move0[0][1], 2.0);
+    ASSERT_EQ(move0[1][0], 3.0);
+    ASSERT_EQ(move0[1][1], 4.0);
+
+    // Move assignment
+    Matrix<2> move1 = std::move(m2);
+    ASSERT_EQ(move1[0][0], 1.0);
+    ASSERT_EQ(move1[0][1], 2.0);
+    ASSERT_EQ(move1[1][0], 3.0);
+    ASSERT_EQ(move1[1][1], 4.0);
+}
+
+
 TEST(Matrix, MultiplyByScalar)
 {
     Matrix<2> m{{1.0, 2.0}, {3.0, 4.0}};

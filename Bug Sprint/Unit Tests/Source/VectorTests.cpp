@@ -61,6 +61,36 @@ TEST(Vector, CreateInitializerList)
 }
 
 
+TEST(Vector, RuleOfFive)
+{
+    Vector3 v3{1.0, 2.0, 3.0};
+
+    // Copy constructor
+    Vector3 copy0(v3);
+    ASSERT_EQ(copy0[0], 1.0);
+    ASSERT_EQ(copy0[1], 2.0);
+    ASSERT_EQ(copy0[2], 3.0);
+
+    // Copy assignment
+    Vector3 copy1 = v3;
+    ASSERT_EQ(copy1[0], 1.0);
+    ASSERT_EQ(copy1[1], 2.0);
+    ASSERT_EQ(copy1[2], 3.0);
+
+    // Move constructor
+    Vector3 move0(std::move(v3));
+    ASSERT_EQ(move0[0], 1.0);
+    ASSERT_EQ(move0[1], 2.0);
+    ASSERT_EQ(move0[2], 3.0);
+
+    // Move assignment
+    Vector3 move1 = std::move(v3);
+    ASSERT_EQ(move1[0], 1.0);
+    ASSERT_EQ(move1[1], 2.0);
+    ASSERT_EQ(move1[2], 3.0);
+}
+
+
 TEST(Vector, Addition)
 {
     Vector<3> first(1.0);
