@@ -19,6 +19,11 @@
 		B50C612A1DB547AD005147FA /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61251DB538DB005147FA /* Model.cpp */; };
 		B50C612C1DB54807005147FA /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = B50C612B1DB54807005147FA /* box.obj */; };
 		B50C61391DB818F3005147FA /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61371DB818F3005147FA /* Camera.cpp */; };
+		B51909621DEF0C2200469B7C /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56C8C2B1DD0F0E500C1138A /* Texture.cpp */; };
+		B51909631DEF0C3300469B7C /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56C8C2E1DD0F4FE00C1138A /* Image.cpp */; };
+		B51909651DEF0C6700469B7C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51909641DEF0C6700469B7C /* UIKit.framework */; };
+		B51909671DEF0C7300469B7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51909661DEF0C7300469B7C /* CoreGraphics.framework */; };
+		B51909691DEF0C7E00469B7C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51909681DEF0C7E00469B7C /* CoreText.framework */; };
 		B51D15AB1DBA2C2F0093E6AC /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */; };
 		B51D15AC1DBA2C2F0093E6AC /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */; };
 		B51D15AD1DBA37B20093E6AC /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance.cpp */; };
@@ -85,6 +90,9 @@
 		B50C612B1DB54807005147FA /* box.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = box.obj; path = "Bug Sprint/Unit Tests/Assets/box.obj"; sourceTree = SOURCE_ROOT; };
 		B50C61371DB818F3005147FA /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Camera.cpp; path = "Source/Graphics Utils/3D/Camera.cpp"; sourceTree = "<group>"; };
 		B50C61381DB818F3005147FA /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = "Source/Graphics Utils/3D/Camera.h"; sourceTree = "<group>"; };
+		B51909641DEF0C6700469B7C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B51909661DEF0C7300469B7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B51909681DEF0C7E00469B7C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Drawable.cpp; path = "Source/Graphics Utils/3D/Drawable.cpp"; sourceTree = "<group>"; };
 		B51D15AA1DBA2C2F0093E6AC /* Drawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Drawable.h; path = "Source/Graphics Utils/3D/Drawable.h"; sourceTree = "<group>"; };
 		B53370EB1DB4170000275631 /* ColorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ColorTests.cpp; path = "Bug Sprint/Unit Tests/Source/ColorTests.cpp"; sourceTree = SOURCE_ROOT; };
@@ -195,6 +203,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B51909691DEF0C7E00469B7C /* CoreText.framework in Frameworks */,
+				B51909671DEF0C7300469B7C /* CoreGraphics.framework in Frameworks */,
+				B51909651DEF0C6700469B7C /* UIKit.framework in Frameworks */,
 				B53370F91DB4212300275631 /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +264,9 @@
 		B54474691DAED6F50046A19E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B51909681DEF0C7E00469B7C /* CoreText.framework */,
+				B51909661DEF0C7300469B7C /* CoreGraphics.framework */,
+				B51909641DEF0C6700469B7C /* UIKit.framework */,
 				B53370F81DB4212300275631 /* OpenGLES.framework */,
 				B544746A1DAED6F50046A19E /* GLKit.framework */,
 			);
@@ -563,7 +577,7 @@
 				TargetAttributes = {
 					B5B1AB3B1DACCC5100066910 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = X7G47FFC9G;
+						DevelopmentTeam = Q3CXQ33KL8;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
@@ -658,6 +672,7 @@
 				B51D15AD1DBA37B20093E6AC /* Instance.cpp in Sources */,
 				B50C612A1DB547AD005147FA /* Model.cpp in Sources */,
 				B51D15AE1DBA37B80093E6AC /* Camera.cpp in Sources */,
+				B51909621DEF0C2200469B7C /* Texture.cpp in Sources */,
 				B53370F01DB4178300275631 /* Color.cpp in Sources */,
 				B53370FB1DB4C60900275631 /* FileTests.cpp in Sources */,
 				B53370F71DB41C7B00275631 /* ShaderProgram.cpp in Sources */,
@@ -670,6 +685,7 @@
 				B550B1CE1DB25E37006EAEFD /* MatrixTests.cpp in Sources */,
 				B53370FF1DB4C6A500275631 /* File.cpp in Sources */,
 				B5880FAC1DB939A90063AEDA /* InstanceTests.cpp in Sources */,
+				B51909631DEF0C3300469B7C /* Image.cpp in Sources */,
 				B50C61291DB54794005147FA /* ModelTests.cpp in Sources */,
 				B51D15AC1DBA2C2F0093E6AC /* Drawable.cpp in Sources */,
 			);
@@ -786,15 +802,15 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Rafal Grodzinski (26CJHPNYQM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rafal Grodzinski (X2VAV67362)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = X7G47FFC9G;
+				DEVELOPMENT_TEAM = Q3CXQ33KL8;
 				INFOPLIST_FILE = "$(SRCROOT)/Bug Sprint/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unalignedbyte.bugsprint;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "7a4d0075-15db-4009-b18d-7a0667d337f5";
-				PROVISIONING_PROFILE_SPECIFIER = "Any iOS App Development";
+				PROVISIONING_PROFILE_SPECIFIER = "Any App Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Bug Sprint/Source/iOS Layer/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -810,13 +826,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Q3CXQ33KL8;
 				INFOPLIST_FILE = "$(SRCROOT)/Bug Sprint/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unalignedbyte.bugsprint;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Any App Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Bug Sprint/Source/iOS Layer/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

@@ -27,6 +27,7 @@ TEST(Instance, Create)
 
     ASSERT_NO_THROW(Instance instance);
     ASSERT_NO_THROW(Drawable drawable("box.obj", shaderProgram));
-    ASSERT_NO_THROW(Camera camera(200, 100, shaderProgram));
-    ASSERT_NO_THROW(Light light(shaderProgram));
+    ASSERT_NO_THROW(Camera camera(200.0, 100.0, 10.0));
+    ASSERT_NO_THROW(Camera camera(200.0, 100.0, 10.0, 60.0));
+    ASSERT_NO_THROW(Light light(200.0, 100.0));
 }

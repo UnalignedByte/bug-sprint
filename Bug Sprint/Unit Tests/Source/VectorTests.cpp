@@ -50,7 +50,7 @@ TEST(Vector, CreateInitial)
 
 TEST(Vector, CreateInitializerList)
 {
-    Vector<3> v3 {1.0, 2.0, 3.0};
+    Vector<3> v3{1.0, 2.0, 3.0};
     ASSERT_DOUBLE_EQ(v3[0], 1.0);
     ASSERT_DOUBLE_EQ(v3[1], 2.0);
     ASSERT_DOUBLE_EQ(v3[2], 3.0);
