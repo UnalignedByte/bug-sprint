@@ -20,6 +20,8 @@ class Image
 public:
     Image(const std::string &fileName);
     Image(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor);
+    Image(const Image &that);
+    Image &operator=(Image &that);
 
     GLint getWidth() const;
     GLint getHeight() const;

@@ -24,6 +24,9 @@
 		B51909651DEF0C6700469B7C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51909641DEF0C6700469B7C /* UIKit.framework */; };
 		B51909671DEF0C7300469B7C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51909661DEF0C7300469B7C /* CoreGraphics.framework */; };
 		B51909691DEF0C7E00469B7C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51909681DEF0C7E00469B7C /* CoreText.framework */; };
+		B519096B1DEF129E00469B7C /* ImageTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B519096A1DEF129E00469B7C /* ImageTests.cpp */; };
+		B519096D1DEF12FE00469B7C /* mario.png in Resources */ = {isa = PBXBuildFile; fileRef = B519096C1DEF12FE00469B7C /* mario.png */; };
+		B519096F1DEF19C500469B7C /* goose.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B519096E1DEF19C500469B7C /* goose.jpg */; };
 		B51D15AB1DBA2C2F0093E6AC /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */; };
 		B51D15AC1DBA2C2F0093E6AC /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */; };
 		B51D15AD1DBA37B20093E6AC /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance.cpp */; };
@@ -93,6 +96,9 @@
 		B51909641DEF0C6700469B7C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B51909661DEF0C7300469B7C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B51909681DEF0C7E00469B7C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		B519096A1DEF129E00469B7C /* ImageTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ImageTests.cpp; path = "Bug Sprint/Unit Tests/Source/ImageTests.cpp"; sourceTree = SOURCE_ROOT; };
+		B519096C1DEF12FE00469B7C /* mario.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mario.png; path = "Bug Sprint/Unit Tests/Assets/mario.png"; sourceTree = SOURCE_ROOT; };
+		B519096E1DEF19C500469B7C /* goose.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = goose.jpg; path = "Bug Sprint/Unit Tests/Assets/goose.jpg"; sourceTree = SOURCE_ROOT; };
 		B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Drawable.cpp; path = "Source/Graphics Utils/3D/Drawable.cpp"; sourceTree = "<group>"; };
 		B51D15AA1DBA2C2F0093E6AC /* Drawable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Drawable.h; path = "Source/Graphics Utils/3D/Drawable.h"; sourceTree = "<group>"; };
 		B53370EB1DB4170000275631 /* ColorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ColorTests.cpp; path = "Bug Sprint/Unit Tests/Source/ColorTests.cpp"; sourceTree = SOURCE_ROOT; };
@@ -222,6 +228,8 @@
 				B50C611C1DB52DE8005147FA /* broken_vertex.vsh */,
 				B50C611E1DB52DF9005147FA /* broken_fragment.fsh */,
 				B50C612B1DB54807005147FA /* box.obj */,
+				B519096C1DEF12FE00469B7C /* mario.png */,
+				B519096E1DEF19C500469B7C /* goose.jpg */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -412,6 +420,7 @@
 				B53370F11DB41BA500275631 /* ShaderProgramTests.cpp */,
 				B50C61281DB54794005147FA /* ModelTests.cpp */,
 				B5880FAB1DB939A90063AEDA /* InstanceTests.cpp */,
+				B519096A1DEF129E00469B7C /* ImageTests.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -625,9 +634,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B50C611D1DB52DE8005147FA /* broken_vertex.vsh in Resources */,
+				B519096D1DEF12FE00469B7C /* mario.png in Resources */,
 				B50C611B1DB52619005147FA /* test.txt in Resources */,
 				B50C611F1DB52DF9005147FA /* broken_fragment.fsh in Resources */,
 				B50C612C1DB54807005147FA /* box.obj in Resources */,
+				B519096F1DEF19C500469B7C /* goose.jpg in Resources */,
 				B50C61231DB5348F005147FA /* vertex.vsh in Resources */,
 				B50C61221DB5348F005147FA /* fragment.fsh in Resources */,
 			);
@@ -688,6 +699,7 @@
 				B51909631DEF0C3300469B7C /* Image.cpp in Sources */,
 				B50C61291DB54794005147FA /* ModelTests.cpp in Sources */,
 				B51D15AC1DBA2C2F0093E6AC /* Drawable.cpp in Sources */,
+				B519096B1DEF129E00469B7C /* ImageTests.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

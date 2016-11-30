@@ -72,7 +72,8 @@ TEST(Vector, RuleOfFive)
     ASSERT_EQ(copy0[2], 3.0);
 
     // Copy assignment
-    Vector3 copy1 = v3;
+    Vector3 copy1;
+    copy1 = v3;
     ASSERT_EQ(copy1[0], 1.0);
     ASSERT_EQ(copy1[1], 2.0);
     ASSERT_EQ(copy1[2], 3.0);

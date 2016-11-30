@@ -37,6 +37,34 @@ Image::Image(const std::string &text, const std::string &fontFileName, GLfloat f
 }
 
 
+Image::Image(const Image &that)
+{
+    width = that.width;
+    height = that.height;
+
+    size_t bytesCount = width * height * 4 * sizeof(GLubyte);
+    GLubyte *data = (GLubyte *)malloc(bytesCount);
+    memcpy(data, that.getData(), bytesCount);
+
+    rgbaData = unique_ptr<GLubyte>(data);
+}
+
+
+Image &Image::operator=(Image &that)
+{
+    width = that.width;
+    height = that.height;
+
+    size_t bytesCount = width * height * 4 * sizeof(GLubyte);
+    GLubyte *data = (GLubyte *)malloc(bytesCount);
+    memcpy(data, that.getData(), bytesCount);
+
+    rgbaData = unique_ptr<GLubyte>(data);
+
+    return *this;
+}
+
+
 GLint Image::getWidth() const
 {
     return width;

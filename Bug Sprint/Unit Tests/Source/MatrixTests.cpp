@@ -76,7 +76,8 @@ TEST(Matrix, RuleOfFive)
     ASSERT_EQ(copy0[1][1], 4.0);
 
     // Copy assignment
-    Matrix<2> copy1 = m2;
+    Matrix<2> copy1;
+    copy1 = m2;
     ASSERT_EQ(copy1[0][0], 1.0);
     ASSERT_EQ(copy1[0][1], 2.0);
     ASSERT_EQ(copy1[1][0], 3.0);

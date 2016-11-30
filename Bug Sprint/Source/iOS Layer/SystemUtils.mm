@@ -48,8 +48,10 @@ SystemUtils::ImageData SystemUtils::imageDataForFileName(const string &fileName)
 {
     ImageData imageData;
 
-    NSString *fileNameString = [NSString stringWithUTF8String:fileName.c_str()];
-    UIImage *image = [UIImage imageNamed:fileNameString];
+    //NSString *fileNameString = [NSString stringWithUTF8String:fileName.c_str()];
+    string filePath = SystemUtils::pathForFileName(fileName);
+    NSString *filePathString = [NSString stringWithUTF8String:filePath.c_str()];
+    UIImage *image = [UIImage imageWithContentsOfFile:filePathString];
     if(image == nil)
         return imageData;
 
