@@ -31,4 +31,19 @@ TEST(Image, RuleOfFive)
     ASSERT_EQ(copy1.getHeight(), img.getHeight());
     ASSERT_NE(copy1.getData(), nullptr);
     ASSERT_NE(copy1.getData(), img.getData());
+
+    // Move constructor
+    Image move0(move(img));
+    ASSERT_NE(move0.getWidth(), img.getWidth());
+    ASSERT_NE(move0.getHeight(), img.getHeight());
+    ASSERT_NE(move0.getData(), nullptr);
+    ASSERT_EQ(img.getData(), nullptr);
+
+    // Move assignment
+    Image move1("goose.jpg");
+    move1 = move(move0);
+    ASSERT_NE(move1.getWidth(), move0.getWidth());
+    ASSERT_NE(move1.getHeight(), move0.getHeight());
+    ASSERT_NE(move1.getData(), nullptr);
+    ASSERT_EQ(move0.getData(), nullptr);
 }

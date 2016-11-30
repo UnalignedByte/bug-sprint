@@ -65,6 +65,30 @@ Image &Image::operator=(Image &that)
 }
 
 
+Image::Image(Image &&that)
+{
+    width = that.width;
+    that.width = 0;
+    height = that.height;
+    that.height = 0;
+    rgbaData = move(that.rgbaData);
+    that.rgbaData = nullptr;
+}
+
+
+Image &Image::operator=(Image &&that)
+{
+    width = that.width;
+    that.width = 0;
+    height = that.height;
+    that.height = 0;
+    rgbaData = move(that.rgbaData);
+    that.rgbaData = nullptr;
+
+    return *this;
+}
+
+
 GLint Image::getWidth() const
 {
     return width;
