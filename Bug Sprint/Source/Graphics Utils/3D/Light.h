@@ -9,15 +9,15 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 
-#include "Instance.h"
+#include "Instance3D.h"
 
 #include <memory>
-#include "ShaderProgram.h"
+#include "RenderPass.h"
 #include "Vector.h"
 #include "Color.h"
 
 
-class Light: public Instance
+class Light: public Instance3D
 {
 public:
     Light(GLfloat viewWidth, GLfloat viewHeight);
@@ -28,8 +28,14 @@ public:
     Vector3 getTarget() const;
     void setTarget(const Vector3 &target);
 
-    void updateLight(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
-    void updateShadow(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
+    virtual void addRenderPass(std::shared_ptr<RenderPass> renderPass);
+    virtual void removeRenderPass(std::shared_ptr<RenderPass> renderPass);
+
+    virtual void addShadowRenderPass(std::shared_ptr<RenderPass> renderPass);
+    virtual void removeShadowRenderPass(std::shared_ptr<RenderPass> renderPass);
+
+    void updateLight();
+    void updateShadow();
 
 protected:
     Color color{1.0, 1.0, 1.0, 1.0};
@@ -41,6 +47,9 @@ protected:
     GLfloat zFar{100.0};
 
     Vector3 target{0.0, 0.0, 1.0};
+
+    std::set<std::shared_ptr<RenderPass>> renderPasses;
+    std::set<std::shared_ptr<RenderPass>> shadowRenderPasses;
 };
 
 #endif

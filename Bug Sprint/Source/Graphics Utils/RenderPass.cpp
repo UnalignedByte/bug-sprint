@@ -11,10 +11,8 @@
 using namespace std;
 
 
-RenderPass(GLint viewWidth, GLint viewHeight, GLfloat width, GLfloat height,
-           std::shared_ptr<ShaderProgram> shaderProgram) :
-    viewWidth(viewWidth), viewHeight(viewHeight), width(width), height(height),
-    shaderProgram(shaderProgram)
+RenderPass::RenderPass(GLint viewWidth, GLint viewHeight, GLfloat width, GLfloat height, shared_ptr<ShaderProgram> shaderProgram) :
+    viewWidth(viewWidth), viewHeight(viewHeight), width(width), height(height), shaderProgram(shaderProgram)
 {
 }
 
@@ -24,17 +22,23 @@ void RenderPass::begin()
 }
 
 
-void RenderPass::end()
-{
-}
-
-
 void RenderPass::draw()
 {
     shaderProgram->use();
 
     for(shared_ptr<Instance> instance : instances)
-        instance->draw();
+    instance->draw();
+}
+
+
+void RenderPass::end()
+{
+}
+
+
+shared_ptr<ShaderProgram> RenderPass::getShaderProgram() const
+{
+    return shaderProgram;
 }
 
 

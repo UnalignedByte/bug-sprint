@@ -45,7 +45,7 @@ public:
     State getState() const;
 
     virtual void updateInput(double timeinterval, const Input &input);
-    void update(double timeInterval) override;
+    void update(float timeInterval) override;
     void draw() override;
 
 protected:

@@ -16,7 +16,7 @@
 #include "Matrix.h"
 
 
-class Instance: public Instance
+class Instance3D: public Instance
 {
 public:
     Vector3 position{0.0, 0.0, 0.0};

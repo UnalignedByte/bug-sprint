@@ -13,15 +13,15 @@
 #include <vector>
 
 #include "OpenGLES.h"
-#include "ShaderProgram.h"
-#include "Instance.h"
-#include "Instance2D.h"
-#include "Camera.h"
-#include "Light.h"
+//#include "ShaderProgram.h"
+//#include "Instance.h"
+//#include "Instance2D.h"
+//#include "Camera.h"
+//#include "Light.h"
 #include "Color.h"
 #include "Types.h"
-#include "ShadowPass.h"
-#include "Button.h"
+//#include "ShadowPass.h"
+//#include "Button.h"
 #include "Scene.h"
 
 
@@ -30,14 +30,14 @@ class Core
 public:
     Core(int viewWidth, int viewHeight);
 
-    virtual void setupScene();
+    //virtual void setupScene();
 
-    void update(double timeInterval, Input input);
-    void updateInput(float timeInterval, Input input);
-    void updateState(float timeInterval);
-    void draw();
-    void shadowPass();
-    void renderPass();
+    virtual void update(double timeInterval, Input input);
+    virtual void updateInput(float timeInterval, Input input);
+    //void updateState(float timeInterval);
+    virtual void draw();
+    //void shadowPass();
+    //void renderPass();
 
 protected:
     Color clearColor{0.0, 0.0, 0.2, 1.0};
@@ -49,7 +49,7 @@ protected:
     std::shared_ptr<Scene> currentScene;
 
 
-    std::shared_ptr<Camera> camera;
+    /*std::shared_ptr<Camera> camera;
     std::shared_ptr<Camera> spriteCamera;
     std::shared_ptr<Light> light;
     std::shared_ptr<ShadowPass> shadow;
@@ -62,7 +62,7 @@ protected:
     std::vector<std::shared_ptr<ShaderProgram>> updateLightShaders;
     std::vector<std::shared_ptr<ShaderProgram>> updateShadowShaders;
     std::vector<std::shared_ptr<ShaderProgram>> shadedShaders;
-    std::vector<std::shared_ptr<ShaderProgram>> updateSpriteCameraShaders;
+    std::vector<std::shared_ptr<ShaderProgram>> updateSpriteCameraShaders;*/
 };
 
 #endif

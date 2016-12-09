@@ -11,11 +11,21 @@
 
 #include "Scene.h"
 
+#include "Drawable.h"
+
 
 class TestScene: public Scene
 {
 public:
+    TestScene(GLint viewWidth, GLint viewHeight);
+    
     void loadScene() override;
+    void update(float timeInterval) override;
+
+protected:
+    std::shared_ptr<Drawable> monkey;
+    std::shared_ptr<Camera> camera;
+    std::shared_ptr<Light> light;
 };
 
 #endif

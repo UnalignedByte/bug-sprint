@@ -27,18 +27,6 @@ void Scene::loadScene()
 }
 
 
-std::shared_ptr<Camera> Scene::getCurrentCamera() const
-{
-    return currentCamera;
-}
-
-
-void Scene::setCurrentCamera(std::shared_ptr<Camera> camera)
-{
-    currentCamera = camera;
-}
-
-
 void Scene::updateInput(Input input)
 {
     for(shared_ptr<Instance> instance : instances)
@@ -51,7 +39,13 @@ void Scene::update(float timeInterval)
     for(shared_ptr<Instance> instance : instances)
         instance->update(timeInterval);
 
-    currentCamera-
+    for(shared_ptr<Light> light : lights) {
+        light->updateLight();
+        light->updateShadow();
+    }
+
+    for(shared_ptr<Camera> camera : cameras)
+        camera->updateCamera();
 }
 
 

@@ -47,28 +47,60 @@ void Light::setTarget(const Vector3 &target)
 }
 
 
-void Light::updateLight(double timeInterval, shared_ptr<ShaderProgram> shaderProgram)
+void Light::addRenderPass(std::shared_ptr<RenderPass> renderPass)
 {
-    shaderProgram->use();
-
-    GLint lightDirectionId = glGetUniformLocation(shaderProgram->getId(), "light.direction");
-    Vector3 direction = getDirection();
-    glUniform3f(lightDirectionId, direction[0], direction[1], direction[2]);
-
-    GLint lightColorId = glGetUniformLocation(shaderProgram->getId(), "light.color");
-    glUniform3f(lightColorId, color[0], color[1], color[2]);
+    renderPasses.insert(renderPass);
 }
 
 
-void Light::updateShadow(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram)
+void Light::removeRenderPass(std::shared_ptr<RenderPass> renderPass)
 {
-    shaderProgram->use();
+    renderPasses.erase(renderPasses.find(renderPass));
+}
 
-    GLint lightViewMatrixId = glGetUniformLocation(shaderProgram->getId(), "lightViewMatrix");
-    Matrix4 lightViewMatrix = Matrix4::lookAt(position, target);
-    glUniformMatrix4fv(lightViewMatrixId, 1, GL_FALSE, lightViewMatrix.getData());
 
-    GLint lightProjectionMatrixId = glGetUniformLocation(shaderProgram->getId(), "lightProjectionMatrix");
-    Matrix4 lightProjectionMatrix = Matrix4::perspectiveProjection(fov, viewWidth/viewHeight, zNear, zFar);
-    glUniformMatrix4fv(lightProjectionMatrixId, 1, GL_FALSE, lightProjectionMatrix.getData());
+void Light::addShadowRenderPass(std::shared_ptr<RenderPass> renderPass)
+{
+    shadowRenderPasses.insert(renderPass);
+}
+
+
+void Light::removeShadowRenderPass(std::shared_ptr<RenderPass> renderPass)
+{
+    shadowRenderPasses.erase(renderPasses.find(renderPass));
+}
+
+
+void Light::updateLight()
+{
+    for(shared_ptr<RenderPass> renderPass : renderPasses) {
+        shared_ptr<ShaderProgram> shaderProgram = renderPass->getShaderProgram();
+
+        shaderProgram->use();
+
+        GLint lightDirectionId = glGetUniformLocation(shaderProgram->getId(), "light.direction");
+        Vector3 direction = getDirection();
+        glUniform3f(lightDirectionId, direction[0], direction[1], direction[2]);
+
+        GLint lightColorId = glGetUniformLocation(shaderProgram->getId(), "light.color");
+        glUniform3f(lightColorId, color[0], color[1], color[2]);
+    }
+}
+
+
+void Light::updateShadow()
+{
+    for(shared_ptr<RenderPass> renderPass : shadowRenderPasses) {
+        shared_ptr<ShaderProgram> shaderProgram = renderPass->getShaderProgram();
+        
+        shaderProgram->use();
+
+        GLint lightViewMatrixId = glGetUniformLocation(shaderProgram->getId(), "lightViewMatrix");
+        Matrix4 lightViewMatrix = Matrix4::lookAt(position, target);
+        glUniformMatrix4fv(lightViewMatrixId, 1, GL_FALSE, lightViewMatrix.getData());
+
+        GLint lightProjectionMatrixId = glGetUniformLocation(shaderProgram->getId(), "lightProjectionMatrix");
+        Matrix4 lightProjectionMatrix = Matrix4::perspectiveProjection(fov, viewWidth/viewHeight, zNear, zFar);
+        glUniformMatrix4fv(lightProjectionMatrixId, 1, GL_FALSE, lightProjectionMatrix.getData());
+    }
 }

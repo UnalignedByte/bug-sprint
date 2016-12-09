@@ -131,7 +131,7 @@ void Button::updateInput(double timeInterval, const Input &input)
 }
 
 
-void Button::update(double timeInterval)
+void Button::update(float timeInterval)
 {
     if(upSprite != nullptr) {
         upSprite->position = position;

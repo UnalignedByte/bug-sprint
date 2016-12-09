@@ -43,7 +43,8 @@ protected:
 
     std::set<std::shared_ptr<Instance>> instances;
     std::set<std::shared_ptr<RenderPass>> renderPasses;
-    std::shared_ptr<Camera> currentCamera;
+    std::set<std::shared_ptr<Light>> lights;
+    std::set<std::shared_ptr<Camera>> cameras;
 };
 
 #endif

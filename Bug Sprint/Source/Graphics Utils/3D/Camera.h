@@ -9,14 +9,15 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "Instance.h"
+#include "Instance3D.h"
 
 #include <memory>
-#include "ShaderProgram.h"
+#include <set>
+#include "RenderPass.h"
 #include "Vector.h"
 
 
-class Camera: public Instance
+class Camera: public Instance3D
 {
 public:
     enum Type {
@@ -35,7 +36,10 @@ public:
     Vector3 getTarget() const;
     void setTarget(const Vector3 &target);
 
-    void updateCamera(double timeInterval, std::shared_ptr<ShaderProgram> shaderProgram);
+    virtual void addRenderPass(std::shared_ptr<RenderPass> renderPass);
+    virtual void removeRenderPass(std::shared_ptr<RenderPass> renderPass);
+
+    void updateCamera();
 
 protected:
     Type type;
@@ -48,6 +52,8 @@ protected:
     GLfloat fieldOfView;
 
     Vector3 target;
+
+    std::set<std::shared_ptr<RenderPass>> renderPasses;
 };
 
 #endif

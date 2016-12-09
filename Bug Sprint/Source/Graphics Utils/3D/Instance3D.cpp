@@ -1,17 +1,17 @@
 //
-//  Instance.cpp
+//  Instance3D.cpp
 //  Bug Sprint
 //
 //  Created by Rafal Grodzinski on 11/10/2016.
 //  Copyright © 2016 UnalignedByte. All rights reserved.
 //
 
-#include "Instance.h"
+#include "Instance3D.h"
 
 using namespace std;
 
 
-void Instance::update(float timeInterval)
+void Instance3D::update(float timeInterval)
 {
     modelMatrix = Matrix4();
     modelMatrix = modelMatrix * Matrix4::zRotation(rotation[2]);
@@ -22,12 +22,12 @@ void Instance::update(float timeInterval)
 }
 
 
-void Instance::draw()
+void Instance3D::draw()
 {
 }
 
 
-GLsizei Instance::getTrianglesCount() const
+GLsizei Instance3D::getTrianglesCount() const
 {
     return trianglesCount;
 }

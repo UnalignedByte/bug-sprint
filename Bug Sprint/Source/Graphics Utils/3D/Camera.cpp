@@ -68,26 +68,42 @@ void Camera::setTarget(const Vector3 &target)
 }
 
 
-void Camera::updateCamera(double timeInterval, shared_ptr<ShaderProgram> shaderProgram)
+void Camera::addRenderPass(std::shared_ptr<RenderPass> renderPass)
 {
-    shaderProgram->use();
+    renderPasses.insert(renderPass);
+}
 
-    GLint viewMatrixId = glGetUniformLocation(shaderProgram->getId(), "viewMatrix");
-    Matrix4 viewMatrix = Matrix4::lookAt(position, target);
-    glUniformMatrix4fv(viewMatrixId, 1, GL_FALSE, viewMatrix.getData());
 
-    GLint projectionMatrixId = glGetUniformLocation(shaderProgram->getId(), "projectionMatrix");
-    Matrix4 projectionMatrix;
+void Camera::removeRenderPass(std::shared_ptr<RenderPass> renderPass)
+{
+    renderPasses.erase(renderPasses.find(renderPass));
+}
 
-    if(type == TypeOrtographic) {
-        projectionMatrix = Matrix4::ortographicProjection(-width/2.0, width/2.0, -height/2.0, height/2.0,
-                                                          zNear, zFar);
-    } else {
-        projectionMatrix = Matrix4::perspectiveProjection(fieldOfView, aspectRatio, zNear, zFar);
+
+void Camera::updateCamera()
+{
+    for(shared_ptr<RenderPass> renderPass : renderPasses) {
+        shared_ptr<ShaderProgram> shaderProgram = renderPass->getShaderProgram();
+
+        shaderProgram->use();
+
+        GLint viewMatrixId = glGetUniformLocation(shaderProgram->getId(), "viewMatrix");
+        Matrix4 viewMatrix = Matrix4::lookAt(position, target);
+        glUniformMatrix4fv(viewMatrixId, 1, GL_FALSE, viewMatrix.getData());
+
+        GLint projectionMatrixId = glGetUniformLocation(shaderProgram->getId(), "projectionMatrix");
+        Matrix4 projectionMatrix;
+
+        if(type == TypeOrtographic) {
+            projectionMatrix = Matrix4::ortographicProjection(-width/2.0, width/2.0, -height/2.0, height/2.0,
+                                                              zNear, zFar);
+        } else {
+            projectionMatrix = Matrix4::perspectiveProjection(fieldOfView, aspectRatio, zNear, zFar);
+        }
+
+        glUniformMatrix4fv(projectionMatrixId, 1, GL_FALSE, projectionMatrix.getData());
+
+        GLint eyePositionId = glGetUniformLocation(shaderProgram->getId(), "eyePosition");
+        glUniform3f(eyePositionId, position[0], position[1], position[2]);
     }
-
-    glUniformMatrix4fv(projectionMatrixId, 1, GL_FALSE, projectionMatrix.getData());
-
-    GLint eyePositionId = glGetUniformLocation(shaderProgram->getId(), "eyePosition");
-    glUniform3f(eyePositionId, position[0], position[1], position[2]);
 }

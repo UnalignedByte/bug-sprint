@@ -9,7 +9,7 @@
 #ifndef DRAWABLE_H
 #define DRAWABLE_H
 
-#include "Instance.h"
+#include "Instance3D.h"
 
 #include <string>
 #include <memory>
@@ -18,7 +18,7 @@
 #include "ShaderProgram.h"
 
 
-class Drawable: public Instance
+class Drawable: public Instance3D
 {
 public:
     Drawable(const std::string &modelFileName);

@@ -9,6 +9,7 @@
 #ifndef RENDER_PASS_H
 #define RENDER_PASS_H
 
+#include "OpenGLES.h"
 #include <memory>
 #include <set>
 #include "Instance.h"
@@ -24,6 +25,8 @@ public:
     virtual void begin();
     virtual void draw();
     virtual void end();
+
+    virtual std::shared_ptr<ShaderProgram> getShaderProgram() const;
 
     virtual void addInstance(std::shared_ptr<Instance> instance);
     virtual void removeInstance(std::shared_ptr<Instance> instance);

@@ -11,12 +11,12 @@
 #include "OpenGLES.h"
 
 #include "Color.h"
-#include "ShaderProgram.h"
-#include "Instance.h"
-#include "Drawable.h"
-#include "Camera.h"
-#include "Texture.h"
-#include "Sprite.h"
+//#include "ShaderProgram.h"
+//#include "Instance.h"
+//#include "Drawable.h"
+//#include "Camera.h"
+//#include "Texture.h"
+///#include "Sprite.h"
 #include "SystemUtils.h"
 #include "TestScene.h"
 
@@ -30,12 +30,13 @@ Core::Core(int viewWidth, int viewHeight) :
     width = size.x;
     height = size.y;
 
+    currentScene = make_shared<TestScene>(width, height);
 }
 
-void Core::setupScene()
+/*void Core::setupScene()
 {
     currentScene = make_shared<TestScene>();
-    /*shared_ptr<ShaderProgram> defaultShader = make_shared<ShaderProgram>("Shaders/default.vsh", "Shaders/default.fsh");
+    shared_ptr<ShaderProgram> defaultShader = make_shared<ShaderProgram>("Shaders/default.vsh", "Shaders/default.fsh");
     shared_ptr<ShaderProgram> defaultPerFragmentShader = make_shared<ShaderProgram>("Shaders/defaultPerFragment.vsh", "Shaders/defaultPerFragment.fsh");
     shared_ptr<ShaderProgram> texturedShader = make_shared<ShaderProgram>("Shaders/textured.vsh", "Shaders/textured.fsh");
     shared_ptr<ShaderProgram> skyboxShader = make_shared<ShaderProgram>("Shaders/skybox.vsh", "Shaders/skybox.fsh");
@@ -100,20 +101,23 @@ void Core::setupScene()
     };
 
     instances2D.push_back(buttonOne);*/
-}
+//}
 
 
 void Core::update(double timeInterval, Input input)
 {
-    updateInput(timeInterval, input);
-    updateState(timeInterval);
+    //updateInput(timeInterval, input);
+    //updateState(timeInterval);
+
+    currentScene->updateInput(input);
+    currentScene->update(timeInterval);
 }
 
 
-void Core::updateInput(float timeInterval, Input input)
+/*void Core::updateInput(float timeInterval, Input input)
 {
     currentScene->updateInput(timeInterval, input);
-    /*static Vector3 cameraStartPos;
+    static Vector3 cameraStartPos;
     if(input.state == Input::StateDown) {
         cameraStartPos = camera->position;
     } else if(input.state == Input::StateMoved) {
@@ -133,14 +137,13 @@ void Core::updateInput(float timeInterval, Input input)
 
     //light->position = {camera->position[0], camera->position[1], 8.0};
     light->position = {6.0, 2.0, 0.0};
-    light->setTarget(camera->getTarget());*/
-}
+    light->setTarget(camera->getTarget());
+}*/
 
 
-void Core::updateState(float timeInterval)
+/*void Core::updateState(float timeInterval)
 {
-    currentScene->updateState(timeInterval);
-    /*for(auto shader : updateCameraShaders)
+    for(auto shader : updateCameraShaders)
         camera->updateCamera(timeInterval, shader);
 
     for(auto shader : updateLightShaders)
@@ -156,8 +159,8 @@ void Core::updateState(float timeInterval)
         instance->update(timeInterval);
 
     for(auto instance : instances2D)
-        instance->update(timeInterval);*/
-}
+        instance->update(timeInterval);
+}*/
 
 
 void Core::draw()
@@ -170,7 +173,7 @@ void Core::draw()
 }
 
 
-void Core::shadowPass()
+/*void Core::shadowPass()
 {
     shadow->begin();
 
@@ -215,4 +218,4 @@ void Core::renderPass()
     for(auto instance : instances2D) {
         instance->draw();
     }
-}
+}*/
