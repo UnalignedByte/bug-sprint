@@ -29,7 +29,7 @@
 		B519096F1DEF19C500469B7C /* goose.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B519096E1DEF19C500469B7C /* goose.jpg */; };
 		B51D15AB1DBA2C2F0093E6AC /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */; };
 		B51D15AC1DBA2C2F0093E6AC /* Drawable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */; };
-		B51D15AD1DBA37B20093E6AC /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance.cpp */; };
+		B51D15AD1DBA37B20093E6AC /* Instance3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance3D.cpp */; };
 		B51D15AE1DBA37B80093E6AC /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61371DB818F3005147FA /* Camera.cpp */; };
 		B53370EC1DB4170000275631 /* ColorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53370EB1DB4170000275631 /* ColorTests.cpp */; };
 		B53370EF1DB4178300275631 /* Color.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B53370ED1DB4178300275631 /* Color.cpp */; };
@@ -44,11 +44,13 @@
 		B54474641DAED2430046A19E /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B54474621DAED2430046A19E /* Core.cpp */; };
 		B54474671DAED3250046A19E /* CoreAdapter.mm in Sources */ = {isa = PBXBuildFile; fileRef = B54474661DAED3250046A19E /* CoreAdapter.mm */; };
 		B550B1CE1DB25E37006EAEFD /* MatrixTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B550B1CD1DB25E37006EAEFD /* MatrixTests.cpp */; };
+		B55A36481DF4B61900882669 /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B55A36471DF4B61900882669 /* Instance.cpp */; };
+		B55A364B1DF4C21200882669 /* ShadedRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B55A36491DF4C21200882669 /* ShadedRenderPass.cpp */; };
 		B56C8C2D1DD0F0E500C1138A /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56C8C2B1DD0F0E500C1138A /* Texture.cpp */; };
 		B56C8C301DD0F4FE00C1138A /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56C8C2E1DD0F4FE00C1138A /* Image.cpp */; };
 		B57035FC1DCF4B4D00B46354 /* FileBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57035FA1DCF4B4D00B46354 /* FileBuffer.cpp */; };
 		B57035FE1DCF4E2A00B46354 /* FileBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57035FA1DCF4B4D00B46354 /* FileBuffer.cpp */; };
-		B58779E41DAD8FC6007A6DBF /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance.cpp */; };
+		B58779E41DAD8FC6007A6DBF /* Instance3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance3D.cpp */; };
 		B5880FA91DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
 		B5880FAA1DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
 		B5880FAC1DB939A90063AEDA /* InstanceTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FAB1DB939A90063AEDA /* InstanceTests.cpp */; };
@@ -59,11 +61,18 @@
 		B5B1AB471DACCC5100066910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B1AB461DACCC5100066910 /* Assets.xcassets */; };
 		B5B1AB541DACD19700066910 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B1AB531DACD19700066910 /* Launch Screen.storyboard */; };
 		B5B1AB561DACD1A800066910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B1AB551DACD1A800066910 /* Main.storyboard */; };
+		B5B6EAF61DF0C3530010F148 /* SceneTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B6EAF51DF0C3530010F148 /* SceneTests.cpp */; };
+		B5B6EAF91DF0C6C60010F148 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B6EAF71DF0C6C60010F148 /* Scene.cpp */; };
+		B5B6EAFA1DF0C6C60010F148 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B6EAF71DF0C6C60010F148 /* Scene.cpp */; };
+		B5B6EAFD1DF307080010F148 /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B6EAFB1DF307080010F148 /* RenderPass.cpp */; };
+		B5B6EAFE1DF307080010F148 /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B6EAFB1DF307080010F148 /* RenderPass.cpp */; };
+		B5B6EB051DF458CA0010F148 /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B6EB031DF458CA0010F148 /* TestScene.cpp */; };
+		B5B6EB061DF458CA0010F148 /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B6EB031DF458CA0010F148 /* TestScene.cpp */; };
 		B5C3C21D1DCF544100202C37 /* Game in Resources */ = {isa = PBXBuildFile; fileRef = B5C3C21C1DCF544100202C37 /* Game */; };
 		B5C3C21F1DCF545E00202C37 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = B5C3C21E1DCF545E00202C37 /* Shaders */; };
 		B5C7D2181DAD81B4009E66A9 /* GoogleTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5C7D2171DAD81B4009E66A9 /* GoogleTests.mm */; };
 		B5C7D2521DAD8723009E66A9 /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = B5C7D2241DAD86CF009E66A9 /* gtest-all.cc */; };
-		B5C958111DDD26160012F607 /* ShadowPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5C9580F1DDD26160012F607 /* ShadowPass.cpp */; };
+		B5C958111DDD26160012F607 /* ShadowRenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5C9580F1DDD26160012F607 /* ShadowRenderPass.cpp */; };
 		B5DA1A891DAF726D00D948C9 /* VectorTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5DA1A881DAF726D00D948C9 /* VectorTests.cpp */; };
 		B5DF67E81DE64B5000DFE6AA /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = B5DF67E71DE64B5000DFE6AA /* Fonts */; };
 		B5EC497C1DEB69DD00EE16D5 /* Button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5EC497A1DEB69DD00EE16D5 /* Button.cpp */; };
@@ -120,6 +129,10 @@
 		B550B1CD1DB25E37006EAEFD /* MatrixTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MatrixTests.cpp; path = "Bug Sprint/Unit Tests/Source/MatrixTests.cpp"; sourceTree = SOURCE_ROOT; };
 		B550B1CF1DB25EB8006EAEFD /* Matrix.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Matrix.cpp; path = Source/Utils/Matrix.cpp; sourceTree = "<group>"; };
 		B550B1D01DB25EB8006EAEFD /* Matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Matrix.h; path = Source/Utils/Matrix.h; sourceTree = "<group>"; };
+		B55A36461DF4B60B00882669 /* Instance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Instance.h; path = "Source/Graphics Utils/Instance.h"; sourceTree = "<group>"; };
+		B55A36471DF4B61900882669 /* Instance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Instance.cpp; path = "Source/Graphics Utils/Instance.cpp"; sourceTree = "<group>"; };
+		B55A36491DF4C21200882669 /* ShadedRenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShadedRenderPass.cpp; path = "Source/Graphics Utils/3D/ShadedRenderPass.cpp"; sourceTree = "<group>"; };
+		B55A364A1DF4C21200882669 /* ShadedRenderPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShadedRenderPass.h; path = "Source/Graphics Utils/3D/ShadedRenderPass.h"; sourceTree = "<group>"; };
 		B56C8C2B1DD0F0E500C1138A /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Texture.cpp; path = "Source/Graphics Utils/Texture.cpp"; sourceTree = "<group>"; };
 		B56C8C2C1DD0F0E500C1138A /* Texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Texture.h; path = "Source/Graphics Utils/Texture.h"; sourceTree = "<group>"; };
 		B56C8C2E1DD0F4FE00C1138A /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Image.cpp; path = "Source/Graphics Utils/Image.cpp"; sourceTree = "<group>"; };
@@ -128,8 +141,8 @@
 		B57035FB1DCF4B4D00B46354 /* FileBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileBuffer.h; path = Source/Utils/FileBuffer.h; sourceTree = "<group>"; };
 		B57035FD1DCF4BCE00B46354 /* OpenGLES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OpenGLES.h; path = "Source/iOS Layer/OpenGLES.h"; sourceTree = "<group>"; };
 		B58779E11DAD8FC5007A6DBF /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Source/iOS Layer/Bridging-Header.h"; sourceTree = "<group>"; };
-		B58779E21DAD8FC6007A6DBF /* Instance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Instance.cpp; path = "Source/Graphics Utils/3D/Instance.cpp"; sourceTree = "<group>"; };
-		B58779E31DAD8FC6007A6DBF /* Instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Instance.h; path = "Source/Graphics Utils/3D/Instance.h"; sourceTree = "<group>"; };
+		B58779E21DAD8FC6007A6DBF /* Instance3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Instance3D.cpp; path = "Source/Graphics Utils/3D/Instance3D.cpp"; sourceTree = "<group>"; };
+		B58779E31DAD8FC6007A6DBF /* Instance3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Instance3D.h; path = "Source/Graphics Utils/3D/Instance3D.h"; sourceTree = "<group>"; };
 		B5880FA71DB939840063AEDA /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Light.cpp; path = "Source/Graphics Utils/3D/Light.cpp"; sourceTree = "<group>"; };
 		B5880FA81DB939840063AEDA /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Light.h; path = "Source/Graphics Utils/3D/Light.h"; sourceTree = "<group>"; };
 		B5880FAB1DB939A90063AEDA /* InstanceTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InstanceTests.cpp; path = "Bug Sprint/Unit Tests/Source/InstanceTests.cpp"; sourceTree = SOURCE_ROOT; };
@@ -144,6 +157,15 @@
 		B5B1AB4B1DACCC5100066910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Bug Sprint/Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		B5B1AB531DACD19700066910 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Bug Sprint/Assets/iOS Layer/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B5B1AB551DACD1A800066910 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = "Source/iOS Layer/Main.storyboard"; sourceTree = "<group>"; };
+		B5B6EAF51DF0C3530010F148 /* SceneTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SceneTests.cpp; path = "Bug Sprint/Unit Tests/Source/SceneTests.cpp"; sourceTree = SOURCE_ROOT; };
+		B5B6EAF71DF0C6C60010F148 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scene.cpp; path = "Source/Graphics Utils/Scene.cpp"; sourceTree = "<group>"; };
+		B5B6EAF81DF0C6C60010F148 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scene.h; path = "Source/Graphics Utils/Scene.h"; sourceTree = "<group>"; };
+		B5B6EAFB1DF307080010F148 /* RenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderPass.cpp; path = "Source/Graphics Utils/RenderPass.cpp"; sourceTree = "<group>"; };
+		B5B6EAFC1DF307080010F148 /* RenderPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderPass.h; path = "Source/Graphics Utils/RenderPass.h"; sourceTree = "<group>"; };
+		B5B6EAFF1DF310830010F148 /* RenderPass2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RenderPass2D.cpp; path = "Source/Graphics Utils/2D/RenderPass2D.cpp"; sourceTree = "<group>"; };
+		B5B6EB001DF310830010F148 /* RenderPass2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RenderPass2D.h; path = "Source/Graphics Utils/2D/RenderPass2D.h"; sourceTree = "<group>"; };
+		B5B6EB031DF458CA0010F148 /* TestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestScene.cpp; path = Source/Game/TestScene.cpp; sourceTree = "<group>"; };
+		B5B6EB041DF458CA0010F148 /* TestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestScene.h; path = Source/Game/TestScene.h; sourceTree = "<group>"; };
 		B5C3C21C1DCF544100202C37 /* Game */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Game; path = "Bug Sprint/Assets/Game"; sourceTree = "<group>"; };
 		B5C3C21E1DCF545E00202C37 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = Source/Shaders; sourceTree = "<group>"; };
 		B5C7D20C1DAD746D009E66A9 /* Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,8 +209,8 @@
 		B5C7D24B1DAD86D8009E66A9 /* gtest-tuple.h.pump */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "gtest-tuple.h.pump"; sourceTree = "<group>"; };
 		B5C7D24C1DAD86D8009E66A9 /* gtest-type-util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gtest-type-util.h"; sourceTree = "<group>"; };
 		B5C7D24D1DAD86D8009E66A9 /* gtest-type-util.h.pump */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "gtest-type-util.h.pump"; sourceTree = "<group>"; };
-		B5C9580F1DDD26160012F607 /* ShadowPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShadowPass.cpp; path = "Source/Graphics Utils/ShadowPass.cpp"; sourceTree = "<group>"; };
-		B5C958101DDD26160012F607 /* ShadowPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShadowPass.h; path = "Source/Graphics Utils/ShadowPass.h"; sourceTree = "<group>"; };
+		B5C9580F1DDD26160012F607 /* ShadowRenderPass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShadowRenderPass.cpp; path = "Source/Graphics Utils/3D/ShadowRenderPass.cpp"; sourceTree = "<group>"; };
+		B5C958101DDD26160012F607 /* ShadowRenderPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShadowRenderPass.h; path = "Source/Graphics Utils/3D/ShadowRenderPass.h"; sourceTree = "<group>"; };
 		B5DA1A851DAF6B0F00D948C9 /* Vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Vector.h; path = Source/Utils/Vector.h; sourceTree = "<group>"; };
 		B5DA1A861DAF6B1E00D948C9 /* Vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Vector.cpp; path = Source/Utils/Vector.cpp; sourceTree = "<group>"; };
 		B5DA1A881DAF726D00D948C9 /* VectorTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = VectorTests.cpp; path = "Bug Sprint/Unit Tests/Source/VectorTests.cpp"; sourceTree = SOURCE_ROOT; };
@@ -247,8 +269,12 @@
 				B56C8C2B1DD0F0E500C1138A /* Texture.cpp */,
 				B56C8C2F1DD0F4FE00C1138A /* Image.h */,
 				B56C8C2E1DD0F4FE00C1138A /* Image.cpp */,
-				B5C958101DDD26160012F607 /* ShadowPass.h */,
-				B5C9580F1DDD26160012F607 /* ShadowPass.cpp */,
+				B55A36461DF4B60B00882669 /* Instance.h */,
+				B55A36471DF4B61900882669 /* Instance.cpp */,
+				B5B6EAFC1DF307080010F148 /* RenderPass.h */,
+				B5B6EAFB1DF307080010F148 /* RenderPass.cpp */,
+				B5B6EAF81DF0C6C60010F148 /* Scene.h */,
+				B5B6EAF71DF0C6C60010F148 /* Scene.cpp */,
 			);
 			name = "Graphics Utils";
 			sourceTree = "<group>";
@@ -286,6 +312,8 @@
 			children = (
 				B54474631DAED2430046A19E /* Core.h */,
 				B54474621DAED2430046A19E /* Core.cpp */,
+				B5B6EB041DF458CA0010F148 /* TestScene.h */,
+				B5B6EB031DF458CA0010F148 /* TestScene.cpp */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -299,6 +327,8 @@
 				B5A7DB911DE1C6EB003C1B7D /* Sprite.cpp */,
 				B5EC497B1DEB69DD00EE16D5 /* Button.h */,
 				B5EC497A1DEB69DD00EE16D5 /* Button.cpp */,
+				B5B6EB001DF310830010F148 /* RenderPass2D.h */,
+				B5B6EAFF1DF310830010F148 /* RenderPass2D.cpp */,
 			);
 			name = 2D;
 			sourceTree = "<group>";
@@ -359,8 +389,8 @@
 		B5B273C51DE8891B00DCF07C /* 3D */ = {
 			isa = PBXGroup;
 			children = (
-				B58779E31DAD8FC6007A6DBF /* Instance.h */,
-				B58779E21DAD8FC6007A6DBF /* Instance.cpp */,
+				B58779E31DAD8FC6007A6DBF /* Instance3D.h */,
+				B58779E21DAD8FC6007A6DBF /* Instance3D.cpp */,
 				B51D15AA1DBA2C2F0093E6AC /* Drawable.h */,
 				B51D15A91DBA2C2F0093E6AC /* Drawable.cpp */,
 				B50C61261DB538DB005147FA /* Model.h */,
@@ -369,6 +399,10 @@
 				B50C61371DB818F3005147FA /* Camera.cpp */,
 				B5880FA81DB939840063AEDA /* Light.h */,
 				B5880FA71DB939840063AEDA /* Light.cpp */,
+				B5C958101DDD26160012F607 /* ShadowRenderPass.h */,
+				B5C9580F1DDD26160012F607 /* ShadowRenderPass.cpp */,
+				B55A364A1DF4C21200882669 /* ShadedRenderPass.h */,
+				B55A36491DF4C21200882669 /* ShadedRenderPass.cpp */,
 			);
 			name = 3D;
 			sourceTree = "<group>";
@@ -421,6 +455,7 @@
 				B50C61281DB54794005147FA /* ModelTests.cpp */,
 				B5880FAB1DB939A90063AEDA /* InstanceTests.cpp */,
 				B519096A1DEF129E00469B7C /* ImageTests.cpp */,
+				B5B6EAF51DF0C3530010F148 /* SceneTests.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -651,21 +686,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5C958111DDD26160012F607 /* ShadowPass.cpp in Sources */,
+				B5C958111DDD26160012F607 /* ShadowRenderPass.cpp in Sources */,
 				B56C8C2D1DD0F0E500C1138A /* Texture.cpp in Sources */,
 				B54474671DAED3250046A19E /* CoreAdapter.mm in Sources */,
 				B53370FE1DB4C6A500275631 /* File.cpp in Sources */,
+				B5B6EAFD1DF307080010F148 /* RenderPass.cpp in Sources */,
 				B53370EF1DB4178300275631 /* Color.cpp in Sources */,
+				B55A36481DF4B61900882669 /* Instance.cpp in Sources */,
 				B57035FC1DCF4B4D00B46354 /* FileBuffer.cpp in Sources */,
 				B50C61161DB51D0B005147FA /* SystemUtils.mm in Sources */,
 				B50C61391DB818F3005147FA /* Camera.cpp in Sources */,
 				B5A7DB931DE1C6EB003C1B7D /* Sprite.cpp in Sources */,
-				B58779E41DAD8FC6007A6DBF /* Instance.cpp in Sources */,
+				B58779E41DAD8FC6007A6DBF /* Instance3D.cpp in Sources */,
 				B51D15AB1DBA2C2F0093E6AC /* Drawable.cpp in Sources */,
+				B55A364B1DF4C21200882669 /* ShadedRenderPass.cpp in Sources */,
+				B5B6EB051DF458CA0010F148 /* TestScene.cpp in Sources */,
 				B5880FA91DB939840063AEDA /* Light.cpp in Sources */,
 				B5B1AB421DACCC5100066910 /* MainViewController.swift in Sources */,
 				B53370F61DB41C7B00275631 /* ShaderProgram.cpp in Sources */,
 				B5AD7ECF1DE845E400BD41CE /* Instance2D.cpp in Sources */,
+				B5B6EAF91DF0C6C60010F148 /* Scene.cpp in Sources */,
 				B5EC497C1DEB69DD00EE16D5 /* Button.cpp in Sources */,
 				B50C61271DB538DB005147FA /* Model.cpp in Sources */,
 				B56C8C301DD0F4FE00C1138A /* Image.cpp in Sources */,
@@ -678,11 +718,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B6EAFA1DF0C6C60010F148 /* Scene.cpp in Sources */,
 				B5880FAA1DB939840063AEDA /* Light.cpp in Sources */,
 				B5C7D2521DAD8723009E66A9 /* gtest-all.cc in Sources */,
-				B51D15AD1DBA37B20093E6AC /* Instance.cpp in Sources */,
+				B51D15AD1DBA37B20093E6AC /* Instance3D.cpp in Sources */,
 				B50C612A1DB547AD005147FA /* Model.cpp in Sources */,
+				B5B6EAFE1DF307080010F148 /* RenderPass.cpp in Sources */,
+				B5B6EB061DF458CA0010F148 /* TestScene.cpp in Sources */,
 				B51D15AE1DBA37B80093E6AC /* Camera.cpp in Sources */,
+				B5B6EAF61DF0C3530010F148 /* SceneTests.cpp in Sources */,
 				B51909621DEF0C2200469B7C /* Texture.cpp in Sources */,
 				B53370F01DB4178300275631 /* Color.cpp in Sources */,
 				B53370FB1DB4C60900275631 /* FileTests.cpp in Sources */,

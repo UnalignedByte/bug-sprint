@@ -1,20 +1,21 @@
 //
-//  ShadowPass.cpp
+//  ShadowRenderPass.cpp
 //  Bug Sprint
 //
 //  Created by Rafal Grodzinski on 16/11/2016.
 //  Copyright © 2016 UnalignedByte. All rights reserved.
 //
 
-#include "ShadowPass.h"
+#include "ShadowRenderPass.h"
 
-#include <string>
+#include "Drawable.h"
 
 using namespace std;
 
 
-ShadowPass::ShadowPass(GLint width, GLint height, shared_ptr<ShaderProgram> shaderProgram) :
-    width(width), height(height), shaderProgram(shaderProgram)
+ShadowRenderPass::ShadowRenderPass(GLint viewWidth, GLint viewHeight, GLfloat width, GLfloat height,
+                                   std::shared_ptr<ShaderProgram> shaderProgram) :
+    RenderPass(viewWidth, viewHeight, width, height, shaderProgram)
 {
     glGenFramebuffers(1, &framebuffer);
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
@@ -36,24 +37,7 @@ ShadowPass::ShadowPass(GLint width, GLint height, shared_ptr<ShaderProgram> shad
 }
 
 
-shared_ptr<ShaderProgram> ShadowPass::getShader() const
-{
-    return shaderProgram;
-}
-
-
-void ShadowPass::useShadow(std::shared_ptr<ShaderProgram> shaderProgram) const
-{
-    shaderProgram->use();
-
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    GLint shadowSamplerId  = glGetUniformLocation(shaderProgram->getId(), "shadowSampler");
-    glUniform1i(shadowSamplerId, 1);
-}
-
-
-void ShadowPass::begin()
+void ShadowRenderPass::begin()
 {
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &previousFramebuffer);
 
@@ -68,7 +52,29 @@ void ShadowPass::begin()
 }
 
 
-void ShadowPass::end()
+void ShadowRenderPass::draw()
+{
+    for(shared_ptr<Instance> instance : instances) {
+        if(shared_ptr<Drawable> drawable = dynamic_pointer_cast<Drawable>(instance)) {
+            drawable->drawShadow(shaderProgram);
+        }
+    }
+}
+
+
+void ShadowRenderPass::end()
 {
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, previousFramebuffer);
+    glClear(GL_DEPTH_BUFFER_BIT);
+}
+
+
+void ShadowRenderPass::useShadowTexture(std::shared_ptr<ShaderProgram> shaderProgram) const
+{
+    shaderProgram->use();
+
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    GLint shadowSamplerId  = glGetUniformLocation(shaderProgram->getId(), "shadowSampler");
+    glUniform1i(shadowSamplerId, 1);
 }

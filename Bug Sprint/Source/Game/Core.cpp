@@ -18,6 +18,7 @@
 #include "Texture.h"
 #include "Sprite.h"
 #include "SystemUtils.h"
+#include "TestScene.h"
 
 using namespace std;
 
@@ -29,7 +30,12 @@ Core::Core(int viewWidth, int viewHeight) :
     width = size.x;
     height = size.y;
 
-    shared_ptr<ShaderProgram> defaultShader = make_shared<ShaderProgram>("Shaders/default.vsh", "Shaders/default.fsh");
+}
+
+void Core::setupScene()
+{
+    currentScene = make_shared<TestScene>();
+    /*shared_ptr<ShaderProgram> defaultShader = make_shared<ShaderProgram>("Shaders/default.vsh", "Shaders/default.fsh");
     shared_ptr<ShaderProgram> defaultPerFragmentShader = make_shared<ShaderProgram>("Shaders/defaultPerFragment.vsh", "Shaders/defaultPerFragment.fsh");
     shared_ptr<ShaderProgram> texturedShader = make_shared<ShaderProgram>("Shaders/textured.vsh", "Shaders/textured.fsh");
     shared_ptr<ShaderProgram> skyboxShader = make_shared<ShaderProgram>("Shaders/skybox.vsh", "Shaders/skybox.fsh");
@@ -93,7 +99,7 @@ Core::Core(int viewWidth, int viewHeight) :
         printf("Hello World!\n");
     };
 
-    instances2D.push_back(buttonOne);
+    instances2D.push_back(buttonOne);*/
 }
 
 
@@ -104,9 +110,10 @@ void Core::update(double timeInterval, Input input)
 }
 
 
-void Core::updateInput(double timeInterval, Input input)
+void Core::updateInput(float timeInterval, Input input)
 {
-    static Vector3 cameraStartPos;
+    currentScene->updateInput(timeInterval, input);
+    /*static Vector3 cameraStartPos;
     if(input.state == Input::StateDown) {
         cameraStartPos = camera->position;
     } else if(input.state == Input::StateMoved) {
@@ -126,18 +133,14 @@ void Core::updateInput(double timeInterval, Input input)
 
     //light->position = {camera->position[0], camera->position[1], 8.0};
     light->position = {6.0, 2.0, 0.0};
-    light->setTarget(camera->getTarget());
-
-    /*auto inst = instances2D.back();
-    static double elapsed;
-    elapsed += timeInterval;
-    inst->position[0] = width*0.5 * sin(elapsed / 2.0);*/
+    light->setTarget(camera->getTarget());*/
 }
 
 
-void Core::updateState(double timeInterval)
+void Core::updateState(float timeInterval)
 {
-    for(auto shader : updateCameraShaders)
+    currentScene->updateState(timeInterval);
+    /*for(auto shader : updateCameraShaders)
         camera->updateCamera(timeInterval, shader);
 
     for(auto shader : updateLightShaders)
@@ -153,14 +156,17 @@ void Core::updateState(double timeInterval)
         instance->update(timeInterval);
 
     for(auto instance : instances2D)
-        instance->update(timeInterval);
+        instance->update(timeInterval);*/
 }
 
 
 void Core::draw()
 {
-    shadowPass();
-    renderPass();
+    glViewport(0, 0, viewWidth, viewHeight);
+    glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    currentScene->draw();
 }
 
 

@@ -22,6 +22,7 @@
 #include "Types.h"
 #include "ShadowPass.h"
 #include "Button.h"
+#include "Scene.h"
 
 
 class Core
@@ -29,9 +30,11 @@ class Core
 public:
     Core(int viewWidth, int viewHeight);
 
+    virtual void setupScene();
+
     void update(double timeInterval, Input input);
-    void updateInput(double timeInterval, Input input);
-    void updateState(double timeInterval);
+    void updateInput(float timeInterval, Input input);
+    void updateState(float timeInterval);
     void draw();
     void shadowPass();
     void renderPass();
@@ -42,6 +45,8 @@ protected:
     GLint viewHeight;
     GLfloat width;
     GLfloat height;
+
+    std::shared_ptr<Scene> currentScene;
 
 
     std::shared_ptr<Camera> camera;

@@ -9,7 +9,7 @@
 #include "Instance2D.h"
 
 
-void Instance2D::update(double timeInterval)
+void Instance2D::update(float timeInterval)
 {
     modelMatrix = Matrix4();
     modelMatrix = modelMatrix * Matrix4::zRotation(rotation);

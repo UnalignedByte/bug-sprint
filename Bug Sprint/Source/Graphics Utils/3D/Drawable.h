@@ -21,24 +21,21 @@
 class Drawable: public Instance
 {
 public:
-    Drawable(const std::string &modelFileName, std::shared_ptr<ShaderProgram> shaderProgram);
-    Drawable(const std::string &modelFileName, const std::string &textureFileName, std::shared_ptr<ShaderProgram> shaderProgram);
+    Drawable(const std::string &modelFileName);
+    Drawable(const std::string &modelFileName, const std::string &textureFileName);
     Drawable(const std::string &modelFileName,
              const std::string &rightTextureFileName, const std::string &leftTextureFileName,
              const std::string &topTextureFileName, const std::string &bottomTextureFileName,
-             const std::string &frontTextureFileName, const std::string backTextureFileName,
-             std::shared_ptr<ShaderProgram> shaderProgram);
+             const std::string &frontTextureFileName, const std::string backTextureFileName);
 
-    std::shared_ptr<ShaderProgram> getShader() const;
     bool getShouldCastShadow() const;
     void setShouldCastShadow(bool shouldCastShadow);
     GLsizei getTrianglesCount() const override;
 
-    void draw() override;
+    void draw(std::shared_ptr<ShaderProgram> shaderProgram);
     void drawShadow(std::shared_ptr<ShaderProgram> shaderProgram);
 
 protected:
-    std::shared_ptr<ShaderProgram> shaderProgram;
     Model model;
     Texture texture;
     bool shouldCastShadow{true};

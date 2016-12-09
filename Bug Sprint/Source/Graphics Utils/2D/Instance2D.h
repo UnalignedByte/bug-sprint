@@ -9,12 +9,14 @@
 #ifndef INSTANCE_2D_H
 #define INSTANCE_2D_H
 
+#include "Instance.h"
+
 #include "OpenGLES.h"
 #include "Vector.h"
 #include "Matrix.h"
 
 
-class Instance2D
+class Instance2D: public Instance
 {
 public:
     Vector2 position{0.0, 0.0};
@@ -22,9 +24,9 @@ public:
     GLfloat rotation{0};
 
 public:
-    virtual void update(double timeInterval);
-    virtual void draw();
-    virtual GLsizei getTrianglesCount() const;
+    void update(float timeInterval) override;
+    void draw() override;
+    GLsizei getTrianglesCount() const override;
 
 protected:
     Matrix4 modelMatrix;

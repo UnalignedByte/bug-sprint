@@ -11,7 +11,7 @@
 using namespace std;
 
 
-void Instance::update(double timeInterval)
+void Instance::update(float timeInterval)
 {
     modelMatrix = Matrix4();
     modelMatrix = modelMatrix * Matrix4::zRotation(rotation[2]);
