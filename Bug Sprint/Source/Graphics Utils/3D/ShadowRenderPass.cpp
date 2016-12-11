@@ -13,9 +13,8 @@
 using namespace std;
 
 
-ShadowRenderPass::ShadowRenderPass(GLint viewWidth, GLint viewHeight, GLfloat width, GLfloat height,
-                                   std::shared_ptr<ShaderProgram> shaderProgram) :
-    RenderPass(viewWidth, viewHeight, width, height, shaderProgram)
+ShadowRenderPass::ShadowRenderPass(GLint viewWidth, GLint viewHeight, std::shared_ptr<ShaderProgram> shaderProgram) :
+    RenderPass(viewWidth, viewHeight, shaderProgram)
 {
     glGenFramebuffers(1, &framebuffer);
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
@@ -26,7 +25,7 @@ ShadowRenderPass::ShadowRenderPass(GLint viewWidth, GLint viewHeight, GLfloat wi
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, width, height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, nullptr);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, viewWidth, viewHeight, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, nullptr);
 
     glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, texture, 0);
 
@@ -40,15 +39,15 @@ ShadowRenderPass::ShadowRenderPass(GLint viewWidth, GLint viewHeight, GLfloat wi
 void ShadowRenderPass::begin()
 {
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &previousFramebuffer);
-
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
-    glViewport(0, 0, width, height);
+
+    glViewport(0, 0, viewWidth, viewHeight);
+    glClear(GL_DEPTH_BUFFER_BIT);
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+    glDepthMask(GL_TRUE);
     glCullFace(GL_FRONT);
-
-    glClear(GL_DEPTH_BUFFER_BIT);
 }
 
 
@@ -65,7 +64,6 @@ void ShadowRenderPass::draw()
 void ShadowRenderPass::end()
 {
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, previousFramebuffer);
-    glClear(GL_DEPTH_BUFFER_BIT);
 }
 
 

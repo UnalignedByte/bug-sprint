@@ -19,17 +19,16 @@
 class RenderPass
 {
 public:
-    RenderPass(GLint viewWidth, GLint viewHeight, GLfloat width, GLfloat height,
-               std::shared_ptr<ShaderProgram> shaderProgram);
-
-    virtual void begin();
-    virtual void draw();
-    virtual void end();
+    RenderPass(GLint viewWidth, GLint viewHeight, std::shared_ptr<ShaderProgram> shaderProgram);
 
     virtual std::shared_ptr<ShaderProgram> getShaderProgram() const;
 
     virtual void addInstance(std::shared_ptr<Instance> instance);
     virtual void removeInstance(std::shared_ptr<Instance> instance);
+
+    virtual void begin();
+    virtual void draw();
+    virtual void end();
 
 protected:
     GLint viewWidth;

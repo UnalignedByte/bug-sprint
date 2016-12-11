@@ -15,8 +15,7 @@
 class ShadowRenderPass: public RenderPass
 {
 public:
-    ShadowRenderPass(GLint viewWidth, GLint viewHeight, GLfloat width, GLfloat height,
-                     std::shared_ptr<ShaderProgram> shaderProgram);
+    ShadowRenderPass(GLint viewWidth, GLint viewHeight, std::shared_ptr<ShaderProgram> shaderProgram);
 
     void begin() override;
     void draw() override;

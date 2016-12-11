@@ -33,7 +33,7 @@ public:
     //virtual void setupScene();
 
     virtual void update(double timeInterval, Input input);
-    virtual void updateInput(float timeInterval, Input input);
+    //virtual void updateInput(float timeInterval, Input input);
     //void updateState(float timeInterval);
     virtual void draw();
     //void shadowPass();

@@ -47,6 +47,18 @@ void Drawable::setShouldCastShadow(bool shouldCastShadow)
 }
 
 
+bool Drawable::getIsShaded() const
+{
+    return isShaded;
+}
+
+
+void Drawable::setIsShaded(bool isShaded)
+{
+    isShaded = isShaded;
+}
+
+
 GLsizei Drawable::getTrianglesCount() const
 {
     return model.getTrianglesCount();

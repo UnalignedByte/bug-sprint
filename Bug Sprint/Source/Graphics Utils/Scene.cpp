@@ -22,11 +22,6 @@ Scene::Scene(GLint viewWidth, GLint viewHeight) :
 }
 
 
-void Scene::loadScene()
-{
-}
-
-
 void Scene::updateInput(Input input)
 {
     for(shared_ptr<Instance> instance : instances)

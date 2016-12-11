@@ -18,8 +18,8 @@ class TestScene: public Scene
 {
 public:
     TestScene(GLint viewWidth, GLint viewHeight);
-    
-    void loadScene() override;
+
+    void updateInput(Input input) override;
     void update(float timeInterval) override;
 
 protected:

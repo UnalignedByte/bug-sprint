@@ -28,17 +28,20 @@ public:
              const std::string &topTextureFileName, const std::string &bottomTextureFileName,
              const std::string &frontTextureFileName, const std::string backTextureFileName);
 
-    bool getShouldCastShadow() const;
-    void setShouldCastShadow(bool shouldCastShadow);
+    virtual bool getShouldCastShadow() const;
+    virtual void setShouldCastShadow(bool shouldCastShadow);
+    virtual bool getIsShaded() const;
+    virtual void setIsShaded(bool isShaded);
     GLsizei getTrianglesCount() const override;
 
-    void draw(std::shared_ptr<ShaderProgram> shaderProgram);
-    void drawShadow(std::shared_ptr<ShaderProgram> shaderProgram);
+    virtual void draw(std::shared_ptr<ShaderProgram> shaderProgram);
+    virtual void drawShadow(std::shared_ptr<ShaderProgram> shaderProgram);
 
 protected:
     Model model;
     Texture texture;
     bool shouldCastShadow{true};
+    bool isShaded{true};
 };
 
 #endif

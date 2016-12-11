@@ -12,15 +12,18 @@
 
 using namespace std;
 
-ShadedRenderPass::ShadedRenderPass(GLint viewWidth, GLint viewHeight, GLfloat width, GLfloat height,
-                                   shared_ptr<ShaderProgram> shaderProgram, shared_ptr<ShadowRenderPass> shadowRenderPass) :
-    RenderPass(viewWidth, viewHeight, width, height, shaderProgram),  shadowRenderPass(shadowRenderPass)
+
+ShadedRenderPass::ShadedRenderPass(GLint viewWidth, GLint viewHeight, shared_ptr<ShaderProgram> shaderProgram,
+                                   shared_ptr<ShadowRenderPass> shadowRenderPass) :
+    RenderPass(viewWidth, viewHeight, shaderProgram),  shadowRenderPass(shadowRenderPass)
 {
 }
 
 
 void ShadedRenderPass::begin()
 {
+    glViewport(0, 0, viewWidth, viewHeight);
+
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
     glCullFace(GL_BACK);

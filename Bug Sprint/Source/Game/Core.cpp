@@ -30,7 +30,7 @@ Core::Core(int viewWidth, int viewHeight) :
     width = size.x;
     height = size.y;
 
-    currentScene = make_shared<TestScene>(width, height);
+    currentScene = make_shared<TestScene>(viewWidth, viewHeight);
 }
 
 /*void Core::setupScene()

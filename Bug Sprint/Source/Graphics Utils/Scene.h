@@ -21,12 +21,7 @@
 class Scene
 {
 public:
-    Scene(GLint viewWidth, GLint viewHeight);
-
-    virtual void loadScene();
-
-    virtual std::shared_ptr<Camera> getCurrentCamera() const;
-    virtual void setCurrentCamera(std::shared_ptr<Camera> camera);
+    explicit Scene(GLint viewWidth, GLint viewHeight);
 
     virtual void addInstance(std::shared_ptr<Instance> instance);
     virtual void removeInstance(std::shared_ptr<Instance> instance);
