@@ -28,6 +28,7 @@ public:
 
 protected:
     Color clearColor{0.0, 0.0, 0.2, 1.0};
+    
     GLint viewWidth;
     GLint viewHeight;
     GLfloat width;
