@@ -136,7 +136,7 @@ void TestScene::update(float timeInterval)
      monkey->rotation[1] = monkey->rotation[1] + 45.0 * timeInterval;
     monkey->position[2] = 4.0;
 
-     camera->setTarget(Vector3{0.0, 0.0, 4.0});
+     camera->setTarget(Vector3{0.0, 0.0, 0.0});
 
      //light->position = {camera->position[0], camera->position[1], 8.0};
      light->position = {6.0, 2.0, 0.0};

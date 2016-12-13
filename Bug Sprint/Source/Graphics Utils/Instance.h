@@ -10,6 +10,7 @@
 #define INSTANCE_H
 
 #include <memory>
+#include <vector>
 #include "OpenGLES.h"
 #include "Types.h"
 #include "ShaderProgram.h"
@@ -22,7 +23,13 @@ public:
     virtual void update(float timeInterval);
     virtual void draw(std::shared_ptr<ShaderProgram> shaderProgram);
 
+    virtual void addChild(std::shared_ptr<Instance>);
+
     virtual GLsizei getTrianglesCount() const;
+
+protected:
+    std::vector<std::shared_ptr<Instance>> children;
+    Instance *parent{nullptr};
 };
 
 #endif

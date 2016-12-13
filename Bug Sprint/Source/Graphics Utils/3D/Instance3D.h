@@ -27,6 +27,8 @@ public:
     void update(float timeInterval) override;
     GLsizei getTrianglesCount() const override;
 
+    virtual Vector3 getWorldPosition() const;
+
 protected:
     Matrix4 modelMatrix;
     GLsizei trianglesCount{0};

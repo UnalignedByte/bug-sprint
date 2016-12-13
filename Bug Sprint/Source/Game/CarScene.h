@@ -13,6 +13,8 @@
 
 #include <memory>
 #include "Button.h"
+#include "Car.h"
+#include "Camera.h"
 
 
 class CarScene: public Scene
@@ -20,11 +22,18 @@ class CarScene: public Scene
 public:
     CarScene(GLint viewWidth, GLint viewHeight);
 
+    void update(float timeInterval) override;
+
 protected:
+    std::shared_ptr<Camera> camera;
+
+    std::shared_ptr<Car> car;
+
     std::shared_ptr<Button> leftButton;
     std::shared_ptr<Button> rightButton;
 
 protected:
+    virtual void setupGame();
     virtual void setupUi();
 };
 

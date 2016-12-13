@@ -58,6 +58,7 @@
 		B5A7DB931DE1C6EB003C1B7D /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5A7DB911DE1C6EB003C1B7D /* Sprite.cpp */; };
 		B5AD7ECF1DE845E400BD41CE /* Instance2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5AD7ECD1DE845E400BD41CE /* Instance2D.cpp */; };
 		B5AE6F8C1E0070D9005BC925 /* CarScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5AE6F8A1E0070D9005BC925 /* CarScene.cpp */; };
+		B5AE6F901E008064005BC925 /* Car.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5AE6F8E1E008064005BC925 /* Car.cpp */; };
 		B5B1AB401DACCC5100066910 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B1AB3F1DACCC5100066910 /* AppDelegate.swift */; };
 		B5B1AB421DACCC5100066910 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B1AB411DACCC5100066910 /* MainViewController.swift */; };
 		B5B1AB471DACCC5100066910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B1AB461DACCC5100066910 /* Assets.xcassets */; };
@@ -153,6 +154,8 @@
 		B5AD7ECE1DE845E400BD41CE /* Instance2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Instance2D.h; path = "Source/Graphics Utils/2D/Instance2D.h"; sourceTree = "<group>"; };
 		B5AE6F8A1E0070D9005BC925 /* CarScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CarScene.cpp; path = Source/Game/CarScene.cpp; sourceTree = "<group>"; };
 		B5AE6F8B1E0070D9005BC925 /* CarScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarScene.h; path = Source/Game/CarScene.h; sourceTree = "<group>"; };
+		B5AE6F8E1E008064005BC925 /* Car.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Car.cpp; path = Source/Game/Things/Car.cpp; sourceTree = "<group>"; };
+		B5AE6F8F1E008064005BC925 /* Car.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Car.h; path = Source/Game/Things/Car.h; sourceTree = "<group>"; };
 		B5B1AB3C1DACCC5100066910 /* Bug Sprint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bug Sprint.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5B1AB3F1DACCC5100066910 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Source/iOS Layer/AppDelegate.swift"; sourceTree = "<group>"; };
 		B5B1AB411DACCC5100066910 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "Source/iOS Layer/MainViewController.swift"; sourceTree = "<group>"; };
@@ -321,6 +324,7 @@
 				B5B6EB031DF458CA0010F148 /* TestScene.cpp */,
 				B5AE6F8B1E0070D9005BC925 /* CarScene.h */,
 				B5AE6F8A1E0070D9005BC925 /* CarScene.cpp */,
+				B5AE6F8D1E008045005BC925 /* Things */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -338,6 +342,15 @@
 				B5EC497A1DEB69DD00EE16D5 /* Button.cpp */,
 			);
 			name = 2D;
+			sourceTree = "<group>";
+		};
+		B5AE6F8D1E008045005BC925 /* Things */ = {
+			isa = PBXGroup;
+			children = (
+				B5AE6F8F1E008064005BC925 /* Car.h */,
+				B5AE6F8E1E008064005BC925 /* Car.cpp */,
+			);
+			name = Things;
 			sourceTree = "<group>";
 		};
 		B5B1AB331DACCC5100066910 = {
@@ -709,6 +722,7 @@
 				B50C61391DB818F3005147FA /* Camera.cpp in Sources */,
 				B5A7DB931DE1C6EB003C1B7D /* Sprite.cpp in Sources */,
 				B58779E41DAD8FC6007A6DBF /* Instance3D.cpp in Sources */,
+				B5AE6F901E008064005BC925 /* Car.cpp in Sources */,
 				B51D15AB1DBA2C2F0093E6AC /* Drawable.cpp in Sources */,
 				B55A364B1DF4C21200882669 /* ShadedRenderPass.cpp in Sources */,
 				B5B6EB051DF458CA0010F148 /* TestScene.cpp in Sources */,

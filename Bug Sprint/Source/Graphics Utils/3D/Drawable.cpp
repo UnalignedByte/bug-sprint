@@ -67,6 +67,9 @@ GLsizei Drawable::getTrianglesCount() const
 
 void Drawable::draw(shared_ptr<ShaderProgram> shaderProgram)
 {
+    for(shared_ptr<Instance> child : children)
+        child->draw(shaderProgram);
+
     shaderProgram->use();
 
     texture.use(shaderProgram);

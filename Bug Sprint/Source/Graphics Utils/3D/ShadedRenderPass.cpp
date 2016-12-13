@@ -36,9 +36,6 @@ void ShadedRenderPass::draw()
 
     shadowRenderPass->useShadowTexture(shaderProgram);
 
-    for(shared_ptr<Instance> instance : instances) {
-        if(shared_ptr<Drawable> drawable = dynamic_pointer_cast<Drawable>(instance)) {
-            drawable->draw(shaderProgram);
-        }
-    }
+    for(shared_ptr<Instance> instance : instances)
+        instance->draw(shaderProgram);
 }

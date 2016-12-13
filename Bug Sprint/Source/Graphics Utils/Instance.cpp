@@ -13,20 +13,37 @@ using namespace std;
 
 void Instance::updateInput(const Input &input)
 {
+    for(shared_ptr<Instance> instance : children)
+        instance->updateInput(input);
 }
 
 
 void Instance::update(float timeInterval)
 {
+    for(shared_ptr<Instance> instance : children)
+        instance->update(timeInterval);
 }
 
 
 void Instance::draw(shared_ptr<ShaderProgram> shaderProgram)
 {
+    for(shared_ptr<Instance> instance : children)
+        instance->draw(shaderProgram);
+}
+
+
+void Instance::addChild(std::shared_ptr<Instance> child)
+{
+    children.push_back(child);
+    child->parent = this;
 }
 
 
 GLsizei Instance::getTrianglesCount() const
 {
-    return 0;
+    GLsizei trianglesSum{0};
+    for(shared_ptr<Instance> instance : children)
+        trianglesSum += instance->getTrianglesCount();
+
+    return trianglesSum;
 }
