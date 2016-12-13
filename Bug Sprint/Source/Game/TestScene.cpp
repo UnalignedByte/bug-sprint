@@ -37,10 +37,7 @@ TestScene::TestScene(GLint viewWidth, GLint viewHeight) :
                                                                                   shadowRenderPass);
     shared_ptr<RenderPass2D> spriteRenderPass = make_shared<RenderPass2D>(viewWidth, viewHeight, spriteShader);
 
-    renderPasses.insert(shadowRenderPass);
-    renderPasses.insert(shadedRenderPass);
-    renderPasses.insert(skyboxRenderPass);
-    renderPasses.insert(spriteRenderPass);
+    renderPasses = {shadowRenderPass, skyboxRenderPass, shadedRenderPass, spriteRenderPass};
 
     // Setup 3D Instances
 
@@ -98,7 +95,7 @@ TestScene::TestScene(GLint viewWidth, GLint viewHeight) :
     // Light
     light = make_shared<Light>(width, height);
     light->position = {6.0, 2.0, 0.0};
-    lights.insert(light);
+    lights.push_back(light);
     light->addRenderPass(shadedRenderPass);
     light->addShadowRenderPass(shadedRenderPass);
     light->addShadowRenderPass(shadowRenderPass);
@@ -107,12 +104,12 @@ TestScene::TestScene(GLint viewWidth, GLint viewHeight) :
     camera = make_shared<Camera>(width, height, 10.0, 60.0);
     camera->addRenderPass(shadedRenderPass);
     camera->addRenderPass(skyboxRenderPass);
-    cameras.insert(camera);
+    cameras.push_back(camera);
 
     // Sprite Camera
     shared_ptr<Camera> spriteCamera = make_shared<Camera>(width, height, 2.0);
     spriteCamera->addRenderPass(spriteRenderPass);
-    cameras.insert(spriteCamera);
+    cameras.push_back(spriteCamera);
 }
 
 

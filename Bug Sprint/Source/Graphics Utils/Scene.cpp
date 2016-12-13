@@ -56,13 +56,15 @@ void Scene::draw()
 
 void Scene::addInstance(std::shared_ptr<Instance> instance)
 {
-    instances.insert(instance);
+    instances.push_back(instance);
 }
 
 
 void Scene::removeInstance(std::shared_ptr<Instance> instance)
 {
-    instances.erase(instances.find(instance));
+    auto instanceIt = std::find(instances.begin(), instances.end(), instance);
+    if(instanceIt != instances.end())
+        instances.erase(instanceIt);
 
     // Remove from render passes
     for(shared_ptr<RenderPass> renderPass : renderPasses)

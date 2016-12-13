@@ -19,26 +19,5 @@ void RenderPass2D::begin()
     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
     glDisable(GL_DEPTH_TEST);
-}
-
-
-void RenderPass2D::draw()
-{
-    shaderProgram->use();
-
-    for(shared_ptr<Instance2D> instance : instances) {
-        instance->draw(shaderProgram);
-    }
-}
-
-
-void RenderPass2D::addInstance(std::shared_ptr<Instance2D> instance)
-{
-    instances.insert(instance);
-}
-
-
-void RenderPass2D::removeInstance(std::shared_ptr<Instance2D> instance)
-{
-    instances.erase(instances.find(instance));
+    glDepthMask(GL_FALSE);
 }

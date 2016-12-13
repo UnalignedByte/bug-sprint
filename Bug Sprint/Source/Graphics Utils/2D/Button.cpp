@@ -44,18 +44,6 @@ void Button::setTitle(const string &title, const string &fontFileName, GLfloat f
 }
 
 
-GLfloat Button::getWidth() const
-{
-    return width;
-}
-
-
-GLfloat Button::getHeight() const
-{
-    return height;
-}
-
-
 GLfloat Button::getRange() const
 {
     return range;
@@ -91,7 +79,7 @@ Button::State Button::getState() const
 }
 
 
-void Button::updateInput(double timeInterval, const Input &input)
+void Button::updateInput(const Input &input)
 {
     if(state == StateInactive)
         return;

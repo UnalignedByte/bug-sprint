@@ -25,7 +25,6 @@ public:
 
 public:
     void update(float timeInterval) override;
-    void draw() override;
     GLsizei getTrianglesCount() const override;
 
 protected:

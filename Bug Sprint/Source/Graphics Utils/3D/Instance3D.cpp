@@ -22,11 +22,6 @@ void Instance3D::update(float timeInterval)
 }
 
 
-void Instance3D::draw()
-{
-}
-
-
 GLsizei Instance3D::getTrianglesCount() const
 {
     return trianglesCount;

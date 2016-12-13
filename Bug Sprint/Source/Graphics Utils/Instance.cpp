@@ -8,6 +8,8 @@
 
 #include "Instance.h"
 
+using namespace std;
+
 
 void Instance::updateInput(const Input &input)
 {
@@ -19,7 +21,7 @@ void Instance::update(float timeInterval)
 }
 
 
-void Instance::draw()
+void Instance::draw(shared_ptr<ShaderProgram> shaderProgram)
 {
 }
 

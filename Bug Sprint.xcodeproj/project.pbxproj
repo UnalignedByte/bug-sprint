@@ -325,12 +325,12 @@
 			children = (
 				B5AD7ECE1DE845E400BD41CE /* Instance2D.h */,
 				B5AD7ECD1DE845E400BD41CE /* Instance2D.cpp */,
+				B5B6EB001DF310830010F148 /* RenderPass2D.h */,
+				B5B6EAFF1DF310830010F148 /* RenderPass2D.cpp */,
 				B5A7DB921DE1C6EB003C1B7D /* Sprite.h */,
 				B5A7DB911DE1C6EB003C1B7D /* Sprite.cpp */,
 				B5EC497B1DEB69DD00EE16D5 /* Button.h */,
 				B5EC497A1DEB69DD00EE16D5 /* Button.cpp */,
-				B5B6EB001DF310830010F148 /* RenderPass2D.h */,
-				B5B6EAFF1DF310830010F148 /* RenderPass2D.cpp */,
 			);
 			name = 2D;
 			sourceTree = "<group>";

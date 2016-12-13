@@ -19,17 +19,11 @@ public:
     Sprite(const std::string &imageFileName);
     Sprite(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor);
 
-    virtual GLfloat getWidth() const;
-    virtual GLfloat getHeight() const;
-
     void draw(std::shared_ptr<ShaderProgram> shaderProgram) override;
 
 protected:
     Texture texture;
     GLuint vertexArrayId;
-
-    GLfloat width;
-    GLfloat height;
 
 protected:
     void setupVertexArray();

@@ -23,13 +23,6 @@ public:
     using RenderPass::RenderPass;
 
     void begin() override;
-    void draw() override;
-
-    virtual void addInstance(std::shared_ptr<Instance2D> instance);
-    virtual void removeInstance(std::shared_ptr<Instance2D> instance);
-    
-protected:
-    std::set<std::shared_ptr<Instance2D>> instances;
 };
 
 #endif

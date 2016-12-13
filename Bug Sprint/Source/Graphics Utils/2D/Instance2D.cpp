@@ -20,8 +20,15 @@ void Instance2D::update(float timeInterval)
 }
 
 
-void Instance2D::draw(shared_ptr<ShaderProgram> shaderProgram)
+GLfloat Instance2D::getWidth() const
 {
+    return width;
+}
+
+
+GLfloat Instance2D::getHeight() const
+{
+    return height;
 }
 
 

@@ -9,8 +9,10 @@
 #ifndef INSTANCE_H
 #define INSTANCE_H
 
+#include <memory>
 #include "OpenGLES.h"
 #include "Types.h"
+#include "ShaderProgram.h"
 
 
 class Instance
@@ -18,7 +20,8 @@ class Instance
 public:
     virtual void updateInput(const Input &input);
     virtual void update(float timeInterval);
-    virtual void draw();
+    virtual void draw(std::shared_ptr<ShaderProgram> shaderProgram);
+
     virtual GLsizei getTrianglesCount() const;
 };
 

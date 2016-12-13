@@ -50,7 +50,7 @@ void RenderPass::draw()
     shaderProgram->use();
 
     for(shared_ptr<Instance> instance : instances)
-        instance->draw();
+        instance->draw(shaderProgram);
 }
 
 

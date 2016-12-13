@@ -10,7 +10,7 @@
 #define SCENE_H
 
 #include <memory>
-#include <set>
+#include <vector>
 #include "Types.h"
 #include "RenderPass.h"
 #include "Instance.h"
@@ -36,10 +36,10 @@ protected:
     GLfloat width;
     GLfloat height;
 
-    std::set<std::shared_ptr<Instance>> instances;
-    std::set<std::shared_ptr<RenderPass>> renderPasses;
-    std::set<std::shared_ptr<Light>> lights;
-    std::set<std::shared_ptr<Camera>> cameras;
+    std::vector<std::shared_ptr<Instance>> instances;
+    std::vector<std::shared_ptr<RenderPass>> renderPasses;
+    std::vector<std::shared_ptr<Light>> lights;
+    std::vector<std::shared_ptr<Camera>> cameras;
 };
 
 #endif

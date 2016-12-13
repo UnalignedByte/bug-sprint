@@ -69,18 +69,6 @@ void Sprite::setupVertexArray()
 }
 
 
-GLfloat Sprite::getWidth() const
-{
-    return width;
-}
-
-
-GLfloat Sprite::getHeight() const
-{
-    return height;
-}
-
-
 void Sprite::draw(std::shared_ptr<ShaderProgram> shaderProgram)
 {
     shaderProgram->use();
@@ -92,4 +80,3 @@ void Sprite::draw(std::shared_ptr<ShaderProgram> shaderProgram)
     glBindVertexArray(vertexArrayId);
     glDrawArrays(GL_TRIANGLES, 0, 2 * 3);
 }
-

@@ -35,15 +35,14 @@ public:
     virtual void setTitle(const std::string &title, const std::string &fontFileName, GLfloat fontSize,
                           const Color &fontColor);
 
-    virtual GLfloat getWidth() const;
-    virtual GLfloat getHeight() const;
     virtual GLfloat getRange() const;
     void setRange(GLfloat range);
+
     GLsizei getTrianglesCount() const override;
     virtual void setIsInactive(bool isInactive);
     State getState() const;
 
-    virtual void updateInput(double timeinterval, const Input &input);
+    void updateInput(const Input &input) override;
     void update(float timeInterval) override;
     void draw(std::shared_ptr<ShaderProgram> shaderProgram) override;
 
@@ -52,9 +51,6 @@ protected:
     std::unique_ptr<Sprite> downSprite;
     std::unique_ptr<Sprite> inactiveSprite;
     std::unique_ptr<Sprite> titleSprite;
-
-    GLfloat width;
-    GLfloat height;
 
     GLfloat range{-1};
 
