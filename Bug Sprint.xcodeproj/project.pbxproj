@@ -19,6 +19,7 @@
 		B50C612A1DB547AD005147FA /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61251DB538DB005147FA /* Model.cpp */; };
 		B50C612C1DB54807005147FA /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = B50C612B1DB54807005147FA /* box.obj */; };
 		B50C61391DB818F3005147FA /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B50C61371DB818F3005147FA /* Camera.cpp */; };
+		B5125EAF1E001A7A00008022 /* RenderPass2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B6EAFF1DF310830010F148 /* RenderPass2D.cpp */; };
 		B51909621DEF0C2200469B7C /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56C8C2B1DD0F0E500C1138A /* Texture.cpp */; };
 		B51909631DEF0C3300469B7C /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56C8C2E1DD0F4FE00C1138A /* Image.cpp */; };
 		B51909651DEF0C6700469B7C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51909641DEF0C6700469B7C /* UIKit.framework */; };
@@ -708,6 +709,7 @@
 				B5880FA91DB939840063AEDA /* Light.cpp in Sources */,
 				B5B1AB421DACCC5100066910 /* MainViewController.swift in Sources */,
 				B53370F61DB41C7B00275631 /* ShaderProgram.cpp in Sources */,
+				B5125EAF1E001A7A00008022 /* RenderPass2D.cpp in Sources */,
 				B5AD7ECF1DE845E400BD41CE /* Instance2D.cpp in Sources */,
 				B5B6EAF91DF0C6C60010F148 /* Scene.cpp in Sources */,
 				B5EC497C1DEB69DD00EE16D5 /* Button.cpp in Sources */,

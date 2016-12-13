@@ -15,8 +15,8 @@ struct Vertex {
 };
 
 
-Sprite::Sprite(const std::string &spriteFileName,  shared_ptr<ShaderProgram> shaderProgram) :
-    shaderProgram(shaderProgram), texture(spriteFileName)
+Sprite::Sprite(const std::string &spriteFileName) :
+    texture(spriteFileName)
 {
     SystemUtils::Point size = SystemUtils::sizeForViewSize(texture.getWidth(), texture.getHeight());
     width = size.x;
@@ -26,8 +26,8 @@ Sprite::Sprite(const std::string &spriteFileName,  shared_ptr<ShaderProgram> sha
 }
 
 
-Sprite::Sprite(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor, std::shared_ptr<ShaderProgram> shaderProgram) :
-    shaderProgram(shaderProgram), texture(text, fontFileName, fontSize, fontColor)
+Sprite::Sprite(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor) :
+    texture(text, fontFileName, fontSize, fontColor)
 {
     SystemUtils::Point size = SystemUtils::sizeForViewSize(texture.getWidth(), texture.getHeight());
     width = size.x;
@@ -69,12 +69,6 @@ void Sprite::setupVertexArray()
 }
 
 
-shared_ptr<ShaderProgram> Sprite::getShader() const
-{
-    return shaderProgram;
-}
-
-
 GLfloat Sprite::getWidth() const
 {
     return width;
@@ -87,7 +81,7 @@ GLfloat Sprite::getHeight() const
 }
 
 
-void Sprite::draw()
+void Sprite::draw(std::shared_ptr<ShaderProgram> shaderProgram)
 {
     shaderProgram->use();
     texture.use(shaderProgram);

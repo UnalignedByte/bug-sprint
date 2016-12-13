@@ -9,15 +9,14 @@
 using namespace std;
 
 
-Button::Button(shared_ptr<ShaderProgram> shaderProgram, const string &upImageFileName,
-               const string &downImageFileName, const string &inactiveImageFileName) :
-    shaderProgram(shaderProgram), upSprite(new Sprite(upImageFileName, shaderProgram))
+Button::Button(const string &upImageFileName, const string &downImageFileName, const string &inactiveImageFileName) :
+    upSprite(new Sprite(upImageFileName))
 {
     width = upSprite->getWidth();
     height = upSprite->getHeight();
 
     if(!downImageFileName.empty()) {
-        downSprite = make_unique<Sprite>(downImageFileName, shaderProgram);
+        downSprite = make_unique<Sprite>(downImageFileName);
 
         if(downSprite->getWidth() > width)
             width = downSprite->getWidth();
@@ -27,7 +26,7 @@ Button::Button(shared_ptr<ShaderProgram> shaderProgram, const string &upImageFil
     }
 
     if(!inactiveImageFileName.empty()) {
-        inactiveSprite = make_unique<Sprite>(inactiveImageFileName, shaderProgram);
+        inactiveSprite = make_unique<Sprite>(inactiveImageFileName);
 
         if(inactiveSprite->getWidth() > width)
             width = inactiveSprite->getWidth();
@@ -41,13 +40,7 @@ Button::Button(shared_ptr<ShaderProgram> shaderProgram, const string &upImageFil
 void Button::setTitle(const string &title, const string &fontFileName, GLfloat fontSize,
                       const Color &fontColor)
 {
-    titleSprite = make_unique<Sprite>(title, fontFileName, fontSize, fontColor, shaderProgram);
-}
-
-
-shared_ptr<ShaderProgram> Button::getShader() const
-{
-    return shaderProgram;
+    titleSprite = make_unique<Sprite>(title, fontFileName, fontSize, fontColor);
 }
 
 
@@ -159,16 +152,16 @@ void Button::update(float timeInterval)
 }
 
 
-void Button::draw()
+void Button::draw(shared_ptr<ShaderProgram> shaderProgram)
 {
     if(state == StateInactive && inactiveSprite != nullptr) {
-        inactiveSprite->draw();
+        inactiveSprite->draw(shaderProgram);
     } else if(state == StateDown && downSprite != nullptr) {
-        downSprite->draw();
+        downSprite->draw(shaderProgram);
     } else {
-        upSprite->draw();
+        upSprite->draw(shaderProgram);
     }
 
     if(titleSprite != nullptr)
-        titleSprite->draw();
+        titleSprite->draw(shaderProgram);
 }

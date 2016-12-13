@@ -29,13 +29,12 @@ public:
     std::function<void()> pressedCallback{nullptr};
 
 public:
-    Button(std::shared_ptr<ShaderProgram> shaderProgram, const std::string &upImageFileName,
-           const std::string &downImageFileName = "", const std::string &inactiveImageFileName = "");
+    Button(const std::string &upImageFileName, const std::string &downImageFileName = "",
+           const std::string &inactiveImageFileName = "");
 
     virtual void setTitle(const std::string &title, const std::string &fontFileName, GLfloat fontSize,
                           const Color &fontColor);
 
-    virtual std::shared_ptr<ShaderProgram> getShader() const;
     virtual GLfloat getWidth() const;
     virtual GLfloat getHeight() const;
     virtual GLfloat getRange() const;
@@ -46,10 +45,9 @@ public:
 
     virtual void updateInput(double timeinterval, const Input &input);
     void update(float timeInterval) override;
-    void draw() override;
+    void draw(std::shared_ptr<ShaderProgram> shaderProgram) override;
 
 protected:
-    std::shared_ptr<ShaderProgram> shaderProgram;
     std::unique_ptr<Sprite> upSprite;
     std::unique_ptr<Sprite> downSprite;
     std::unique_ptr<Sprite> inactiveSprite;

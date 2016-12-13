@@ -8,6 +8,8 @@
 
 #include "Instance2D.h"
 
+using namespace std;
+
 
 void Instance2D::update(float timeInterval)
 {
@@ -18,7 +20,7 @@ void Instance2D::update(float timeInterval)
 }
 
 
-void Instance2D::draw()
+void Instance2D::draw(shared_ptr<ShaderProgram> shaderProgram)
 {
 }
 

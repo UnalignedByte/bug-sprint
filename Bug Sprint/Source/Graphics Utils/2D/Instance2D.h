@@ -14,6 +14,8 @@
 #include "OpenGLES.h"
 #include "Vector.h"
 #include "Matrix.h"
+#include <memory>
+#include "ShaderProgram.h"
 
 
 class Instance2D: public Instance
@@ -25,7 +27,7 @@ public:
 
 public:
     void update(float timeInterval) override;
-    void draw() override;
+    virtual void draw(std::shared_ptr<ShaderProgram> shaderProgram);
     GLsizei getTrianglesCount() const override;
 
 protected:

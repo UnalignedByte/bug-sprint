@@ -13,12 +13,6 @@
 using namespace std;
 
 
-RenderPass2D::RenderPass2D() :
-    shaderProgram(make_shared<ShaderProgram>("Shaders/sprite.vsh", "Shaders/sprite.fsh"))
-{
-}
-
-
 void RenderPass2D::begin()
 {
     glEnable(GL_BLEND);
@@ -33,7 +27,7 @@ void RenderPass2D::draw()
     shaderProgram->use();
 
     for(shared_ptr<Instance2D> instance : instances) {
-        instance->draw();
+        instance->draw(shaderProgram);
     }
 }
 

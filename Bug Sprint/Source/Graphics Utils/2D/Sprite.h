@@ -16,17 +16,15 @@
 class Sprite: public Instance2D
 {
 public:
-    Sprite(const std::string &imageFileName,  std::shared_ptr<ShaderProgram> shaderProgram);
-    Sprite(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor, std::shared_ptr<ShaderProgram> shaderProgram);
+    Sprite(const std::string &imageFileName);
+    Sprite(const std::string &text, const std::string &fontFileName, GLfloat fontSize, const Color &fontColor);
 
-    virtual std::shared_ptr<ShaderProgram> getShader() const;
     virtual GLfloat getWidth() const;
     virtual GLfloat getHeight() const;
 
-    void draw() override;
+    void draw(std::shared_ptr<ShaderProgram> shaderProgram) override;
 
 protected:
-    std::shared_ptr<ShaderProgram> shaderProgram;
     Texture texture;
     GLuint vertexArrayId;
 

@@ -10,13 +10,6 @@
 
 #include "OpenGLES.h"
 
-#include "Color.h"
-//#include "ShaderProgram.h"
-//#include "Instance.h"
-//#include "Drawable.h"
-//#include "Camera.h"
-//#include "Texture.h"
-///#include "Sprite.h"
 #include "SystemUtils.h"
 #include "TestScene.h"
 
@@ -106,61 +99,9 @@ Core::Core(int viewWidth, int viewHeight) :
 
 void Core::update(double timeInterval, Input input)
 {
-    //updateInput(timeInterval, input);
-    //updateState(timeInterval);
-
     currentScene->updateInput(input);
     currentScene->update(timeInterval);
 }
-
-
-/*void Core::updateInput(float timeInterval, Input input)
-{
-    currentScene->updateInput(timeInterval, input);
-    static Vector3 cameraStartPos;
-    if(input.state == Input::StateDown) {
-        cameraStartPos = camera->position;
-    } else if(input.state == Input::StateMoved) {
-        camera->position[0] = cameraStartPos[0] + (input.x - input.downX) * 3.0;
-        camera->position[1] = cameraStartPos[1] + (input.y - input.downY) * 3.0;
-        camera->position[2] = 0.0;
-    }
-
-    buttonOne->updateInput(timeInterval, input);
-
-    instances[0]->rotation[1] = instances[0]->rotation[1] + 45.0 * timeInterval;
-    instances[1]->rotation[1] = instances[1]->rotation[1] + 45.0 * timeInterval;
-    instances[2]->rotation[0] = instances[2]->rotation[0] + 45.0 * timeInterval;
-    instances[2]->rotation[2] = instances[2]->rotation[2] + 30.0 * timeInterval;
-
-    camera->setTarget(Vector3{0.0, 0.0, 4.0});
-
-    //light->position = {camera->position[0], camera->position[1], 8.0};
-    light->position = {6.0, 2.0, 0.0};
-    light->setTarget(camera->getTarget());
-}*/
-
-
-/*void Core::updateState(float timeInterval)
-{
-    for(auto shader : updateCameraShaders)
-        camera->updateCamera(timeInterval, shader);
-
-    for(auto shader : updateLightShaders)
-        light->updateLight(timeInterval, shader);
-
-    for(auto shader : updateShadowShaders)
-        light->updateShadow(timeInterval, shader);
-
-    for(auto shader : updateSpriteCameraShaders)
-        spriteCamera->updateCamera(timeInterval, shader);
-
-    for(auto instance : instances)
-        instance->update(timeInterval);
-
-    for(auto instance : instances2D)
-        instance->update(timeInterval);
-}*/
 
 
 void Core::draw()
@@ -171,23 +112,7 @@ void Core::draw()
 
     currentScene->draw();
 }
-
-
-/*void Core::shadowPass()
-{
-    shadow->begin();
-
-    for(auto instance : instances)
-    {
-        if(shared_ptr<Drawable> drawable = dynamic_pointer_cast<Drawable>(instance)) {
-            drawable->drawShadow(shadow->getShader());
-        }
-    }
-
-    shadow->end();
-}
-
-
+/*
 void Core::renderPass()
 {
     glViewport(0, 0, viewWidth, viewHeight);

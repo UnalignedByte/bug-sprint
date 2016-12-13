@@ -20,7 +20,7 @@
 class RenderPass2D: public RenderPass
 {
 public:
-    RenderPass2D();
+    using RenderPass::RenderPass;
 
     void begin() override;
     void draw() override;
@@ -29,7 +29,6 @@ public:
     virtual void removeInstance(std::shared_ptr<Instance2D> instance);
     
 protected:
-    std::shared_ptr<ShaderProgram> shaderProgram;
     std::set<std::shared_ptr<Instance2D>> instances;
 };
 
