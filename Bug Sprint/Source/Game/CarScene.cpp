@@ -32,20 +32,33 @@ void CarScene::setupGame()
     renderPasses.push_back(shadowRenderPass);
 
     // Shaded
-    shared_ptr<ShaderProgram> shaderProgram = make_shared<ShaderProgram>("Shaders/shaderShaded.vsh", "Shaders/shaderShaded.fsh");
-    shared_ptr<ShadedRenderPass> renderPass = make_shared<ShadedRenderPass>(viewWidth, viewHeight, shaderProgram, shadowRenderPass);
-    renderPasses.push_back(renderPass);
+    shared_ptr<ShaderProgram> shadedShaderProgram = make_shared<ShaderProgram>("Shaders/shaderShaded.vsh", "Shaders/shaderShaded.fsh");
+    shared_ptr<ShadedRenderPass> shadedRenderPass = make_shared<ShadedRenderPass>(viewWidth, viewHeight, shadedShaderProgram, shadowRenderPass);
+    renderPasses.push_back(shadedRenderPass);
 
     // Camera
     camera = make_shared<Camera>(width, height, 10.0f, 60.0f);
     cameras.push_back(camera);
     camera->addRenderPass(shadowRenderPass);
-    camera->addRenderPass(renderPass);
+    camera->addRenderPass(shadedRenderPass);
+
+    // Light
+    shared_ptr<Light> light = make_shared<Light>(viewWidth, viewHeight);
+    light->position = {6.0, 2.0, 0.0};
+    lights.push_back(light);
+    light->addRenderPass(shadedRenderPass);
+    light->addShadowRenderPass(shadowRenderPass);
+    light->addShadowRenderPass(shadedRenderPass);
 
     // Car
     car = make_shared<Car>();
     addInstance(car);
-    renderPass->addInstance(car);
+    shadedRenderPass->addInstance(car);
+
+    // Ground
+    shared_ptr<Drawable> ground = make_shared<Drawable>("Game/Things/ground.obj", "Game/Things/ground_diffuse@2x.png");
+    addInstance(ground);
+    shadedRenderPass->addInstance(ground);
 }
 
 
@@ -80,9 +93,19 @@ void CarScene::setupUi()
 }
 
 
+void CarScene::updateInput(Input input)
+{
+    Scene::updateInput(input);
+
+    car->isTurningLeft = leftButton->getState() == Button::StateDown && rightButton->getState() != Button::StateDown;
+    car->isTurningRight = rightButton->getState() == Button::StateDown && leftButton->getState() != Button::StateDown;
+    car->isAccelerating = leftButton->getState() == Button::StateDown || rightButton->getState() == Button::StateDown;
+}
+
+
 void CarScene::update(float timeInterval)
 {
-    camera->position = car->position + Vector3({3.5f, 3.0f, -3.5f});
+    camera->position = car->position + Vector3({0.5f, 3.0f, -3.5f});
     camera->setTarget(car->position);
 
     Scene::update(timeInterval);

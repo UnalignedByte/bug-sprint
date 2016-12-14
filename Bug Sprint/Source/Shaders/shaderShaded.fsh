@@ -18,12 +18,14 @@ struct Material {
 in vec3 fPosition;
 in vec3 fNormal;
 in vec4 fLightSpacePosition;
+in vec2 fTexCoord;
 
 uniform vec3 eyePosition;
 uniform Light light;
 uniform Material material;
 
 uniform sampler2D shadowSampler;
+uniform sampler2D diffuseSampler;
 
 out vec4 outColor;
 
@@ -63,8 +65,9 @@ void main(void)
     }
 
     // Get Final Color
-    color = material.ambientIntensity * material.color * light.color +
-        (1.0 - shadowIntensity) * (diffuseIntensity * material.color * light.color) +
+    vec3 diffuseColor = material.color * vec3(texture(diffuseSampler, fTexCoord));
+    color = material.ambientIntensity * diffuseColor * light.color +
+        (1.0 - shadowIntensity) * (diffuseIntensity * diffuseColor * light.color) +
         (1.0 - shadowIntensity) * (pow(specularIntensity, material.specularIntensity) * light.color);
 
     outColor = vec4(color, 1.0);
