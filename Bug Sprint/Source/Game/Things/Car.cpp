@@ -14,7 +14,7 @@ using namespace std;
 
 
 static GLfloat kAcceleration = 0.05;
-static GLfloat kMaxSpeed = 1.0;
+static GLfloat kMaxSpeed = 0.3;
 static GLfloat kSlowdownSpeed = 0.05;
 static GLfloat kWheelsTurnSpeed = 0.5;
 static GLfloat kMaxWheelsTurn = 5.0;
@@ -83,6 +83,14 @@ void Car::update(float timeInterval)
                 wheelsTurn = 0.0;
         }
     }
+
+    wheels[0]->rotation[1] = wheelsTurn*3;
+    wheels[1]->rotation[1] = wheelsTurn*3;
+
+    wheels[0]->rotation[0] += speed * 5;
+    wheels[1]->rotation[0] += speed * 5;
+    wheels[2]->rotation[0] += speed * 5;
+    wheels[3]->rotation[0] += speed * 5;
 
     if(speed > 0.0) {
         rotation[1] += wheelsTurn;
