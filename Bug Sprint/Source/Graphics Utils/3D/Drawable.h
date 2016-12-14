@@ -34,6 +34,9 @@ public:
     virtual void setIsShaded(bool isShaded);
     GLsizei getTrianglesCount() const override;
 
+    virtual Model &getModel();
+    virtual Texture &getTexture();
+
     void draw(std::shared_ptr<ShaderProgram> shaderProgram) override;
     virtual void drawShadow(std::shared_ptr<ShaderProgram> shaderProgram);
 

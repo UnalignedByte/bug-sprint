@@ -23,6 +23,9 @@ static GLfloat kMaxWheelsTurn = 5.0;
 Car::Car()
 {
     body = make_shared<Drawable>("Game/Things/car_body.obj");
+    body->getModel().setColor(Color(1.0, 0.0, 0.0));
+    body->getModel().setDiffuseIntensity(1.0);
+    body->getModel().setSpecularIntensity(2.0);
     addChild(body);
 
     wheels[0] = make_shared<Drawable>("Game/Things/car_wheel.obj");

@@ -65,7 +65,9 @@ void main(void)
     }
 
     // Get Final Color
-    vec3 diffuseColor = material.color * vec3(texture(diffuseSampler, fTexCoord));
+    vec3 diffuseColor = material.color;
+    if(fTexCoord.x > 0.0 && fTexCoord.y > 0.0)
+        diffuseColor *= vec3(texture(diffuseSampler, fTexCoord));
     color = material.ambientIntensity * diffuseColor * light.color +
         (1.0 - shadowIntensity) * (diffuseIntensity * diffuseColor * light.color) +
         (1.0 - shadowIntensity) * (pow(specularIntensity, material.specularIntensity) * light.color);

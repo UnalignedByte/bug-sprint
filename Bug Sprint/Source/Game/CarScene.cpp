@@ -44,7 +44,8 @@ void CarScene::setupGame()
 
     // Light
     shared_ptr<Light> light = make_shared<Light>(viewWidth, viewHeight);
-    light->position = {6.0, 2.0, 0.0};
+    light->setTarget({0.0, 0.0, 0.0});
+    light->position = {4.0, 1.0, -1.0};
     lights.push_back(light);
     light->addRenderPass(shadedRenderPass);
     light->addShadowRenderPass(shadowRenderPass);
@@ -57,6 +58,9 @@ void CarScene::setupGame()
 
     // Ground
     shared_ptr<Drawable> ground = make_shared<Drawable>("Game/Things/ground.obj", "Game/Things/ground_diffuse@2x.png");
+    ground->getModel().setAmbientIntensity(1.0);
+    ground->getModel().setSpecularIntensity(100);
+    ground->setShouldCastShadow(false);
     addInstance(ground);
     shadedRenderPass->addInstance(ground);
 }

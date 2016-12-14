@@ -65,6 +65,18 @@ GLsizei Drawable::getTrianglesCount() const
 }
 
 
+Model &Drawable::getModel()
+{
+    return model;
+}
+
+
+Texture &Drawable::getTexture()
+{
+    return texture;
+}
+
+
 void Drawable::draw(shared_ptr<ShaderProgram> shaderProgram)
 {
     for(shared_ptr<Instance> child : children)
@@ -81,6 +93,11 @@ void Drawable::drawShadow(shared_ptr<ShaderProgram> shaderProgram)
 {
     if(!shouldCastShadow)
         return;
+
+    for(shared_ptr<Instance> child : children) {
+        if(shared_ptr<Drawable> drawable = dynamic_pointer_cast<Drawable>(child))
+            drawable->drawShadow(shaderProgram);
+    }
 
     shaderProgram->use();
     model.draw(shaderProgram, modelMatrix);

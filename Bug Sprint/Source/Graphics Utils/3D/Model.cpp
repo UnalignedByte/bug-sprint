@@ -212,8 +212,8 @@ void Model::loadObj(const std::string &fileString)
 
             Vector3 &vertex0 = vertices[vIndex0];
             Vector3 &normal0 = normals[nIndex0];
-            GLfloat u0 = hasTexCoords ? texCoords[vtIndex0][0] : 0.0;
-            GLfloat v0 = hasTexCoords ? texCoords[vtIndex0][1] : 0.0;
+            GLfloat u0 = hasTexCoords ? texCoords[vtIndex0][0] : -1.0;
+            GLfloat v0 = hasTexCoords ? texCoords[vtIndex0][1] : -1.0;
 
             Vertex modelVertex0{
                 {vertex0[0], vertex0[1], vertex0[2]},
@@ -231,8 +231,8 @@ void Model::loadObj(const std::string &fileString)
 
             Vector3 &vertex1 = vertices[vIndex1];
             Vector3 &normal1 = normals[nIndex1];
-            GLfloat u1 = hasTexCoords ? texCoords[vtIndex1][0] : 0.0;
-            GLfloat v1 = hasTexCoords ? texCoords[vtIndex1][1] : 0.0;
+            GLfloat u1 = hasTexCoords ? texCoords[vtIndex1][0] : -1.0;
+            GLfloat v1 = hasTexCoords ? texCoords[vtIndex1][1] : -1.0;
 
             Vertex modelVertex1{
                 {vertex1[0], vertex1[1], vertex1[2]},
@@ -250,8 +250,8 @@ void Model::loadObj(const std::string &fileString)
 
             Vector3 &vertex2 = vertices[vIndex2];
             Vector3 &normal2 = normals[nIndex2];
-            GLfloat u2 = hasTexCoords ? texCoords[vtIndex2][0] : 0.0;
-            GLfloat v2 = hasTexCoords ? texCoords[vtIndex2][1] : 0.0;
+            GLfloat u2 = hasTexCoords ? texCoords[vtIndex2][0] : -1.0;
+            GLfloat v2 = hasTexCoords ? texCoords[vtIndex2][1] : -1.0;
 
             Vertex modelVertex2{
                 {vertex2[0], vertex2[1], vertex2[2]},
@@ -277,10 +277,8 @@ void Model::loadObj(const std::string &fileString)
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, normal));
 
-    if(hasTexCoords) {
-        glEnableVertexAttribArray(2);
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, texCoord));
-    }
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, texCoord));
     
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 }
