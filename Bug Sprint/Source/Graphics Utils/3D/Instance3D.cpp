@@ -17,14 +17,25 @@ void Instance3D::update(float timeInterval)
 
     modelMatrix = Matrix4();
 
-    Vector3 worldRotation = getWorldRotation();
-    modelMatrix = modelMatrix * Matrix4::zRotation(worldRotation[2]);
-    modelMatrix = modelMatrix * Matrix4::yRotation(worldRotation[1]);
-    modelMatrix = modelMatrix * Matrix4::xRotation(worldRotation[0]);
-    modelMatrix = modelMatrix * Matrix4::scale(scale[0], scale[1], scale[2]);
+    //modelMatrix = Matrix4();
+    modelMatrix = modelMatrix * Matrix4::zRotation(rotation[2]);
+    modelMatrix = modelMatrix * Matrix4::yRotation(rotation[1]);
+    modelMatrix = modelMatrix * Matrix4::xRotation(rotation[0]);
+    //modelMatrix = modelMatrix * Matrix4::scale(scale[0], scale[1], scale[2]);
 
-    Vector3 worldTranslation = getWorldPosition();
-    modelMatrix = modelMatrix * Matrix4::translation(worldTranslation[0], worldTranslation[1], worldTranslation[2]);
+    modelMatrix = modelMatrix * Matrix4::translation(position[0], position[1], position[2]);
+
+    if(parent != nullptr) {
+        if(Instance3D *parentInstance = dynamic_cast<Instance3D *>(parent)) {
+
+            modelMatrix = modelMatrix * Matrix4::zRotation(parentInstance->rotation[2]);
+            modelMatrix = modelMatrix * Matrix4::yRotation(parentInstance->rotation[1]);
+            modelMatrix = modelMatrix * Matrix4::xRotation(parentInstance->rotation[0]);
+            //modelMatrix = modelMatrix * Matrix4::scale(scale[0], scale[1], scale[2]);
+
+            modelMatrix = modelMatrix * Matrix4::translation(parentInstance->position[0], parentInstance->position[1], parentInstance->position[2]);
+        }
+    }
 }
 
 

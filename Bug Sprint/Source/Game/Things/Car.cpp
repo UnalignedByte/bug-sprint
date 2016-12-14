@@ -24,6 +24,22 @@ Car::Car()
 {
     body = make_shared<Drawable>("Game/Things/car_body.obj");
     addChild(body);
+
+    wheels[0] = make_shared<Drawable>("Game/Things/car_wheel.obj");
+    wheels[0]->position = {-1.0, -0.25, 1.5};
+    addChild(wheels[0]);
+
+    wheels[1] = make_shared<Drawable>("Game/Things/car_wheel.obj");
+    wheels[1]->position = {1.0, -0.25, 1.5};
+    addChild(wheels[1]);
+
+    wheels[2] = make_shared<Drawable>("Game/Things/car_wheel.obj");
+    wheels[2]->position = {-1.0, -0.25, -1.5};
+    addChild(wheels[2]);
+
+    wheels[3] = make_shared<Drawable>("Game/Things/car_wheel.obj");
+    wheels[3]->position = {1.0, -0.25, -1.5};
+    addChild(wheels[3]);
 }
 
 
