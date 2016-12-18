@@ -54,7 +54,8 @@
 		B58779E41DAD8FC6007A6DBF /* Instance3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance3D.cpp */; };
 		B5880FA91DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
 		B5880FAA1DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
-		B5880FAC1DB939A90063AEDA /* InstanceTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FAB1DB939A90063AEDA /* InstanceTests.cpp */; };
+		B5A5FCE51E06C5E60032A9FF /* Instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B55A36471DF4B61900882669 /* Instance.cpp */; };
+		B5A5FCE81E06E6C50032A9FF /* Instance3DTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5A5FCE71E06E6C50032A9FF /* Instance3DTests.cpp */; };
 		B5A7DB931DE1C6EB003C1B7D /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5A7DB911DE1C6EB003C1B7D /* Sprite.cpp */; };
 		B5AD7ECF1DE845E400BD41CE /* Instance2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5AD7ECD1DE845E400BD41CE /* Instance2D.cpp */; };
 		B5AE6F8C1E0070D9005BC925 /* CarScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5AE6F8A1E0070D9005BC925 /* CarScene.cpp */; };
@@ -148,6 +149,7 @@
 		B5880FA71DB939840063AEDA /* Light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Light.cpp; path = "Source/Graphics Utils/3D/Light.cpp"; sourceTree = "<group>"; };
 		B5880FA81DB939840063AEDA /* Light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Light.h; path = "Source/Graphics Utils/3D/Light.h"; sourceTree = "<group>"; };
 		B5880FAB1DB939A90063AEDA /* InstanceTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = InstanceTests.cpp; path = "Bug Sprint/Unit Tests/Source/InstanceTests.cpp"; sourceTree = SOURCE_ROOT; };
+		B5A5FCE71E06E6C50032A9FF /* Instance3DTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Instance3DTests.cpp; path = "Bug Sprint/Unit Tests/Source/Instance3DTests.cpp"; sourceTree = SOURCE_ROOT; };
 		B5A7DB911DE1C6EB003C1B7D /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sprite.cpp; path = "Source/Graphics Utils/2D/Sprite.cpp"; sourceTree = "<group>"; };
 		B5A7DB921DE1C6EB003C1B7D /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprite.h; path = "Source/Graphics Utils/2D/Sprite.h"; sourceTree = "<group>"; };
 		B5AD7ECD1DE845E400BD41CE /* Instance2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Instance2D.cpp; path = "Source/Graphics Utils/2D/Instance2D.cpp"; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 				B53370F11DB41BA500275631 /* ShaderProgramTests.cpp */,
 				B50C61281DB54794005147FA /* ModelTests.cpp */,
 				B5880FAB1DB939A90063AEDA /* InstanceTests.cpp */,
+				B5A5FCE71E06E6C50032A9FF /* Instance3DTests.cpp */,
 				B519096A1DEF129E00469B7C /* ImageTests.cpp */,
 				B5B6EAF51DF0C3530010F148 /* SceneTests.cpp */,
 			);
@@ -650,7 +653,6 @@
 					B5C7D20B1DAD746D009E66A9 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Manual;
-						TestTargetID = B5B1AB3B1DACCC5100066910;
 					};
 				};
 			};
@@ -758,12 +760,13 @@
 				B5C7D2181DAD81B4009E66A9 /* GoogleTests.mm in Sources */,
 				B53370EC1DB4170000275631 /* ColorTests.cpp in Sources */,
 				B57035FE1DCF4E2A00B46354 /* FileBuffer.cpp in Sources */,
+				B5A5FCE81E06E6C50032A9FF /* Instance3DTests.cpp in Sources */,
 				B50C61171DB51D0B005147FA /* SystemUtils.mm in Sources */,
 				B5DA1A891DAF726D00D948C9 /* VectorTests.cpp in Sources */,
 				B53370F31DB41BA500275631 /* ShaderProgramTests.cpp in Sources */,
 				B550B1CE1DB25E37006EAEFD /* MatrixTests.cpp in Sources */,
+				B5A5FCE51E06C5E60032A9FF /* Instance.cpp in Sources */,
 				B53370FF1DB4C6A500275631 /* File.cpp in Sources */,
-				B5880FAC1DB939A90063AEDA /* InstanceTests.cpp in Sources */,
 				B51909631DEF0C3300469B7C /* Image.cpp in Sources */,
 				B50C61291DB54794005147FA /* ModelTests.cpp in Sources */,
 				B51D15AC1DBA2C2F0093E6AC /* Drawable.cpp in Sources */,
@@ -929,7 +932,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unalignedbyte.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bug Sprint.app/Bug Sprint";
 			};
 			name = Debug;
 		};
@@ -944,7 +946,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unalignedbyte.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bug Sprint.app/Bug Sprint";
 			};
 			name = Release;
 		};
