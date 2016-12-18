@@ -20,7 +20,13 @@
 class Light: public Instance3D
 {
 public:
-    Light(GLfloat viewWidth, GLfloat viewHeight);
+    enum Type {
+        TypeDirectional = 1,
+        TypeSpotlight = 2
+    };
+
+public:
+    Light(GLfloat viewWidth, GLfloat viewHeight, GLint lightIndex = 0, GLfloat cutOff = -1.0f);
 
     Color getColor() const;
     void setColor(const Color &color);
@@ -38,6 +44,9 @@ public:
     void updateShadow();
 
 protected:
+    Type type;
+    GLint lightIndex;
+
     Color color{1.0, 1.0, 1.0, 1.0};
 
     GLfloat viewWidth;
@@ -47,6 +56,8 @@ protected:
     GLfloat zFar{100.0};
 
     Vector3 target{0.0, 0.0, 1.0};
+
+    GLfloat cutOff;
 
     std::set<std::shared_ptr<RenderPass>> renderPasses;
     std::set<std::shared_ptr<RenderPass>> shadowRenderPasses;

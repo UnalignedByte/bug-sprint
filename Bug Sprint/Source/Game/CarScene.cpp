@@ -46,15 +46,20 @@ void CarScene::setupGame()
     shared_ptr<Light> light = make_shared<Light>(viewWidth, viewHeight);
     light->setTarget({0.0, 0.0, 0.0});
     light->position = {4.0, 1.0, -1.0};
+    //light->setColor({0.5, 0.5, 0.2});
     lights.push_back(light);
     light->addRenderPass(shadedRenderPass);
     light->addShadowRenderPass(shadowRenderPass);
     light->addShadowRenderPass(shadedRenderPass);
 
     // Car
-    car = make_shared<Car>();
+    car = make_shared<Car>(viewWidth, viewHeight);
     addInstance(car);
     shadedRenderPass->addInstance(car);
+    for(shared_ptr<Light> light : car->getLights()) {
+        lights.push_back(light);
+        light->addRenderPass(shadedRenderPass);
+    }
 
     // Ground
     shared_ptr<Drawable> ground = make_shared<Drawable>("Game/Things/ground.obj", "Game/Things/ground_diffuse@2x.png");
@@ -109,7 +114,7 @@ void CarScene::updateInput(Input input)
 
 void CarScene::update(float timeInterval)
 {
-    camera->position = car->position + Vector3({0.5f, 3.0f, -3.5f});
+    camera->position = car->position + Vector3({10.1f, 15.0f, -10.1f});
     camera->setTarget(car->position);
 
     Scene::update(timeInterval);

@@ -13,9 +13,6 @@
 
 TEST(Scene, CreateInCode)
 {
-    Scene scene;
-
-    
 }
 
 

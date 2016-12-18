@@ -14,11 +14,15 @@ out vec3 fPosition;
 out vec3 fNormal;
 out vec4 fLightSpacePosition;
 out vec2 fTexCoord;
+out mat4 fModelViewMatrix;
+out vec3 fRawPosition;
 
 
 void main(void)
 {
+    fModelViewMatrix = viewMatrix * modelMatrix;
     fPosition = (viewMatrix * modelMatrix * vec4(position, 1.0)).xyz;
+    fRawPosition = (modelMatrix * vec4(position, 1.0)).xyz;
 
     fNormal = mat3(modelMatrix) * normal;
 

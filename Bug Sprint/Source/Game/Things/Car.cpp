@@ -20,7 +20,8 @@ static GLfloat kWheelsTurnSpeed = 0.5;
 static GLfloat kMaxWheelsTurn = 5.0;
 
 
-Car::Car()
+Car::Car(GLint viewWidth, GLint viewHeight) :
+    viewWidth(viewWidth), viewHeight(viewHeight)
 {
     body = make_shared<Drawable>("Game/Things/car_body.obj");
     body->getModel().setColor(Color(1.0, 0.0, 0.0));
@@ -43,6 +44,18 @@ Car::Car()
     wheels[3] = make_shared<Drawable>("Game/Things/car_wheel.obj");
     wheels[3]->position = {1.0, -0.25, -1.5};
     addChild(wheels[3]);
+
+    // Headlights
+    lights[0] = make_shared<Light>(viewWidth, viewHeight, 1, 20.0);
+    lights[0]->position = {0.0, 0.0, 0.0};
+    lights[0]->setColor({0.0, 1.0, 0.5});
+    addChild(lights[0]);
+}
+
+
+std::array<std::shared_ptr<Light>, 1> Car::getLights() const
+{
+    return lights;
 }
 
 
@@ -104,6 +117,9 @@ void Car::update(float timeInterval)
     position[2] += speed * cos(angleInRadians);
 
     cout << "Speed: " << speed << endl << "Wheel Turn: " << wheelsTurn << endl;
+
+    // Lights
+    lights[0]->setTarget(lights[0]->position + Vector3{0.0, 0.0, 1.0});
 
     Instance3D::update(timeInterval);
 }
