@@ -24,6 +24,7 @@ public:
     Matrix(std::initializer_list<Vector<SIZE>> values);
 
     Matrix<SIZE> operator*(GLfloat rhs) const;
+    Vector<SIZE> operator*(const Vector<SIZE> &rhs) const;
     Matrix<SIZE> operator*(const Matrix<SIZE> &rhs) const;
 
     const Vector<SIZE> &operator[](int index) const;

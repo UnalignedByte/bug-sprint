@@ -136,6 +136,22 @@ TEST(Matrix, MultiplyByMatrix)
 }
 
 
+TEST(Matrix, MultiplyByVector)
+{
+    Matrix<3> m{{1.0, -5.0,  3.0},
+                {0.0, -2.0,  6.0},
+                {7.0,  2.0, -4.0}};
+
+    Vector<3> v{1.0, -3.0, 5.0};
+
+    Vector<3> result = m * v;
+
+    ASSERT_DOUBLE_EQ(result[0], 31.0);
+    ASSERT_DOUBLE_EQ(result[1], 36.0);
+    ASSERT_DOUBLE_EQ(result[2], -19.);
+}
+
+
 TEST(Matrix, Translation)
 {
     Matrix4 t = Matrix4::translation(3.0, 4.0, 1.5);

@@ -65,6 +65,19 @@ Matrix<SIZE> Matrix<SIZE>::operator*(GLfloat rhs) const
 
 
 template<int SIZE>
+Vector<SIZE> Matrix<SIZE>::operator*(const Vector<SIZE> &rhs) const
+{
+    Vector<SIZE> result;
+
+    for(int y=0; y<SIZE; y++)
+        for(int i=0; i<SIZE; i++) {
+            result[y] += data[y][i] * rhs[i];
+        }
+
+    return result;
+}
+
+template<int SIZE>
 Matrix<SIZE> Matrix<SIZE>::operator*(const Matrix<SIZE> &rhs) const
 {
     Matrix<SIZE> result;
