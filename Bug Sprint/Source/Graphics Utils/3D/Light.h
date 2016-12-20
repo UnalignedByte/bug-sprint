@@ -28,10 +28,18 @@ public:
     };
 
 public:
-    Light(GLfloat viewWidth, GLfloat viewHeight, GLint lightIndex = 0, GLfloat cutOff = -1.0f);
+    Light(GLfloat viewWidth, GLfloat viewHeight, GLfloat cutOff = -1.0f);
 
     Color getColor() const;
     void setColor(const Color &color);
+
+    GLfloat getAmbientIntensity() const;
+    void setAmbientIntensity(GLfloat ambientIntensity);
+    GLfloat getDiffuseIntensity() const;
+    void setDiffuseIntensity(GLfloat diffuseIntensity);
+    GLfloat getSpecularIntensity() const;
+    void setSpecularIntensity(GLfloat specularIntensity);
+
     Vector3 getDirection() const;
     Vector3 getTarget() const;
     void setTarget(const Vector3 &target);
@@ -46,10 +54,14 @@ public:
     void updateShadow();
 
 protected:
-    Type type;
+    static GLint lightsCount;
     GLint lightIndex;
 
+    Type type;
     Color color{1.0, 1.0, 1.0, 1.0};
+    GLfloat ambientIntensity{0.2};
+    GLfloat diffuseIntensity{1.0};
+    GLfloat specularIntensity{1.0};
 
     GLfloat viewWidth;
     GLfloat viewHeight;

@@ -12,6 +12,9 @@ struct Light {
     vec3 position;
     vec3 direction;
     vec3 color;
+    float ambientIntensity;
+    float diffuseIntensity;
+    float specularIntensity;
     float cutOff;
 };
 
@@ -47,16 +50,16 @@ vec3 directionalLightColor(Light light, float shadowIntensity)
         diffuseColor *= vec3(texture(diffuseSampler, fTexCoord));
 
     // Diffuse intensity
-    float diffuseIntensity = dot(fNormal, -light.direction);
+    float diffuseIntensity = dot(fNormal, -light.direction) * light.diffuseIntensity;
     diffuseIntensity = clamp(diffuseIntensity, 0.0, 1.0);
 
     // Specular intensity
     vec3 cameraDirection = normalize(eyePosition - fPosition);
     vec3 lightDirectionReflected = normalize(reflect(light.direction, fNormal));
-    float specularIntensity = dot(cameraDirection, lightDirectionReflected);
+    float specularIntensity = dot(cameraDirection, lightDirectionReflected) * light.specularIntensity;
     specularIntensity = clamp(specularIntensity, 0.0, 1.0);
 
-    vec3 color = material.ambientIntensity * diffuseColor * light.color +
+    vec3 color = material.ambientIntensity * diffuseColor * light.color * light.ambientIntensity +
                  (1.0 - shadowIntensity) * (diffuseIntensity * diffuseColor * light.color) +
                  (1.0 - shadowIntensity) * (pow(specularIntensity, material.specularIntensity) * light.color);
 
@@ -77,10 +80,11 @@ vec3 spotLightColor(Light light, float shadowIntensity)
     float theta = degrees(acos(dot(fragmentDirection, light.direction)));
 
     if(theta < light.cutOff) {
-        diffuseIntensity = 1.0;
+        diffuseIntensity = 1.0 * light.diffuseIntensity;
     }
 
-    vec3 color = (1.0 - shadowIntensity) * (diffuseIntensity * diffuseColor * light.color);
+    vec3 color = material.ambientIntensity * diffuseColor * light.color * light.ambientIntensity +
+                 (1.0 - shadowIntensity) * (diffuseIntensity * diffuseColor * light.color);
 
     return color;
 }

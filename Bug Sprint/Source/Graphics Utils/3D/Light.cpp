@@ -14,13 +14,18 @@
 using namespace std;
 
 
-Light::Light(GLfloat viewWidth, GLfloat viewHeight, GLint lightIndex, GLfloat cutOff) :
-    viewWidth(viewWidth), viewHeight(viewHeight), lightIndex(lightIndex), cutOff(cutOff)
+GLint Light::lightsCount = 0;
+
+
+Light::Light(GLfloat viewWidth, GLfloat viewHeight, GLfloat cutOff) :
+    viewWidth(viewWidth), viewHeight(viewHeight), cutOff(cutOff)
 {
     if(cutOff <= 0.0)
         type = TypeDirectional;
     else
         type = TypeSpot;
+
+    lightIndex = lightsCount++;
 }
 
 
@@ -33,6 +38,42 @@ Color Light::getColor() const
 void Light::setColor(const Color &color)
 {
     this->color = color;
+}
+
+
+GLfloat Light::getAmbientIntensity() const
+{
+    return ambientIntensity;
+}
+
+
+void Light::setAmbientIntensity(GLfloat ambientIntensity)
+{
+    this->ambientIntensity = ambientIntensity;
+}
+
+
+GLfloat Light::getDiffuseIntensity() const
+{
+    return diffuseIntensity;
+}
+
+
+void Light::setDiffuseIntensity(GLfloat diffuseIntensity)
+{
+    this->diffuseIntensity = diffuseIntensity;
+}
+
+
+GLfloat Light::getSpecularIntensity() const
+{
+    return specularIntensity;
+}
+
+
+void Light::setSpecularIntensity(GLfloat specularIntensity)
+{
+    this->specularIntensity = specularIntensity;
 }
 
 
@@ -114,6 +155,18 @@ void Light::updateLight()
         // Color
         GLint lightColorId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "color").c_str());
         glUniform3f(lightColorId, color[0], color[1], color[2]);
+
+        // Ambient intensity
+        GLint ambientIntensityId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "ambientIntensity").c_str());
+        glUniform1f(ambientIntensityId, ambientIntensity);
+
+        // Diffuse intensity
+        GLint diffuseIntensityId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "diffuseIntensity").c_str());
+        glUniform1f(diffuseIntensityId, diffuseIntensity);
+
+        // Specular intensity
+        GLint specularIntensityId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "specularIntensity").c_str());
+        glUniform1f(specularIntensityId, specularIntensity);
 
         // Cut Off
         GLint cutOffId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "cutOff").c_str());
