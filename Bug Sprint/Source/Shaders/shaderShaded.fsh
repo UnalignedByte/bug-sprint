@@ -16,6 +16,7 @@ struct Light {
     float diffuseIntensity;
     float specularIntensity;
     float cutOff;
+    float innerCutOff;
 };
 
 struct Material {
@@ -74,14 +75,17 @@ vec3 spotLightColor(Light light, float shadowIntensity)
         diffuseColor *= vec3(texture(diffuseSampler, fTexCoord));
 
     // Diffuse intensity
-    float diffuseIntensity = 0.0;
+    //float diffuseIntensity = 0.0;
 
     vec3 fragmentDirection = normalize(fRawPosition - light.position);
     float theta = degrees(acos(dot(fragmentDirection, light.direction)));
+    float epsilon = light.innerCutOff - light.cutOff - 0.01;
+    float diffuseIntensity = clamp((theta - light.cutOff)/epsilon, 0.0, 1.0);
 
-    if(theta < light.cutOff) {
+
+    /*if(theta < light.cutOff) {
         diffuseIntensity = 1.0 * light.diffuseIntensity;
-    }
+    }*/
 
     vec3 color = material.ambientIntensity * diffuseColor * light.color * light.ambientIntensity +
                  (1.0 - shadowIntensity) * (diffuseIntensity * diffuseColor * light.color);

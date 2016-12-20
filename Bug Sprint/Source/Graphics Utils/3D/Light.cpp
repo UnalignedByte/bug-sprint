@@ -17,13 +17,16 @@ using namespace std;
 GLint Light::lightsCount = 0;
 
 
-Light::Light(GLfloat viewWidth, GLfloat viewHeight, GLfloat cutOff) :
-    viewWidth(viewWidth), viewHeight(viewHeight), cutOff(cutOff)
+Light::Light(GLfloat viewWidth, GLfloat viewHeight, GLfloat cutOff, GLfloat innerCutOff) :
+    viewWidth(viewWidth), viewHeight(viewHeight), cutOff(cutOff), innerCutOff(innerCutOff)
 {
     if(cutOff <= 0.0)
         type = TypeDirectional;
     else
         type = TypeSpot;
+
+    if(innerCutOff < 0.0)
+        this->innerCutOff = cutOff;
 
     lightIndex = lightsCount++;
 }
@@ -168,9 +171,13 @@ void Light::updateLight()
         GLint specularIntensityId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "specularIntensity").c_str());
         glUniform1f(specularIntensityId, specularIntensity);
 
-        // Cut Off
+        // Cut off
         GLint cutOffId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "cutOff").c_str());
         glUniform1f(cutOffId, cutOff);
+
+        // Inner cut off
+        GLint innerCutOffId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "innerCutOff").c_str());
+        glUniform1f(innerCutOffId, innerCutOff);
     }
 }
 

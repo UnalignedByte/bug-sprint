@@ -28,7 +28,7 @@ public:
     };
 
 public:
-    Light(GLfloat viewWidth, GLfloat viewHeight, GLfloat cutOff = -1.0f);
+    Light(GLfloat viewWidth, GLfloat viewHeight, GLfloat cutOff = -1.0f, GLfloat innerCutOff = -1.0f);
 
     Color getColor() const;
     void setColor(const Color &color);
@@ -72,6 +72,7 @@ protected:
     Vector3 target{0.0, 0.0, 1.0};
 
     GLfloat cutOff;
+    GLfloat innerCutOff;
 
     std::set<std::shared_ptr<RenderPass>> renderPasses;
     std::set<std::shared_ptr<RenderPass>> shadowRenderPasses;

@@ -46,7 +46,7 @@ Car::Car(GLint viewWidth, GLint viewHeight) :
     addChild(wheels[3]);
 
     // Headlights
-    lights[0] = make_shared<Light>(viewWidth, viewHeight, 20.0);
+    lights[0] = make_shared<Light>(viewWidth, viewHeight, 20.0, 15.0);
     lights[0]->position = {0.0, 0.0, 0.0};
     lights[0]->setColor({0.0, 1.0, 0.5});
     lights[0]->setAmbientIntensity(0.0);

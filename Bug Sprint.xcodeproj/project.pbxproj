@@ -646,7 +646,7 @@
 				TargetAttributes = {
 					B5B1AB3B1DACCC5100066910 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = Q3CXQ33KL8;
+						DevelopmentTeam = X7G47FFC9G;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
@@ -887,13 +887,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Rafal Grodzinski (X2VAV67362)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Q3CXQ33KL8;
+				DEVELOPMENT_TEAM = X7G47FFC9G;
 				INFOPLIST_FILE = "$(SRCROOT)/Bug Sprint/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unalignedbyte.bugsprint;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0492550a-f14d-4cfc-ad0b-a973d0eb3834";
-				PROVISIONING_PROFILE_SPECIFIER = "Any App Development";
+				PROVISIONING_PROFILE = "7a4d0075-15db-4009-b18d-7a0667d337f5";
+				PROVISIONING_PROFILE_SPECIFIER = "Any iOS App Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Bug Sprint/Source/iOS Layer/Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -909,13 +909,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Q3CXQ33KL8;
+				DEVELOPMENT_TEAM = X7G47FFC9G;
 				INFOPLIST_FILE = "$(SRCROOT)/Bug Sprint/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.unalignedbyte.bugsprint;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0492550a-f14d-4cfc-ad0b-a973d0eb3834";
-				PROVISIONING_PROFILE_SPECIFIER = "Any App Development";
+				PROVISIONING_PROFILE = "7a4d0075-15db-4009-b18d-7a0667d337f5";
+				PROVISIONING_PROFILE_SPECIFIER = "Any iOS App Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Bug Sprint/Source/iOS Layer/Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
