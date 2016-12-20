@@ -21,8 +21,10 @@ class Light: public Instance3D
 {
 public:
     enum Type {
+        TypeUnused = 0,
         TypeDirectional = 1,
-        TypeSpotlight = 2
+        TypeSpot = 2,
+        TypePoint = 3,
     };
 
 public:

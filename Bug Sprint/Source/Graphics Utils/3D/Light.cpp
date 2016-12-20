@@ -9,6 +9,7 @@
 #include "Light.h"
 
 #include <cmath>
+#include <string>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ Light::Light(GLfloat viewWidth, GLfloat viewHeight, GLint lightIndex, GLfloat cu
     if(cutOff <= 0.0)
         type = TypeDirectional;
     else
-        type = TypeSpotlight;
+        type = TypeSpot;
 }
 
 
@@ -94,46 +95,28 @@ void Light::updateLight()
 
         shaderProgram->use();
 
+        string lightIndexString = "lights[" + to_string(lightIndex) + "].";
+
         // Type
-        GLint lightTypeId = -1;
-        if(lightIndex == 0)
-            lightTypeId = glGetUniformLocation(shaderProgram->getId(), "light0.type");
-        else
-            lightTypeId = glGetUniformLocation(shaderProgram->getId(), "light1.type");
+        GLint lightTypeId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "type").c_str());
         glUniform1i(lightTypeId, type);
 
         // Position
-        GLint lightPositionId = -1;
-        if(lightIndex == 0)
-            lightPositionId = glGetUniformLocation(shaderProgram->getId(), "light0.position");
-        else
-            lightPositionId = glGetUniformLocation(shaderProgram->getId(), "light1.position");
+        GLint lightPositionId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "position").c_str());
         Vector3 worldPosition = getWorldPosition();
         glUniform3f(lightPositionId, worldPosition[0], worldPosition[1], worldPosition[2]);
 
         // Direction
-        GLint lightDirectionId = -1;
-        if(lightIndex == 0)
-            lightDirectionId = glGetUniformLocation(shaderProgram->getId(), "light0.direction");
-        else
-            lightDirectionId = glGetUniformLocation(shaderProgram->getId(), "light1.direction");
+        GLint lightDirectionId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "direction").c_str());
         Vector3 direction = getDirection();
         glUniform3f(lightDirectionId, direction[0], direction[1], direction[2]);
 
         // Color
-        GLint lightColorId = -1;
-        if(lightIndex == 0)
-            lightColorId = glGetUniformLocation(shaderProgram->getId(), "light0.color");
-        else
-            lightColorId = glGetUniformLocation(shaderProgram->getId(), "light1.color");
+        GLint lightColorId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "color").c_str());
         glUniform3f(lightColorId, color[0], color[1], color[2]);
 
         // Cut Off
-        GLint cutOffId = -1;
-        if(lightIndex == 0)
-            cutOffId = glGetUniformLocation(shaderProgram->getId(), "light0.cutOff");
-        else
-            cutOffId = glGetUniformLocation(shaderProgram->getId(), "light1.cutOff");
+        GLint cutOffId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "cutOff").c_str());
         glUniform1f(cutOffId, cutOff);
     }
 }
