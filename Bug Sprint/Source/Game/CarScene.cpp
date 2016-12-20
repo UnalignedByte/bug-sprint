@@ -46,7 +46,7 @@ void CarScene::setupGame()
     shared_ptr<Light> light = make_shared<Light>(viewWidth, viewHeight);
     light->setTarget({0.0, 0.0, 0.0});
     light->position = {4.0, 1.0, -1.0};
-    light->setDiffuseIntensity(0.0);
+    light->setDiffuseIntensity(0.5);
     lights.push_back(light);
     light->addRenderPass(shadedRenderPass);
     light->addShadowRenderPass(shadowRenderPass);
@@ -59,6 +59,8 @@ void CarScene::setupGame()
     for(shared_ptr<Light> light : car->getLights()) {
         lights.push_back(light);
         light->addRenderPass(shadedRenderPass);
+        light->addShadowRenderPass(shadowRenderPass);
+        light->addShadowRenderPass(shadedRenderPass);
     }
 
     // Ground
@@ -68,6 +70,36 @@ void CarScene::setupGame()
     ground->setShouldCastShadow(false);
     addInstance(ground);
     shadedRenderPass->addInstance(ground);
+
+    // Trees
+    shared_ptr<Drawable> tree0 = make_shared<Drawable>("Game/Things/tree.obj");
+    addInstance(tree0);
+    shadedRenderPass->addInstance(tree0);
+    shadowRenderPass->addInstance(tree0);
+
+    shared_ptr<Drawable> tree1 = make_shared<Drawable>("Game/Things/tree.obj");
+    tree1->position = {2.0, 0.0, 2.0};
+    addInstance(tree1);
+    shadedRenderPass->addInstance(tree1);
+    shadowRenderPass->addInstance(tree1);
+
+    shared_ptr<Drawable> tree2 = make_shared<Drawable>("Game/Things/tree.obj");
+    tree2->position = {4.0, 0.0, 2.4};
+    addInstance(tree2);
+    shadedRenderPass->addInstance(tree2);
+    shadowRenderPass->addInstance(tree2);
+
+    shared_ptr<Drawable> tree3 = make_shared<Drawable>("Game/Things/tree.obj");
+    tree3->position = {-3.0, 0.0, -1.0};
+    addInstance(tree3);
+    shadedRenderPass->addInstance(tree3);
+    shadowRenderPass->addInstance(tree3);
+
+    shared_ptr<Drawable> tree4 = make_shared<Drawable>("Game/Things/tree.obj");
+    tree4->position = {1.0, 0.0, 4.0};
+    addInstance(tree4);
+    shadedRenderPass->addInstance(tree4);
+    shadowRenderPass->addInstance(tree4);
 }
 
 

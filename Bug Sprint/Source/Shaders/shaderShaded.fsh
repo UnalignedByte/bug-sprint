@@ -75,17 +75,10 @@ vec3 spotLightColor(Light light, float shadowIntensity)
         diffuseColor *= vec3(texture(diffuseSampler, fTexCoord));
 
     // Diffuse intensity
-    //float diffuseIntensity = 0.0;
-
     vec3 fragmentDirection = normalize(fRawPosition - light.position);
     float theta = degrees(acos(dot(fragmentDirection, light.direction)));
     float epsilon = light.innerCutOff - light.cutOff - 0.01;
-    float diffuseIntensity = clamp((theta - light.cutOff)/epsilon, 0.0, 1.0);
-
-
-    /*if(theta < light.cutOff) {
-        diffuseIntensity = 1.0 * light.diffuseIntensity;
-    }*/
+    float diffuseIntensity = clamp((theta - light.cutOff)/epsilon, 0.0, 1.0) * light.diffuseIntensity;
 
     vec3 color = material.ambientIntensity * diffuseColor * light.color * light.ambientIntensity +
                  (1.0 - shadowIntensity) * (diffuseIntensity * diffuseColor * light.color);
@@ -105,7 +98,7 @@ void main(void)
     // Calculate shadow intensity
     float shadowIntensity = 0.0;
 
-    /*vec3 lightNdcPosition = fLightSpacePosition.xyz / fLightSpacePosition.w;
+    vec3 lightNdcPosition = fLightSpacePosition.xyz / fLightSpacePosition.w;
     vec2 lightTexCoord = vec2(lightNdcPosition.x * 0.5 + 0.5, lightNdcPosition.y * 0.5 + 0.5);
     if(lightTexCoord.x >= 0.0 && lightTexCoord.x <= 1.0 && lightTexCoord.y >= 0.0 && lightTexCoord.y <= 1.0) {
         float lightZ = lightNdcPosition.z * 0.5 + 0.5;
@@ -120,7 +113,7 @@ void main(void)
         }
 
         shadowIntensity *= 0.75 / 9.0;
-    }*/
+    }
 
     // Calculate Final Color
     vec3 color = vec3(0.0);
