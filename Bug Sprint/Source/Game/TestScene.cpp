@@ -140,5 +140,5 @@ void TestScene::update(float timeInterval)
 
      //light->position = {camera->position[0], camera->position[1], 8.0};
      light->position = {6.0, 2.0, 0.0};
-     light->setTarget(camera->getTarget());
+     light->setWorldTarget(camera->getTarget());
 }

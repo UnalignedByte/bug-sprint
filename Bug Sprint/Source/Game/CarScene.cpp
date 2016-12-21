@@ -44,7 +44,7 @@ void CarScene::setupGame()
 
     // Light
     shared_ptr<Light> light = make_shared<Light>(viewWidth, viewHeight);
-    light->setTarget({0.0, 0.0, 0.0});
+    light->setWorldTarget({0.0, 0.0, 0.0});
     light->position = {4.0, 1.0, -1.0};
     light->setDiffuseIntensity(0.5);
     lights.push_back(light);

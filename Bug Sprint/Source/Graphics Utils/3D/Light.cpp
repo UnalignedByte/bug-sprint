@@ -82,29 +82,42 @@ void Light::setSpecularIntensity(GLfloat specularIntensity)
 
 Vector3 Light::getDirection() const
 {
+    return direction;
+}
+
+
+void Light::setDirection(Vector3 direction)
+{
+    this->direction = direction;
+}
+
+
+Vector3 Light::getWorldDirection() const
+{
     Vector3 worldRotation = getWorldRotation();
     GLfloat yRotationInRadians = (M_PI * worldRotation[1])/180.0;
-    Vector3 dir = target - position;
-    GLfloat x = sin(yRotationInRadians) * dir[2];
-    GLfloat z = cos(yRotationInRadians) * dir[2];
+    GLfloat x = sin(yRotationInRadians) * direction[2];
+    GLfloat z = cos(yRotationInRadians) * direction[2];
 
-    x += cos(yRotationInRadians) * dir[0];
-    z -= sin(yRotationInRadians) * dir[0];
+    x += cos(yRotationInRadians) * direction[0];
+    z -= sin(yRotationInRadians) * direction[0];
 
-    dir = {x, dir[1], z};
-    return (dir).normalized();
+    Vector3 worldDirection = {x, direction[1], z};
+
+    return worldDirection.normalized();
 }
 
 
-Vector3 Light::getTarget() const
+Vector3 Light::getWorldTarget() const
 {
-    return target;
+    return worldTarget;
 }
 
 
-void Light::setTarget(const Vector3 &target)
+void Light::setWorldTarget(Vector3 worldTarget)
 {
-    this->target = target;
+    this->worldTarget = worldTarget;
+    this->direction = worldTarget - getWorldPosition();
 }
 
 
@@ -152,7 +165,7 @@ void Light::updateLight()
 
         // Direction
         GLint lightDirectionId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "direction").c_str());
-        Vector3 direction = getDirection();
+        Vector3 direction = getWorldDirection();
         glUniform3f(lightDirectionId, direction[0], direction[1], direction[2]);
 
         // Color
@@ -190,7 +203,7 @@ void Light::updateShadow()
         shaderProgram->use();
 
         GLint lightViewMatrixId = glGetUniformLocation(shaderProgram->getId(), "lightViewMatrix");
-        Matrix4 lightViewMatrix = Matrix4::lookAt(position, target);
+        Matrix4 lightViewMatrix = Matrix4::lookAt(position, position + direction);
         glUniformMatrix4fv(lightViewMatrixId, 1, GL_FALSE, lightViewMatrix.getData());
 
         GLint lightProjectionMatrixId = glGetUniformLocation(shaderProgram->getId(), "lightProjectionMatrix");

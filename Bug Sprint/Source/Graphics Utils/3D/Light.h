@@ -30,9 +30,10 @@ public:
 public:
     Light(GLfloat viewWidth, GLfloat viewHeight, GLfloat cutOff = -1.0f, GLfloat innerCutOff = -1.0f);
 
+    Type getType() const;
+
     Color getColor() const;
     void setColor(const Color &color);
-
     GLfloat getAmbientIntensity() const;
     void setAmbientIntensity(GLfloat ambientIntensity);
     GLfloat getDiffuseIntensity() const;
@@ -41,8 +42,10 @@ public:
     void setSpecularIntensity(GLfloat specularIntensity);
 
     Vector3 getDirection() const;
-    Vector3 getTarget() const;
-    void setTarget(const Vector3 &target);
+    void setDirection(Vector3 direction);
+    Vector3 getWorldDirection() const;
+    Vector3 getWorldTarget() const;
+    void setWorldTarget(Vector3 worldTarget);
 
     virtual void addRenderPass(std::shared_ptr<RenderPass> renderPass);
     virtual void removeRenderPass(std::shared_ptr<RenderPass> renderPass);
@@ -58,6 +61,7 @@ protected:
     GLint lightIndex;
 
     Type type;
+
     Color color{1.0, 1.0, 1.0, 1.0};
     GLfloat ambientIntensity{0.2};
     GLfloat diffuseIntensity{1.0};
@@ -69,7 +73,8 @@ protected:
     GLfloat zNear{0.01};
     GLfloat zFar{100.0};
 
-    Vector3 target{0.0, 0.0, 1.0};
+    Vector3 direction{0.0, 0.0, 1.0};
+    Vector3 worldTarget{0.0, 0.0, 0.0};
 
     GLfloat cutOff;
     GLfloat innerCutOff;
