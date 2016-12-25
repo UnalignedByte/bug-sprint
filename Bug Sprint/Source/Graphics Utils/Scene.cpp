@@ -34,10 +34,8 @@ void Scene::update(float timeInterval)
     for(shared_ptr<Instance> instance : instances)
         instance->update(timeInterval);
 
-    for(shared_ptr<Light> light : lights) {
-        light->updateLight();
-        light->updateShadow();
-    }
+    for(shared_ptr<RenderPass> renderPass : renderPasses)
+        renderPass->update();
 
     for(shared_ptr<Camera> camera : cameras)
         camera->updateCamera();

@@ -95,10 +95,8 @@ TestScene::TestScene(GLint viewWidth, GLint viewHeight) :
     // Light
     light = make_shared<Light>(width, height);
     light->position = {6.0, 2.0, 0.0};
-    lights.push_back(light);
-    light->addRenderPass(shadedRenderPass);
-    light->addShadowRenderPass(shadedRenderPass);
-    light->addShadowRenderPass(shadowRenderPass);
+    shadedRenderPass->addLight(light);
+    shadowRenderPass->addLight(light);
 
     // Cameras
     camera = make_shared<Camera>(width, height, 10.0, 60.0);

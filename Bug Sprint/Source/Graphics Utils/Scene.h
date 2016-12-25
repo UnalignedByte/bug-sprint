@@ -38,7 +38,6 @@ protected:
 
     std::vector<std::shared_ptr<Instance>> instances;
     std::vector<std::shared_ptr<RenderPass>> renderPasses;
-    std::vector<std::shared_ptr<Light>> lights;
     std::vector<std::shared_ptr<Camera>> cameras;
 };
 

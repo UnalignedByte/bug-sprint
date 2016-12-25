@@ -35,7 +35,8 @@ void ShadedRenderPass::draw()
 {
     shaderProgram->use();
 
-    shadowRenderPass->useShadowTexture(shaderProgram);
+    for(shared_ptr<Light> light : lights)
+        light->useShadowTexture(shaderProgram);
 
     for(shared_ptr<Instance> instance : instances)
         instance->draw(shaderProgram);

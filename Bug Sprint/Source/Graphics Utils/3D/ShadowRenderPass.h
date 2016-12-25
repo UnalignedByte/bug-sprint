@@ -15,18 +15,12 @@
 class ShadowRenderPass: public RenderPass
 {
 public:
-    ShadowRenderPass(GLint viewWidth, GLint viewHeight, std::shared_ptr<ShaderProgram> shaderProgram);
+    using RenderPass::RenderPass;
 
-    void begin() override;
+    void update() override;
     void draw() override;
-    void end() override;
-
-    virtual void useShadowTexture(std::shared_ptr<ShaderProgram> shaderProgram) const;
 
 protected:
-    GLuint framebuffer;
-    GLuint texture;
-
     GLint previousFramebuffer;
 };
 

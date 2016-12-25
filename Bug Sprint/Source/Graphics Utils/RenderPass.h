@@ -12,9 +12,12 @@
 #include "OpenGLES.h"
 #include <memory>
 #include <set>
+#include <vector>
 #include "Instance.h"
+#include "Light.h"
 #include "ShaderProgram.h"
 
+class Light; // TODO: No idea why this has to be here
 
 class RenderPass
 {
@@ -26,6 +29,10 @@ public:
     virtual void addInstance(std::shared_ptr<Instance> instance);
     virtual void removeInstance(std::shared_ptr<Instance> instance);
 
+    virtual void addLight(std::shared_ptr<Light> light);
+
+    virtual void update();
+    
     virtual void begin();
     virtual void draw();
     virtual void end();
@@ -37,6 +44,7 @@ protected:
     GLfloat height;
     std::shared_ptr<ShaderProgram> shaderProgram;
     std::set<std::shared_ptr<Instance>> instances;
+    std::vector<std::shared_ptr<Light>> lights;
 };
 
 #endif

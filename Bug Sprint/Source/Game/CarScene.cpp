@@ -47,20 +47,16 @@ void CarScene::setupGame()
     light->setWorldTarget({0.0, 0.0, 0.0});
     light->position = {4.0, 1.0, -1.0};
     light->setDiffuseIntensity(0.5);
-    lights.push_back(light);
-    light->addRenderPass(shadedRenderPass);
-    light->addShadowRenderPass(shadowRenderPass);
-    light->addShadowRenderPass(shadedRenderPass);
+    shadowRenderPass->addLight(light);
+    shadedRenderPass->addLight(light);
 
     // Car
     car = make_shared<Car>(viewWidth, viewHeight);
     addInstance(car);
     shadedRenderPass->addInstance(car);
     for(shared_ptr<Light> light : car->getLights()) {
-        lights.push_back(light);
-        light->addRenderPass(shadedRenderPass);
-        light->addShadowRenderPass(shadowRenderPass);
-        light->addShadowRenderPass(shadedRenderPass);
+        shadowRenderPass->addLight(light);
+        shadedRenderPass->addLight(light);
     }
 
     // Ground

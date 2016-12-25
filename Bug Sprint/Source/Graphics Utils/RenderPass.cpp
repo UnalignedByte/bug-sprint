@@ -40,6 +40,17 @@ void RenderPass::removeInstance(std::shared_ptr<Instance> instance)
 }
 
 
+void RenderPass::addLight(shared_ptr<Light> light)
+{
+    lights.push_back(light);
+}
+
+
+void RenderPass::update()
+{
+}
+
+
 void RenderPass::begin()
 {
 }

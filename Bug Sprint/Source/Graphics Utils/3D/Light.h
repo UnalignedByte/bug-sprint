@@ -28,9 +28,11 @@ public:
     };
 
 public:
-    Light(GLfloat viewWidth, GLfloat viewHeight, GLfloat cutOff = -1.0f, GLfloat innerCutOff = -1.0f);
+    Light(GLint viewWidth, GLint viewHeight, GLfloat cutOff = -1.0f, GLfloat innerCutOff = -1.0f);
 
     Type getType() const;
+    GLint getLightIndex() const;
+    bool getShouldCastShadow() const;
 
     Color getColor() const;
     void setColor(const Color &color);
@@ -47,28 +49,26 @@ public:
     Vector3 getWorldTarget() const;
     void setWorldTarget(Vector3 worldTarget);
 
-    virtual void addRenderPass(std::shared_ptr<RenderPass> renderPass);
-    virtual void removeRenderPass(std::shared_ptr<RenderPass> renderPass);
+    void updateLight(std::shared_ptr<ShaderProgram> shaderProgram);
+    void updateShadow(std::shared_ptr<ShaderProgram> shaderProgram);
 
-    virtual void addShadowRenderPass(std::shared_ptr<RenderPass> renderPass);
-    virtual void removeShadowRenderPass(std::shared_ptr<RenderPass> renderPass);
-
-    void updateLight();
-    void updateShadow();
+    void useFramebuffer();
+    void useShadowTexture(std::shared_ptr<ShaderProgram> shaderProgram);
 
 protected:
     static GLint lightsCount;
     GLint lightIndex;
 
     Type type;
+    bool shouldCastShadow{true};
 
     Color color{1.0, 1.0, 1.0, 1.0};
     GLfloat ambientIntensity{0.2};
     GLfloat diffuseIntensity{1.0};
     GLfloat specularIntensity{1.0};
 
-    GLfloat viewWidth;
-    GLfloat viewHeight;
+    GLint viewWidth;
+    GLint viewHeight;
     GLfloat fov{60.0};
     GLfloat zNear{0.01};
     GLfloat zFar{100.0};
@@ -79,8 +79,8 @@ protected:
     GLfloat cutOff;
     GLfloat innerCutOff;
 
-    std::set<std::shared_ptr<RenderPass>> renderPasses;
-    std::set<std::shared_ptr<RenderPass>> shadowRenderPasses;
+    GLuint framebuffer;
+    static GLuint texture;
 };
 
 #endif
