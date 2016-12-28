@@ -55,6 +55,10 @@ protected:
     GLfloat range{-1};
 
     State state{StateUp};
+    int touchId{-1};
+
+protected:
+    bool isTouchInside(const Input::Touch &touch);
 };
 
 #endif

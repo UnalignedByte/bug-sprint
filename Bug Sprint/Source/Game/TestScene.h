@@ -19,7 +19,7 @@ class TestScene: public Scene
 public:
     TestScene(GLint viewWidth, GLint viewHeight);
 
-    void updateInput(Input input) override;
+    void updateInput(const Input &input) override;
     void update(float timeInterval) override;
 
 protected:

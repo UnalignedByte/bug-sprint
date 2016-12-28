@@ -130,7 +130,7 @@ void CarScene::setupUi()
 }
 
 
-void CarScene::updateInput(Input input)
+void CarScene::updateInput(const Input &input)
 {
     Scene::updateInput(input);
 

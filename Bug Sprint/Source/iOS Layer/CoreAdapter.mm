@@ -61,6 +61,17 @@ using namespace std;
     } catch(string exception) {
         [self handleExceptionMessage:exception];
     }
+
+    // Remove ended/canceled touch events
+    vector<int> touchIdsToRemove;
+
+    for(auto touchIt : self.currentInput->touches)
+        if(touchIt.second.state == Input::Touch::StateUp || touchIt.second.state == Input::Touch::StateCanceled) {
+            touchIdsToRemove.push_back(touchIt.first);
+        }
+
+    for(int touchId : touchIdsToRemove)
+        self.currentInput->touches.erase(touchId);
 }
 
 
@@ -74,39 +85,48 @@ using namespace std;
 }
 
 
-- (void)touchDownAtX:(NSInteger)x y:(NSInteger)y
+- (void)touchDownWithId:(NSInteger)touchId x:(NSInteger)x y:(NSInteger)y
 {
-    self.currentInput->state = Input::StateDown;
-
     SystemUtils::Point pos = SystemUtils::positionForViewPosition(int(x), int(y));
-    self.currentInput->downX = self.currentInput->x = pos.x;
-    self.currentInput->downY = self.currentInput->y = pos.y;
+    Input::Touch touch;
+    touch.state = Input::Touch::StateDown;
+    touch.downX = touch.x = pos.x;
+    touch.downY = touch.y = pos.y;
+
+    self.currentInput->touches[(int)touchId] = touch;
 }
 
 
-- (void)touchUpAtX:(NSInteger)x y:(NSInteger)y
+- (void)touchUpWithId:(NSInteger)touchId x:(NSInteger)x y:(NSInteger)y
 {
-    self.currentInput->state = Input::StateUp;
-
     SystemUtils::Point pos = SystemUtils::positionForViewPosition(int(x), int(y));
-    self.currentInput->x = pos.x;
-    self.currentInput->y = pos.y;
+    Input::Touch touch;
+    touch.state = Input::Touch::StateUp;
+    touch.x = pos.x;
+    touch.y = pos.y;
+
+    self.currentInput->touches[(int)touchId] = touch;
 }
 
 
-- (void)touchMoveAtX:(NSInteger)x y:(NSInteger)y
+- (void)touchMoveWithId:(NSInteger)touchId x:(NSInteger)x y:(NSInteger)y
 {
-    self.currentInput->state = Input::StateMoved;
-
     SystemUtils::Point pos = SystemUtils::positionForViewPosition(int(x), int(y));
-    self.currentInput->x = pos.x;
-    self.currentInput->y = pos.y;
+    Input::Touch touch;
+    touch.state = Input::Touch::StateMoved;
+    touch.x = pos.x;
+    touch.y = pos.y;
+
+    self.currentInput->touches[(int)touchId] = touch;
 }
 
 
-- (void)touchCancel
+- (void)touchCancelWithId:(NSInteger)touchId
 {
-    self.currentInput->state = Input::StateCanceled;
+    Input::Touch touch;
+    touch.state = Input::Touch::StateCanceled;
+
+    self.currentInput->touches[(int)touchId] = touch;
 }
 
 

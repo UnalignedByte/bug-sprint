@@ -118,8 +118,6 @@ void Car::update(float timeInterval)
     position[0] += speed * sin(angleInRadians);
     position[2] += speed * cos(angleInRadians);
 
-    cout << "Speed: " << speed << endl << "Wheel Turn: " << wheelsTurn << endl;
-
     // Lights
     //lights[0]->setWorldTarget(lights[0]->position + Vector3{0.0, 0.0, 1.0});
 

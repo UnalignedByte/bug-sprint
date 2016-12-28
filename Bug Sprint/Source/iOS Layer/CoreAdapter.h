@@ -16,9 +16,9 @@
 - (void)update:(NSTimeInterval)timeInterval;
 - (void)draw;
 
-- (void)touchDownAtX:(NSInteger)x y:(NSInteger)y;
-- (void)touchUpAtX:(NSInteger)x y:(NSInteger)y;
-- (void)touchMoveAtX:(NSInteger)x y:(NSInteger)y;
-- (void)touchCancel;
+- (void)touchDownWithId:(NSInteger)touchId x:(NSInteger)x y:(NSInteger)y;
+- (void)touchUpWithId:(NSInteger)touchId x:(NSInteger)x y:(NSInteger)y;
+- (void)touchMoveWithId:(NSInteger)touchId x:(NSInteger)x y:(NSInteger)y;
+- (void)touchCancelWithId:(NSInteger)touchId;
 
 @end

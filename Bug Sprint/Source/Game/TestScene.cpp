@@ -111,17 +111,17 @@ TestScene::TestScene(GLint viewWidth, GLint viewHeight) :
 }
 
 
-void TestScene::updateInput(Input input)
+void TestScene::updateInput(const Input &input)
 {
     static Vector3 cameraStartPos;
 
-    if(input.state == Input::StateDown) {
+    /*if(input.state == Input::StateDown) {
         cameraStartPos = camera->position;
     } else if(input.state == Input::StateMoved) {
         camera->position[0] = cameraStartPos[0] + (input.x - input.downX) * 3.0;
         camera->position[1] = cameraStartPos[1] + (input.y - input.downY) * 3.0;
         camera->position[2] = 0.0;
-    }
+    }*/
 }
 
 

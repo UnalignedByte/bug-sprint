@@ -23,7 +23,7 @@ class Core
 public:
     Core(int viewWidth, int viewHeight);
 
-    virtual void update(double timeInterval, Input input);
+    virtual void update(double timeInterval, const Input &input);
     virtual void draw();
 
 protected:
