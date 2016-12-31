@@ -22,7 +22,7 @@ class CarScene: public Scene
 public:
     CarScene(GLint viewWidth, GLint viewHeight);
 
-    void updateInput(Input input) override;
+    void updateInput(const Input &input) override;
     void update(float timeInterval) override;
     void draw() override;
 

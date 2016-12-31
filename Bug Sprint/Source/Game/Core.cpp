@@ -27,7 +27,7 @@ Core::Core(int viewWidth, int viewHeight) :
 }
 
 
-void Core::update(double timeInterval, Input input)
+void Core::update(double timeInterval, const Input &input)
 {
     currentScene->updateInput(input);
     currentScene->update(timeInterval);

@@ -22,7 +22,7 @@ Scene::Scene(GLint viewWidth, GLint viewHeight) :
 }
 
 
-void Scene::updateInput(Input input)
+void Scene::updateInput(const Input &input)
 {
     for(shared_ptr<Instance> instance : instances)
         instance->updateInput(input);

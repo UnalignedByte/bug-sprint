@@ -26,7 +26,7 @@ public:
     virtual void addInstance(std::shared_ptr<Instance> instance);
     virtual void removeInstance(std::shared_ptr<Instance> instance);
 
-    virtual void updateInput(Input input);
+    virtual void updateInput(const Input &input);
     virtual void update(float timeInterval);
     virtual void draw();
 
