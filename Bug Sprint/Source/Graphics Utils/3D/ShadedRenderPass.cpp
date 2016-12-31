@@ -20,14 +20,27 @@ ShadedRenderPass::ShadedRenderPass(GLint viewWidth, GLint viewHeight, shared_ptr
 }
 
 
+void ShadedRenderPass::update()
+{
+    for(shared_ptr<Light> light : lights) {
+        light->updateLight(shaderProgram);
+        light->updateShadow(shaderProgram);
+    }
+}
+
+
 void ShadedRenderPass::begin()
 {
     glViewport(0, 0, viewWidth, viewHeight);
+
 
     glDepthMask(GL_TRUE);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
     glCullFace(GL_BACK);
+    glDisable(GL_BLEND);
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 

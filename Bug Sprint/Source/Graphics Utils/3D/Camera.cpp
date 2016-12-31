@@ -107,3 +107,27 @@ void Camera::updateCamera()
         glUniform3f(eyePositionId, position[0], position[1], position[2]);
     }
 }
+
+void Camera::updateCamera(shared_ptr<ShaderProgram> shaderProgram)
+{
+    shaderProgram->use();
+
+    GLint viewMatrixId = glGetUniformLocation(shaderProgram->getId(), "viewMatrix");
+    Matrix4 viewMatrix = Matrix4::lookAt(position, target);
+    glUniformMatrix4fv(viewMatrixId, 1, GL_FALSE, viewMatrix.getData());
+
+    GLint projectionMatrixId = glGetUniformLocation(shaderProgram->getId(), "projectionMatrix");
+    Matrix4 projectionMatrix;
+
+    if(type == TypeOrtographic) {
+        projectionMatrix = Matrix4::ortographicProjection(-width/2.0, width/2.0, -height/2.0, height/2.0,
+                                                          zNear, zFar);
+    } else {
+        projectionMatrix = Matrix4::perspectiveProjection(fieldOfView, aspectRatio, zNear, zFar);
+    }
+
+    glUniformMatrix4fv(projectionMatrixId, 1, GL_FALSE, projectionMatrix.getData());
+
+    GLint eyePositionId = glGetUniformLocation(shaderProgram->getId(), "eyePosition");
+    glUniform3f(eyePositionId, position[0], position[1], position[2]);
+}

@@ -9,7 +9,7 @@
 #ifndef CAR_H
 #define CAR_H
 
-#include "Instance3D.h"
+#include "Drawable.h"
 
 #include <string>
 #include <array>

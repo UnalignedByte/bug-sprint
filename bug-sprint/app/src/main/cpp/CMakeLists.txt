@@ -15,6 +15,7 @@ include_directories(
     "${SRC}/Graphics Utils/2D"
     "${SRC}/Graphics Utils/3D"
     "${SRC}/Game"
+    "${SRC}/Game/Things"
 )
 
 add_library(bug-sprint SHARED
@@ -27,21 +28,30 @@ add_library(bug-sprint SHARED
 
     "${SRC}/Graphics Utils/Color.cpp"
     "${SRC}/Graphics Utils/ShaderProgram.cpp"
-    "${SRC}/Graphics Utils/Image.cpp"
     "${SRC}/Graphics Utils/Texture.cpp"
-    "${SRC}/Graphics Utils/ShadowPass.cpp"
+    "${SRC}/Graphics Utils/Image.cpp"
+    "${SRC}/Graphics Utils/Instance.cpp"
+    "${SRC}/Graphics Utils/RenderPass.cpp"
+    "${SRC}/Graphics Utils/Scene.cpp"
 
-    "${SRC}/Graphics Utils/3D/Instance.cpp"
+    "${SRC}/Graphics Utils/3D/Instance3D.cpp"
     "${SRC}/Graphics Utils/3D/Drawable.cpp"
     "${SRC}/Graphics Utils/3D/Model.cpp"
     "${SRC}/Graphics Utils/3D/Camera.cpp"
     "${SRC}/Graphics Utils/3D/Light.cpp"
+    "${SRC}/Graphics Utils/3D/ShadedRenderPass.cpp"
+    "${SRC}/Graphics Utils/3D/ShadowRenderPass.cpp"
+    "${SRC}/Graphics Utils/3D/SkyboxRenderPass.cpp"
 
     "${SRC}/Graphics Utils/2D/Instance2D.cpp"
+    "${SRC}/Graphics Utils/2D/RenderPass2D.cpp"
     "${SRC}/Graphics Utils/2D/Sprite.cpp"
     "${SRC}/Graphics Utils/2D/Button.cpp"
 
     "${SRC}/Game/Core.cpp"
+    "${SRC}/Game/TestScene.cpp"
+    "${SRC}/Game/CarScene.cpp"
+    "${SRC}/Game/Things/Car.cpp"
 )
 
 target_include_directories(bug-sprint PRIVATE

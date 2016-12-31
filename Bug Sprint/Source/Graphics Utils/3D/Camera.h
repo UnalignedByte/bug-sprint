@@ -40,6 +40,7 @@ public:
     virtual void removeRenderPass(std::shared_ptr<RenderPass> renderPass);
 
     void updateCamera();
+    void updateCamera(std::shared_ptr<ShaderProgram> shaderProgram);
 
 protected:
     Type type;

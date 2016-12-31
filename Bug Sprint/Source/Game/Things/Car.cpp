@@ -48,7 +48,7 @@ Car::Car(GLint viewWidth, GLint viewHeight) :
     // Headlights
     lights[0] = make_shared<Light>(viewWidth, viewHeight, 20.0, 15.0);
     lights[0]->setDirection({0.0, 0.0, 1.0});
-    lights[0]->position = {0.0, 0.0, 0.0};
+    lights[0]->position = {0.0, 1.0, 2.5};
     lights[0]->setColor({1.0, 1.0, 1.0});
     lights[0]->setAmbientIntensity(0.0);
     addChild(lights[0]);
@@ -117,11 +117,6 @@ void Car::update(float timeInterval)
     GLfloat angleInRadians = (M_PI * rotation[1])/180.0;
     position[0] += speed * sin(angleInRadians);
     position[2] += speed * cos(angleInRadians);
-
-    cout << "Speed: " << speed << endl << "Wheel Turn: " << wheelsTurn << endl;
-
-    // Lights
-    //lights[0]->setWorldTarget(lights[0]->position + Vector3{0.0, 0.0, 1.0});
 
     Instance3D::update(timeInterval);
 }

@@ -10,6 +10,7 @@
 
 #include <cmath>
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 
@@ -34,6 +35,10 @@ Light::Light(GLint viewWidth, GLint viewHeight, GLfloat cutOff, GLfloat innerCut
     glGenFramebuffers(1, &framebuffer);
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
 
+    /*uint32_t buffers[] = { GL_NONE };
+    glDrawBuffers(1, (GLenum*)buffers);
+    glReadBuffer(GL_NONE);*/
+
     if(texture == 0) {
         glGenTextures(1, &texture);
         glBindTexture(GL_TEXTURE_2D_ARRAY, texture);
@@ -41,8 +46,11 @@ Light::Light(GLint viewWidth, GLint viewHeight, GLfloat cutOff, GLfloat innerCut
         glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_DEPTH_COMPONENT16, viewWidth, viewHeight, 8, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, nullptr);
+        glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_DEPTH_COMPONENT16, 2048, 2048, 8, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
+
+
     }
+    glBindTexture(GL_TEXTURE_2D_ARRAY, texture);
     glFramebufferTextureLayer(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture, 0, lightIndex);
 
     if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
@@ -142,19 +150,19 @@ Vector3 Light::getWorldDirection() const
 
     Vector3 worldDirection = {x, direction[1], z};
 
-    return worldDirection.normalized();
+    return worldDirection;
 }
 
 
 Vector3 Light::getWorldTarget() const
 {
-    return worldTarget;
+    Vector3 v = getWorldPosition() + getWorldDirection();
+    return v;
 }
 
 
 void Light::setWorldTarget(Vector3 worldTarget)
 {
-    this->worldTarget = worldTarget;
     this->direction = worldTarget - getWorldPosition();
 }
 
@@ -163,7 +171,9 @@ void Light::updateLight(std::shared_ptr<ShaderProgram> shaderProgram)
 {
     shaderProgram->use();
 
-    string lightIndexString = "lights[" + to_string(lightIndex) + "].";
+    char stringBuffer[10];
+    sprintf(stringBuffer, "%d", lightIndex);
+    string lightIndexString = "lights[" + string(stringBuffer) + "].";
 
     // Type
     GLint lightTypeId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "type").c_str());
@@ -209,14 +219,23 @@ void Light::updateShadow(std::shared_ptr<ShaderProgram> shaderProgram)
 {
     shaderProgram->use();
 
-    string lightIndexString = "lights[" + to_string(lightIndex) + "].";
+    char stringBuffer[10];
+    sprintf(stringBuffer, "%d", lightIndex);
+    string lightIndexString = "lightMatrices[" + string(stringBuffer) + "].";
 
-    GLint lightViewMatrixId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + ".viewMatrix").c_str());
-    Matrix4 lightViewMatrix = Matrix4::lookAt(position, position + direction);
+    GLint lightViewMatrixId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "viewMatrix").c_str());
+    Vector3 e = getWorldPosition();
+    Vector3 t = getWorldTarget();
+    Matrix4 lightViewMatrix = Matrix4::lookAt(e, t);
+    //Matrix4 lightViewMatrix = Matrix4::translation(-position[0], -position[1], -position[2]);
     glUniformMatrix4fv(lightViewMatrixId, 1, GL_FALSE, lightViewMatrix.getData());
 
-    GLint lightProjectionMatrixId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + ".projectionMatrix").c_str());
-    Matrix4 lightProjectionMatrix = Matrix4::perspectiveProjection(fov, viewWidth/viewHeight, zNear, zFar);
+    GLint lightProjectionMatrixId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "projectionMatrix").c_str());
+    Matrix4 lightProjectionMatrix;
+    if(type == TypeDirectional)
+        lightProjectionMatrix = Matrix4::ortographicProjection(-50.0, 50.0, -50.0, 50.0, -50.0, 50.0);
+    else
+        lightProjectionMatrix = Matrix4::perspectiveProjection(cutOff * 2.0, 1.0, zNear, zFar);
     glUniformMatrix4fv(lightProjectionMatrixId, 1, GL_FALSE, lightProjectionMatrix.getData());
 }
 
@@ -225,17 +244,21 @@ void Light::useFramebuffer()
 {
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
 
-    glViewport(0, 0, viewWidth, viewHeight);
-    glClear(GL_DEPTH_BUFFER_BIT);
+    glViewport(0, 0, 2048, 2048);
+    glEnable(GL_DEPTH_TEST);
+    glDepthMask(GL_TRUE);
+    glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 }
 
 
 void Light::useShadowTexture(std::shared_ptr<ShaderProgram> shaderProgram)
 {
+    if(lightIndex != 0)
+        return;
     shaderProgram->use();
 
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D_ARRAY, texture);
-    GLint shadowSamplerId  = glGetUniformLocation(shaderProgram->getId(), ("shadowSampler[" + to_string(lightIndex) + "]").c_str());
+    GLint shadowSamplerId  = glGetUniformLocation(shaderProgram->getId(), "shadowSampler");
     glUniform1i(shadowSamplerId, 1);
 }

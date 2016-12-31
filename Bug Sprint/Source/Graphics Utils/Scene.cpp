@@ -60,11 +60,11 @@ void Scene::addInstance(std::shared_ptr<Instance> instance)
 
 void Scene::removeInstance(std::shared_ptr<Instance> instance)
 {
-    auto instanceIt = std::find(instances.begin(), instances.end(), instance);
+    /*auto instanceIt = std::find(instances.begin(), instances.end(), instance);
     if(instanceIt != instances.end())
         instances.erase(instanceIt);
 
     // Remove from render passes
     for(shared_ptr<RenderPass> renderPass : renderPasses)
-        renderPass->removeInstance(instance);
+        renderPass->removeInstance(instance);*/
 }

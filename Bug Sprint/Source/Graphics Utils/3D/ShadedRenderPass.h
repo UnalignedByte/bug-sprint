@@ -20,6 +20,7 @@ public:
     ShadedRenderPass(GLint viewWidth, GLint viewHeight, std::shared_ptr<ShaderProgram> shaderProgram,
                      std::shared_ptr<ShadowRenderPass> shadowRenderPass);
 
+    void update() override;
     void begin() override;
     void draw() override;
 

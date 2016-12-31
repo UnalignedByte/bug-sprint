@@ -74,12 +74,12 @@ protected:
     GLfloat zFar{100.0};
 
     Vector3 direction{0.0, 0.0, 1.0};
-    Vector3 worldTarget{0.0, 0.0, 0.0};
 
     GLfloat cutOff;
     GLfloat innerCutOff;
 
     GLuint framebuffer;
+public:
     static GLuint texture;
 };
 

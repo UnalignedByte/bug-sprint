@@ -35,30 +35,6 @@ Drawable::Drawable(const std::string &modelFileName,
 }
 
 
-bool Drawable::getShouldCastShadow() const
-{
-    return shouldCastShadow;
-}
-
-
-void Drawable::setShouldCastShadow(bool shouldCastShadow)
-{
-    this->shouldCastShadow = shouldCastShadow;
-}
-
-
-bool Drawable::getIsShaded() const
-{
-    return isShaded;
-}
-
-
-void Drawable::setIsShaded(bool isShaded)
-{
-    isShaded = isShaded;
-}
-
-
 GLsizei Drawable::getTrianglesCount() const
 {
     return model.getTrianglesCount();
@@ -85,20 +61,5 @@ void Drawable::draw(shared_ptr<ShaderProgram> shaderProgram)
     shaderProgram->use();
 
     texture.use(shaderProgram);
-    model.draw(shaderProgram, modelMatrix);
-}
-
-
-void Drawable::drawShadow(shared_ptr<ShaderProgram> shaderProgram)
-{
-    if(!shouldCastShadow)
-        return;
-
-    for(shared_ptr<Instance> child : children) {
-        if(shared_ptr<Drawable> drawable = dynamic_pointer_cast<Drawable>(child))
-            drawable->drawShadow(shaderProgram);
-    }
-
-    shaderProgram->use();
     model.draw(shaderProgram, modelMatrix);
 }
