@@ -8,10 +8,11 @@
 
 #include "CarScene.h"
 
+#include "ShaderProgram.h"
 #include "ShadowRenderPass.h"
 #include "ShadedRenderPass.h"
+#include "SkyboxRenderPass.h"
 #include "RenderPass2D.h"
-#include "ShaderProgram.h"
 
 using namespace std;
 
@@ -26,12 +27,17 @@ CarScene::CarScene(GLint viewWidth, GLint viewHeight) :
 
 void CarScene::setupGame()
 {
-    //Shadow
+    //Shadow render pass
     shared_ptr<ShaderProgram> shadowShaderProgram = make_shared<ShaderProgram>("Shaders/shaderShadow.vsh", "Shaders/shaderShadow.fsh");
     shared_ptr<ShadowRenderPass> shadowRenderPass = make_shared<ShadowRenderPass>(2048, 2048, shadowShaderProgram);
     renderPasses.push_back(shadowRenderPass);
 
-    // Shaded
+    // Skybox render pass
+    shared_ptr<ShaderProgram> skyboxShaderProgram = make_shared<ShaderProgram>("Shaders/shaderSkybox.vsh", "Shaders/shaderSkybox.fsh");
+    shared_ptr<SkyboxRenderPass> skyboxRenderPass = make_shared<SkyboxRenderPass>(viewWidth, viewHeight, skyboxShaderProgram);
+    renderPasses.push_back(skyboxRenderPass);
+
+    // Shaded render pass
     shared_ptr<ShaderProgram> shadedShaderProgram = make_shared<ShaderProgram>("Shaders/shaderShaded.vsh", "Shaders/shaderShaded.fsh");
     shared_ptr<ShadedRenderPass> shadedRenderPass = make_shared<ShadedRenderPass>(viewWidth, viewHeight, shadedShaderProgram, shadowRenderPass);
     renderPasses.push_back(shadedRenderPass);
@@ -40,6 +46,7 @@ void CarScene::setupGame()
     camera = make_shared<Camera>(width, height, 10.0f, 60.0f);
     cameras.push_back(camera);
     camera->addRenderPass(shadedRenderPass);
+    camera->addRenderPass(skyboxRenderPass);
 
     // Light
     shared_ptr<Light> light = make_shared<Light>(2048, 2048);
@@ -98,6 +105,13 @@ void CarScene::setupGame()
     addInstance(tree4);
     shadedRenderPass->addInstance(tree4);
     shadowRenderPass->addInstance(tree4);
+
+    // Skybox
+    shared_ptr<Drawable> skybox = make_shared<Drawable>("Game/box.obj", "Game/skybox_right.png", "Game/skybox_left.png",
+                                                        "Game/skybox_top.png", "Game/skybox_bottom.png",
+                                                        "Game/skybox_front.png", "Game/skybox_back.png");
+    skyboxRenderPass->addInstance(skybox);
+    addInstance(skybox);
 }
 
 
