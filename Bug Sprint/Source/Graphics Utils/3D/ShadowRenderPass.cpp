@@ -15,10 +15,8 @@ using namespace std;
 
 void ShadowRenderPass::update()
 {
-    for(shared_ptr<Light> light : lights) {
-        light->updateLight(shaderProgram);
+    for(shared_ptr<Light> light : lights)
         light->updateShadow(shaderProgram);
-    }
 }
 
 
@@ -35,12 +33,13 @@ void ShadowRenderPass::draw()
         shaderProgram->use();
         light->useFramebuffer();
 
-        shaderProgram->use();
         GLint lightIndexId = glGetUniformLocation(shaderProgram->getId(), "lightIndex");
         glUniform1i(lightIndexId, light->getLightIndex());
 
-        for(shared_ptr<Instance> instance : instances)
-            instance->draw(shaderProgram);
+        for(shared_ptr<Instance> instance : instances) {
+            if(shared_ptr<Drawable> drawable = dynamic_pointer_cast<Drawable>(instance))
+                drawable->drawShadow(shaderProgram, light);
+        }
     }
 
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, previousFramebuffer);

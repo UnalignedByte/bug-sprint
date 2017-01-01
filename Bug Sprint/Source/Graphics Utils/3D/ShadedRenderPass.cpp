@@ -29,10 +29,9 @@ void ShadedRenderPass::update()
 }
 
 
-void ShadedRenderPass::begin()
+void ShadedRenderPass::draw()
 {
     glViewport(0, 0, viewWidth, viewHeight);
-
 
     glDepthMask(GL_TRUE);
     glEnable(GL_DEPTH_TEST);
@@ -41,16 +40,12 @@ void ShadedRenderPass::begin()
     glDisable(GL_BLEND);
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-}
-
-
-void ShadedRenderPass::draw()
-{
-    shaderProgram->use();
 
     for(shared_ptr<Light> light : lights)
         light->useShadowTexture(shaderProgram);
 
-    for(shared_ptr<Instance> instance : instances)
-        instance->draw(shaderProgram);
+    for(shared_ptr<Instance> instance : instances) {
+        if(shared_ptr<Drawable> drawable = dynamic_pointer_cast<Drawable>(instance))
+            drawable->draw(shaderProgram);
+    }
 }

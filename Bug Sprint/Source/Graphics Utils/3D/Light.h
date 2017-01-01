@@ -27,8 +27,10 @@ public:
         TypePoint = 3,
     };
 
+    static const GLint kShadowMaxCount = 8;
+
 public:
-    Light(GLint viewWidth, GLint viewHeight, GLfloat cutOff = -1.0f, GLfloat innerCutOff = -1.0f);
+    Light(GLint shadowWidth, GLint shadowHeight, GLfloat cutOff = -1.0f, GLfloat innerCutOff = -1.0f);
 
     Type getType() const;
     GLint getLightIndex() const;
@@ -67,8 +69,8 @@ protected:
     GLfloat diffuseIntensity{1.0};
     GLfloat specularIntensity{1.0};
 
-    GLint viewWidth;
-    GLint viewHeight;
+    GLint shadowWidth;
+    GLint shadowHeight;
     GLfloat fov{60.0};
     GLfloat zNear{0.01};
     GLfloat zFar{100.0};

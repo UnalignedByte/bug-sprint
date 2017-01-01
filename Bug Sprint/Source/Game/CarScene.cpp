@@ -12,24 +12,15 @@
 #include "ShadedRenderPass.h"
 #include "RenderPass2D.h"
 #include "ShaderProgram.h"
-#include "DebugSprite.h"
 
 using namespace std;
 
-static shared_ptr<Camera> debugCamera;
-static shared_ptr<ShaderProgram> debugShader;
-static shared_ptr<DebugSprite> debugSprite;
 
 CarScene::CarScene(GLint viewWidth, GLint viewHeight) :
     Scene(viewWidth, viewHeight)
 {
     setupGame();
     setupUi();
-
-    // DEBUG
-    debugShader = make_shared<ShaderProgram>("Shaders/debugShader2D.vsh", "Shaders/debugShader2D.fsh");
-    debugSprite = make_shared<DebugSprite>(Light::texture, 300, 300);
-    debugSprite->position = {-0.8, 0.4};
 }
 
 
@@ -51,7 +42,7 @@ void CarScene::setupGame()
     camera->addRenderPass(shadedRenderPass);
 
     // Light
-    shared_ptr<Light> light = make_shared<Light>(viewWidth, viewHeight);
+    shared_ptr<Light> light = make_shared<Light>(2048, 2048);
     light->position = {10.0, 10.0, 0.0};
     light->setWorldTarget({0.0, 0.0, 0.0});
     light->setDiffuseIntensity(0.8);
@@ -72,8 +63,8 @@ void CarScene::setupGame()
     // Ground
     shared_ptr<Drawable> ground = make_shared<Drawable>("Game/Things/ground.obj", "Game/Things/ground_diffuse@2x.png");
     ground->position = {0.0, 0.0, 0.0};
-    ground->getModel().setAmbientIntensity(1.0);
-    ground->getModel().setSpecularIntensity(100);
+    ground->getModel()->setAmbientIntensity(1.0);
+    ground->getModel()->setSpecularIntensity(100);
     addInstance(ground);
     shadedRenderPass->addInstance(ground);
     shadowRenderPass->addInstance(ground);
@@ -118,7 +109,6 @@ void CarScene::setupUi()
     shared_ptr<Camera> camera = make_shared<Camera>(width, height, 2.0);
     cameras.push_back(camera);
     camera->addRenderPass(renderPass);
-    debugCamera = camera;
 
     // Left Button
     leftButton = make_shared<Button>("Game/UI/button_left_up@2x.png",
@@ -158,14 +148,4 @@ void CarScene::update(float timeInterval)
     camera->setTarget(car->position);
 
     Scene::update(timeInterval);
-}
-
-
-void CarScene::draw()
-{
-    Scene::draw();
-
-    /*debugSprite->update(0.0);
-    debugCamera->updateCamera(debugShader);
-    debugSprite->draw(debugShader);*/
 }

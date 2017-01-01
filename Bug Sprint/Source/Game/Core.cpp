@@ -11,6 +11,7 @@
 #include "OpenGLES.h"
 
 #include "SystemUtils.h"
+#include "TestScene.h"
 #include "CarScene.h"
 
 using namespace std;
@@ -24,6 +25,7 @@ Core::Core(int viewWidth, int viewHeight) :
     height = size.y;
 
     currentScene = make_shared<CarScene>(viewWidth, viewHeight);
+    //currentScene = make_shared<TestScene>(viewWidth, viewHeight);
 }
 
 

@@ -13,14 +13,16 @@
 
 #include <string>
 #include <memory>
+#include "Light.h"
 #include "Model.h"
-#include "Texture.h"
 #include "ShaderProgram.h"
+#include "Texture.h"
 
 
 class Drawable: public Instance3D
 {
 public:
+    Drawable();
     Drawable(const std::string &modelFileName);
     Drawable(const std::string &modelFileName, const std::string &textureFileName);
     Drawable(const std::string &modelFileName,
@@ -30,16 +32,19 @@ public:
 
     GLsizei getTrianglesCount() const override;
 
-    virtual Model &getModel();
-    virtual Texture &getTexture();
+    virtual bool getShouldCastShadow(std::shared_ptr<Light> light) const;
+    virtual void setShouldCastShadow(bool shouldCastShadow);
 
-    void draw(std::shared_ptr<ShaderProgram> shaderProgram) override;
+    virtual std::shared_ptr<Model> getModel() const;
+    virtual std::shared_ptr<Texture> getTexture() const;
+
+    virtual void draw(std::shared_ptr<ShaderProgram> shaderProgram);
+    virtual void drawShadow(std::shared_ptr<ShaderProgram> shaderProgram, std::shared_ptr<Light> light);
 
 protected:
-    Model model;
-    Texture texture;
+    std::shared_ptr<Model> model;
+    std::shared_ptr<Texture> texture;
     bool shouldCastShadow{true};
-    bool isShaded{true};
 };
 
 #endif

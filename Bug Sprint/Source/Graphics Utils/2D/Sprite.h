@@ -5,7 +5,7 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
-#include "Instance2D.h"
+#include "Drawable2D.h"
 
 #include <memory>
 #include "ShaderProgram.h"
@@ -13,7 +13,7 @@
 #include "Color.h"
 
 
-class Sprite: public Instance2D
+class Sprite: public Drawable2D
 {
 public:
     Sprite(const std::string &imageFileName);

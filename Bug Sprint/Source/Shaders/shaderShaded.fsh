@@ -101,7 +101,7 @@ void main(void)
     float shadowIntensity = 0.0;
     float shadowIterations = 0.0;
 
-    for(int i=0; i<2; i++) {
+    for(int i=0; i<8; i++) {
         if(lights[i].type == LightTypeUnused)
             continue;
 
@@ -133,7 +133,7 @@ void main(void)
     // Calculate Final Color
     vec3 color = vec3(0.0);
 
-    for(int i=0; i<2; i++) {
+    for(int i=0; i<8; i++) {
         if(lights[i].type == LightTypeDirectional) {
             color += directionalLightColor(lights[i], shadowIntensity);
         } else if(lights[i].type == LightTypeSpot) {

@@ -25,13 +25,6 @@ void Instance::update(float timeInterval)
 }
 
 
-void Instance::draw(shared_ptr<ShaderProgram> shaderProgram)
-{
-    for(shared_ptr<Instance> instance : children)
-        instance->draw(shaderProgram);
-}
-
-
 void Instance::addChild(std::shared_ptr<Instance> child)
 {
     children.push_back(child);

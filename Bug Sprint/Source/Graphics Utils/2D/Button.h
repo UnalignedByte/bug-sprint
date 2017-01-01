@@ -5,18 +5,18 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include "Instance2D.h"
+#include "Drawable2D.h"
 
-#include <string>
-#include <memory>
 #include <functional>
+#include <memory>
+#include <string>
 #include "Color.h"
 #include "ShaderProgram.h"
 #include "Sprite.h"
 #include "Types.h"
 
 
-class Button: public Instance2D
+class Button: public Drawable2D
 {
 public:
     enum State {

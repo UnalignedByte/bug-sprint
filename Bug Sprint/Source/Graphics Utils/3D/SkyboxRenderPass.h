@@ -17,9 +17,7 @@ class SkyboxRenderPass: public RenderPass
 public:
     using RenderPass::RenderPass;
 
-    void begin() override;
     void draw() override;
-    void end() override;
 };
 
 #endif

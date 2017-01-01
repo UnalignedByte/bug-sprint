@@ -31,11 +31,8 @@ public:
 
     virtual void addLight(std::shared_ptr<Light> light);
 
-    virtual void update();
-    
-    virtual void begin();
+    virtual void update();    
     virtual void draw();
-    virtual void end();
 
 protected:
     GLint viewWidth;

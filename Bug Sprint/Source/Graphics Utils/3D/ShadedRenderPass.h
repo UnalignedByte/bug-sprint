@@ -21,7 +21,6 @@ public:
                      std::shared_ptr<ShadowRenderPass> shadowRenderPass);
 
     void update() override;
-    void begin() override;
     void draw() override;
 
 protected:

@@ -11,18 +11,13 @@
 
 #include "RenderPass.h"
 
-#include <memory>
-#include <set>
-#include "ShaderProgram.h"
-#include "Instance2D.h"
-
 
 class RenderPass2D: public RenderPass
 {
 public:
     using RenderPass::RenderPass;
 
-    void begin() override;
+    void draw() override;
 };
 
 #endif

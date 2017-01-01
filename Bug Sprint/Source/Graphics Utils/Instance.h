@@ -21,7 +21,6 @@ class Instance
 public:
     virtual void updateInput(const Input &input);
     virtual void update(float timeInterval);
-    virtual void draw(std::shared_ptr<ShaderProgram> shaderProgram);
 
     virtual void addChild(std::shared_ptr<Instance>);
 

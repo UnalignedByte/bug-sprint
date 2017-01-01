@@ -18,7 +18,7 @@
 #include "Light.h"
 
 
-class Car: public Instance3D
+class Car: public Drawable
 {
 public:
     bool isAccelerating{false};
@@ -29,8 +29,9 @@ public:
 public:
     Car(GLint viewWidth, GLint viewHeight);
 
-    std::array<std::shared_ptr<Light>, 1> getLights() const;
+    std::array<std::shared_ptr<Light>, 2> getLights() const;
 
+    bool getShouldCastShadow(std::shared_ptr<Light> light) const override;
     void update(float timeInterval) override;
 
 protected:
@@ -42,7 +43,7 @@ protected:
 
     std::shared_ptr<Drawable> body;
     std::array<std::shared_ptr<Drawable>, 4> wheels;
-    std::array<std::shared_ptr<Light>, 1> lights;
+    std::array<std::shared_ptr<Light>, 2> lights;
 };
 
 #endif

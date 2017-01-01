@@ -51,7 +51,6 @@
 		B56C8C301DD0F4FE00C1138A /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B56C8C2E1DD0F4FE00C1138A /* Image.cpp */; };
 		B57035FC1DCF4B4D00B46354 /* FileBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57035FA1DCF4B4D00B46354 /* FileBuffer.cpp */; };
 		B57035FE1DCF4E2A00B46354 /* FileBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57035FA1DCF4B4D00B46354 /* FileBuffer.cpp */; };
-		B58738D91E15953500F8544A /* DebugSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58738D71E15953500F8544A /* DebugSprite.cpp */; };
 		B58779E41DAD8FC6007A6DBF /* Instance3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B58779E21DAD8FC6007A6DBF /* Instance3D.cpp */; };
 		B5880FA91DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
 		B5880FAA1DB939840063AEDA /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5880FA71DB939840063AEDA /* Light.cpp */; };
@@ -66,6 +65,7 @@
 		B5B1AB471DACCC5100066910 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5B1AB461DACCC5100066910 /* Assets.xcassets */; };
 		B5B1AB541DACD19700066910 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B1AB531DACD19700066910 /* Launch Screen.storyboard */; };
 		B5B1AB561DACD1A800066910 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5B1AB551DACD1A800066910 /* Main.storyboard */; };
+		B5B587531E195E8E00FB994C /* Drawable2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B587511E195E8E00FB994C /* Drawable2D.cpp */; };
 		B5B6EAF61DF0C3530010F148 /* SceneTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B6EAF51DF0C3530010F148 /* SceneTests.cpp */; };
 		B5B6EAF91DF0C6C60010F148 /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B6EAF71DF0C6C60010F148 /* Scene.cpp */; };
 		B5B6EAFD1DF307080010F148 /* RenderPass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B5B6EAFB1DF307080010F148 /* RenderPass.cpp */; };
@@ -144,8 +144,6 @@
 		B57035FA1DCF4B4D00B46354 /* FileBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FileBuffer.cpp; path = Source/Utils/FileBuffer.cpp; sourceTree = "<group>"; };
 		B57035FB1DCF4B4D00B46354 /* FileBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileBuffer.h; path = Source/Utils/FileBuffer.h; sourceTree = "<group>"; };
 		B57035FD1DCF4BCE00B46354 /* OpenGLES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OpenGLES.h; path = "Source/iOS Layer/OpenGLES.h"; sourceTree = "<group>"; };
-		B58738D71E15953500F8544A /* DebugSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DebugSprite.cpp; path = "Source/Graphics Utils/2D/DebugSprite.cpp"; sourceTree = "<group>"; };
-		B58738D81E15953500F8544A /* DebugSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugSprite.h; path = "Source/Graphics Utils/2D/DebugSprite.h"; sourceTree = "<group>"; };
 		B58779E11DAD8FC5007A6DBF /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Bridging-Header.h"; path = "Source/iOS Layer/Bridging-Header.h"; sourceTree = "<group>"; };
 		B58779E21DAD8FC6007A6DBF /* Instance3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Instance3D.cpp; path = "Source/Graphics Utils/3D/Instance3D.cpp"; sourceTree = "<group>"; };
 		B58779E31DAD8FC6007A6DBF /* Instance3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Instance3D.h; path = "Source/Graphics Utils/3D/Instance3D.h"; sourceTree = "<group>"; };
@@ -168,6 +166,8 @@
 		B5B1AB4B1DACCC5100066910 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Bug Sprint/Supporting Files/Info.plist"; sourceTree = "<group>"; };
 		B5B1AB531DACD19700066910 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Bug Sprint/Assets/iOS Layer/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B5B1AB551DACD1A800066910 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = "Source/iOS Layer/Main.storyboard"; sourceTree = "<group>"; };
+		B5B587511E195E8E00FB994C /* Drawable2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Drawable2D.cpp; path = "Source/Graphics Utils/2D/Drawable2D.cpp"; sourceTree = "<group>"; };
+		B5B587521E195E8E00FB994C /* Drawable2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Drawable2D.h; path = "Source/Graphics Utils/2D/Drawable2D.h"; sourceTree = "<group>"; };
 		B5B6EAF51DF0C3530010F148 /* SceneTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SceneTests.cpp; path = "Bug Sprint/Unit Tests/Source/SceneTests.cpp"; sourceTree = SOURCE_ROOT; };
 		B5B6EAF71DF0C6C60010F148 /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Scene.cpp; path = "Source/Graphics Utils/Scene.cpp"; sourceTree = "<group>"; };
 		B5B6EAF81DF0C6C60010F148 /* Scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Scene.h; path = "Source/Graphics Utils/Scene.h"; sourceTree = "<group>"; };
@@ -339,14 +339,14 @@
 			children = (
 				B5AD7ECE1DE845E400BD41CE /* Instance2D.h */,
 				B5AD7ECD1DE845E400BD41CE /* Instance2D.cpp */,
+				B5B587521E195E8E00FB994C /* Drawable2D.h */,
+				B5B587511E195E8E00FB994C /* Drawable2D.cpp */,
 				B5B6EB001DF310830010F148 /* RenderPass2D.h */,
 				B5B6EAFF1DF310830010F148 /* RenderPass2D.cpp */,
 				B5A7DB921DE1C6EB003C1B7D /* Sprite.h */,
 				B5A7DB911DE1C6EB003C1B7D /* Sprite.cpp */,
 				B5EC497B1DEB69DD00EE16D5 /* Button.h */,
 				B5EC497A1DEB69DD00EE16D5 /* Button.cpp */,
-				B58738D81E15953500F8544A /* DebugSprite.h */,
-				B58738D71E15953500F8544A /* DebugSprite.cpp */,
 			);
 			name = 2D;
 			sourceTree = "<group>";
@@ -715,11 +715,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B58738D91E15953500F8544A /* DebugSprite.cpp in Sources */,
 				B5FE78151DFC768500FDBE05 /* SkyboxRenderPass.cpp in Sources */,
 				B5AE6F8C1E0070D9005BC925 /* CarScene.cpp in Sources */,
 				B5C958111DDD26160012F607 /* ShadowRenderPass.cpp in Sources */,
 				B56C8C2D1DD0F0E500C1138A /* Texture.cpp in Sources */,
+				B5B587531E195E8E00FB994C /* Drawable2D.cpp in Sources */,
 				B54474671DAED3250046A19E /* CoreAdapter.mm in Sources */,
 				B53370FE1DB4C6A500275631 /* File.cpp in Sources */,
 				B5B6EAFD1DF307080010F148 /* RenderPass.cpp in Sources */,

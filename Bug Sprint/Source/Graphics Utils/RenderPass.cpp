@@ -51,20 +51,6 @@ void RenderPass::update()
 }
 
 
-void RenderPass::begin()
-{
-}
-
-
 void RenderPass::draw()
-{
-    shaderProgram->use();
-
-    for(shared_ptr<Instance> instance : instances)
-        instance->draw(shaderProgram);
-}
-
-
-void RenderPass::end()
 {
 }

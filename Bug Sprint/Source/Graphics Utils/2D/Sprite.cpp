@@ -71,9 +71,11 @@ void Sprite::setupVertexArray()
 
 void Sprite::draw(std::shared_ptr<ShaderProgram> shaderProgram)
 {
-    shaderProgram->use();
+    Drawable2D::draw(shaderProgram);
+
     texture.use(shaderProgram);
 
+    shaderProgram->use();
     GLint modelMatrixId = glGetUniformLocation(shaderProgram->getId(), "modelMatrix");
     glUniformMatrix4fv(modelMatrixId, 1, GL_FALSE, modelMatrix.getData());
 

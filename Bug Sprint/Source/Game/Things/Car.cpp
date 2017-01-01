@@ -24,9 +24,9 @@ Car::Car(GLint viewWidth, GLint viewHeight) :
     viewWidth(viewWidth), viewHeight(viewHeight)
 {
     body = make_shared<Drawable>("Game/Things/car_body.obj");
-    body->getModel().setColor(Color(1.0, 0.0, 0.0));
-    body->getModel().setDiffuseIntensity(1.0);
-    body->getModel().setSpecularIntensity(2.0);
+    body->getModel()->setColor(Color(1.0, 0.0, 0.0));
+    body->getModel()->setDiffuseIntensity(1.0);
+    body->getModel()->setSpecularIntensity(2.0);
     addChild(body);
 
     wheels[0] = make_shared<Drawable>("Game/Things/car_wheel.obj");
@@ -46,18 +46,36 @@ Car::Car(GLint viewWidth, GLint viewHeight) :
     addChild(wheels[3]);
 
     // Headlights
-    lights[0] = make_shared<Light>(viewWidth, viewHeight, 20.0, 15.0);
-    lights[0]->setDirection({0.0, 0.0, 1.0});
-    lights[0]->position = {0.0, 1.0, 2.5};
-    lights[0]->setColor({1.0, 1.0, 1.0});
+    lights[0] = make_shared<Light>(2048, 2048, 10.0, 10.0);
+    lights[0]->setDirection({-0.1, 0.0, 1.0});
+    lights[0]->position = {-0.5, -0.5, 1.0};
+    lights[0]->setColor({0.0, 0.0, 1.0});
     lights[0]->setAmbientIntensity(0.0);
     addChild(lights[0]);
+
+    lights[1] = make_shared<Light>(2048, 2048, 10.0, 10.0);
+    lights[1]->setDirection({0.1, 0.0, 1.0});
+    lights[1]->position = {0.5, -0.5, 1.0};
+    lights[1]->setColor({0.0, 1.0, 0.0});
+    lights[1]->setAmbientIntensity(0.0);
+    addChild(lights[1]);
 }
 
 
-std::array<std::shared_ptr<Light>, 1> Car::getLights() const
+std::array<std::shared_ptr<Light>, 2> Car::getLights() const
 {
     return lights;
+}
+
+
+bool Car::getShouldCastShadow(shared_ptr<Light> light) const
+{
+    for(shared_ptr<Light> carLight : lights) {
+        if(carLight == light)
+            return false;
+    }
+
+    return true;
 }
 
 

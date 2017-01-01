@@ -166,6 +166,8 @@ void Button::update(float timeInterval)
 
 void Button::draw(shared_ptr<ShaderProgram> shaderProgram)
 {
+    Drawable2D::draw(shaderProgram);
+
     if(state == StateInactive && inactiveSprite != nullptr) {
         inactiveSprite->draw(shaderProgram);
     } else if(state == StateDown && downSprite != nullptr) {

@@ -13,41 +13,59 @@
 using namespace std;
 
 
-Drawable::Drawable(const string &modelFileName) :
-    model(modelFileName)
+Drawable::Drawable()
 {
 }
 
 
-Drawable::Drawable(const string &modelFileName, const string &textureFileName) :
-    model(modelFileName), texture(textureFileName)
+Drawable::Drawable(const string &modelFileName)
 {
+    model = make_shared<Model>(modelFileName);
+}
+
+
+Drawable::Drawable(const string &modelFileName, const string &textureFileName)
+{
+    model = make_shared<Model>(modelFileName);
+    texture = make_shared<Texture>(textureFileName);
 }
 
 
 Drawable::Drawable(const std::string &modelFileName,
                    const std::string &rightTextureFileName, const std::string &leftTextureFileName,
                    const std::string &topTextureFileName, const std::string &bottomTextureFileName,
-                   const std::string &frontTextureFileName, const std::string backTextureFileName) :
-    model(modelFileName),
-    texture(rightTextureFileName, leftTextureFileName, topTextureFileName, bottomTextureFileName, frontTextureFileName, backTextureFileName)
+                   const std::string &frontTextureFileName, const std::string backTextureFileName)
 {
+    model = make_shared<Model>(modelFileName);
+    texture = make_shared<Texture>(rightTextureFileName, leftTextureFileName, topTextureFileName, bottomTextureFileName, frontTextureFileName, backTextureFileName);
 }
 
 
 GLsizei Drawable::getTrianglesCount() const
 {
-    return model.getTrianglesCount();
+    return model->getTrianglesCount();
 }
 
 
-Model &Drawable::getModel()
+bool Drawable::getShouldCastShadow(shared_ptr<Light> light) const
+{
+    return shouldCastShadow;
+}
+
+
+void Drawable::setShouldCastShadow(bool shouldCastShadow)
+{
+    this->shouldCastShadow = shouldCastShadow;
+}
+
+
+shared_ptr<Model> Drawable::getModel() const
 {
     return model;
 }
 
 
-Texture &Drawable::getTexture()
+shared_ptr<Texture> Drawable::getTexture() const
 {
     return texture;
 }
@@ -55,11 +73,27 @@ Texture &Drawable::getTexture()
 
 void Drawable::draw(shared_ptr<ShaderProgram> shaderProgram)
 {
-    for(shared_ptr<Instance> child : children)
-        child->draw(shaderProgram);
+    for(shared_ptr<Instance> child : children) {
+        if(shared_ptr<Drawable> drawable = dynamic_pointer_cast<Drawable>(child))
+            drawable->draw(shaderProgram);
+    }
 
-    shaderProgram->use();
+    if(texture)
+        texture->use(shaderProgram);
+    if(model)
+        model->draw(shaderProgram, modelMatrix);
+}
 
-    texture.use(shaderProgram);
-    model.draw(shaderProgram, modelMatrix);
+
+void Drawable::drawShadow(std::shared_ptr<ShaderProgram> shaderProgram, std::shared_ptr<Light> light)
+{
+    if(getShouldCastShadow(light)) {
+        for(shared_ptr<Instance> child : children) {
+            if(shared_ptr<Drawable> drawable = dynamic_pointer_cast<Drawable>(child))
+                drawable->drawShadow(shaderProgram, light);
+        }
+
+        if(model)
+            model->draw(shaderProgram, modelMatrix);
+    }
 }

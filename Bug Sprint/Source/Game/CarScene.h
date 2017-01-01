@@ -24,7 +24,6 @@ public:
 
     void updateInput(const Input &input) override;
     void update(float timeInterval) override;
-    void draw() override;
 
 protected:
     std::shared_ptr<Camera> camera;

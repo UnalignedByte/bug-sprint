@@ -30,7 +30,7 @@ void main(void)
 
     fNormal = mat3(modelMatrix) * normal;
 
-    for(int i=0; i<2; i++) {
+    for(int i=0; i<8; i++) {
         fLightSpacePosition[i] = lightMatrices[i].projectionMatrix * lightMatrices[i].viewMatrix * modelMatrix * vec4(position, 1.0);
     }
 

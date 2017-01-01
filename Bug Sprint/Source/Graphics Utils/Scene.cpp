@@ -44,11 +44,8 @@ void Scene::update(float timeInterval)
 
 void Scene::draw()
 {
-    for(shared_ptr<RenderPass> renderPass : renderPasses) {
-        renderPass->begin();
+    for(shared_ptr<RenderPass> renderPass : renderPasses)
         renderPass->draw();
-        renderPass->end();
-    }
 }
 
 
