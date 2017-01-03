@@ -19,10 +19,10 @@ public:
 
     void executeLoop();
 
-    void touchDown(int x, int y);
-    void touchUp(int x, int y);
-    void touchMove(int x, int y);
-    void touchCancel();
+    void touchDownWithId(int touchId, int x, int y);
+    void touchUpWithId(int touchId, int x, int y);
+    void touchMoveWithId(int touchId, int x, int y);
+    void touchCancelWithId(int touchId);
 
 private:
     Core *core;

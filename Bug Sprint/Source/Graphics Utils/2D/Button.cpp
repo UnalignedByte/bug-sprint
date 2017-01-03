@@ -81,7 +81,7 @@ Button::State Button::getState() const
 
 void Button::updateInput(const Input &input)
 {
-    if(state == StateInactive)
+    if(state == StateInactive || input.touches.size() == 0)
         return;
 
     Input::Touch touch;
@@ -100,6 +100,9 @@ void Button::updateInput(const Input &input)
             }
         }
     }
+
+    if(touch.state == Input::Touch::StateInvalid)
+        return;
 
     // Is touch up inside?
     if(state == StateDown && touch.state == Input::Touch::StateUp && isInside && pressedCallback != nullptr)

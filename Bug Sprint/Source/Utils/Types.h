@@ -11,6 +11,7 @@ struct Input
 {
     struct Touch {
         enum State {
+            StateInvalid,
             StateDown,
             StateUp,
             StateMoved,
@@ -22,7 +23,7 @@ struct Input
         float downX = 0.0;
         float downY = 0.0;
 
-        State state = StateCanceled;
+        State state = StateInvalid;
     };
 
     std::map<int, Touch> touches;

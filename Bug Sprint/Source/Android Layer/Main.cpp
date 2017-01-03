@@ -203,22 +203,36 @@ void setupCoreAdapter()
 
 void processTouchInput(AInputEvent *inputEvent)
 {
-    int x = AMotionEvent_getX(inputEvent, 0);
-    int y = AMotionEvent_getY(inputEvent, 0);
+    int maskedAction = AMotionEvent_getAction(inputEvent) & AMOTION_EVENT_ACTION_MASK;
+    int pointerIndex = AMotionEvent_getAction(inputEvent) & AMOTION_EVENT_ACTION_POINTER_INDEX_MASK;
+    pointerIndex = pointerIndex >> AMOTION_EVENT_ACTION_POINTER_INDEX_SHIFT;
+    int pointersCount = AMotionEvent_getPointerCount(inputEvent);
 
-    switch(AMotionEvent_getAction(inputEvent)) {
+    int pointerId = AMotionEvent_getPointerId(inputEvent, pointerIndex);
+    int x = AMotionEvent_getX(inputEvent, pointerIndex);
+    int y = AMotionEvent_getY(inputEvent, pointerIndex);
+
+    switch(maskedAction) {
         case AMOTION_EVENT_ACTION_DOWN:
-            coreAdapter->touchDown(x, y);
+        case AMOTION_EVENT_ACTION_POINTER_DOWN:
+            coreAdapter->touchDownWithId(pointerId, x, y);
             break;
         case AMOTION_EVENT_ACTION_UP:
-            coreAdapter->touchUp(x, y);
+        case AMOTION_EVENT_ACTION_POINTER_UP:
+            coreAdapter->touchUpWithId(pointerId, x, y);
             break;
         case AMOTION_EVENT_ACTION_MOVE:
-            coreAdapter->touchMove(x, y);
+            for(int i=0; i<pointersCount; i++) {
+                pointerId = AMotionEvent_getPointerId(inputEvent, i);
+                x = AMotionEvent_getX(inputEvent, i);
+                y = AMotionEvent_getY(inputEvent, i);
+                coreAdapter->touchMoveWithId(pointerId, x, y);
+            }
             break;
         case AMOTION_EVENT_ACTION_CANCEL:
-            coreAdapter->touchCancel();
+            coreAdapter->touchCancelWithId(pointerId);
             break;
-        default:break;
+        default:
+            break;
     }
 }

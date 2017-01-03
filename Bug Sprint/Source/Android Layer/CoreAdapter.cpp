@@ -49,39 +49,52 @@ void CoreAdapter::executeLoop()
 }
 
 
-void CoreAdapter::touchDown(int x, int y)
+void CoreAdapter::touchDownWithId(int touchId, int x, int y)
 {
-    currentInput.state = Input::StateDown;
-
     SystemUtils::Point pos = SystemUtils::positionForViewPosition(x, viewHeight - y);
-    currentInput.downX = currentInput.x = pos.x;
-    currentInput.downY = currentInput.y = pos.y;
+    Input::Touch touch;
+    touch.state = Input::Touch::StateDown;
+    touch.downX = touch.x = pos.x;
+    touch.downY = touch.y = pos.y;
+
+    currentInput.touches[touchId] = touch;
 }
 
 
-void CoreAdapter::touchUp(int x, int y)
+void CoreAdapter::touchUpWithId(int touchId, int x, int y)
 {
-    currentInput.state = Input::StateUp;
-
     SystemUtils::Point pos = SystemUtils::positionForViewPosition(x, viewHeight - y);
-    currentInput.x = pos.x;
-    currentInput.y = pos.y;
+    Input::Touch touch;
+    touch.state = Input::Touch::StateUp;
+    touch.x = pos.x;
+    touch.y = pos.y;
+
+    currentInput.touches[touchId] = touch;
 }
 
 
-void CoreAdapter::touchMove(int x, int y)
+void CoreAdapter::touchMoveWithId(int touchId, int x, int y)
 {
-    currentInput.state = Input::StateMoved;
+    // Is there a pending touch down event?
+    if(currentInput.touches[touchId].state == Input::Touch::StateDown)
+        return;
 
     SystemUtils::Point pos = SystemUtils::positionForViewPosition(x, viewHeight - y);
-    currentInput.x = pos.x;
-    currentInput.y = pos.y;
+    Input::Touch touch;
+    touch.state = Input::Touch::StateMoved;
+    touch.x = pos.x;
+    touch.y = pos.y;
+
+    currentInput.touches[touchId] = touch;
 }
 
 
-void CoreAdapter::touchCancel()
+void CoreAdapter::touchCancelWithId(int touchId)
 {
-    currentInput.state = Input::StateCanceled;
+    Input::Touch touch;
+    touch.state = Input::Touch::StateCanceled;
+
+    currentInput.touches[touchId] = touch;
 }
 
 
@@ -92,6 +105,9 @@ void CoreAdapter::update(double timeInterval)
     } catch(string exception) {
         handleException(exception);
     }
+
+    // Remove events
+    currentInput.touches.clear();
 }
 
 

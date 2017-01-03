@@ -62,8 +62,9 @@ using namespace std;
         [self handleExceptionMessage:exception];
     }
 
-    // Remove ended/canceled touch events
-    vector<int> touchIdsToRemove;
+    // Remove events
+    self.currentInput->touches.clear();
+    /*vector<int> touchIdsToRemove;
 
     for(auto touchIt : self.currentInput->touches)
         if(touchIt.second.state == Input::Touch::StateUp || touchIt.second.state == Input::Touch::StateCanceled) {
@@ -71,7 +72,7 @@ using namespace std;
         }
 
     for(int touchId : touchIdsToRemove)
-        self.currentInput->touches.erase(touchId);
+        self.currentInput->touches.erase(touchId);*/
 }
 
 
@@ -111,6 +112,10 @@ using namespace std;
 
 - (void)touchMoveWithId:(NSInteger)touchId x:(NSInteger)x y:(NSInteger)y
 {
+    // Is there a pending touch down event?
+    if(self.currentInput->touches[(int)touchId].state == Input::Touch::StateDown)
+        return;
+
     SystemUtils::Point pos = SystemUtils::positionForViewPosition(int(x), int(y));
     Input::Touch touch;
     touch.state = Input::Touch::StateMoved;
