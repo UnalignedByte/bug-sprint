@@ -13,6 +13,7 @@
 #include "ShadedRenderPass.h"
 #include "SkyboxRenderPass.h"
 #include "RenderPass2D.h"
+#include <iostream>
 
 using namespace std;
 
@@ -112,6 +113,11 @@ void CarScene::setupGame()
                                                         "Game/skybox_front.png", "Game/skybox_back.png");
     skyboxRenderPass->addInstance(skybox);
     addInstance(skybox);
+
+    auto uniforms = shadedShaderProgram->getActiveUniforms();
+    for(auto uniform : uniforms) {
+        cout << uniform << endl;
+    }
 }
 
 

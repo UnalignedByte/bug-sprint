@@ -19,7 +19,6 @@ void RenderPass2D::draw()
     glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
 
     glDisable(GL_DEPTH_TEST);
-    glDepthMask(GL_FALSE);
 
     for(shared_ptr<Instance> instance : instances) {
         if(shared_ptr<Drawable2D> drawable = dynamic_pointer_cast<Drawable2D>(instance))

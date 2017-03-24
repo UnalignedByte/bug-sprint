@@ -10,6 +10,7 @@
 #define SHADER_PROGRAM_H
 
 #include <string>
+#include <vector>
 #include "OpenGLES.h"
 
 
@@ -20,6 +21,7 @@ public:
     ~ShaderProgram();
     GLuint getId();
     void use();
+    std::vector<std::string> getActiveUniforms();
 
 private:
     GLuint programId;

@@ -33,7 +33,6 @@ void ShadedRenderPass::draw()
 {
     glViewport(0, 0, viewWidth, viewHeight);
 
-    glDepthMask(GL_TRUE);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
     glCullFace(GL_BACK);

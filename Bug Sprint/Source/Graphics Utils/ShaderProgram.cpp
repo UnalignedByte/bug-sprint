@@ -48,6 +48,27 @@ void ShaderProgram::use()
 }
 
 
+vector<string> ShaderProgram::getActiveUniforms()
+{
+    vector<string> uniforms;
+
+    GLint uniformsCount;
+    glGetProgramiv(programId, GL_ACTIVE_UNIFORMS, &uniformsCount);
+
+    GLchar name[256];
+    for(int i=0; i<uniformsCount; i++) {
+        memset(name, '\0', 256);
+
+        GLint size;
+        GLenum type;
+        glGetActiveUniform(programId, i, 255, NULL, &size, &type, name);
+        uniforms.push_back(string(name));
+    }
+
+    return uniforms;
+}
+
+
 GLuint ShaderProgram::loadShader(GLuint type, const std::string &sourceString)
 {
     const GLchar *source = (const GLchar *)sourceString.c_str();
