@@ -30,7 +30,7 @@ public:
     static const GLint kShadowMaxCount = 8;
 
 public:
-    Light(GLint shadowWidth, GLint shadowHeight, GLfloat cutOff = -1.0f, GLfloat innerCutOff = -1.0f);
+    Light(GLint shadowSize = 0, GLfloat cutOff = -1.0f, GLfloat innerCutOff = -1.0f);
 
     Type getType() const;
     GLint getLightIndex() const;
@@ -62,15 +62,13 @@ protected:
     GLint lightIndex;
 
     Type type;
-    bool shouldCastShadow{true};
 
     Color color{1.0, 1.0, 1.0, 1.0};
     GLfloat ambientIntensity{0.2};
     GLfloat diffuseIntensity{1.0};
     GLfloat specularIntensity{1.0};
 
-    GLint shadowWidth;
-    GLint shadowHeight;
+    GLint shadowSize;
     GLfloat fov{60.0};
     GLfloat zNear{0.01};
     GLfloat zFar{100.0};

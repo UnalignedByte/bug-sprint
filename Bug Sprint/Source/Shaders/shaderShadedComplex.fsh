@@ -1,6 +1,7 @@
 #version 300 es
 
 precision highp float;
+precision highp sampler2DArray;
 precision highp sampler2D;
 
 const int LightTypeUnused = 0;
@@ -28,19 +29,19 @@ struct Material {
 };
 
 
-in mat4 fModelViewMatrix;
 in vec3 fPosition;
-in vec3 fRawPosition;
 in vec3 fNormal;
-in vec4 fLightSpacePosition;
+in vec4 fLightSpacePosition[8];
 in vec2 fTexCoord;
+in mat4 fModelViewMatrix;
+in vec3 fRawPosition;
 
 uniform vec3 eyePosition;
 uniform Light lights[8];
 uniform Material material;
 
 uniform sampler2D diffuseSampler;
-uniform sampler2D shadowSampler;
+uniform sampler2DArray shadowSampler;
 
 out vec4 outColor;
 
@@ -100,34 +101,40 @@ void main(void)
     float shadowIntensity = 0.0;
     float shadowIterations = 0.0;
 
-    vec3 lightNdcPosition = fLightSpacePosition.xyz / fLightSpacePosition.w;
-    vec2 lightTexCoord = vec2(lightNdcPosition.x * 0.5 + 0.5, lightNdcPosition.y * 0.5 + 0.5);
-    if(lightNdcPosition.z >= -1.0 && lightNdcPosition.z <= 1.0 && lightTexCoord.x >= 0.0 && lightTexCoord.x <= 1.0 && lightTexCoord.y >= 0.0 && lightTexCoord.y <= 1.0) {
-        float lightZ = lightNdcPosition.z * 0.5 + 0.5;
+    for(int i=0; i<8; i++) {
+        if(lights[i].type == LightTypeUnused)
+            continue;
 
-        //float shadowTexZ = texture(shadowSampler, vec2(lightTexCoord.x, lightTexCoord.y)).x;
-        //if(lightZ - 0.005 > shadowTexZ) {
-        //    shadowIntensity = 0.75;
-        //}
+        vec3 lightNdcPosition = fLightSpacePosition[i].xyz / fLightSpacePosition[i].w;
+        vec2 lightTexCoord = vec2(lightNdcPosition.x * 0.5 + 0.5, lightNdcPosition.y * 0.5 + 0.5);
+        if(lightNdcPosition.z >= -1.0 && lightNdcPosition.z <= 1.0 && lightTexCoord.x >= 0.0 && lightTexCoord.x <= 1.0 && lightTexCoord.y >= 0.0 && lightTexCoord.y <= 1.0) {
+            float lightZ = lightNdcPosition.z * 0.5 + 0.5;
 
-        vec2 shadowTexSize = vec2(textureSize(shadowSampler, 0));
-        for(int y=-1; y<=1; y++) {
-            for(int x=-1; x<=1; x++) {
-                shadowIterations += 1.0;
-                float shadowTexZ = texture(shadowSampler, vec2(lightTexCoord + vec2(x,y) / shadowTexSize)).x;
-                if(lightZ - 0.005 > shadowTexZ)
-                    shadowIntensity += 1.0;
+            /*float shadowTexZ = texture(shadowSampler, vec3(lightTexCoord.x, lightTexCoord.y, i)).x;
+            if(lightZ - 0.005 > shadowTexZ) {
+                shadowIntensity = 0.75;
+            }*/
+
+            vec2 shadowTexSize = vec2(textureSize(shadowSampler, i).xy);
+            for(int y=-1; y<=1; y++) {
+                for(int x=-1; x<=1; x++) {
+                    shadowIterations += 1.0;
+                    float shadowTexZ = texture(shadowSampler, vec3(lightTexCoord + vec2(x,y) / shadowTexSize, i)).x;
+                    if(lightZ - 0.005 > shadowTexZ)
+                        shadowIntensity += 1.0;
+                }
             }
-        }
 
+        }
     }
 
-    shadowIntensity *= 0.75 / shadowIterations;
+    //shadowIntensity *= 0.75 / shadowIterations;
+    shadowIntensity = 1.0;
 
     // Calculate Final Color
     vec3 color = vec3(0.0);
 
-    for(int i=0; i<3; i++) {
+    for(int i=0; i<8; i++) {
         if(lights[i].type == LightTypeDirectional) {
             color += directionalLightColor(lights[i], shadowIntensity);
         } else if(lights[i].type == LightTypeSpot) {

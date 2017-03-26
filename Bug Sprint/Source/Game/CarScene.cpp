@@ -50,7 +50,7 @@ void CarScene::setupGame()
     camera->addRenderPass(skyboxRenderPass);
 
     // Light
-    shared_ptr<Light> light = make_shared<Light>(2048, 2048);
+    shared_ptr<Light> light = make_shared<Light>(1024);
     light->position = {10.0, 10.0, 0.0};
     light->setWorldTarget({0.0, 0.0, 0.0});
     light->setDiffuseIntensity(0.8);

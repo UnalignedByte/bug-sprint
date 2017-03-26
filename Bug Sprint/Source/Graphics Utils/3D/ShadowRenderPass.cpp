@@ -30,16 +30,19 @@ void ShadowRenderPass::draw()
     glCullFace(GL_FRONT);
 
     for(shared_ptr<Light> light : lights) {
+        if (light->getShouldCastShadow()) {
+
         shaderProgram->use();
         light->useFramebuffer();
 
         GLint lightIndexId = glGetUniformLocation(shaderProgram->getId(), "lightIndex");
         glUniform1i(lightIndexId, light->getLightIndex());
 
-        for(shared_ptr<Instance> instance : instances) {
-            if(shared_ptr<Drawable> drawable = dynamic_pointer_cast<Drawable>(instance))
+        for (shared_ptr<Instance> instance : instances) {
+            if (shared_ptr<Drawable> drawable = dynamic_pointer_cast<Drawable>(instance))
                 drawable->drawShadow(shaderProgram, light);
         }
+      }
     }
 
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, previousFramebuffer);

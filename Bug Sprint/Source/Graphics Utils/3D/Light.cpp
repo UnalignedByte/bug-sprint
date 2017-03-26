@@ -19,9 +19,8 @@ GLint Light::lightsCount = 0;
 GLuint Light::texture = 0;
 
 
-Light::Light(GLint shadowWidth, GLint shadowHeight, GLfloat cutOff, GLfloat innerCutOff) :
-    shadowWidth(shadowWidth), shadowHeight(shadowHeight), cutOff(cutOff), innerCutOff(innerCutOff)
-{
+Light::Light(GLint shadowSize, GLfloat cutOff, GLfloat innerCutOff) :
+    shadowSize(shadowSize), cutOff(cutOff), innerCutOff(innerCutOff) {
     if(cutOff <= 0.0)
         type = TypeDirectional;
     else
@@ -32,27 +31,26 @@ Light::Light(GLint shadowWidth, GLint shadowHeight, GLfloat cutOff, GLfloat inne
 
     lightIndex = lightsCount++;
 
-    glGenFramebuffers(1, &framebuffer);
-    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
+    if(getShouldCastShadow()) {
+        glGenFramebuffers(1, &framebuffer);
+        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
 
-    if(texture == 0) {
         glGenTextures(1, &texture);
-        glBindTexture(GL_TEXTURE_2D_ARRAY, texture);
-        glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexImage3D(GL_TEXTURE_2D_ARRAY, 0, GL_DEPTH_COMPONENT16, shadowWidth, shadowHeight, kShadowMaxCount, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, shadowSize, shadowSize, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
 
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, texture, 0);
 
+        if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+            throw string("Could not create shadow framebuffer");
+
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
-    glBindTexture(GL_TEXTURE_2D_ARRAY, texture);
-    glFramebufferTextureLayer(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, texture, 0, lightIndex);
-
-    if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        throw string("Could not create shadow framebuffer");
-
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 
@@ -70,7 +68,7 @@ GLint Light::getLightIndex() const
 
 bool Light::getShouldCastShadow() const
 {
-    return shouldCastShadow;
+    return shadowSize > 0;
 }
 
 
@@ -213,17 +211,16 @@ void Light::updateLight(std::shared_ptr<ShaderProgram> shaderProgram)
 
 void Light::updateShadow(std::shared_ptr<ShaderProgram> shaderProgram)
 {
+    if(!getShouldCastShadow())
+        return;
+
     shaderProgram->use();
 
-    char stringBuffer[10];
-    sprintf(stringBuffer, "%d", lightIndex);
-    string lightIndexString = "lightMatrices[" + string(stringBuffer) + "].";
-
-    GLint lightViewMatrixId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "viewMatrix").c_str());
+    GLint lightViewMatrixId = glGetUniformLocation(shaderProgram->getId(), "lightViewMatrix");
     Matrix4 lightViewMatrix = Matrix4::lookAt(getWorldPosition(), getWorldTarget());
     glUniformMatrix4fv(lightViewMatrixId, 1, GL_FALSE, lightViewMatrix.getData());
 
-    GLint lightProjectionMatrixId = glGetUniformLocation(shaderProgram->getId(), (lightIndexString + "projectionMatrix").c_str());
+    GLint lightProjectionMatrixId = glGetUniformLocation(shaderProgram->getId(), "lightProjectionMatrix");
     Matrix4 lightProjectionMatrix;
     if(type == TypeDirectional)
         lightProjectionMatrix = Matrix4::ortographicProjection(-50.0, 50.0, -50.0, 50.0, -50.0, 50.0);
@@ -235,9 +232,12 @@ void Light::updateShadow(std::shared_ptr<ShaderProgram> shaderProgram)
 
 void Light::useFramebuffer()
 {
+    if(!getShouldCastShadow())
+        return;
+
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer);
 
-    glViewport(0, 0, shadowWidth, shadowHeight);
+    glViewport(0, 0, shadowSize, shadowSize);
     glEnable(GL_DEPTH_TEST);
     glDepthMask(GL_TRUE);
     glClear(GL_DEPTH_BUFFER_BIT);
@@ -246,12 +246,13 @@ void Light::useFramebuffer()
 
 void Light::useShadowTexture(std::shared_ptr<ShaderProgram> shaderProgram)
 {
-    if(lightIndex != 0)
+    if(!getShouldCastShadow())
         return;
+
     shaderProgram->use();
 
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D_ARRAY, texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
     GLint shadowSamplerId  = glGetUniformLocation(shaderProgram->getId(), "shadowSampler");
     glUniform1i(shadowSamplerId, 1);
 }
