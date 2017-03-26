@@ -13,7 +13,6 @@
 #include "ShadedRenderPass.h"
 #include "SkyboxRenderPass.h"
 #include "RenderPass2D.h"
-#include <iostream>
 
 using namespace std;
 
@@ -113,11 +112,6 @@ void CarScene::setupGame()
                                                         "Game/skybox_front.png", "Game/skybox_back.png");
     skyboxRenderPass->addInstance(skybox);
     addInstance(skybox);
-
-    auto uniforms = shadedShaderProgram->getActiveUniforms();
-    for(auto uniform : uniforms) {
-        cout << uniform << endl;
-    }
 }
 
 
@@ -164,7 +158,7 @@ void CarScene::updateInput(const Input &input)
 
 void CarScene::update(float timeInterval)
 {
-    camera->position = car->position + Vector3({10.1f, 15.0f, -10.1f});
+    camera->position = car->position + Vector3({5.0f, 5.0f, -5.0f});
     camera->setTarget(car->position);
 
     Scene::update(timeInterval);

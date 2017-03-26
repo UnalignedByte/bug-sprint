@@ -9,15 +9,19 @@
 #include "Car.h"
 
 #include <iostream>
+#include <sstream>
+#include "SystemUtils.h"
 
 using namespace std;
 
 
-static GLfloat kAcceleration = 0.05;
-static GLfloat kMaxSpeed = 0.3;
-static GLfloat kSlowdownSpeed = 0.05;
-static GLfloat kWheelsTurnSpeed = 0.5;
-static GLfloat kMaxWheelsTurn = 5.0;
+static GLfloat kMaxSpeed = 0.2;
+static GLfloat kAcceleration = kMaxSpeed * 0.02;
+static GLfloat kSlowdownSpeed = kMaxSpeed * 0.05;
+static GLfloat kMaxWheelsTurn = 10.0;
+static GLfloat kWheelsTurnSpeed = kMaxWheelsTurn * 0.05;
+static GLfloat kMaxTilt = 5.0;
+static GLfloat kTiltSpeed = kMaxTilt * 0.04;
 
 
 Car::Car(GLint viewWidth, GLint viewHeight) :
@@ -120,17 +124,49 @@ void Car::update(float timeInterval)
         }
     }
 
-    wheels[0]->rotation[1] = wheelsTurn*3;
-    wheels[1]->rotation[1] = wheelsTurn*3;
+    wheels[0]->rotation[1] = wheelsTurn;
+    wheels[1]->rotation[1] = wheelsTurn;
 
-    wheels[0]->rotation[0] += speed * 5;
-    wheels[1]->rotation[0] += speed * 5;
-    wheels[2]->rotation[0] += speed * 5;
-    wheels[3]->rotation[0] += speed * 5;
+    wheels[0]->rotation[0] += speed * 20;
+    wheels[1]->rotation[0] += speed * 20;
+    wheels[2]->rotation[0] += speed * 20;
+    wheels[3]->rotation[0] += speed * 20;
 
-    if(speed > 0.0) {
-        rotation[1] += wheelsTurn;
+    //if(speed > 0.0) {
+        rotation[1] += wheelsTurn * speed;
+    //}
+
+    // Tilt
+    if (isAccelerating && speed < kMaxSpeed) {
+        tiltAcceleration += kTiltSpeed;
+        if(tiltAcceleration > kMaxTilt)
+            tiltAcceleration = kMaxTilt;
+    } else {
+        tiltAcceleration -= kTiltSpeed;
+        if(tiltAcceleration < 0.0)
+        tiltAcceleration = 0.0;
     }
+
+    if(isTurningLeft) {
+        tiltTurn -= kTiltSpeed;
+        if(tiltTurn < -kMaxTilt)
+            tiltTurn = -kMaxTilt;
+    } else if(isTurningRight) {
+        tiltTurn += kTiltSpeed;
+        if(tiltTurn > kMaxTilt)
+            tiltTurn = kMaxTilt;
+    } else if(tiltTurn > 0.0 ) {
+        tiltTurn -= kTiltSpeed;
+        if(tiltTurn < 0.0)
+            tiltTurn = 0.0;
+    } else if(tiltTurn < 0.0) {
+        tiltTurn += kTiltSpeed;
+        if(tiltTurn > 0.0)
+            tiltTurn = 0.0;
+    }
+
+    body->rotation[0] = -tiltAcceleration;
+    body->rotation[2] = tiltTurn;
 
     GLfloat angleInRadians = (M_PI * rotation[1])/180.0;
     position[0] += speed * sin(angleInRadians);

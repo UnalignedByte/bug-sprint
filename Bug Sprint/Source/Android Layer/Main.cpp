@@ -6,6 +6,7 @@
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 #include <android/log.h>
+#include <sstream>
 
 #include "CoreAdapter.h"
 #include "SystemUtils.h"
@@ -54,7 +55,22 @@ void android_main(android_app *app)
 
         if(isSetup) {
             coreAdapter->executeLoop();
+
+            timespec time;
+            clock_gettime(CLOCK_MONOTONIC, &time);
+            double currentTime = time.tv_sec + time.tv_nsec/1.0e9;
             eglSwapBuffers(eglDisplay, eglSurface);
+
+            timespec time2;
+            clock_gettime(CLOCK_MONOTONIC, &time2);
+            double currentTime2 = time2.tv_sec + time2.tv_nsec/1.0e9;
+
+#pragma clang diagnostics push
+#pragma clang diagnostic ignored "-Wformat-security"
+            std::ostringstream strm;
+            strm << currentTime2 - currentTime;
+            __android_log_print(ANDROID_LOG_ERROR, "App", ("diff " + strm.str()).c_str());
+#pragma clang diagnostics pop
         }
     }
 }

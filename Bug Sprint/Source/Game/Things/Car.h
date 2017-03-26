@@ -38,8 +38,10 @@ protected:
     GLint viewWidth;
     GLint viewHeight;
 
-    GLfloat speed{0};
-    GLfloat wheelsTurn{0};
+    GLfloat speed{0.0};
+    GLfloat wheelsTurn{0.0};
+    GLfloat tiltAcceleration{0.0};
+    GLfloat tiltTurn{0.0};
 
     std::shared_ptr<Drawable> body;
     std::array<std::shared_ptr<Drawable>, 4> wheels;

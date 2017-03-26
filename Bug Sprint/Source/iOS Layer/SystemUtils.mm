@@ -150,6 +150,12 @@ SystemUtils::Point SystemUtils::positionForViewPosition(int x, int y)
 }
 
 
+void SystemUtils::debugLog(const std::string &message)
+{
+    cout << message << endl;
+}
+
+
 string SystemUtils::fontNameForFontFileName(const std::string &fontFileName)
 {
     NSString *fontFileNameString = [NSString stringWithUTF8String:fontFileName.c_str()];

@@ -44,6 +44,8 @@ public:
     static Point sizeForViewSize(int width, int height);
     static Point positionForViewPosition(int x, int y);
 
+    static void debugLog(const std::string &message);
+
 protected:
     static std::string fontNameForFontFileName(const std::string &fontFileName);
 };
