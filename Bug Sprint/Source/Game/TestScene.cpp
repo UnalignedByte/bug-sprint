@@ -24,11 +24,11 @@ TestScene::TestScene(GLint viewWidth, GLint viewHeight) :
     Scene(viewWidth, viewHeight)
 {
     // Setup Shaders
-    shared_ptr<ShaderProgram> shadedShader = make_shared<ShaderProgram>("Shaders/defaultShadedPerFragment.vsh",
-                                                                        "Shaders/defaultShadedPerFragment.fsh");
-    shared_ptr<ShaderProgram> shadowShader = make_shared<ShaderProgram>("Shaders/shadow.vsh", "Shaders/shadow.fsh");
-    shared_ptr<ShaderProgram> skyboxShader = make_shared<ShaderProgram>("Shaders/skybox.vsh", "Shaders/skybox.fsh");
-    shared_ptr<ShaderProgram> spriteShader = make_shared<ShaderProgram>("Shaders/sprite.vsh", "Shaders/sprite.fsh");
+    shared_ptr<ShaderProgram> shadedShader = make_shared<ShaderProgram>("Shaders/defaultPerFragment.vsh",
+                                                                        "Shaders/defaultPerFragment.fsh");
+    shared_ptr<ShaderProgram> shadowShader = make_shared<ShaderProgram>("Shaders/shaderShadow.vsh", "Shaders/shaderShadow.fsh");
+    shared_ptr<ShaderProgram> skyboxShader = make_shared<ShaderProgram>("Shaders/shaderSkybox.vsh", "Shaders/shaderSkybox.fsh");
+    shared_ptr<ShaderProgram> spriteShader = make_shared<ShaderProgram>("Shaders/shader2D.vsh", "Shaders/shader2D.fsh");
 
     // Setup Render Passes
     shared_ptr<SkyboxRenderPass> skyboxRenderPass = make_shared<SkyboxRenderPass>(viewWidth, viewHeight, skyboxShader);

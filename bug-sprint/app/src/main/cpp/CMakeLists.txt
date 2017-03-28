@@ -53,6 +53,7 @@ add_library(bug-sprint SHARED
     "${SRC}/Game/TestScene.cpp"
     "${SRC}/Game/CarScene.cpp"
     "${SRC}/Game/Things/Car.cpp"
+    "${SRC}/Game/Things/Bug.cpp"
 )
 
 target_include_directories(bug-sprint PRIVATE

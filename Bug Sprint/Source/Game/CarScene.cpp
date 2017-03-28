@@ -13,6 +13,7 @@
 #include "ShadedRenderPass.h"
 #include "SkyboxRenderPass.h"
 #include "RenderPass2D.h"
+#include <random>
 
 using namespace std;
 
@@ -27,6 +28,8 @@ CarScene::CarScene(GLint viewWidth, GLint viewHeight) :
 
 void CarScene::setupGame()
 {
+    srand(time(NULL));
+
     //Shadow render pass
     shared_ptr<ShaderProgram> shadowShaderProgram = make_shared<ShaderProgram>("Shaders/shaderShadow.vsh", "Shaders/shaderShadow.fsh");
     shared_ptr<ShadowRenderPass> shadowRenderPass = make_shared<ShadowRenderPass>(2048, 2048, shadowShaderProgram);
@@ -65,6 +68,13 @@ void CarScene::setupGame()
     for(shared_ptr<Light> light : car->getLights()) {
         shadowRenderPass->addLight(light);
         shadedRenderPass->addLight(light);
+    }
+
+    // Bugs
+    for(int i=0; i<10; i++) {
+        shared_ptr<Bug> bug = spawnBug();
+        shadedRenderPass->addInstance(bug);
+        shadowRenderPass->addInstance(bug);
     }
 
     // Ground
@@ -143,6 +153,24 @@ void CarScene::setupUi()
 
     addInstance(rightButton);
     renderPass->addInstance(rightButton);
+}
+
+
+shared_ptr<Bug> CarScene::spawnBug()
+{
+    shared_ptr<Bug> bug = make_shared<Bug>();
+
+    GLfloat x{0.0};
+    GLfloat z{0.0};
+
+    random_device generator;
+    uniform_real_distribution<GLfloat> distribution(-20.0, 20.0);
+    x = distribution(generator);
+    z = distribution(generator);
+
+    bug->position = {x, 0.5, z};
+    addInstance(bug);
+    return bug;
 }
 
 

@@ -15,6 +15,7 @@
 #include "Button.h"
 #include "Car.h"
 #include "Camera.h"
+#include "Bug.h"
 
 
 class CarScene: public Scene
@@ -36,6 +37,8 @@ protected:
 protected:
     virtual void setupGame();
     virtual void setupUi();
+
+    virtual std::shared_ptr<Bug> spawnBug();
 };
 
 #endif
