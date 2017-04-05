@@ -56,10 +56,17 @@ vec3 directionalLightColor(Light light, float shadowIntensity)
     diffuseIntensity = clamp(diffuseIntensity, 0.0, 1.0);
 
     // Specular intensity
-    vec3 cameraDirection = normalize(eyePosition - fPosition);
+    // Phong
+    /*vec3 cameraDirection = normalize(eyePosition - fPosition);
     vec3 lightDirectionReflected = normalize(reflect(light.direction, fNormal));
-    float specularIntensity = dot(cameraDirection, lightDirectionReflected) * light.specularIntensity;
-    specularIntensity = clamp(specularIntensity, 0.0, 1.0);
+    float specularIntensity = dot(cameraDirection, lightDirectionReflected) * light.specularIntensity;*/
+
+    // Blinn-Phong
+    vec3 cameraDirection = normalize(eyePosition - fPosition);
+    vec3 halfwayDirection = normalize(cameraDirection - light.direction);
+    float specularIntensity = dot(fNormal, halfwayDirection);
+
+    specularIntensity = max(specularIntensity, 0.0);
 
     vec3 color = material.ambientIntensity * diffuseColor * light.color * light.ambientIntensity +
                  (1.0 - shadowIntensity) * (diffuseIntensity * diffuseColor * light.color) +
@@ -76,13 +83,24 @@ vec3 spotLightColor(Light light, float shadowIntensity)
         diffuseColor *= vec3(texture(diffuseSampler, fTexCoord));
 
     // Diffuse intensity
-    vec3 fragmentDirection = normalize(fRawPosition - light.position);
-    float theta = degrees(acos(dot(fragmentDirection, normalize(light.direction))));
-    float epsilon = light.innerCutOff - light.cutOff - 0.01;
-    float diffuseIntensity = clamp((theta - light.cutOff)/epsilon, 0.0, 1.0) * light.diffuseIntensity;
+    float diffuseIntensity = 0.0;
+    bool isFragmentInLight = dot(fNormal, normalize(-light.direction)) >= 0.0;
+    if(isFragmentInLight) {
+        vec3 fragmentDirection = normalize(light.position - fRawPosition);
+        float theta = dot(fragmentDirection, normalize(-light.direction));
+        theta = degrees(acos(theta));
+
+        float epsilon = light.innerCutOff - light.cutOff - 0.01;
+        diffuseIntensity = (theta - light.cutOff)/epsilon;
+        diffuseIntensity = clamp(diffuseIntensity, 0.0, 1.0);
+
+        float dist = length(light.position - fRawPosition);
+        float attenuation = 1.0 / (1.0 + 0.01 * dist + 0.005 * dist * dist);
+        diffuseIntensity = diffuseIntensity * attenuation;
+    }
 
     vec3 color = material.ambientIntensity * diffuseColor * light.color * light.ambientIntensity +
-                 (1.0 - shadowIntensity) * (diffuseIntensity * diffuseColor * light.color);
+                 (1.0 - (shadowIntensity - diffuseIntensity)) * (diffuseIntensity * diffuseColor * light.color);
 
     return color;
 }
@@ -127,7 +145,7 @@ void main(void)
     // Calculate Final Color
     vec3 color = vec3(0.0);
 
-    for(int i=0; i<3; i++) {
+    for(int i=0; i<8; i++) {
         if(lights[i].type == LightTypeDirectional) {
             color += directionalLightColor(lights[i], shadowIntensity);
         } else if(lights[i].type == LightTypeSpot) {

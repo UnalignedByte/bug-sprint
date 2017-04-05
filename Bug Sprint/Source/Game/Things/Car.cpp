@@ -50,14 +50,14 @@ Car::Car(GLint viewWidth, GLint viewHeight) :
     addChild(wheels[3]);
 
     // Headlights
-    lights[0] = make_shared<Light>(0, 10.0, 10.0);
+    lights[0] = make_shared<Light>(0, 13.0, 10.0);
     lights[0]->setDirection({-0.1, 0.0, 1.0});
     lights[0]->position = {-0.5, -0.5, 1.0};
     lights[0]->setColor({1.0, 1.0, 1.0});
     lights[0]->setAmbientIntensity(0.0);
     addChild(lights[0]);
 
-    lights[1] = make_shared<Light>(0, 10.0, 10.0);
+    lights[1] = make_shared<Light>(0, 13.0, 10.0);
     lights[1]->setDirection({0.1, 0.0, 1.0});
     lights[1]->position = {0.5, -0.5, 1.0};
     lights[1]->setColor({1.0, 1.0, 1.0});

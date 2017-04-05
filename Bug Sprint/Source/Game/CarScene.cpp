@@ -186,7 +186,7 @@ void CarScene::updateInput(const Input &input)
 
 void CarScene::update(float timeInterval)
 {
-    camera->position = car->position + Vector3({5.0f, 5.0f, -5.0f});
+    camera->position = car->position + Vector3({10.0f, 10.0f, -10.0f});
     camera->setTarget(car->position);
 
     Scene::update(timeInterval);
