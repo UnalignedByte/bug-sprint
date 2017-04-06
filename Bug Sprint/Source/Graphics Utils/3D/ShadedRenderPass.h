@@ -25,6 +25,7 @@ public:
 
 protected:
     std::shared_ptr<ShadowRenderPass> shadowRenderPass;
+    GLuint bloomBufferId;
 };
 
 #endif
