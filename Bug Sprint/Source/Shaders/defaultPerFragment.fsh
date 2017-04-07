@@ -22,8 +22,7 @@ uniform vec3 eyePosition;
 uniform Light light;
 uniform Material material;
 
-layout (location = 0) out vec4 outColor;
-layout (location = 1) out vec4 bloomColor;
+out vec4 outColor;
 
 
 void main(void)
@@ -47,7 +46,4 @@ void main(void)
     }
 
     outColor = vec4(color, 1.0);
-    //float brightness = dot(color, vec3(0.2126, 0.7152, 0.0722));
-    /*if(brightness > 1.0)
-        bloomColor = vec4(color, 1.0);*/
 }

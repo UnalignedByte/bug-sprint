@@ -26,6 +26,9 @@ public:
 protected:
     std::shared_ptr<ShadowRenderPass> shadowRenderPass;
     GLuint bloomBufferId;
+    std::shared_ptr<ShaderProgram> bloomShader;
+    GLuint outputVertexArrayId;
+    GLuint colorBuffers[2];
 };
 
 #endif

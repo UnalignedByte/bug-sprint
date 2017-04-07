@@ -42,7 +42,8 @@ uniform Material material;
 uniform sampler2D diffuseSampler;
 uniform sampler2D shadowSampler;
 
-out vec4 outColor;
+layout (location = 1) out vec4 bloomColor;
+layout (location = 0) out vec4 outColor;
 
 
 vec3 directionalLightColor(Light light, float shadowIntensity)
@@ -156,4 +157,14 @@ void main(void)
     }
 
     outColor = vec4(color, 1.0);
+    float grey = (color.r + color.g + color.b) / 3.0;
+    if(grey > 0.5)
+        bloomColor = vec4(color, 1.0);
+    else
+        bloomColor = vec4(0.0, 0.0, 0.0, 1.0);
+    /*float brightness = dot(color, vec3(0.2126, 0.7152, 0.0722));
+    if(brightness > 1.0)
+     bloomColor = vec4(color, 1.0);
+    else
+        bloomColor = vec4(0.0, 0.0, 0.0, 1.0);*/
 }
