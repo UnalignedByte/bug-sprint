@@ -22,7 +22,7 @@ class MainViewController: GLKViewController
         super.viewDidLoad()
 
         self.glkView = self.view as! GLKView
-        self.glkView.context = EAGLContext(api: .openGLES3)
+        self.glkView.context = EAGLContext(api: .openGLES3)!
         EAGLContext.setCurrent(self.glkView.context)
 
         var size = self.view.frame.size
