@@ -36,8 +36,6 @@ void setupCoreAdapter();
 
 void android_main(android_app *app)
 {
-    app_dummy();
-
     app->onAppCmd = processAppCommands;
     app->onInputEvent = processInput;
 
