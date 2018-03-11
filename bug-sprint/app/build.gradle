@@ -4,10 +4,9 @@ android {
     compileSdkVersion 25
     defaultConfig {
         applicationId "com.unalignedbyte.bugsprint"
-        minSdkVersion 19
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion 21
+        versionCode 0
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
