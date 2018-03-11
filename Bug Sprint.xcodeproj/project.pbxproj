@@ -12,6 +12,14 @@
 		B51909691DEF0C7E00469B7C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51909681DEF0C7E00469B7C /* CoreText.framework */; };
 		B53370F91DB4212300275631 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53370F81DB4212300275631 /* OpenGLES.framework */; };
 		B54BD0D02055A146009B62E0 /* GoogleTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B57917B9205597CD00A2340F /* GoogleTests.mm */; };
+		B54BD0D12055A317009B62E0 /* fragment.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B57916B420558F7100A2340F /* fragment.fsh */; };
+		B54BD0D22055A317009B62E0 /* vertex.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B57916B520558F7100A2340F /* vertex.vsh */; };
+		B54BD0D32055A317009B62E0 /* broken_vertex.vsh in Resources */ = {isa = PBXBuildFile; fileRef = B57916B620558F7100A2340F /* broken_vertex.vsh */; };
+		B54BD0D42055A317009B62E0 /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = B57916B720558F7100A2340F /* box.obj */; };
+		B54BD0D52055A317009B62E0 /* goose.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B57916B820558F7100A2340F /* goose.jpg */; };
+		B54BD0D62055A317009B62E0 /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = B57916B920558F7100A2340F /* test.txt */; };
+		B54BD0D72055A317009B62E0 /* mario.png in Resources */ = {isa = PBXBuildFile; fileRef = B57916BA20558F7100A2340F /* mario.png */; };
+		B54BD0D82055A317009B62E0 /* broken_fragment.fsh in Resources */ = {isa = PBXBuildFile; fileRef = B57916BB20558F7100A2340F /* broken_fragment.fsh */; };
 		B579175D20558F7100A2340F /* FileBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57916C720558F7100A2340F /* FileBuffer.cpp */; };
 		B579175F20558F7100A2340F /* File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57916CB20558F7100A2340F /* File.cpp */; };
 		B579176120558F7100A2340F /* CarScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57916D120558F7100A2340F /* CarScene.cpp */; };
@@ -790,6 +798,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B57917B5205594F700A2340F /* Info.plist in Resources */,
+				B54BD0D22055A317009B62E0 /* vertex.vsh in Resources */,
+				B54BD0D42055A317009B62E0 /* box.obj in Resources */,
+				B54BD0D52055A317009B62E0 /* goose.jpg in Resources */,
+				B54BD0D72055A317009B62E0 /* mario.png in Resources */,
+				B54BD0D32055A317009B62E0 /* broken_vertex.vsh in Resources */,
+				B54BD0D62055A317009B62E0 /* test.txt in Resources */,
+				B54BD0D12055A317009B62E0 /* fragment.fsh in Resources */,
+				B54BD0D82055A317009B62E0 /* broken_fragment.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
